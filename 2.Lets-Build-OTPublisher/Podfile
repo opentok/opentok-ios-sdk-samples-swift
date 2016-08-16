@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'Lets-Build-OTPublisher' do
+	pod 'OpenTok'
+end
