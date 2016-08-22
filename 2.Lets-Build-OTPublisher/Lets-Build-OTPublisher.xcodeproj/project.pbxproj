@@ -16,6 +16,7 @@
 		F86C64C11D5C8A150081846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86C64BF1D5C8A150081846D /* Main.storyboard */; };
 		F86C64C31D5C8A150081846D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F86C64C21D5C8A150081846D /* Assets.xcassets */; };
 		F86C64C61D5C8A150081846D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86C64C41D5C8A150081846D /* LaunchScreen.storyboard */; };
+		F8C552001D635AFE00484097 /* EAGLVideoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C551FF1D635AFE00484097 /* EAGLVideoRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F86C64C21D5C8A150081846D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F86C64C51D5C8A150081846D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F86C64C71D5C8A150081846D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8C551FF1D635AFE00484097 /* EAGLVideoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EAGLVideoRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				F84DC3AA1D5C8B2900402BD9 /* ExamplePublisher.swift */,
 				F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */,
 				F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */,
+				F8C551FF1D635AFE00484097 /* EAGLVideoRenderer.swift */,
 			);
 			path = "Lets-Build-OTPublisher";
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				F86C64BE1D5C8A150081846D /* ViewController.swift in Sources */,
 				F86C64BC1D5C8A150081846D /* AppDelegate.swift in Sources */,
 				F84DC3AB1D5C8B2900402BD9 /* ExamplePublisher.swift in Sources */,
+				F8C552001D635AFE00484097 /* EAGLVideoRenderer.swift in Sources */,
 				F84DC3AD1D5C8B6400402BD9 /* ExampleVideoCapture.swift in Sources */,
 				F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */,
 			);
