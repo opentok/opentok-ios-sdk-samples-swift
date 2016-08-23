@@ -58,11 +58,12 @@ class ExampleVideoCapture: NSObject {
         }
     }
     
-    private let captureQueue: dispatch_queue_t
     private var captureWidth: UInt32
     private var captureHeight: UInt32
     private var capturing = false
     private let videoFrame: OTVideoFrame
+    
+    let captureQueue: dispatch_queue_t
     
     override init() {
         capturePreset = AVCaptureSessionPresetMedium
