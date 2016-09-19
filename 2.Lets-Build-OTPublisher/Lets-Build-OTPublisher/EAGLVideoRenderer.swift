@@ -41,26 +41,26 @@ class EAGLVideoRenderer {
         "   gl_FragColor = vec4(r, g, b, 1.0);" +
         "}"
     
-    private let context: EAGLContext
-    private var isInitialized = false
-    private var glProgram: GLuint = 0
-    private var position: GLuint = 0
-    private var texcoord: GLuint = 0
-    private var ySampler: GLint = 0
-    private var uSampler: GLint = 0
-    private var vSampler: GLint = 0
-    private var textures = [GLuint](count: Int(kNumTextures), repeatedValue:GLuint(0))
-    private var vertexBuffer: GLuint = 0
-    private var vertices = [GLfloat](count: 16, repeatedValue: GLfloat(0))
-    private var lastImageSize = CGSizeMake(-1, -1)
-    private var lastViewportSize = CGSizeMake(-1, -1)
-    private var flushVertices = false
+    fileprivate let context: EAGLContext
+    fileprivate var isInitialized = false
+    fileprivate var glProgram: GLuint = 0
+    fileprivate var position: GLuint = 0
+    fileprivate var texcoord: GLuint = 0
+    fileprivate var ySampler: GLint = 0
+    fileprivate var uSampler: GLint = 0
+    fileprivate var vSampler: GLint = 0
+    fileprivate var textures = [GLuint](repeating: GLuint(0), count: Int(kNumTextures))
+    fileprivate var vertexBuffer: GLuint = 0
+    fileprivate var vertices = [GLfloat](repeating: GLfloat(0), count: 16)
+    fileprivate var lastImageSize = CGSize(width: -1, height: -1)
+    fileprivate var lastViewportSize = CGSize(width: -1, height: -1)
+    fileprivate var flushVertices = false
     var mirroring = false {
         didSet {
             flushVertices = true
         }
     }
-    private var intialized = false
+    fileprivate var intialized = false
     var lastFrameTime = CMTimeValue(0)
 
     init(context: EAGLContext) {
@@ -112,7 +112,7 @@ class EAGLVideoRenderer {
         updateTextureDataForFrame(frame: f)
         
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        let imageSize = CGSizeMake(CGFloat(f.format.imageWidth), CGFloat(f.format.imageHeight))
+        let imageSize = CGSize(width: CGFloat(f.format.imageWidth), height: CGFloat(f.format.imageHeight))
         if flushVertices {
             flushVertices = false
             updateVerticesWithViewportSize()
@@ -120,7 +120,7 @@ class EAGLVideoRenderer {
         updateVerticesWithViewportSize(withViewport.size, imageSize: imageSize)
         
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), vertices.count * sizeof(GLfloat), vertices,
+        glBufferData(GLenum(GL_ARRAY_BUFFER), vertices.count * MemoryLayout<GLfloat>.size, vertices,
                      GLenum(GL_DYNAMIC_DRAW))
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, 4)
         lastFrameTime = f.timestamp.value
@@ -137,15 +137,15 @@ class EAGLVideoRenderer {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
     }
     
-    private func ensureGLContext() {
-        if EAGLContext.currentContext() != context {
-            EAGLContext.setCurrentContext(context)
+    fileprivate func ensureGLContext() {
+        if EAGLContext.current() != context {
+            EAGLContext.setCurrent(context)
         }
     }
     
-    private func createShader(type: GLenum, source: String) throws -> GLuint {
+    fileprivate func createShader(_ type: GLenum, source: String) throws -> GLuint {
         let shader = glCreateShader(type)
-        var cStringSource = (source as NSString).UTF8String
+        var cStringSource = (source as NSString).utf8String
         glShaderSource(shader, 1, &cStringSource, nil)
         glCompileShader(shader)
         var compileStatus = GL_FALSE
@@ -157,7 +157,7 @@ class EAGLVideoRenderer {
         return shader
     }
     
-    private func createProgram(vertexShader: GLuint, fragmentShader: GLuint) throws -> GLuint {
+    fileprivate func createProgram(_ vertexShader: GLuint, fragmentShader: GLuint) throws -> GLuint {
         let program = glCreateProgram()
         glAttachShader(program, vertexShader)
         glAttachShader(program, fragmentShader)
@@ -171,15 +171,15 @@ class EAGLVideoRenderer {
         return program
     }
     
-    private func getAttribLocation(program: GLuint, attrib: String) -> GLuint {
-        return GLuint(glGetAttribLocation(program, (attrib as NSString).UTF8String))
+    fileprivate func getAttribLocation(_ program: GLuint, attrib: String) -> GLuint {
+        return GLuint(glGetAttribLocation(program, (attrib as NSString).utf8String))
     }
     
-    private func getUniformLocation(program: GLuint, location: String) -> GLint {
-        return glGetUniformLocation(program, (location as NSString).UTF8String)
+    fileprivate func getUniformLocation(_ program: GLuint, location: String) -> GLint {
+        return glGetUniformLocation(program, (location as NSString).utf8String)
     }
     
-    private func setupProgram() throws {
+    fileprivate func setupProgram() throws {
         let vertexShader = try createShader(GLenum(GL_VERTEX_SHADER), source: self.vertexShader)
         let fragmentShader = try createShader(GLenum(GL_FRAGMENT_SHADER), source: self.fragmentShader)
         glProgram = try createProgram(vertexShader, fragmentShader: fragmentShader)
@@ -195,9 +195,9 @@ class EAGLVideoRenderer {
         vSampler = getUniformLocation(glProgram, location: "s_textureV")
     }
     
-    private func setupTextures() {
-        glGenTextures(EAGLVideoRenderer.kNumTextures, UnsafeMutablePointer(textures))
-        for (index, texture) in textures.enumerate() {
+    fileprivate func setupTextures() {
+        glGenTextures(EAGLVideoRenderer.kNumTextures, UnsafeMutablePointer(mutating: textures))
+        for (index, texture) in textures.enumerated() {
             glActiveTexture(UInt32(GL_TEXTURE0 + index))
             glBindTexture(GLenum(GL_TEXTURE_2D), texture)
             glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GL_LINEAR);
@@ -207,13 +207,13 @@ class EAGLVideoRenderer {
         }
     }
     
-    private func setupVertices() {
+    fileprivate func setupVertices() {
         glGenBuffers(1, &vertexBuffer)
         updateVerticesWithViewportSize()
     }
     
-    private func updateVerticesWithViewportSize(viewportSize: CGSize = CGSizeMake(1, 1),
-                                                imageSize: CGSize = CGSizeMake(1, 1))
+    fileprivate func updateVerticesWithViewportSize(_ viewportSize: CGSize = CGSize(width: 1, height: 1),
+                                                imageSize: CGSize = CGSize(width: 1, height: 1))
     {
         if lastImageSize == imageSize && viewportSize == lastViewportSize {
             return
@@ -254,32 +254,37 @@ class EAGLVideoRenderer {
         vertices[15] = 0
         
         glBindBuffer(GLenum(GL_ARRAY_BUFFER), vertexBuffer)
-        glBufferData(GLenum(GL_ARRAY_BUFFER), vertices.count * sizeof(GLfloat), vertices,
+        glBufferData(GLenum(GL_ARRAY_BUFFER), vertices.count * MemoryLayout<GLfloat>.size, vertices,
                      GLenum(GL_DYNAMIC_DRAW))
         
         // Read position attribute from |_vertices| with size of 2 and stride of 4
         // beginning at the start of the array. The last argument indicates offset
         // of data within |gVertices| as supplied to the vertex buffer.
-        glVertexAttribPointer(position, 2, GLenum(GL_FLOAT), UInt8(GL_FALSE), 4 * Int32(sizeof(GLfloat)), nil)
+        glVertexAttribPointer(position, 2, GLenum(GL_FLOAT), UInt8(GL_FALSE), 4 * Int32(MemoryLayout<GLfloat>.size), nil)
         glEnableVertexAttribArray(position)
         
         // Read texcoord attribute from |_vertices| with size of 2 and stride of 4
         // beginning at the first texcoord in the array. The last argument indicates
         // offset of data within |gVertices| as supplied to the vertex buffer.
-        let ptr: UnsafePointer<Void> = nil + (sizeof(GLfloat) * 2)
-        glVertexAttribPointer(texcoord,
-                              2,
-                              GLenum(GL_FLOAT),
-                              UInt8(GL_FALSE),
-                              Int32(4 * sizeof(GLfloat)),
-                              ptr)
+        
+        let ptr = UnsafeMutablePointer<GLfloat>.allocate(capacity: 1)
+        let value = GLfloat(MemoryLayout<GLfloat>.size * 2)
+        ptr.pointee = value
+        ptr.withMemoryRebound(to: UnsafeMutableRawPointer.self, capacity: 1) {
+            glVertexAttribPointer(texcoord,
+                                  2,
+                                  GLenum(GL_FLOAT),
+                                  UInt8(GL_FALSE),
+                                  Int32(4 * MemoryLayout<GLfloat>.size),
+                                  $0)
+        }
         glEnableVertexAttribArray(texcoord)
     }
     
-    private var lastDrawnHeight = UInt32(0)
-    private var lastDrawnWidth = UInt32(0)
+    fileprivate var lastDrawnHeight = UInt32(0)
+    fileprivate var lastDrawnWidth = UInt32(0)
     
-    private func updateTextureSizesForFrame(frame frame: OTVideoFrame) {
+    fileprivate func updateTextureSizesForFrame(frame: OTVideoFrame) {
         if (frame.format.imageHeight == lastDrawnHeight &&
             frame.format.imageWidth == lastDrawnWidth) {
             return
@@ -326,8 +331,8 @@ class EAGLVideoRenderer {
         }
     }
     
-    private var currentTextureSet: GLint = 0
-    private func updateTextureDataForFrame(frame frame: OTVideoFrame) {
+    fileprivate var currentTextureSet: GLint = 0
+    fileprivate func updateTextureDataForFrame(frame: OTVideoFrame) {
         let textureOffset = GLint(currentTextureSet * 3)
         
         glActiveTexture(GLenum(GL_TEXTURE0 + textureOffset))
@@ -340,7 +345,7 @@ class EAGLVideoRenderer {
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
-                     frame.planes.pointerAtIndex(0))
+                     frame.planes.pointer(at: 0))
 
         glActiveTexture(GLenum(GL_TEXTURE0 + textureOffset + 1))
         glUniform1i(uSampler, textureOffset + 1)
@@ -352,7 +357,7 @@ class EAGLVideoRenderer {
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
-                     frame.planes.pointerAtIndex(1))
+                     frame.planes.pointer(at: 1))
 
         glActiveTexture(GLenum(GL_TEXTURE0 + textureOffset + 2))
         glUniform1i(vSampler, textureOffset + 2)
@@ -364,7 +369,7 @@ class EAGLVideoRenderer {
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
-                     frame.planes.pointerAtIndex(2))
+                     frame.planes.pointer(at: 2))
 
         currentTextureSet = (currentTextureSet + 1) % EAGLVideoRenderer.kNumTextureSets
     }

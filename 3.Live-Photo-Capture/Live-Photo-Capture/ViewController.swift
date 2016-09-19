@@ -34,7 +34,8 @@ class ViewController: UIViewController {
     var subscribeToSelf = true
     let captureSession = AVCaptureSession()
     
-    let captureQueue = dispatch_queue_create("com.tokbox.VideoCapture", DISPATCH_QUEUE_SERIAL)
+    
+    let captureQueue = DispatchQueue(label: "com.tokbox.VideoCapture")
     let photoVideoCapture = ExamplePhotoVideoCapture()
     
     var imageView: UIImageView!
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         imageView = UIImageView(frame: CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight))
-        imageView.backgroundColor = UIColor.greenColor()
+        imageView.backgroundColor = UIColor.green
         view.addSubview(imageView)
         
         
@@ -53,7 +54,7 @@ class ViewController: UIViewController {
         doConnect()
     }
     
-    func handleSingleTap(gestureRecognizer: UIGestureRecognizer) {
+    func handleSingleTap(_ gestureRecognizer: UIGestureRecognizer) {
         photoVideoCapture.takePhoto { (photo) in
             self.imageView.image = photo
             self.imageView.setNeedsDisplay()
@@ -66,10 +67,10 @@ class ViewController: UIViewController {
      */
     private func doConnect() {
         defer {
-            processError(error)
+            process(error: error)
         }
         var error: OTError?
-        session.connectWithToken(kToken, error: &error)
+        session.connect(withToken: kToken, error: &error)
     }
     
     /**
@@ -79,9 +80,9 @@ class ViewController: UIViewController {
      */
     private func doPublish() {
         defer {
-            processError(error)
+            process(error: error)
         }
-        publisher = ExamplePublisher(delegate: self, name: UIDevice.currentDevice().name)
+        publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
         publisher?.videoCapture = photoVideoCapture
         var error: OTError? = nil
         session.publish(publisher, error: &error)
@@ -89,41 +90,40 @@ class ViewController: UIViewController {
         view.addSubview(publisher!.view)
     }
     
-    private func processError(error: OTError?) {
-        if let err = error {
-            showAlert(errorStr: err.localizedDescription)
+    private func process(error err: OTError?) {
+        if let e = err {
+            showAlert(errorStr: e.localizedDescription)
         }
     }
     
     private func showAlert(errorStr err: String) {
-        dispatch_async(dispatch_get_main_queue()) {
-            let controller = UIAlertController(title: "Error", message: err, preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
+        DispatchQueue.main.async {
+            let controller = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(controller, animated: true, completion: nil)
+        }        
     }
 }
 
 // MARK: - OTSession delegate callbacks
 extension ViewController: OTSessionDelegate {
-    func sessionDidConnect(session: OTSession!) {
+    func sessionDidConnect(_ session: OTSession!) {
         print("Session connected")
-        doPublish()
     }
     
-    func sessionDidDisconnect(session: OTSession!) {
+    func sessionDidDisconnect(_ session: OTSession!) {
         print("Session disconnected")
     }
     
-    func session(session: OTSession!, streamCreated stream: OTStream!) {
+    func session(_ session: OTSession!, streamCreated stream: OTStream!) {
         print("Session streamCreated: \(stream.streamId)")
     }
     
-    func session(session: OTSession!, streamDestroyed stream: OTStream!) {
+    func session(_ session: OTSession!, streamDestroyed stream: OTStream!) {
         print("Session streamDestroyed: \(stream.streamId)")
     }
     
-    func session(session: OTSession!, didFailWithError error: OTError!) {
+    func session(_ session: OTSession!, didFailWithError error: OTError!) {
         print("session Failed to connect: \(error.localizedDescription)")
     }
     
@@ -131,13 +131,13 @@ extension ViewController: OTSessionDelegate {
 
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
-    func publisher(publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
     }
     
-    func publisher(publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
     }
     
-    func publisher(publisher: OTPublisherKit!, didFailWithError error: OTError!) {
+    func publisher(_ publisher: OTPublisherKit!, didFailWithError error: OTError!) {
         print("Publisher failed: \(error.localizedDescription)")
     }
     
