@@ -1,5 +1,0 @@
-use_frameworks!
-
-target 'Hello-World' do
-	pod 'OpenTok'
-end

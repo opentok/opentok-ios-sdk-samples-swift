@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4DF70F5B062F51D9A4C8FF22 /* Pods_Hello_World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25749D125F256C0818D9A4EF /* Pods_Hello_World.framework */; };
+		071E0CAEFCCAA7682BE6B320 /* Pods_1_Hello_World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E724675B83C828F24C029882 /* Pods_1_Hello_World.framework */; };
 		F86C649E1D5C7C630081846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C649D1D5C7C630081846D /* AppDelegate.swift */; };
 		F86C64A01D5C7C630081846D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C649F1D5C7C630081846D /* ViewController.swift */; };
 		F86C64A31D5C7C630081846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F86C64A11D5C7C630081846D /* Main.storyboard */; };
@@ -16,10 +16,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		25749D125F256C0818D9A4EF /* Pods_Hello_World.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hello_World.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		911188275362277465F3DADC /* Pods-Hello-World.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-World.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World.debug.xcconfig"; sourceTree = "<group>"; };
-		A6A8CE47E32C5B6B5C423C98 /* Pods-Hello-World.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-World.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World.release.xcconfig"; sourceTree = "<group>"; };
-		F86C649A1D5C7C630081846D /* Hello-World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello-World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3825D2F4E2D98665A1603DDF /* Pods-1.Hello-World.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1.Hello-World.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-1.Hello-World/Pods-1.Hello-World.debug.xcconfig"; sourceTree = "<group>"; };
+		C0328A868BBDF1BE4C5291EE /* Pods-1.Hello-World.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-1.Hello-World.release.xcconfig"; path = "../Pods/Target Support Files/Pods-1.Hello-World/Pods-1.Hello-World.release.xcconfig"; sourceTree = "<group>"; };
+		E724675B83C828F24C029882 /* Pods_1_Hello_World.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_1_Hello_World.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F86C649A1D5C7C630081846D /* 1.Hello-World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1.Hello-World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86C649D1D5C7C630081846D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F86C649F1D5C7C630081846D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F86C64A21D5C7C630081846D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,28 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DF70F5B062F51D9A4C8FF22 /* Pods_Hello_World.framework in Frameworks */,
+				071E0CAEFCCAA7682BE6B320 /* Pods_1_Hello_World.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07A8C4277FB3B716B8BC8A84 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				911188275362277465F3DADC /* Pods-Hello-World.debug.xcconfig */,
-				A6A8CE47E32C5B6B5C423C98 /* Pods-Hello-World.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		231570CE83280E24736C20A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				25749D125F256C0818D9A4EF /* Pods_Hello_World.framework */,
+				E724675B83C828F24C029882 /* Pods_1_Hello_World.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2628C58AF2937FBEEEC1B7EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3825D2F4E2D98665A1603DDF /* Pods-1.Hello-World.debug.xcconfig */,
+				C0328A868BBDF1BE4C5291EE /* Pods-1.Hello-World.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		F86C64911D5C7C630081846D = {
@@ -62,15 +62,15 @@
 			children = (
 				F86C649C1D5C7C630081846D /* Hello-World */,
 				F86C649B1D5C7C630081846D /* Products */,
-				07A8C4277FB3B716B8BC8A84 /* Pods */,
 				231570CE83280E24736C20A0 /* Frameworks */,
+				2628C58AF2937FBEEEC1B7EA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		F86C649B1D5C7C630081846D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F86C649A1D5C7C630081846D /* Hello-World.app */,
+				F86C649A1D5C7C630081846D /* 1.Hello-World.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,9 +91,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F86C64991D5C7C630081846D /* Hello-World */ = {
+		F86C64991D5C7C630081846D /* 1.Hello-World */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F86C64AC1D5C7C630081846D /* Build configuration list for PBXNativeTarget "Hello-World" */;
+			buildConfigurationList = F86C64AC1D5C7C630081846D /* Build configuration list for PBXNativeTarget "1.Hello-World" */;
 			buildPhases = (
 				A96E30C261273745E25AA236 /* [CP] Check Pods Manifest.lock */,
 				F86C64961D5C7C630081846D /* Sources */,
@@ -106,9 +106,9 @@
 			);
 			dependencies = (
 			);
-			name = "Hello-World";
+			name = "1.Hello-World";
 			productName = "Hello-World";
-			productReference = F86C649A1D5C7C630081846D /* Hello-World.app */;
+			productReference = F86C649A1D5C7C630081846D /* 1.Hello-World.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -123,10 +123,13 @@
 				TargetAttributes = {
 					F86C64991D5C7C630081846D = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = E69WFXMSE9;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
-			buildConfigurationList = F86C64951D5C7C630081846D /* Build configuration list for PBXProject "Hello-World" */;
+			buildConfigurationList = F86C64951D5C7C630081846D /* Build configuration list for PBXProject "1.Hello-World" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -139,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F86C64991D5C7C630081846D /* Hello-World */,
+				F86C64991D5C7C630081846D /* 1.Hello-World */,
 			);
 		};
 /* End PBXProject section */
@@ -170,7 +173,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-1.Hello-World/Pods-1.Hello-World-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A96E30C261273745E25AA236 /* [CP] Check Pods Manifest.lock */ = {
@@ -200,7 +203,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-1.Hello-World/Pods-1.Hello-World-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -322,32 +325,38 @@
 		};
 		F86C64AD1D5C7C630081846D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 911188275362277465F3DADC /* Pods-Hello-World.debug.xcconfig */;
+			baseConfigurationReference = 3825D2F4E2D98665A1603DDF /* Pods-1.Hello-World.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = E69WFXMSE9;
 				INFOPLIST_FILE = "Hello-World/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Hello-World";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a59dc7c3-af3f-40f4-9a52-be0289761eb4";
+				PROVISIONING_PROFILE_SPECIFIER = "Meronapps Wildcard Development";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		F86C64AE1D5C7C630081846D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6A8CE47E32C5B6B5C423C98 /* Pods-Hello-World.release.xcconfig */;
+			baseConfigurationReference = C0328A868BBDF1BE4C5291EE /* Pods-1.Hello-World.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Hello-World/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Hello-World";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F86C64951D5C7C630081846D /* Build configuration list for PBXProject "Hello-World" */ = {
+		F86C64951D5C7C630081846D /* Build configuration list for PBXProject "1.Hello-World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F86C64AA1D5C7C630081846D /* Debug */,
@@ -356,7 +365,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F86C64AC1D5C7C630081846D /* Build configuration list for PBXNativeTarget "Hello-World" */ = {
+		F86C64AC1D5C7C630081846D /* Build configuration list for PBXNativeTarget "1.Hello-World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F86C64AD1D5C7C630081846D /* Debug */,
