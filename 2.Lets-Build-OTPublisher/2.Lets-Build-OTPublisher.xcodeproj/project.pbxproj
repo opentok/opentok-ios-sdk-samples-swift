@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		54A7EC8D5D03032657A05D79 /* Pods_2_Lets_Build_OTPublisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775134D1E901E0C39340633D /* Pods_2_Lets_Build_OTPublisher.framework */; };
-		F31A8C033B169E0B0D0FC9FA /* Pods_Lets_Build_OTPublisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2C9ADFA7A7910E04FA4327 /* Pods_Lets_Build_OTPublisher.framework */; };
 		F84DC3AB1D5C8B2900402BD9 /* ExamplePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AA1D5C8B2900402BD9 /* ExamplePublisher.swift */; };
 		F84DC3AD1D5C8B6400402BD9 /* ExampleVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */; };
 		F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */; };
@@ -47,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31A8C033B169E0B0D0FC9FA /* Pods_Lets_Build_OTPublisher.framework in Frameworks */,
 				54A7EC8D5D03032657A05D79 /* Pods_2_Lets_Build_OTPublisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,7 +144,7 @@
 				TargetAttributes = {
 					F86C64B71D5C8A150081846D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = E69WFXMSE9;
+						DevelopmentTeam = "";
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -287,8 +285,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;				
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -334,8 +331,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;				
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -361,14 +357,14 @@
 			baseConfigurationReference = 186D3FA855C598F9F9ADC14E /* Pods-2.Lets-Build-OTPublisher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = E69WFXMSE9;
+				CLANG_ENABLE_MODULES = YES;				
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Lets-Build-OTPublisher/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Lets-Build-OTPublisher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a59dc7c3-af3f-40f4-9a52-be0289761eb4";
-				PROVISIONING_PROFILE_SPECIFIER = "Meronapps Wildcard Development";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Lets-Build-OTPublisher/2.Lets-Build-OTPublisher-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

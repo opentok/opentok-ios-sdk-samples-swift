@@ -15,11 +15,11 @@ let kWidgetWidth = 320
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-// room: 000mmm
-let kApiKey = "45599822"
-let kToken = "T1==cGFydG5lcl9pZD00NTU5OTgyMiZzaWc9M2FjYjA2YzEyNmY1YjEyNzQwZTExMmIzYTVkNTgyMDBkN2NlZmE4ZTpzZXNzaW9uX2lkPTFfTVg0ME5UVTVPVGd5TW41LU1UUTNOREk0TlRNeU1qRTRObjVCVXpCSFdGb3dNRVYyY1hkNFdUSnJSV0VyWkdONGFuZC1mZyZjcmVhdGVfdGltZT0xNDc0Mjg1MzIyJm5vbmNlPTAuOTY0ODU5MzMxOTU3OTk1OSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDc0MzcxNzIyJmNvbm5lY3Rpb25fZGF0YT0lN0IlMjJ1c2VyTmFtZSUyMiUzQSUyMkFub255bW91cyUyMFVzZXI2NzclMjIlN0Q="
-let kSessionId = "1_MX40NTU5OTgyMn5-MTQ3NDI4NTMyMjE4Nn5BUzBHWFowMEV2cXd4WTJrRWErZGN4and-fg"
-
+let kApiKey = ""
+// Replace with your generated session ID
+let kSessionId = ""
+// Replace with your generated token
+let kToken = ""
 
 
 class ViewController: UIViewController {
