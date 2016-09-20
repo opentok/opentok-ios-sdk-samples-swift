@@ -267,17 +267,13 @@ class EAGLVideoRenderer {
         // beginning at the first texcoord in the array. The last argument indicates
         // offset of data within |gVertices| as supplied to the vertex buffer.
         
-        let ptr = UnsafeMutablePointer<GLfloat>.allocate(capacity: 1)
-        let value = GLfloat(MemoryLayout<GLfloat>.size * 2)
-        ptr.pointee = value
-        ptr.withMemoryRebound(to: UnsafeMutableRawPointer.self, capacity: 1) {
-            glVertexAttribPointer(texcoord,
-                                  2,
-                                  GLenum(GL_FLOAT),
-                                  UInt8(GL_FALSE),
-                                  Int32(4 * MemoryLayout<GLfloat>.size),
-                                  $0)
-        }
+        let ptr = UnsafeMutableRawPointer(bitPattern: MemoryLayout<GLfloat>.size * 2)
+        glVertexAttribPointer(texcoord,
+                              2,
+                              GLenum(GL_FLOAT),
+                              UInt8(GL_FALSE),
+                              Int32(4 * MemoryLayout<GLfloat>.size),
+                              ptr)
         glEnableVertexAttribArray(texcoord)
     }
     
