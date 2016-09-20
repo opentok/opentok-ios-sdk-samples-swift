@@ -45,9 +45,7 @@ extension String {
     }
 }
 
-class ExampleVideoCapture: NSObject {
-    var videoCaptureConsumer: OTVideoCaptureConsumer!
-    
+class ExampleVideoCapture: OTVideoCaptureSwift30Proxy {    
     var captureSession: AVCaptureSession?
     var videoInput: AVCaptureDeviceInput?
     var videoOutput: AVCaptureVideoDataOutput?
@@ -144,31 +142,9 @@ class ExampleVideoCapture: NSObject {
         captureHeight = h
         videoFrame.format = OTVideoFormat.init(nv12WithWidth: w, height: h)
     }
-    
-    deinit {}
-    
-    /*deinit {
-        let _ = stop()
-        videoOutput?.setSampleBufferDelegate(nil, queue: captureQueue)
-        captureQueue.sync {
-            self.captureSession?.stopRunning()
-        }
-        captureSession = nil
-        videoOutput = nil
-        videoInput = nil
-    }*/
-}
 
-// MARK: - OTVideoCapture protocol
-extension ExampleVideoCapture: OTVideoCapture {    
-    func captureSettings(_ videoFormat: OTVideoFormat!) -> Int32 {
-        videoFormat.pixelFormat = .NV12
-        videoFormat.imageWidth = captureWidth
-        videoFormat.imageHeight = captureHeight
-        return 0
-    }
-    
-    func initCapture() {
+    // MARK: - OTVideoCapture protocol
+    override func proxyInit() {
         captureQueue.async {
             do {
                 try self.setupAudioVideoSession()
@@ -178,19 +154,38 @@ extension ExampleVideoCapture: OTVideoCapture {
         }
     }
     
-    func start() -> Int32 {
+    override func proxyStart() -> Int32 {
         capturing = true
         self.captureSession?.startRunning()
         return 0
     }
     
-    func stop() -> Int32 {
+    override func proxyStop() -> Int32 {
         capturing = false
         return 0
     }
     
-    func isCaptureStarted() -> Bool {
+    override func proxyRelease() {
+        let _ = stop()
+        videoOutput?.setSampleBufferDelegate(nil, queue: captureQueue)
+        captureQueue.sync {
+            self.captureSession?.stopRunning()
+        }
+        captureSession = nil
+        videoOutput = nil
+        videoInput = nil
+
+    }
+    
+    override func proxyIsStarted() -> Bool {
         return capturing && (captureSession != nil)
+    }
+    
+    override func proxySettings(_ videoFormat: OTVideoFormat!) -> Int32 {
+        videoFormat.pixelFormat = .NV12
+        videoFormat.imageWidth = captureWidth
+        videoFormat.imageHeight = captureHeight
+        return 0
     }
 }
 

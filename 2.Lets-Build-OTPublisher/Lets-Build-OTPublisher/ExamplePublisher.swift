@@ -21,7 +21,7 @@ class ExamplePublisher: OTPublisher {
         super.init(delegate: delegate, name: name)
         exampleCapturer = ExampleVideoCapture()
         exampleRenderer = ExampleVideoRender()
-        videoCapture = exampleCapturer!
+        videoCapture = exampleCapturer!.videoCapture()
         videoRender = exampleRenderer!
     }
     
