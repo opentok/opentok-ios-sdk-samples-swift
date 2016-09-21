@@ -15,3 +15,8 @@ target '3.Live-Photo-Capture' do
 	project '3.Live-Photo-Capture/3.Live-Photo-Capture.xcodeproj'
 	pod 'OpenTok'
 end
+
+target '4.Custom-Audio-Driver' do
+	project '4.Custom-Audio-Driver/4.Custom-Audio-Driver.xcodeproj'
+	pod 'OpenTok'
+end
