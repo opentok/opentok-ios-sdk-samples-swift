@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Lets-Build-OTPublisher
+//  Live-Photo-Capture
 //
 //  Created by Roberto Perez Cubero on 11/08/16.
 //  Copyright © 2016 tokbox. All rights reserved.
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
      * binds to the device camera and microphone, and will provide A/V streams
      * to the OpenTok session.
      */
-    private func doPublish() {
+    fileprivate func doPublish() {
         defer {
             process(error: error)
         }
@@ -90,13 +90,13 @@ class ViewController: UIViewController {
         view.addSubview(publisher!.view)
     }
     
-    private func process(error err: OTError?) {
+    fileprivate func process(error err: OTError?) {
         if let e = err {
             showAlert(errorStr: e.localizedDescription)
         }
     }
     
-    private func showAlert(errorStr err: String) {
+    fileprivate func showAlert(errorStr err: String) {
         DispatchQueue.main.async {
             let controller = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -109,6 +109,7 @@ class ViewController: UIViewController {
 extension ViewController: OTSessionDelegate {
     func sessionDidConnect(_ session: OTSession!) {
         print("Session connected")
+        doPublish()
     }
     
     func sessionDidDisconnect(_ session: OTSession!) {
