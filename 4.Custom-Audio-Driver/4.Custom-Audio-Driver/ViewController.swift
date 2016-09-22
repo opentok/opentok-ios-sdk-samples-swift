@@ -29,13 +29,14 @@ class ViewController: UIViewController {
     
     var publisher: OTPublisher?
     var subscriber: OTSubscriber?
+    let customAudioDevice = DefaultAudioDevice.sharedInstance
     
     // Change to `false` to subscribe to streams other than your own.
     var subscribeToSelf = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        OTAudioDeviceManager.setAudioDevice(customAudioDevice)
         doConnect()
     }
     
@@ -67,6 +68,15 @@ class ViewController: UIViewController {
         view.addSubview(publisher!.view)
     }
     
+    fileprivate func doSubscribe(_ stream: OTStream) {
+        defer {
+            process(error: error)
+        }
+        subscriber = OTSubscriber(stream: stream, delegate: self)
+        var error: OTError?
+        session.subscribe(subscriber, error: &error)
+    }
+    
     fileprivate func process(error err: OTError?) {
         if let e = err {
             showAlert(errorStr: e.localizedDescription)
@@ -95,6 +105,7 @@ extension ViewController: OTSessionDelegate {
     
     func session(_ session: OTSession!, streamCreated stream: OTStream!) {
         print("Session streamCreated: \(stream.streamId)")
+        doSubscribe(stream)
     }
     
     func session(_ session: OTSession!, streamDestroyed stream: OTStream!) {
@@ -118,6 +129,22 @@ extension ViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit!, didFailWithError error: OTError!) {
         print("Publisher failed: \(error.localizedDescription)")
     }
+}
+
+// MARK: - OTSubscriber delegate callbacks
+extension ViewController: OTSubscriberDelegate {
+    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit!) {
+        subscriber?.view.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
+        if let subsView = subscriber?.view {
+            view.addSubview(subsView)
+        }
+    }
     
+    func subscriber(_ subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {
+        print("Subscriber failed: \(error.localizedDescription)")
+    }
+    
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber!) {
+    }
 }
 

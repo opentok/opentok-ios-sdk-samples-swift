@@ -42,26 +42,217 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
     var recordingAudioUnitPropertyLatency: Float64 = 0
     var playoutDelay: UInt32 = 0
     var playing = false
+    var playbackRequested = false
     var recording = false
     var recordingRequested = false
     fileprivate var recordingVoiceUnit: AudioUnit?
     fileprivate var playoutVoiceUnit: AudioUnit?
+    
+    fileprivate var previousAVAudioSessionCategory = ""
+    fileprivate var avAudioSessionMode = ""
+    fileprivate var avAudioSessionPreffSampleRate = Double(0)
+    fileprivate var avAudioSessionChannels = 0
+    fileprivate var isAudioSessionSetup = false
+    
+    var areListenerBlocksSetup = false
 
+    static let sharedInstance: DefaultAudioDevice = {
+        return DefaultAudioDevice()
+    }()
+    
     override init() {
         audioFormat.sampleRate = DefaultAudioDevice.kSampleRate
         audioFormat.numChannels = 1
     }
     
     deinit {
+        tearDownAudio()
+        removeObservers()
+    }
+    
+    func onInterruptionEvent(notification: Notification) {
+        let type = notification.userInfo?[AVAudioSessionInterruptionTypeKey]
+        safetyQueue.async {
+            self.handleInterruptionEvent(type: type as? Int)
+        }
+    }
+    
+    fileprivate func handleInterruptionEvent(type: Int?) {
+        guard let interruptionType = type else {
+            return
+        }
+        
+        switch  UInt(interruptionType) {
+        case AVAudioSessionInterruptionType.began.rawValue:
+            recordingRequested = recording
+            playbackRequested = playing
+            if recording {
+                let _ = stopCapture()
+            }
+            if playing {
+                let _ = stopRendering()
+            }
+        case AVAudioSessionInterruptionType.ended.rawValue:
+            //configureAudioSessionWithDesiredAudioRoute()
+            restartAudio()
+        default:
+            break
+        }
+    }
+    
+    func onRouteChangeEvent(notification: Notification) {
+        safetyQueue.async {
+            self.handleRouteChangeEvent(notification: notification)
+        }
+    }
+    
+    func appDidBecomeActive(notification: Notification) {
+        safetyQueue.async {
+            self.handleInterruptionEvent(type: AVAudioSessionInterruptionType.ended.rawValue as? Int)
+        }
+    }
+    
+    fileprivate func configureAudioSessionWithDesiredAudioRoute() {
         
     }
     
+    fileprivate func handleRouteChangeEvent(notification: Notification) {
+        guard let reason = notification.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt else {
+            return
+        }
+        
+        if reason == AVAudioSessionRouteChangeReason.routeConfigurationChange.rawValue {
+            return
+        }
+        
+        if reason == AVAudioSessionRouteChangeReason.override.rawValue ||
+            reason == AVAudioSessionRouteChangeReason.categoryChange.rawValue {
+            
+            let oldRouteDesc = notification.userInfo?[AVAudioSessionRouteChangePreviousRouteKey] as! AVAudioSessionRouteDescription
+            let outputs = oldRouteDesc.outputs
+            var oldOutputDeviceName: String? = nil
+            var currentOutputDeviceName: String? = nil
+            
+            if outputs.count > 0 {
+                let portDesc = outputs[0]
+                oldOutputDeviceName = portDesc.portName
+            }
+            
+            if AVAudioSession.sharedInstance().currentRoute.outputs.count > 0 {
+                currentOutputDeviceName = AVAudioSession.sharedInstance().currentRoute.outputs[0].portName
+            }
+            
+            if oldOutputDeviceName == currentOutputDeviceName || currentOutputDeviceName == nil || oldOutputDeviceName == nil {
+                return
+            }
+            
+            recordingRequested = recording
+            playbackRequested = playing
+            restartAudio()
+        }
+    }
+    
+    fileprivate func restartAudio() {
+        safetyQueue.async {
+            self.doRestartAudio(numberOfAttempts: 3)
+        }
+    }
+    
+    fileprivate func doRestartAudio(numberOfAttempts: Int) {
+        if numberOfAttempts <= 0 {
+            print("Error restarting audio")
+            return
+        }
+        
+        var success = true
+        if recordingRequested {
+            success = success && stopCapture()
+            disposeAudioUnit(audioUnit: &recordingVoiceUnit)
+            success = success && startCapture()
+        }
+        
+        if playbackRequested {
+            success = success && self.stopRendering()
+            disposeAudioUnit(audioUnit: &playoutVoiceUnit)
+            success = success && self.startRendering()
+        }
+        
+        if success {
+            recordingRequested = false
+            playbackRequested = false
+        } else {
+            safetyQueue.asyncAfter(deadline: .now() + 1, execute: {
+                self.doRestartAudio(numberOfAttempts: numberOfAttempts - 1)
+            })
+        }
+    }
+    
+    fileprivate func setupListenerBlocks() {
+        if areListenerBlocksSetup {
+            return
+        }
+        
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(DefaultAudioDevice.onInterruptionEvent),
+                                       name: Notification.Name.AVAudioSessionInterruption, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(DefaultAudioDevice.onRouteChangeEvent(notification:)),
+                                       name: Notification.Name.AVAudioSessionRouteChange, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(DefaultAudioDevice.appDidBecomeActive(notification:)),
+                                       name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        areListenerBlocksSetup = true
+    }
+    
+    fileprivate func removeObservers() {
+        NotificationCenter.default.removeObserver(self)
+        areListenerBlocksSetup = false
+    }
+    
+    fileprivate func setupAudioSession() {
+        let session = AVAudioSession.sharedInstance()
+        
+        previousAVAudioSessionCategory = session.category
+        avAudioSessionMode = session.mode
+        avAudioSessionPreffSampleRate = session.preferredSampleRate
+        avAudioSessionChannels = session.inputNumberOfChannels
+        do {
+            try session.setMode(AVAudioSessionModeVideoChat)
+            try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))
+            try session.setPreferredInputNumberOfChannels(1)
+            try session.setPreferredIOBufferDuration(0.01)
+            
+            
+            let audioOptions = AVAudioSessionCategoryOptions.mixWithOthers.rawValue |
+                AVAudioSessionCategoryOptions.allowBluetooth.rawValue |
+                AVAudioSessionCategoryOptions.defaultToSpeaker.rawValue
+            
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions(rawValue: audioOptions))
+            
+            setupListenerBlocks()
+            
+            try session.setActive(true)
+        } catch let err as NSError {
+            print("Error setting up audio session \(err)")
+        } catch {
+            print("Error setting up audio session")
+        }
+    }
+    
     fileprivate func setupAudioUnit(withPlayout playout: Bool) -> Bool {
-        var (audioUnit, bus, scope): (AudioUnit?, AudioUnitElement, AudioUnitScope) = {
+        
+        if !isAudioSessionSetup {
+            setupAudioSession()
+            isAudioSessionSetup = true
+        }
+        
+        let (bus, scope): (AudioUnitElement, AudioUnitScope) = {
             if playout {
-                return (recordingVoiceUnit, DefaultAudioDevice.kOutputBus, kAudioUnitScope_Output)
+                return (DefaultAudioDevice.kOutputBus, kAudioUnitScope_Output)
             } else {
-                return (playoutVoiceUnit, DefaultAudioDevice.kInputBus, kAudioUnitScope_Input)
+                return (DefaultAudioDevice.kInputBus, kAudioUnitScope_Input)
             }
         }()
         
@@ -84,13 +275,27 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
         audioUnitDescription.componentFlagsMask = 0
         
         let foundVpioUnitRef = AudioComponentFindNext(nil, &audioUnitDescription)
-        let result = AudioComponentInstanceNew(foundVpioUnitRef!, &audioUnit)
+        let result: OSStatus = {
+            if playout {
+                return AudioComponentInstanceNew(foundVpioUnitRef!, &playoutVoiceUnit)
+            } else {
+                return AudioComponentInstanceNew(foundVpioUnitRef!, &recordingVoiceUnit)
+            }
+        }()
         
-        // Check result
+        if result != noErr {
+            print("Error seting up audio unit")
+            return false
+        }
         
         var value = UnsafePointer<UInt32>(bitPattern: 1)
-        AudioUnitSetProperty(audioUnit!, kAudioOutputUnitProperty_EnableIO, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
-        AudioUnitSetProperty(audioUnit!, kAudioUnitProperty_StreamFormat, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+        if playout {
+            AudioUnitSetProperty(playoutVoiceUnit!, kAudioOutputUnitProperty_EnableIO, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+            AudioUnitSetProperty(playoutVoiceUnit!, kAudioUnitProperty_StreamFormat, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+        } else {
+            AudioUnitSetProperty(recordingVoiceUnit!, kAudioOutputUnitProperty_EnableIO, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+            AudioUnitSetProperty(recordingVoiceUnit!, kAudioUnitProperty_StreamFormat, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+        }
         
         if playout {
             setupPlayoutCallback()
@@ -104,7 +309,7 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
     fileprivate func setupPlayoutCallback() {
         let selfPointer = Unmanaged.passUnretained(self).toOpaque()
         var renderCallback = AURenderCallbackStruct(inputProc: renderCb, inputProcRefCon: selfPointer)
-        AudioUnitSetProperty(recordingVoiceUnit!,
+        AudioUnitSetProperty(playoutVoiceUnit!,
                              kAudioUnitProperty_SetRenderCallback,
                              kAudioUnitScope_Input,
                              DefaultAudioDevice.kOutputBus,
@@ -116,7 +321,7 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
     fileprivate func setupRecordingCallback() {
         let selfPointer = Unmanaged.passUnretained(self).toOpaque()
         var inputCallback = AURenderCallbackStruct(inputProc: recordCb, inputProcRefCon: selfPointer)
-        AudioUnitSetProperty(playoutVoiceUnit!,
+        AudioUnitSetProperty(recordingVoiceUnit!,
                              kAudioUnitProperty_SetRenderCallback,
                              kAudioUnitScope_Global,
                              DefaultAudioDevice.kInputBus,
@@ -124,7 +329,7 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
                              UInt32(MemoryLayout<AURenderCallbackStruct>.size))
         
         let value = UnsafePointer<UInt32>(bitPattern: 0)
-        AudioUnitSetProperty(playoutVoiceUnit!,
+        AudioUnitSetProperty(recordingVoiceUnit!,
                              kAudioUnitProperty_ShouldAllocateBuffer,
                              kAudioUnitScope_Output,
                              DefaultAudioDevice.kInputBus,
@@ -132,12 +337,45 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
                              UInt32(MemoryLayout<UInt32>.size))
     }
     
+    fileprivate func disposeAudioUnit(audioUnit: inout AudioUnit?) {
+        if let unit = audioUnit {
+            AudioUnitUninitialize(unit)
+            AudioComponentInstanceDispose(unit)
+        }
+        audioUnit = nil
+    }
+    
     fileprivate func tearDownAudio() {
+        print("Destoying audio units")
+        disposeAudioUnit(audioUnit: &playoutVoiceUnit)
+        disposeAudioUnit(audioUnit: &recordingVoiceUnit)
+        freeupAudioBuffers()
         
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(previousAVAudioSessionCategory)
+            try session.setMode(avAudioSessionMode)
+            try session.setPreferredSampleRate(avAudioSessionPreffSampleRate)
+            try session.setPreferredInputNumberOfChannels(avAudioSessionChannels)
+            
+            isAudioSessionSetup = false
+        } catch {
+            print("Error reseting AVAudioSession")
+        }
     }
     
     fileprivate func freeupAudioBuffers() {
+        if var data = bufferList?.pointee, data.mBuffers.mData != nil {
+            free(data.mBuffers.mData)
+            data.mBuffers.mData = nil
+        }
         
+        if let list = bufferList {
+            list.deallocate(capacity: 1)
+        }
+        
+        bufferList = nil
+        bufferNumFrames = 0
     }
     
     // MARK: - Audio Device Implementation
@@ -188,6 +426,7 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
         let result = AudioOutputUnitStart(playoutVoiceUnit!)
         
         if result != noErr {
+            print("Error creaing rendering unit")
             playing = false
         }
         return playing
@@ -202,6 +441,7 @@ class DefaultAudioDevice: NSObject, OTAudioDevice {
         
         let result = AudioOutputUnitStop(playoutVoiceUnit!)
         if result != noErr {
+            print("Error creaing playout unit")
             return false
         }
         
