@@ -20,3 +20,8 @@ target '4.Custom-Audio-Driver' do
 	project '4.Custom-Audio-Driver/4.Custom-Audio-Driver.xcodeproj'
 	pod 'OpenTok'
 end
+
+target '5.Screen-Sharing' do
+	project '5.Screen-Sharing/5.Screen-Sharing.xcodeproj'
+	pod 'OpenTok'
+end
