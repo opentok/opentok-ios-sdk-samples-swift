@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="__Multi_Party" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l35-II-8uQ">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqX-hd-Ltx">
+                                        <state key="normal" title="End Call">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="endCallAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GRa-eH-mgm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y48-t7-0y4">
+                                        <state key="normal" image="mic-24"/>
+                                        <connections>
+                                            <action selector="muteMicAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Fc-m3-idH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p7u-kt-bSa">
+                                        <state key="normal" image="camera_switch-33"/>
+                                        <connections>
+                                            <action selector="swapCameraAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hgs-Mg-koW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="y48-t7-0y4" firstAttribute="centerY" secondItem="l35-II-8uQ" secondAttribute="centerY" id="1gP-tu-fGl"/>
+                                    <constraint firstItem="p7u-kt-bSa" firstAttribute="leading" secondItem="l35-II-8uQ" secondAttribute="leading" constant="8" id="C6g-ie-Z5h"/>
+                                    <constraint firstItem="tqX-hd-Ltx" firstAttribute="centerY" secondItem="l35-II-8uQ" secondAttribute="centerY" id="HUX-9y-MJb"/>
+                                    <constraint firstAttribute="trailing" secondItem="y48-t7-0y4" secondAttribute="trailing" constant="8" id="YCL-B2-hHn"/>
+                                    <constraint firstItem="tqX-hd-Ltx" firstAttribute="centerX" secondItem="l35-II-8uQ" secondAttribute="centerX" id="ZC8-is-KcK"/>
+                                    <constraint firstItem="p7u-kt-bSa" firstAttribute="centerY" secondItem="l35-II-8uQ" secondAttribute="centerY" id="tzv-3q-Oob"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscriber Area" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUJ-yd-qlV">
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-8v-eL2">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aBH-3s-5RT">
+                                    <size key="itemSize" width="160" height="250"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="subscriberCell" id="HiM-Pe-qiJ" customClass="SubscriberCollectionCell" customModule="__Multi_Party" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="250"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="250"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxA-lI-1MV">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="41D-1o-avQ"/>
+                                                        <constraint firstAttribute="height" constant="20" id="OYk-ax-Ibb"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Subscriber-Speaker-35"/>
+                                                    <connections>
+                                                        <action selector="muteSubscriberAction:" destination="HiM-Pe-qiJ" eventType="touchUpInside" id="XNk-xh-vok"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="topMargin" secondItem="sxA-lI-1MV" secondAttribute="top" id="9yB-c3-qjs"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="sxA-lI-1MV" secondAttribute="trailing" id="csF-AM-D0h"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="muteButton" destination="sxA-lI-1MV" id="SzI-hk-0j3"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="3rZ-ks-Elu"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="h4S-K7-xbb"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pll-Qc-YXj">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwG-DZ-Nqx">
+                                        <frame key="frameInset" minX="8" minY="11" width="42" height="30"/>
+                                        <state key="normal" image="TB Bug-30"/>
+                                        <connections>
+                                            <action selector="tokboxButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NHY-Zv-pwY"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7B-Pt-YNV">
+                                        <frame key="frameInset" minX="166" minY="16" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="3Co-gv-Wos"/>
+                                    <constraint firstItem="L7B-Pt-YNV" firstAttribute="centerY" secondItem="pll-Qc-YXj" secondAttribute="centerY" id="D3l-zP-O68"/>
+                                    <constraint firstItem="cwG-DZ-Nqx" firstAttribute="centerY" secondItem="pll-Qc-YXj" secondAttribute="centerY" id="Q33-Ss-Djz"/>
+                                    <constraint firstItem="L7B-Pt-YNV" firstAttribute="centerX" secondItem="pll-Qc-YXj" secondAttribute="centerX" id="W6g-Sp-MGT"/>
+                                    <constraint firstItem="cwG-DZ-Nqx" firstAttribute="leading" secondItem="pll-Qc-YXj" secondAttribute="leading" constant="8" id="wFJ-X4-tmZ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="l35-II-8uQ" firstAttribute="top" secondItem="wWg-8v-eL2" secondAttribute="bottom" id="0Qq-kc-bhY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="l35-II-8uQ" secondAttribute="bottom" id="1yf-YE-qpx"/>
+                            <constraint firstItem="wWg-8v-eL2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="6uz-pD-9bT"/>
+                            <constraint firstItem="pll-Qc-YXj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="9JH-TB-LqZ"/>
+                            <constraint firstItem="l35-II-8uQ" firstAttribute="height" secondItem="pll-Qc-YXj" secondAttribute="height" id="DT2-5c-bQ2"/>
+                            <constraint firstItem="l35-II-8uQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="I67-ci-7vz"/>
+                            <constraint firstItem="pll-Qc-YXj" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="USu-un-gHr"/>
+                            <constraint firstItem="wWg-8v-eL2" firstAttribute="top" secondItem="pll-Qc-YXj" secondAttribute="bottom" id="hAO-El-1dq"/>
+                            <constraint firstItem="l35-II-8uQ" firstAttribute="width" secondItem="pll-Qc-YXj" secondAttribute="width" id="l22-vb-OY3"/>
+                            <constraint firstItem="pll-Qc-YXj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="njp-P5-Grl"/>
+                            <constraint firstItem="LUJ-yd-qlV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ohO-6l-1VK"/>
+                            <constraint firstItem="LUJ-yd-qlV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rC4-PA-1aj"/>
+                            <constraint firstItem="wWg-8v-eL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t2i-yK-kPC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="wWg-8v-eL2" id="bv7-EK-ciI"/>
+                        <outlet property="endCallButton" destination="tqX-hd-Ltx" id="CgH-hg-VPN"/>
+                        <outlet property="muteMicButton" destination="y48-t7-0y4" id="qz4-Zx-r0f"/>
+                        <outlet property="swapCameraButton" destination="p7u-kt-bSa" id="iKd-sB-52x"/>
+                        <outlet property="userName" destination="L7B-Pt-YNV" id="U9s-Os-6Ux"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Subscriber-Speaker-35" width="35" height="35"/>
+        <image name="TB Bug-30" width="30" height="30"/>
+        <image name="camera_switch-33" width="33" height="33"/>
+        <image name="mic-24" width="24" height="24"/>
+    </resources>
+</document>

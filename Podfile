@@ -25,3 +25,8 @@ target '5.Screen-Sharing' do
 	project '5.Screen-Sharing/5.Screen-Sharing.xcodeproj'
 	pod 'OpenTok'
 end
+
+target '6.Multi-Party' do
+	project '6.Multi-Party/6.Multi-Party.xcodeproj'
+	pod 'OpenTok'
+end
