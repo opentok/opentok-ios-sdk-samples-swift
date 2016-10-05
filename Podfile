@@ -6,27 +6,27 @@ target '1.Hello-World' do
 	pod 'OpenTok'
 end
 
-target '2.Lets-Build-OTPublisher' do
-	project '2.Lets-Build-OTPublisher/2.Lets-Build-OTPublisher.xcodeproj'
+target '2.Custom-Video-Driver' do
+	project '2.Custom-Video-Driver/2.Custom-Video-Driver.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '3.Live-Photo-Capture' do
-	project '3.Live-Photo-Capture/3.Live-Photo-Capture.xcodeproj'
+target '3.Custom-Audio-Driver' do
+	project '3.Custom-Audio-Driver/3.Custom-Audio-Driver.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '4.Custom-Audio-Driver' do
-	project '4.Custom-Audio-Driver/4.Custom-Audio-Driver.xcodeproj'
+target '4.Screen-Sharing' do
+	project '4.Screen-Sharing/4.Screen-Sharing.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '5.Screen-Sharing' do
-	project '5.Screen-Sharing/5.Screen-Sharing.xcodeproj'
+target '5.Live-Photo-Capture' do
+	project '5.Live-Photo-Capture/5.Live-Photo-Capture.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '6.Multi-Party' do
-	project '6.Multi-Party/6.Multi-Party.xcodeproj'
+target '6.Simple-Multiparty' do
+	project '6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj'
 	pod 'OpenTok'
 end
