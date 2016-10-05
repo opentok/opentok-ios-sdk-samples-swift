@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D286FB7D9C88D680D7ED9AC /* Pods_5_Screen_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB21FC555CC616F991CC34B3 /* Pods_5_Screen_Sharing.framework */; };
 		F8DE15B71D951F9200EFFA79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DE15B61D951F9200EFFA79 /* AppDelegate.swift */; };
 		F8DE15B91D951F9200EFFA79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DE15B81D951F9200EFFA79 /* ViewController.swift */; };
 		F8DE15BC1D951F9200EFFA79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8DE15BA1D951F9200EFFA79 /* Main.storyboard */; };
@@ -19,10 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A5ABC3AD0565DC0FF31F81D5 /* Pods-5.Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Screen-Sharing.release.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Screen-Sharing/Pods-5.Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
-		B7CCA2AC43D3C6B11CB7171A /* Pods-5.Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Screen-Sharing.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Screen-Sharing/Pods-5.Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
-		DB21FC555CC616F991CC34B3 /* Pods_5_Screen_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_5_Screen_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8DE15B31D951F9200EFFA79 /* 5.Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "5.Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5ABC3AD0565DC0FF31F81D5 /* Pods-4.Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4.Screen-Sharing.release.xcconfig"; path = "../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
+		B7CCA2AC43D3C6B11CB7171A /* Pods-4.Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4.Screen-Sharing.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
+		DB21FC555CC616F991CC34B3 /* Pods_4_Screen_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_4_Screen_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8DE15B31D951F9200EFFA79 /* 4.Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4.Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DE15B61D951F9200EFFA79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8DE15B81D951F9200EFFA79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F8DE15BB1D951F9200EFFA79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -31,9 +30,9 @@
 		F8DE15C21D951F9200EFFA79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DE15C81D95239200EFFA79 /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		F8DE15CA1D95289900EFFA79 /* ScreenCapturer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapturer.swift; sourceTree = "<group>"; };
-		F8DE15CD1D952C1400EFFA79 /* 5.Screen-Sharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "5.Screen-Sharing-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		F8DE15CE1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTVideoCaptureSwift30Proxy.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.h"; sourceTree = "<group>"; };
-		F8DE15CF1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTVideoCaptureSwift30Proxy.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.m"; sourceTree = "<group>"; };
+		F8DE15CD1D952C1400EFFA79 /* 4.Screen-Sharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "4.Screen-Sharing-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		F8DE15CE1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTVideoCaptureSwift30Proxy.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.h"; sourceTree = "<group>"; };
+		F8DE15CF1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTVideoCaptureSwift30Proxy.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +40,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D286FB7D9C88D680D7ED9AC /* Pods_5_Screen_Sharing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +49,7 @@
 		CCBABB7440CE0246C2222EFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DB21FC555CC616F991CC34B3 /* Pods_5_Screen_Sharing.framework */,
+				DB21FC555CC616F991CC34B3 /* Pods_4_Screen_Sharing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -59,8 +57,8 @@
 		CECFE9417085A2A6A0F3AC15 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B7CCA2AC43D3C6B11CB7171A /* Pods-5.Screen-Sharing.debug.xcconfig */,
-				A5ABC3AD0565DC0FF31F81D5 /* Pods-5.Screen-Sharing.release.xcconfig */,
+				B7CCA2AC43D3C6B11CB7171A /* Pods-4.Screen-Sharing.debug.xcconfig */,
+				A5ABC3AD0565DC0FF31F81D5 /* Pods-4.Screen-Sharing.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -68,8 +66,8 @@
 		F8DE15AA1D951F9200EFFA79 = {
 			isa = PBXGroup;
 			children = (
-				F8DE15CC1D952B6C00EFFA79 /* Project 2 - Let's Build Publisher */,
-				F8DE15B51D951F9200EFFA79 /* 5.Screen-Sharing */,
+				F8DE15CC1D952B6C00EFFA79 /* Project 2 - Custom Video Driver */,
+				F8DE15B51D951F9200EFFA79 /* 4.Screen-Sharing */,
 				F8DE15B41D951F9200EFFA79 /* Products */,
 				CECFE9417085A2A6A0F3AC15 /* Pods */,
 				CCBABB7440CE0246C2222EFF /* Frameworks */,
@@ -79,12 +77,12 @@
 		F8DE15B41D951F9200EFFA79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F8DE15B31D951F9200EFFA79 /* 5.Screen-Sharing.app */,
+				F8DE15B31D951F9200EFFA79 /* 4.Screen-Sharing.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F8DE15B51D951F9200EFFA79 /* 5.Screen-Sharing */ = {
+		F8DE15B51D951F9200EFFA79 /* 4.Screen-Sharing */ = {
 			isa = PBXGroup;
 			children = (
 				F8DE15C81D95239200EFFA79 /* logo_opentok_registered.png */,
@@ -95,26 +93,26 @@
 				F8DE15BF1D951F9200EFFA79 /* LaunchScreen.storyboard */,
 				F8DE15C21D951F9200EFFA79 /* Info.plist */,
 				F8DE15CA1D95289900EFFA79 /* ScreenCapturer.swift */,
-				F8DE15CD1D952C1400EFFA79 /* 5.Screen-Sharing-Bridging-Header.h */,
+				F8DE15CD1D952C1400EFFA79 /* 4.Screen-Sharing-Bridging-Header.h */,
 			);
-			path = "5.Screen-Sharing";
+			path = "4.Screen-Sharing";
 			sourceTree = "<group>";
 		};
-		F8DE15CC1D952B6C00EFFA79 /* Project 2 - Let's Build Publisher */ = {
+		F8DE15CC1D952B6C00EFFA79 /* Project 2 - Custom Video Driver */ = {
 			isa = PBXGroup;
 			children = (
 				F8DE15CE1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.h */,
 				F8DE15CF1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m */,
 			);
-			name = "Project 2 - Let's Build Publisher";
+			name = "Project 2 - Custom Video Driver";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F8DE15B21D951F9200EFFA79 /* 5.Screen-Sharing */ = {
+		F8DE15B21D951F9200EFFA79 /* 4.Screen-Sharing */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "5.Screen-Sharing" */;
+			buildConfigurationList = F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "4.Screen-Sharing" */;
 			buildPhases = (
 				19EE6A18528B738FC6FCC8D0 /* [CP] Check Pods Manifest.lock */,
 				F8DE15AF1D951F9200EFFA79 /* Sources */,
@@ -127,9 +125,9 @@
 			);
 			dependencies = (
 			);
-			name = "5.Screen-Sharing";
-			productName = "5.Screen-Sharing";
-			productReference = F8DE15B31D951F9200EFFA79 /* 5.Screen-Sharing.app */;
+			name = "4.Screen-Sharing";
+			productName = "4.Screen-Sharing";
+			productReference = F8DE15B31D951F9200EFFA79 /* 4.Screen-Sharing.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -150,7 +148,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F8DE15AE1D951F9200EFFA79 /* Build configuration list for PBXProject "5.Screen-Sharing" */;
+			buildConfigurationList = F8DE15AE1D951F9200EFFA79 /* Build configuration list for PBXProject "4.Screen-Sharing" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -163,7 +161,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F8DE15B21D951F9200EFFA79 /* 5.Screen-Sharing */,
+				F8DE15B21D951F9200EFFA79 /* 4.Screen-Sharing */,
 			);
 		};
 /* End PBXProject section */
@@ -210,7 +208,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-5.Screen-Sharing/Pods-5.Screen-Sharing-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FE507CB9E22CB70C9DE0E70A /* [CP] Embed Pods Frameworks */ = {
@@ -225,7 +223,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-5.Screen-Sharing/Pods-5.Screen-Sharing-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -284,7 +282,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;				
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -332,7 +330,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;				
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -355,17 +353,17 @@
 		};
 		F8DE15C61D951F9200EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7CCA2AC43D3C6B11CB7171A /* Pods-5.Screen-Sharing.debug.xcconfig */;
+			baseConfigurationReference = B7CCA2AC43D3C6B11CB7171A /* Pods-4.Screen-Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "5.Screen-Sharing/Info.plist";
+				INFOPLIST_FILE = "4.Screen-Sharing/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.--Screen-Sharing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a59dc7c3-af3f-40f4-9a52-be0289761eb4";				
-				SWIFT_OBJC_BRIDGING_HEADER = "5.Screen-Sharing-Bridging-Header.h";
+				PROVISIONING_PROFILE = "a59dc7c3-af3f-40f4-9a52-be0289761eb4";
+				SWIFT_OBJC_BRIDGING_HEADER = "4.Screen-Sharing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -373,16 +371,16 @@
 		};
 		F8DE15C71D951F9200EFFA79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5ABC3AD0565DC0FF31F81D5 /* Pods-5.Screen-Sharing.release.xcconfig */;
+			baseConfigurationReference = A5ABC3AD0565DC0FF31F81D5 /* Pods-4.Screen-Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "5.Screen-Sharing/Info.plist";
+				INFOPLIST_FILE = "4.Screen-Sharing/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.--Screen-Sharing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "5.Screen-Sharing-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "4.Screen-Sharing-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -390,7 +388,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F8DE15AE1D951F9200EFFA79 /* Build configuration list for PBXProject "5.Screen-Sharing" */ = {
+		F8DE15AE1D951F9200EFFA79 /* Build configuration list for PBXProject "4.Screen-Sharing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8DE15C31D951F9200EFFA79 /* Debug */,
@@ -399,7 +397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "5.Screen-Sharing" */ = {
+		F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "4.Screen-Sharing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F8DE15C61D951F9200EFFA79 /* Debug */,

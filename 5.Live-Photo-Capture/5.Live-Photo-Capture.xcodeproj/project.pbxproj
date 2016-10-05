@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C8EA76528BB1E7B4D0ACE4A /* Pods_3_Live_Photo_Capture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDA8C9A226E45BF85F5595C /* Pods_3_Live_Photo_Capture.framework */; };
 		F872F76E1D6C851400A0674B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F76D1D6C851400A0674B /* AppDelegate.swift */; };
 		F872F7701D6C851400A0674B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F76F1D6C851400A0674B /* ViewController.swift */; };
 		F872F7731D6C851400A0674B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F872F7711D6C851400A0674B /* Main.storyboard */; };
@@ -23,24 +22,24 @@
 
 /* Begin PBXFileReference section */
 		59369E3170B7AE6CE908E5FD /* Pods_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EDA8C9A226E45BF85F5595C /* Pods_3_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5A185D25A2AF98F4F2AD0F0 /* Pods-3.Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3.Live-Photo-Capture.release.xcconfig"; path = "../Pods/Target Support Files/Pods-3.Live-Photo-Capture/Pods-3.Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
-		C65B28CAD9DB382C7018A257 /* Pods-3.Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3.Live-Photo-Capture.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-3.Live-Photo-Capture/Pods-3.Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
-		F872F76A1D6C851400A0674B /* 3.Live-Photo-Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3.Live-Photo-Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EDA8C9A226E45BF85F5595C /* Pods_5_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_5_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5A185D25A2AF98F4F2AD0F0 /* Pods-5.Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Live-Photo-Capture.release.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
+		C65B28CAD9DB382C7018A257 /* Pods-5.Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Live-Photo-Capture.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
+		F872F76A1D6C851400A0674B /* 5.Live-Photo-Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "5.Live-Photo-Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F872F76D1D6C851400A0674B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F872F76F1D6C851400A0674B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F872F7721D6C851400A0674B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F872F7741D6C851400A0674B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F872F7771D6C851400A0674B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F872F7791D6C851400A0674B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EAGLVideoRenderer.swift; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/EAGLVideoRenderer.swift"; sourceTree = "<group>"; };
-		F872F7821D6C87DD00A0674B /* ExamplePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExamplePublisher.swift; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/ExamplePublisher.swift"; sourceTree = "<group>"; };
-		F872F7831D6C87DD00A0674B /* ExampleVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleVideoCapture.swift; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/ExampleVideoCapture.swift"; sourceTree = "<group>"; };
-		F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleVideoRender.swift; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/ExampleVideoRender.swift"; sourceTree = "<group>"; };
+		F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EAGLVideoRenderer.swift; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/EAGLVideoRenderer.swift"; sourceTree = "<group>"; };
+		F872F7821D6C87DD00A0674B /* ExamplePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExamplePublisher.swift; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/ExamplePublisher.swift"; sourceTree = "<group>"; };
+		F872F7831D6C87DD00A0674B /* ExampleVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleVideoCapture.swift; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/ExampleVideoCapture.swift"; sourceTree = "<group>"; };
+		F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleVideoRender.swift; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/ExampleVideoRender.swift"; sourceTree = "<group>"; };
 		F872F78A1D6C889500A0674B /* ExamplePhotoVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplePhotoVideoCapture.swift; sourceTree = "<group>"; };
-		F88638401D913DE8008F8E7E /* 3.Live-Photo-Capture-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3.Live-Photo-Capture-Bridging-Header.h"; sourceTree = "<group>"; };
-		F88638411D913DE9008F8E7E /* OTVideoCaptureSwift30Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTVideoCaptureSwift30Proxy.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.h"; sourceTree = "<group>"; };
-		F88638421D913DE9008F8E7E /* OTVideoCaptureSwift30Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTVideoCaptureSwift30Proxy.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.m"; sourceTree = "<group>"; };
+		F88638401D913DE8008F8E7E /* 5.Live-Photo-Capture-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "5.Live-Photo-Capture-Bridging-Header.h"; sourceTree = "<group>"; };
+		F88638411D913DE9008F8E7E /* OTVideoCaptureSwift30Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTVideoCaptureSwift30Proxy.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.h"; sourceTree = "<group>"; };
+		F88638421D913DE9008F8E7E /* OTVideoCaptureSwift30Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTVideoCaptureSwift30Proxy.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C8EA76528BB1E7B4D0ACE4A /* Pods_3_Live_Photo_Capture.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				59369E3170B7AE6CE908E5FD /* Pods_Live_Photo_Capture.framework */,
-				8EDA8C9A226E45BF85F5595C /* Pods_3_Live_Photo_Capture.framework */,
+				8EDA8C9A226E45BF85F5595C /* Pods_5_Live_Photo_Capture.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -67,8 +65,8 @@
 		C3961391E1EDE3BC90BC9C6A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C65B28CAD9DB382C7018A257 /* Pods-3.Live-Photo-Capture.debug.xcconfig */,
-				A5A185D25A2AF98F4F2AD0F0 /* Pods-3.Live-Photo-Capture.release.xcconfig */,
+				C65B28CAD9DB382C7018A257 /* Pods-5.Live-Photo-Capture.debug.xcconfig */,
+				A5A185D25A2AF98F4F2AD0F0 /* Pods-5.Live-Photo-Capture.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -76,7 +74,7 @@
 		F872F7611D6C851400A0674B = {
 			isa = PBXGroup;
 			children = (
-				F872F7891D6C87E300A0674B /* Project 2 - Let's Build Publisher */,
+				F872F7891D6C87E300A0674B /* Project 2 - Custom Audio Driver */,
 				F872F76C1D6C851400A0674B /* Live-Photo-Capture */,
 				F872F76B1D6C851400A0674B /* Products */,
 				60BDCAF11033A5E32B14101B /* Frameworks */,
@@ -87,7 +85,7 @@
 		F872F76B1D6C851400A0674B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F872F76A1D6C851400A0674B /* 3.Live-Photo-Capture.app */,
+				F872F76A1D6C851400A0674B /* 5.Live-Photo-Capture.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,7 +104,7 @@
 			path = "Live-Photo-Capture";
 			sourceTree = "<group>";
 		};
-		F872F7891D6C87E300A0674B /* Project 2 - Let's Build Publisher */ = {
+		F872F7891D6C87E300A0674B /* Project 2 - Custom Audio Driver */ = {
 			isa = PBXGroup;
 			children = (
 				F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */,
@@ -115,17 +113,17 @@
 				F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */,
 				F88638411D913DE9008F8E7E /* OTVideoCaptureSwift30Proxy.h */,
 				F88638421D913DE9008F8E7E /* OTVideoCaptureSwift30Proxy.m */,
-				F88638401D913DE8008F8E7E /* 3.Live-Photo-Capture-Bridging-Header.h */,
+				F88638401D913DE8008F8E7E /* 5.Live-Photo-Capture-Bridging-Header.h */,
 			);
-			name = "Project 2 - Let's Build Publisher";
+			name = "Project 2 - Custom Audio Driver";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F872F7691D6C851400A0674B /* 3.Live-Photo-Capture */ = {
+		F872F7691D6C851400A0674B /* 5.Live-Photo-Capture */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F872F77C1D6C851400A0674B /* Build configuration list for PBXNativeTarget "3.Live-Photo-Capture" */;
+			buildConfigurationList = F872F77C1D6C851400A0674B /* Build configuration list for PBXNativeTarget "5.Live-Photo-Capture" */;
 			buildPhases = (
 				16E78A198C7FAB56B7CBE4EC /* [CP] Check Pods Manifest.lock */,
 				F872F7661D6C851400A0674B /* Sources */,
@@ -138,9 +136,9 @@
 			);
 			dependencies = (
 			);
-			name = "3.Live-Photo-Capture";
+			name = "5.Live-Photo-Capture";
 			productName = "Live-Photo-Capture";
-			productReference = F872F76A1D6C851400A0674B /* 3.Live-Photo-Capture.app */;
+			productReference = F872F76A1D6C851400A0674B /* 5.Live-Photo-Capture.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -161,7 +159,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F872F7651D6C851400A0674B /* Build configuration list for PBXProject "3.Live-Photo-Capture" */;
+			buildConfigurationList = F872F7651D6C851400A0674B /* Build configuration list for PBXProject "5.Live-Photo-Capture" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -174,7 +172,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F872F7691D6C851400A0674B /* 3.Live-Photo-Capture */,
+				F872F7691D6C851400A0674B /* 5.Live-Photo-Capture */,
 			);
 		};
 /* End PBXProject section */
@@ -220,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-3.Live-Photo-Capture/Pods-3.Live-Photo-Capture-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BC01D0BE42DC06F4E72E4CB9 /* [CP] Embed Pods Frameworks */ = {
@@ -235,7 +233,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-3.Live-Photo-Capture/Pods-3.Live-Photo-Capture-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -363,7 +361,7 @@
 		};
 		F872F77D1D6C851400A0674B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C65B28CAD9DB382C7018A257 /* Pods-3.Live-Photo-Capture.debug.xcconfig */;
+			baseConfigurationReference = C65B28CAD9DB382C7018A257 /* Pods-5.Live-Photo-Capture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -374,7 +372,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "3.Live-Photo-Capture-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "5.Live-Photo-Capture-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -382,7 +380,7 @@
 		};
 		F872F77E1D6C851400A0674B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5A185D25A2AF98F4F2AD0F0 /* Pods-3.Live-Photo-Capture.release.xcconfig */;
+			baseConfigurationReference = A5A185D25A2AF98F4F2AD0F0 /* Pods-5.Live-Photo-Capture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -391,7 +389,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Live-Photo-Capture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "3.Live-Photo-Capture-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "5.Live-Photo-Capture-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -399,7 +397,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F872F7651D6C851400A0674B /* Build configuration list for PBXProject "3.Live-Photo-Capture" */ = {
+		F872F7651D6C851400A0674B /* Build configuration list for PBXProject "5.Live-Photo-Capture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F872F77A1D6C851400A0674B /* Debug */,
@@ -408,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F872F77C1D6C851400A0674B /* Build configuration list for PBXNativeTarget "3.Live-Photo-Capture" */ = {
+		F872F77C1D6C851400A0674B /* Build configuration list for PBXNativeTarget "5.Live-Photo-Capture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F872F77D1D6C851400A0674B /* Debug */,

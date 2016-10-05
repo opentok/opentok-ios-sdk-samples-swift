@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E6F601517A3E8A7FA6109FD /* Pods_6_Multi_Party.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09EB13664B42DD3A21B51BD5 /* Pods_6_Multi_Party.framework */; };
 		F829C8E91D9AB57700CDFBD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829C8E81D9AB57700CDFBD5 /* AppDelegate.swift */; };
 		F829C8EB1D9AB57700CDFBD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829C8EA1D9AB57700CDFBD5 /* ViewController.swift */; };
 		F829C8EE1D9AB57700CDFBD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F829C8EC1D9AB57700CDFBD5 /* Main.storyboard */; };
@@ -16,10 +15,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		09EB13664B42DD3A21B51BD5 /* Pods_6_Multi_Party.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_6_Multi_Party.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B50DB6AFC327641508FCF275 /* Pods-6.Multi-Party.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-6.Multi-Party.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-6.Multi-Party/Pods-6.Multi-Party.debug.xcconfig"; sourceTree = "<group>"; };
-		C009E71EF9FF57FD122A7502 /* Pods-6.Multi-Party.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-6.Multi-Party.release.xcconfig"; path = "../Pods/Target Support Files/Pods-6.Multi-Party/Pods-6.Multi-Party.release.xcconfig"; sourceTree = "<group>"; };
-		F829C8E51D9AB57700CDFBD5 /* 6.Multi-Party.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "6.Multi-Party.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09EB13664B42DD3A21B51BD5 /* Pods_6_Simple_Multiparty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_6_Simple_Multiparty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B50DB6AFC327641508FCF275 /* Pods-6.Simple-Multiparty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-6.Simple-Multiparty.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-6.Simple-Multiparty/Pods-6.Simple-Multiparty.debug.xcconfig"; sourceTree = "<group>"; };
+		C009E71EF9FF57FD122A7502 /* Pods-6.Simple-Multiparty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-6.Simple-Multiparty.release.xcconfig"; path = "../Pods/Target Support Files/Pods-6.Simple-Multiparty/Pods-6.Simple-Multiparty.release.xcconfig"; sourceTree = "<group>"; };
+		F829C8E51D9AB57700CDFBD5 /* 6.Simple-Multiparty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "6.Simple-Multiparty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F829C8E81D9AB57700CDFBD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F829C8EA1D9AB57700CDFBD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F829C8ED1D9AB57700CDFBD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,7 +32,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E6F601517A3E8A7FA6109FD /* Pods_6_Multi_Party.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +41,7 @@
 		C86ED7131895479A8FE818EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09EB13664B42DD3A21B51BD5 /* Pods_6_Multi_Party.framework */,
+				09EB13664B42DD3A21B51BD5 /* Pods_6_Simple_Multiparty.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -51,8 +49,8 @@
 		F62B61B62C9E6DFA3D684726 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B50DB6AFC327641508FCF275 /* Pods-6.Multi-Party.debug.xcconfig */,
-				C009E71EF9FF57FD122A7502 /* Pods-6.Multi-Party.release.xcconfig */,
+				B50DB6AFC327641508FCF275 /* Pods-6.Simple-Multiparty.debug.xcconfig */,
+				C009E71EF9FF57FD122A7502 /* Pods-6.Simple-Multiparty.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -60,7 +58,7 @@
 		F829C8DC1D9AB57700CDFBD5 = {
 			isa = PBXGroup;
 			children = (
-				F829C8E71D9AB57700CDFBD5 /* 6.Multi-Party */,
+				F829C8E71D9AB57700CDFBD5 /* 6.Simple-Multiparty */,
 				F829C8E61D9AB57700CDFBD5 /* Products */,
 				F62B61B62C9E6DFA3D684726 /* Pods */,
 				C86ED7131895479A8FE818EB /* Frameworks */,
@@ -70,12 +68,12 @@
 		F829C8E61D9AB57700CDFBD5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F829C8E51D9AB57700CDFBD5 /* 6.Multi-Party.app */,
+				F829C8E51D9AB57700CDFBD5 /* 6.Simple-Multiparty.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F829C8E71D9AB57700CDFBD5 /* 6.Multi-Party */ = {
+		F829C8E71D9AB57700CDFBD5 /* 6.Simple-Multiparty */ = {
 			isa = PBXGroup;
 			children = (
 				F829C8E81D9AB57700CDFBD5 /* AppDelegate.swift */,
@@ -85,15 +83,15 @@
 				F829C8F11D9AB57700CDFBD5 /* LaunchScreen.storyboard */,
 				F829C8F41D9AB57700CDFBD5 /* Info.plist */,
 			);
-			path = "6.Multi-Party";
+			path = "6.Simple-Multiparty";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F829C8E41D9AB57700CDFBD5 /* 6.Multi-Party */ = {
+		F829C8E41D9AB57700CDFBD5 /* 6.Simple-Multiparty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F829C8F71D9AB57700CDFBD5 /* Build configuration list for PBXNativeTarget "6.Multi-Party" */;
+			buildConfigurationList = F829C8F71D9AB57700CDFBD5 /* Build configuration list for PBXNativeTarget "6.Simple-Multiparty" */;
 			buildPhases = (
 				5FFC3B39EB7D5EF21003A8C2 /* [CP] Check Pods Manifest.lock */,
 				F829C8E11D9AB57700CDFBD5 /* Sources */,
@@ -106,9 +104,9 @@
 			);
 			dependencies = (
 			);
-			name = "6.Multi-Party";
-			productName = "6.Multi-Party";
-			productReference = F829C8E51D9AB57700CDFBD5 /* 6.Multi-Party.app */;
+			name = "6.Simple-Multiparty";
+			productName = "6.Simple-Multiparty";
+			productReference = F829C8E51D9AB57700CDFBD5 /* 6.Simple-Multiparty.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -128,7 +126,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F829C8E01D9AB57700CDFBD5 /* Build configuration list for PBXProject "6.Multi-Party" */;
+			buildConfigurationList = F829C8E01D9AB57700CDFBD5 /* Build configuration list for PBXProject "6.Simple-Multiparty" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -141,7 +139,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F829C8E41D9AB57700CDFBD5 /* 6.Multi-Party */,
+				F829C8E41D9AB57700CDFBD5 /* 6.Simple-Multiparty */,
 			);
 		};
 /* End PBXProject section */
@@ -187,7 +185,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-6.Multi-Party/Pods-6.Multi-Party-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-6.Simple-Multiparty/Pods-6.Simple-Multiparty-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCEF2E2DD7B2C063894B5ADD /* [CP] Copy Pods Resources */ = {
@@ -202,7 +200,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-6.Multi-Party/Pods-6.Multi-Party-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-6.Simple-Multiparty/Pods-6.Simple-Multiparty-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -330,11 +328,11 @@
 		};
 		F829C8F81D9AB57700CDFBD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B50DB6AFC327641508FCF275 /* Pods-6.Multi-Party.debug.xcconfig */;
+			baseConfigurationReference = B50DB6AFC327641508FCF275 /* Pods-6.Simple-Multiparty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "6.Multi-Party/Info.plist";
+				INFOPLIST_FILE = "6.Simple-Multiparty/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.--Multi-Party";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,11 +342,11 @@
 		};
 		F829C8F91D9AB57700CDFBD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C009E71EF9FF57FD122A7502 /* Pods-6.Multi-Party.release.xcconfig */;
+			baseConfigurationReference = C009E71EF9FF57FD122A7502 /* Pods-6.Simple-Multiparty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "6.Multi-Party/Info.plist";
+				INFOPLIST_FILE = "6.Simple-Multiparty/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.--Multi-Party";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,7 +357,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F829C8E01D9AB57700CDFBD5 /* Build configuration list for PBXProject "6.Multi-Party" */ = {
+		F829C8E01D9AB57700CDFBD5 /* Build configuration list for PBXProject "6.Simple-Multiparty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F829C8F51D9AB57700CDFBD5 /* Debug */,
@@ -368,7 +366,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F829C8F71D9AB57700CDFBD5 /* Build configuration list for PBXNativeTarget "6.Multi-Party" */ = {
+		F829C8F71D9AB57700CDFBD5 /* Build configuration list for PBXNativeTarget "6.Simple-Multiparty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F829C8F81D9AB57700CDFBD5 /* Debug */,
