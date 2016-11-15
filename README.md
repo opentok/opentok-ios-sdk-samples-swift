@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/robjperez/opentok-ios-sdk-samples-swift.svg?branch=master)](https://travis-ci.org/robjperez/opentok-ios-sdk-samples-swift)
+
 OpenTok iOS SDK Samples
 =======================
 
