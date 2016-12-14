@@ -45,10 +45,12 @@ extension String {
     }
 }
 
-class ExampleVideoCapture: OTVideoCaptureSwift30Proxy {    
+class ExampleVideoCapture: NSObject, OTVideoCapture {
     var captureSession: AVCaptureSession?
     var videoInput: AVCaptureDeviceInput?
     var videoOutput: AVCaptureVideoDataOutput?
+    
+    var videoCaptureConsumer: OTVideoCaptureConsumer?
     
     fileprivate var capturePreset: String {
         didSet {
@@ -144,7 +146,7 @@ class ExampleVideoCapture: OTVideoCaptureSwift30Proxy {
     }
 
     // MARK: - OTVideoCapture protocol
-    override func proxyInit() {
+    func initCapture() {
         captureQueue.async {
             do {
                 try self.setupAudioVideoSession()
@@ -154,18 +156,18 @@ class ExampleVideoCapture: OTVideoCaptureSwift30Proxy {
         }
     }
     
-    override func proxyStart() -> Int32 {
+    func start() -> Int32 {
         capturing = true
         self.captureSession?.startRunning()
         return 0
     }
     
-    override func proxyStop() -> Int32 {
+    func stop() -> Int32 {
         capturing = false
         return 0
     }
     
-    override func proxyRelease() {
+    func releaseCapture() {
         let _ = stop()
         videoOutput?.setSampleBufferDelegate(nil, queue: captureQueue)
         captureQueue.sync {
@@ -177,11 +179,11 @@ class ExampleVideoCapture: OTVideoCaptureSwift30Proxy {
 
     }
     
-    override func proxyIsStarted() -> Bool {
+    func isCaptureStarted() -> Bool {
         return capturing && (captureSession != nil)
     }
     
-    override func proxySettings(_ videoFormat: OTVideoFormat!) -> Int32 {
+    func captureSettings(_ videoFormat: OTVideoFormat) -> Int32 {
         videoFormat.pixelFormat = .NV12
         videoFormat.imageWidth = captureWidth
         videoFormat.imageHeight = captureHeight
@@ -242,7 +244,7 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         }
         
-        videoCaptureConsumer.consumeFrame(videoFrame)
+        videoCaptureConsumer!.consumeFrame(videoFrame)
         
         CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)));
     }
