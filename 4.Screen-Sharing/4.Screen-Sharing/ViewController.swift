@@ -76,15 +76,17 @@ class ViewController: UIViewController {
         defer {
             process(error: error)
         }
-        publisher = OTPublisher(delegate: self, name: UIDevice.current.name)
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        publisher = OTPublisher(delegate: self, settings: settings)
         publisher?.videoType = .screen
         publisher?.audioFallbackEnabled = false
         
         capturer = ScreenCapturer(withView: view)
-        publisher?.videoCapture = capturer?.videoCapture()
+        publisher?.videoCapture = capturer!.videoCapture()
         
         var error: OTError? = nil
-        session.publish(publisher, error: &error)
+        session.publish(publisher!, error: &error)
     }
     
     fileprivate func doSubscribe(_ stream: OTStream) {
@@ -93,7 +95,7 @@ class ViewController: UIViewController {
         }
         subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
-        session.subscribe(subscriber, error: &error)
+        session.subscribe(subscriber!, error: &error)
     }
     
     fileprivate func process(error err: OTError?) {
@@ -113,25 +115,25 @@ class ViewController: UIViewController {
 
 // MARK: - OTSession delegate callbacks
 extension ViewController: OTSessionDelegate {
-    func sessionDidConnect(_ session: OTSession!) {
+    func sessionDidConnect(_ session: OTSession) {
         print("Session connected")
         doPublish()
     }
     
-    func sessionDidDisconnect(_ session: OTSession!) {
+    func sessionDidDisconnect(_ session: OTSession) {
         print("Session disconnected")
     }
     
-    func session(_ session: OTSession!, streamCreated stream: OTStream!) {
+    func session(_ session: OTSession, streamCreated stream: OTStream) {
         print("Session streamCreated: \(stream.streamId)")
         doSubscribe(stream)
     }
     
-    func session(_ session: OTSession!, streamDestroyed stream: OTStream!) {
+    func session(_ session: OTSession, streamDestroyed stream: OTStream) {
         print("Session streamDestroyed: \(stream.streamId)")
     }
     
-    func session(_ session: OTSession!, didFailWithError error: OTError!) {
+    func session(_ session: OTSession, didFailWithError error: OTError) {
         print("session Failed to connect: \(error.localizedDescription)")
     }
     
@@ -139,28 +141,28 @@ extension ViewController: OTSessionDelegate {
 
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
-    func publisher(_ publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
     }
     
-    func publisher(_ publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
     }
     
-    func publisher(_ publisher: OTPublisherKit!, didFailWithError error: OTError!) {
+    func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print("Publisher failed: \(error.localizedDescription)")
     }
 }
 
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
-    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit!) {
+    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         print("Subscriber connected")
     }
     
-    func subscriber(_ subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {
+    func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print("Subscriber failed: \(error.localizedDescription)")
     }
     
-    func subscriberVideoDataReceived(_ subscriber: OTSubscriber!) {
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
     }
 }
 

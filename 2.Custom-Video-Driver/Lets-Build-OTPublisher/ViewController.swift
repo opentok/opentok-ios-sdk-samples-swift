@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         }
         publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
         var error: OTError? = nil
-        session.publish(publisher, error: &error)
+        session.publish(publisher!, error: &error)
         publisher!.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
         view.addSubview(publisher!.view)
     }
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         }
         subscriber = OTSubscriber(stream: stream, delegate: self)
         var error: OTError?
-        session.subscribe(subscriber, error: &error)
+        session.subscribe(subscriber!, error: &error)
     }
     
     fileprivate func cleanupSubscriber() {
@@ -107,30 +107,30 @@ class ViewController: UIViewController {
 
 // MARK: - OTSession delegate callbacks
 extension ViewController: OTSessionDelegate {
-    func sessionDidConnect(_ session: OTSession!) {
+    func sessionDidConnect(_ session: OTSession) {
         print("Session connected")
         doPublish()
     }
     
-    func sessionDidDisconnect(_ session: OTSession!) {
+    func sessionDidDisconnect(_ session: OTSession) {
         print("Session disconnected")
     }
     
-    func session(_ session: OTSession!, streamCreated stream: OTStream!) {
+    func session(_ session: OTSession, streamCreated stream: OTStream) {
         print("Session streamCreated: \(stream.streamId)")
         if subscriber == nil && !subscribeToSelf {
             doSubscribe(stream)
         }
     }
     
-    func session(_ session: OTSession!, streamDestroyed stream: OTStream!) {
+    func session(_ session: OTSession, streamDestroyed stream: OTStream) {
         print("Session streamDestroyed: \(stream.streamId)")
-        if subscriber?.stream.streamId == stream.streamId {
+        if let subStream = subscriber?.stream, subStream.streamId == stream.streamId {
             cleanupSubscriber()
         }
     }
     
-    func session(_ session: OTSession!, didFailWithError error: OTError!) {
+    func session(_ session: OTSession, didFailWithError error: OTError) {
         print("session Failed to connect: \(error.localizedDescription)")
     }
     
@@ -138,19 +138,19 @@ extension ViewController: OTSessionDelegate {
 
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
-    func publisher(_ publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
         if subscriber == nil && subscribeToSelf {
             doSubscribe(stream)
         }
     }
     
-    func publisher(_ publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
-        if subscriber?.stream.streamId == stream.streamId {
+    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
+        if let subStream = subscriber?.stream, subStream.streamId == stream.streamId {
             cleanupSubscriber()
         }
     }
     
-    func publisher(_ publisher: OTPublisherKit!, didFailWithError error: OTError!) {
+    func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print("Publisher failed: \(error.localizedDescription)")
     }
     
@@ -158,18 +158,18 @@ extension ViewController: OTPublisherDelegate {
 
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
-    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit!) {
+    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         subscriber?.view.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
         if let subsView = subscriber?.view {
             view.addSubview(subsView)
         }
     }
     
-    func subscriber(_ subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {
+    func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print("Subscriber failed: \(error.localizedDescription)")
     }
     
-    func subscriberVideoDataReceived(_ subscriber: OTSubscriber!) {
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
     }
 }
 
