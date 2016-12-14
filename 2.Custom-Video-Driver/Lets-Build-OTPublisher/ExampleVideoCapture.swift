@@ -235,10 +235,10 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         videoFrame.clearPlanes()
         
         if !CVPixelBufferIsPlanar(imageBuffer) {
-            videoFrame.planes.addPointer(CVPixelBufferGetBaseAddress(imageBuffer))
+            videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddress(imageBuffer))
         } else {
             for idx in 0..<CVPixelBufferGetPlaneCount(imageBuffer) {
-                videoFrame.planes.addPointer(CVPixelBufferGetBaseAddressOfPlane(imageBuffer, idx))
+                videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddressOfPlane(imageBuffer, idx))
             }
         }
         

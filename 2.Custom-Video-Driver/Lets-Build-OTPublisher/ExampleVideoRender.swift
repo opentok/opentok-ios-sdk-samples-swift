@@ -112,9 +112,9 @@ extension ExampleVideoRender: GLKViewDelegate {
         
         renderer?.drawFrame(frame: frame, withViewport: view.frame)
         
-        let yPlane: UnsafeMutablePointer<GLubyte>? = frame.planes.pointer(at: 0)?.assumingMemoryBound(to: GLubyte.self)
-        let uPlane: UnsafeMutablePointer<GLubyte>? = frame.planes.pointer(at: 1)?.assumingMemoryBound(to: GLubyte.self)
-        let vPlane: UnsafeMutablePointer<GLubyte>? = frame.planes.pointer(at: 2)?.assumingMemoryBound(to: GLubyte.self)
+        let yPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 0)?.assumingMemoryBound(to: GLubyte.self)
+        let uPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 1)?.assumingMemoryBound(to: GLubyte.self)
+        let vPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 2)?.assumingMemoryBound(to: GLubyte.self)
         let planeSize = calculatePlaneSize(forFrame: frame)
         yPlane?.deallocate(capacity: planeSize.ySize)
         uPlane?.deallocate(capacity: planeSize.uSize)
@@ -124,7 +124,7 @@ extension ExampleVideoRender: GLKViewDelegate {
 }
 
 extension ExampleVideoRender: OTVideoRender {
-    func renderVideoFrame(_ frame: OTVideoFrame!) {
+    func renderVideoFrame(_ frame: OTVideoFrame) {
         frameLock?.lock()
         assert(frame.format.pixelFormat == .I420)
         
@@ -136,13 +136,13 @@ extension ExampleVideoRender: OTVideoRender {
         let uPlane = UnsafeMutablePointer<GLubyte>.allocate(capacity: planeSize.uSize)
         let vPlane = UnsafeMutablePointer<GLubyte>.allocate(capacity: planeSize.vSize)
         
-        memcpy(yPlane, frame.planes.pointer(at: 0), planeSize.ySize)
-        memcpy(uPlane, frame.planes.pointer(at: 1), planeSize.uSize)
-        memcpy(vPlane, frame.planes.pointer(at: 2), planeSize.vSize)
+        memcpy(yPlane, frame.planes?.pointer(at: 0), planeSize.ySize)
+        memcpy(uPlane, frame.planes?.pointer(at: 1), planeSize.uSize)
+        memcpy(vPlane, frame.planes?.pointer(at: 2), planeSize.vSize)
         
-        lastVideoFrame?.planes.addPointer(yPlane)
-        lastVideoFrame?.planes.addPointer(uPlane)
-        lastVideoFrame?.planes.addPointer(vPlane)
+        lastVideoFrame?.planes?.addPointer(yPlane)
+        lastVideoFrame?.planes?.addPointer(uPlane)
+        lastVideoFrame?.planes?.addPointer(vPlane)
         
         frameLock?.unlock()        
     }

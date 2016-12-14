@@ -62,13 +62,13 @@ class ScreenCapturer: OTVideoCaptureSwift30Proxy {
         
         CVPixelBufferLockBaseAddress(ref, CVPixelBufferLockFlags(rawValue: 0))
         
-        videoFrame?.timestamp = time
+        videoFrame.timestamp = time
         //videoFrame?.format.estimatedFramesPerSecond =
-        videoFrame?.format.estimatedCaptureDelay = 100
-        videoFrame?.orientation = .up
+        videoFrame.format.estimatedCaptureDelay = 100
+        videoFrame.orientation = .up
         
-        videoFrame?.clearPlanes()
-        videoFrame?.planes.addPointer(CVPixelBufferGetBaseAddress(ref))
+        videoFrame.clearPlanes()
+        videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddress(ref))
         videoCaptureConsumer.consumeFrame(videoFrame)
         
         CVPixelBufferUnlockBaseAddress(ref, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
@@ -208,22 +208,17 @@ extension ScreenCapturer {
     }
     
     fileprivate func checkSize(forImage img: CGImage) {
-        guard let frame = videoFrame else {
-            print("Error checking size")
-            return
-        }
-        
-        if (frame.format?.imageHeight == UInt32(img.height) &&
-            frame.format?.imageWidth == UInt32(img.width))
+        if (videoFrame.format.imageHeight == UInt32(img.height) &&
+            videoFrame.format.imageWidth == UInt32(img.width))
         {
             // don't rock the boat. if nothing has changed, don't update anything.
             return
         }
         
-        frame.format.bytesPerRow.removeAllObjects()
-        frame.format.bytesPerRow.addObjects(from: [img.width * 4])
-        frame.format.imageWidth = UInt32(img.width)
-        frame.format.imageHeight = UInt32(img.height)
+        videoFrame.format.bytesPerRow.removeAllObjects()
+        videoFrame.format.bytesPerRow.addObjects(from: [img.width * 4])
+        videoFrame.format.imageWidth = UInt32(img.width)
+        videoFrame.format.imageHeight = UInt32(img.height)
         
         let frameSize = CGSize(width: img.width, height: img.height)
         let options: Dictionary<String, Bool> = [
@@ -235,7 +230,7 @@ extension ScreenCapturer {
                                          Int(frameSize.width),
                                          Int(frameSize.height),
                                          kCVPixelFormatType_32ARGB,
-                                         options as? CFDictionary,
+                                         options as CFDictionary,
                                          &pixelBuffer)
         
         assert(status == kCVReturnSuccess && pixelBuffer != nil)

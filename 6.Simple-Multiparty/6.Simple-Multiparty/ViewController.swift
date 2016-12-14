@@ -156,10 +156,7 @@ extension ViewController {
     }
     
     func doSubscribe(to stream: OTStream) {
-        guard let subscriber = OTSubscriber(stream: stream, delegate: self) else {
-            print("Error building subscriber for stream: \(stream)")
-            return
-        }
+        let subscriber = OTSubscriber(stream: stream, delegate: self)
         let indexPath = IndexPath(item: subscribers.count, section: 0)
         subscribers[indexPath] = subscriber
         
@@ -170,7 +167,7 @@ extension ViewController {
     
     func findSubscriber(byStreamId id: String) -> (IndexPath, OTSubscriber)? {
         for (_, entry) in subscribers.enumerated() {
-            if entry.value.stream.streamId == id {
+            if let stream = entry.value.stream, stream.streamId == id {
                 return (entry.key, entry.value)
             }
         }
@@ -181,7 +178,8 @@ extension ViewController {
         for cell in collectionView.visibleCells {
             if let subscriberCell = cell as? SubscriberCollectionCell,
                 let subscriberOfCell = subscriberCell.subscriber,
-                subscriberOfCell.stream.streamId == id {
+                (subscriberOfCell.stream?.streamId ?? "") == id
+            {
                 return subscriberCell
             }
         }
@@ -192,19 +190,19 @@ extension ViewController {
 
 // MARK: - OTSession delegate callbacks
 extension ViewController: OTSessionDelegate {
-    func sessionDidConnect(_ session: OTSession!) {
+    func sessionDidConnect(_ session: OTSession) {
         print("Session connected")
         doPublish()
     }
     
-    func sessionDidDisconnect(_ session: OTSession!) {
+    func sessionDidDisconnect(_ session: OTSession) {
         print("Session disconnected")
         subscribers.removeAll()
         reloadCollectionView()
     }
     
-    func session(_ session: OTSession!, streamCreated stream: OTStream!) {
-        print("Session streamCreated: \(stream.streamId!)")
+    func session(_ session: OTSession, streamCreated stream: OTStream) {
+        print("Session streamCreated: \(stream.streamId)")
         if subscribers.count == 4 {
             print("Sorry this sample only supports up to 4 subscribers :)")
             return
@@ -212,8 +210,8 @@ extension ViewController: OTSessionDelegate {
         doSubscribe(to: stream)
     }
     
-    func session(_ session: OTSession!, streamDestroyed stream: OTStream!) {
-        print("Session streamDestroyed: \(stream.streamId!)")
+    func session(_ session: OTSession, streamDestroyed stream: OTStream) {
+        print("Session streamDestroyed: \(stream.streamId)")
         
         guard let (index, subscriber) = findSubscriber(byStreamId: stream.streamId) else {
             return
@@ -223,36 +221,36 @@ extension ViewController: OTSessionDelegate {
         reloadCollectionView()
     }
     
-    func session(_ session: OTSession!, didFailWithError error: OTError!) {
+    func session(_ session: OTSession, didFailWithError error: OTError) {
         print("session Failed to connect: \(error.localizedDescription)")
     }
 }
 
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
-    func publisher(_ publisher: OTPublisherKit!, streamCreated stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
     }
     
-    func publisher(_ publisher: OTPublisherKit!, streamDestroyed stream: OTStream!) {
+    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
     }
     
-    func publisher(_ publisher: OTPublisherKit!, didFailWithError error: OTError!) {
+    func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print("Publisher failed: \(error.localizedDescription)")
     }
 }
 
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
-    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit!) {
+    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         print("Subscriber connected")
         reloadCollectionView()
     }
     
-    func subscriber(_ subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {
+    func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print("Subscriber failed: \(error.localizedDescription)")
     }
     
-    func subscriberVideoDataReceived(_ subscriber: OTSubscriber!) {
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
     }
 }
 

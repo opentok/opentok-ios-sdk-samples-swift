@@ -552,7 +552,7 @@ func renderCb(inRefCon:UnsafeMutableRawPointer,
     let audioDevice: DefaultAudioDevice = Unmanaged.fromOpaque(inRefCon).takeUnretainedValue()
     if !audioDevice.playing { return 0 }
     
-    let _ = audioDevice.deviceAudioBus!.readRenderData(ioData?.pointee.mBuffers.mData, numberOfSamples: inNumberFrames)
+    let _ = audioDevice.deviceAudioBus!.readRenderData((ioData?.pointee.mBuffers.mData)!, numberOfSamples: inNumberFrames)
     updatePlayoutDelay(withAudioDevice: audioDevice)
     
     return noErr
@@ -591,7 +591,7 @@ func recordCb(inRefCon:UnsafeMutableRawPointer,
                     audioDevice.bufferList!)
     
     if audioDevice.recording {
-        audioDevice.deviceAudioBus!.writeCaptureData(audioDevice.bufferList?.pointee.mBuffers.mData, numberOfSamples: inNumberFrames)
+        audioDevice.deviceAudioBus!.writeCaptureData((audioDevice.bufferList?.pointee.mBuffers.mData)!, numberOfSamples: inNumberFrames)
     }
     
     if audioDevice.bufferSize != audioDevice.bufferList?.pointee.mBuffers.mDataByteSize {

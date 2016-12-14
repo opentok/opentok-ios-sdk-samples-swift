@@ -341,7 +341,7 @@ class EAGLVideoRenderer {
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
-                     frame.planes.pointer(at: 0))
+                     frame.planes?.pointer(at: 0))
 
         glActiveTexture(GLenum(GL_TEXTURE0 + textureOffset + 1))
         glUniform1i(uSampler, textureOffset + 1)
@@ -353,7 +353,7 @@ class EAGLVideoRenderer {
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
-                     frame.planes.pointer(at: 1))
+                     frame.planes?.pointer(at: 1))
 
         glActiveTexture(GLenum(GL_TEXTURE0 + textureOffset + 2))
         glUniform1i(vSampler, textureOffset + 2)
@@ -365,7 +365,7 @@ class EAGLVideoRenderer {
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
-                     frame.planes.pointer(at: 2))
+                     frame.planes?.pointer(at: 2))
 
         currentTextureSet = (currentTextureSet + 1) % EAGLVideoRenderer.kNumTextureSets
     }
