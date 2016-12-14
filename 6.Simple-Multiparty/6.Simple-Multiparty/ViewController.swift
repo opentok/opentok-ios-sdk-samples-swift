@@ -31,7 +31,9 @@ class ViewController: UIViewController {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
     }()
     lazy var publisher: OTPublisher = {
-        return OTPublisher(delegate: self, name: UIDevice.current.name)
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        return OTPublisher(delegate: self, settings: settings)
     }()
     var error: OTError?
     
