@@ -12,8 +12,8 @@ Application Notes
     the OpenTok iOS SDK.
 
 *   In the VideoController.swift file, set values for the `kApiKey`, `kSessionId`,
-    and `kToken` constants. For testing, you can obtain these values at the
-    [OpenTok dashboard][1]. In a production application, use one of the
+    and `kToken` constants. For testing, you can obtain these values at your
+    [OpenTok account page][1]. In a production application, use one of the
     [OpenTok server SDKs][2] to generate session IDs and tokens.
 
 *   By default, all delegate methods from classes in the OpenTok iOS SDK are
@@ -65,5 +65,5 @@ Configuration Notes
     the iOS Simulator, an OTPublisher object uses a demo video instead of the
     camera.
 
-[1]: https://dashboard.tokbox.com/projects
-[2]: https://tokbox.com/opentok/libraries/server/
+[1]: https://tokbox.com/account/#/
+[2]: https://tokbox.com/developer/sdks/server/

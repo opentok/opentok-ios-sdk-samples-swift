@@ -24,15 +24,17 @@ This custom video capturer is defined by the ScreenCapture class:
         defer {
             process(error: error)
         }
-        publisher = OTPublisher(delegate: self, name: UIDevice.current.name)
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        publisher = OTPublisher(delegate: self, settings: settings)
         publisher?.videoType = .screen
         publisher?.audioFallbackEnabled = false
         
         capturer = ScreenCapturer(withView: view)
-        publisher?.videoCapture = capturer?.videoCapture()
+        publisher?.videoCapture = capturer!.videoCapture()
         
         var error: OTError? = nil
-        session.publish(publisher, error: &error)
+        session.publish(publisher!, error: &error)
     }
 
 Note that the call to the `OTPublisher.videoType` method sets the
@@ -64,7 +66,7 @@ The `viewDidLoad` method initialized a OTVideoFormat and OTVideoFrame object to
 be used by the custom video capturer:
 
     let format = OTVideoFormat()
-		format.pixelFormat = .argb
+    format.pixelFormat = .argb
 
 The `consumeFrame()` method sets up properties of the current video frame:
 

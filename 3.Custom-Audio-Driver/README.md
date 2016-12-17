@@ -6,7 +6,8 @@ The entry point of new content is during the controllers `viewDidLoad()`
 callback, where we set up an audio device before initializing our first OpenTok
 object. It is important to note that audio device setup *must* occur before any
 instance of OTSession or OTPublisher is initialized:
-```
+
+```swift
 let customAudioDevice = DefaultAudioDevice.sharedInstance
 OTAudioDeviceManager.setAudioDevice(customAudioDevice)
 ```

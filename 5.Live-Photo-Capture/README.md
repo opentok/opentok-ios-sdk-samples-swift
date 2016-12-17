@@ -14,7 +14,7 @@ Configuration Notes
 Since we are importing a number of classes implemented in project 2, the
 header search paths in the project build settings must be extended to look
 in the project 2 directory. Additionally, we must recompile the
-implementation files in order to continue using our TBExamplePublisher,
+implementation files in order to continue using our ExamplePublisher,
 created in project 2. You will notice an extra group in this project's
 navigator space with references to the files we need.
 
