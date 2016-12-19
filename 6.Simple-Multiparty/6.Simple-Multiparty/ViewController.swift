@@ -10,7 +10,7 @@ import UIKit
 import OpenTok
 
 // *** Fill the following variables using your own Project info  ***
-// ***          https://dashboard.tokbox.com/projects            ***
+// ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
 let kApiKey = ""
 // Replace with your generated session ID

@@ -72,5 +72,4 @@ class is invoked:
 ## Next steps
 
 For details on the full OpenTok Android API, see the [reference
-documentation](https://tokbox.com/opentok/libraries/client/ios/reference/index.html).
-
+documentation](https://tokbox.com/developer/sdks/ios/reference/index.html).
