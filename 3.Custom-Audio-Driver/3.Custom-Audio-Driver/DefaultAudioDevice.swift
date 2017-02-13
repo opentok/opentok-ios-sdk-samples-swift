@@ -485,17 +485,14 @@ extension DefaultAudioDevice {
         avAudioSessionPreffSampleRate = session.preferredSampleRate
         avAudioSessionChannels = session.inputNumberOfChannels
         do {
-            try session.setMode(AVAudioSessionModeVideoChat)
-            try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))
-            try session.setPreferredInputNumberOfChannels(1)
-            try session.setPreferredIOBufferDuration(0.01)
-            
-            
             let audioOptions = AVAudioSessionCategoryOptions.mixWithOthers.rawValue |
                 AVAudioSessionCategoryOptions.allowBluetooth.rawValue |
                 AVAudioSessionCategoryOptions.defaultToSpeaker.rawValue
             
             try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions(rawValue: audioOptions))
+            try session.setMode(AVAudioSessionModeVideoChat)            
+            try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))            
+            try session.setPreferredIOBufferDuration(0.01)
             
             setupListenerBlocks()
             
