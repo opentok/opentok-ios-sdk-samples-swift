@@ -24,11 +24,13 @@ let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
+        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
     lazy var publisher: OTPublisher = {
-        return OTPublisher(delegate: self, name: UIDevice.current.name)
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        return OTPublisher(delegate: self, settings: settings)!
     }()
     
     var subscriber: OTSubscriber?
@@ -66,8 +68,10 @@ class ViewController: UIViewController {
         var error: OTError?
         session.publish(publisher, error: &error)
         
-        publisher.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
-        view.addSubview(publisher.view)
+        if let pubView = publisher.view {
+            pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+            view.addSubview(pubView)
+        }
     }
     
     /**
@@ -86,7 +90,7 @@ class ViewController: UIViewController {
     }
     
     fileprivate func cleanupSubscriber() {
-        subscriber?.view.removeFromSuperview()
+        subscriber?.view?.removeFromSuperview()
         subscriber = nil
     }
     
@@ -158,18 +162,18 @@ extension ViewController: OTPublisherDelegate {
 
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
-    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit!) {
-        subscriber?.view.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
+    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         if let subsView = subscriber?.view {
+            subsView.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(subsView)
         }
     }
     
-    func subscriber(_ subscriber: OTSubscriberKit!, didFailWithError error: OTError!) {
+    func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print("Subscriber failed: \(error.localizedDescription)")
     }
     
-    func subscriberVideoDataReceived(_ subscriber: OTSubscriber!) {
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
     }
 }
 

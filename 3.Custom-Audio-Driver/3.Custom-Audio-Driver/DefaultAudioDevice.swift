@@ -26,7 +26,7 @@ class DefaultAudioDevice: NSObject {
 
     var deviceAudioBus: OTAudioBus?
     
-    func setAudioBus(_ audioBus: OTAudioBus) -> Bool {
+    func setAudioBus(_ audioBus: OTAudioBus?) -> Bool {
         deviceAudioBus = audioBus
         audioFormat = OTAudioFormat()
         audioFormat.sampleRate = DefaultAudioDevice.kSampleRate

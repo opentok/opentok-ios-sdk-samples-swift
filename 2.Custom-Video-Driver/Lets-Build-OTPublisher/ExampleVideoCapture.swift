@@ -225,12 +225,12 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
             updateCaptureFormat(width: width, height: height)
         }
         
-        videoFrame.format.imageWidth = width
-        videoFrame.format.imageHeight = height
+        videoFrame.format?.imageWidth = width
+        videoFrame.format?.imageHeight = height
         let minFrameDuration = videoInput.device.activeVideoMinFrameDuration
         
-        videoFrame.format.estimatedFramesPerSecond = Double(minFrameDuration.timescale) / Double(minFrameDuration.value)
-        videoFrame.format.estimatedCaptureDelay = 100
+        videoFrame.format?.estimatedFramesPerSecond = Double(minFrameDuration.timescale) / Double(minFrameDuration.value)
+        videoFrame.format?.estimatedCaptureDelay = 100
         videoFrame.orientation = UIApplication.shared
             .currentDeviceOrientation(cameraPosition: videoInput.device.position)
         

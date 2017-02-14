@@ -14,7 +14,6 @@
 		F8DE15C11D951F9200EFFA79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8DE15BF1D951F9200EFFA79 /* LaunchScreen.storyboard */; };
 		F8DE15C91D95239200EFFA79 /* logo_opentok_registered.png in Resources */ = {isa = PBXBuildFile; fileRef = F8DE15C81D95239200EFFA79 /* logo_opentok_registered.png */; };
 		F8DE15CB1D95289900EFFA79 /* ScreenCapturer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DE15CA1D95289900EFFA79 /* ScreenCapturer.swift */; };
-		F8DE15D01D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DE15CF1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +29,6 @@
 		F8DE15C21D951F9200EFFA79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8DE15C81D95239200EFFA79 /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		F8DE15CA1D95289900EFFA79 /* ScreenCapturer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapturer.swift; sourceTree = "<group>"; };
-		F8DE15CD1D952C1400EFFA79 /* 4.Screen-Sharing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "4.Screen-Sharing-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		F8DE15CE1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTVideoCaptureSwift30Proxy.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.h"; sourceTree = "<group>"; };
-		F8DE15CF1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTVideoCaptureSwift30Proxy.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/OTVideoCaptureSwift30Proxy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +62,6 @@
 		F8DE15AA1D951F9200EFFA79 = {
 			isa = PBXGroup;
 			children = (
-				F8DE15CC1D952B6C00EFFA79 /* Project 2 - Custom Video Driver */,
 				F8DE15B51D951F9200EFFA79 /* 4.Screen-Sharing */,
 				F8DE15B41D951F9200EFFA79 /* Products */,
 				CECFE9417085A2A6A0F3AC15 /* Pods */,
@@ -93,18 +88,8 @@
 				F8DE15BF1D951F9200EFFA79 /* LaunchScreen.storyboard */,
 				F8DE15C21D951F9200EFFA79 /* Info.plist */,
 				F8DE15CA1D95289900EFFA79 /* ScreenCapturer.swift */,
-				F8DE15CD1D952C1400EFFA79 /* 4.Screen-Sharing-Bridging-Header.h */,
 			);
 			path = "4.Screen-Sharing";
-			sourceTree = "<group>";
-		};
-		F8DE15CC1D952B6C00EFFA79 /* Project 2 - Custom Video Driver */ = {
-			isa = PBXGroup;
-			children = (
-				F8DE15CE1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.h */,
-				F8DE15CF1D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m */,
-			);
-			name = "Project 2 - Custom Video Driver";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +221,6 @@
 				F8DE15CB1D95289900EFFA79 /* ScreenCapturer.swift in Sources */,
 				F8DE15B91D951F9200EFFA79 /* ViewController.swift in Sources */,
 				F8DE15B71D951F9200EFFA79 /* AppDelegate.swift in Sources */,
-				F8DE15D01D952C1500EFFA79 /* OTVideoCaptureSwift30Proxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.--Screen-Sharing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a59dc7c3-af3f-40f4-9a52-be0289761eb4";
-				SWIFT_OBJC_BRIDGING_HEADER = "4.Screen-Sharing-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -382,7 +366,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.--Screen-Sharing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "4.Screen-Sharing-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

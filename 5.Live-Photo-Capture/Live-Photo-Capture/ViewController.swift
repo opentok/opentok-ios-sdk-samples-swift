@@ -23,7 +23,7 @@ let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
+        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
     var publisher: ExamplePublisher?

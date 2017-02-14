@@ -24,7 +24,7 @@ let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
+        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
     var publisher: OTPublisher?
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         publisher?.audioFallbackEnabled = false
         
         capturer = ScreenCapturer(withView: view)
-        publisher?.videoCapture = capturer!.videoCapture()
+        publisher?.videoCapture = capturer
         
         var error: OTError? = nil
         session.publish(publisher!, error: &error)

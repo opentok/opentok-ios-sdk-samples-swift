@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import OpenTok
 
-class ScreenCapturer: OTVideoCaptureSwift30Proxy {
+class ScreenCapturer: NSObject, OTVideoCapture {
+    var videoCaptureConsumer: OTVideoCaptureConsumer?
+
     let MAX_EDGE_SIZE_LIMIT: CGFloat = 1280.0
     let EDGE_DIMENSION_COMMON_FACTOR: CGFloat = 16.0
     
@@ -64,18 +67,18 @@ class ScreenCapturer: OTVideoCaptureSwift30Proxy {
         
         videoFrame.timestamp = time
         //videoFrame?.format.estimatedFramesPerSecond =
-        videoFrame.format.estimatedCaptureDelay = 100
+        videoFrame.format?.estimatedCaptureDelay = 100
         videoFrame.orientation = .up
         
         videoFrame.clearPlanes()
-        videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddress(ref))
-        videoCaptureConsumer.consumeFrame(videoFrame)
+        videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddress(ref))        
+        videoCaptureConsumer?.consumeFrame(videoFrame)
         
         CVPixelBufferUnlockBaseAddress(ref, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
     }
     
     // MARK: - OTVideoCapture protocol
-    override func proxyInit() {
+    func initCapture() {
         timer.setEventHandler { 
             let screen = self.screenShoot()
             let padded = self.resizeAndPad(image: screen)
@@ -84,7 +87,7 @@ class ScreenCapturer: OTVideoCaptureSwift30Proxy {
         timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.milliseconds(100))
     }
     
-    override func proxyStart() -> Int32 {
+    func start() -> Int32 {
         capturing = true
         captureQueue.sync {
             timer.resume()
@@ -92,7 +95,7 @@ class ScreenCapturer: OTVideoCaptureSwift30Proxy {
         return 0
     }
     
-    override func proxyStop() -> Int32 {
+    func stop() -> Int32 {
         capturing = false
         captureQueue.sync {
             timer.cancel()
@@ -100,15 +103,15 @@ class ScreenCapturer: OTVideoCaptureSwift30Proxy {
         return 0
     }
     
-    override func proxyRelease() {
+    func releaseCapture() {
         timer.cancel()
     }
     
-    override func proxyIsStarted() -> Bool {
+    func isCaptureStarted() -> Bool {
         return capturing
     }
     
-    override func proxySettings(_ videoFormat: OTVideoFormat!) -> Int32 {
+    func captureSettings(_ videoFormat: OTVideoFormat) -> Int32 {
         videoFormat.pixelFormat = .ARGB
         return 0
     }
@@ -208,17 +211,16 @@ extension ScreenCapturer {
     }
     
     fileprivate func checkSize(forImage img: CGImage) {
-        if (videoFrame.format.imageHeight == UInt32(img.height) &&
-            videoFrame.format.imageWidth == UInt32(img.width))
-        {
-            // don't rock the boat. if nothing has changed, don't update anything.
-            return
+        guard let frameFormat = videoFrame.format, frameFormat.imageHeight != UInt32(img.height),
+            frameFormat.imageWidth != UInt32(img.width)
+            else {
+                return
         }
         
-        videoFrame.format.bytesPerRow.removeAllObjects()
-        videoFrame.format.bytesPerRow.addObjects(from: [img.width * 4])
-        videoFrame.format.imageWidth = UInt32(img.width)
-        videoFrame.format.imageHeight = UInt32(img.height)
+        frameFormat.bytesPerRow.removeAllObjects()
+        frameFormat.bytesPerRow.addObjects(from: [img.width * 4])
+        frameFormat.imageWidth = UInt32(img.width)
+        frameFormat.imageHeight = UInt32(img.height)
         
         let frameSize = CGSize(width: img.width, height: img.height)
         let options: Dictionary<String, Bool> = [

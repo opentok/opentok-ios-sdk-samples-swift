@@ -14,14 +14,14 @@ class ExamplePublisher: OTPublisher {
     var exampleCapturer: ExampleVideoCapture?
     var exampleRenderer: ExampleVideoRender?
     
-    override init(delegate: OTPublisherKitDelegate!, name: String!, audioTrack: Bool, videoTrack: Bool) {
+    override init?(delegate: OTPublisherKitDelegate!, name: String!, audioTrack: Bool, videoTrack: Bool) {
         let settings = OTPublisherSettings()
         settings.name = name
         settings.videoTrack = videoTrack
         settings.audioTrack = audioTrack
         super.init(delegate: delegate, settings: settings)
     }
-    override init(delegate: OTPublisherKitDelegate!, name: String!) {
+    override init?(delegate: OTPublisherKitDelegate!, name: String!) {
         let settings = OTPublisherSettings()
         settings.name = name
         super.init(delegate: delegate, settings: settings)

@@ -28,12 +28,12 @@ class ViewController: UIViewController {
     
     var subscribers: [IndexPath: OTSubscriber] = [:]
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
+        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     lazy var publisher: OTPublisher = {
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
-        return OTPublisher(delegate: self, settings: settings)
+        return OTPublisher(delegate: self, settings: settings)!
     }()
     var error: OTError?
     
@@ -130,9 +130,9 @@ class SubscriberCollectionCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        if let sub = subscriber {
-            sub.view.frame = bounds
-            contentView.insertSubview(sub.view, belowSubview: muteButton)
+        if let sub = subscriber, let subView = sub.view {
+            subView.frame = bounds
+            contentView.insertSubview(subView, belowSubview: muteButton)
             
             muteButton.isEnabled = true
             muteButton.isHidden = false
@@ -147,24 +147,27 @@ extension ViewController {
         muteMicButton.isEnabled = true
         endCallButton.isEnabled = true
         
-        let publisherDimensions = CGSize(width: view.bounds.size.width / 4,
-                                         height: view.bounds.size.height / 6)
-        publisher.view.frame = CGRect(origin: CGPoint(x:collectionView.bounds.size.width - publisherDimensions.width,
-                                                      y:collectionView.bounds.size.height - publisherDimensions.height + collectionView.frame.origin.y),
-                                      size: publisherDimensions)
-        view.addSubview(publisher.view)
+        if let pubView = publisher.view {
+            let publisherDimensions = CGSize(width: view.bounds.size.width / 4,
+                                             height: view.bounds.size.height / 6)
+            pubView.frame = CGRect(origin: CGPoint(x:collectionView.bounds.size.width - publisherDimensions.width,
+                                                   y:collectionView.bounds.size.height - publisherDimensions.height + collectionView.frame.origin.y),
+                                   size: publisherDimensions)
+            view.addSubview(pubView)
+            
+        }
         
         session.publish(publisher, error: &error)
     }
     
     func doSubscribe(to stream: OTStream) {
-        let subscriber = OTSubscriber(stream: stream, delegate: self)
-        let indexPath = IndexPath(item: subscribers.count, section: 0)
-        subscribers[indexPath] = subscriber
-        
-        session.subscribe(subscriber, error: &error)
-        
-        reloadCollectionView()
+        if let subscriber = OTSubscriber(stream: stream, delegate: self) {
+            let indexPath = IndexPath(item: subscribers.count, section: 0)
+            subscribers[indexPath] = subscriber
+            session.subscribe(subscriber, error: &error)
+            
+            reloadCollectionView()
+        }
     }
     
     func findSubscriber(byStreamId id: String) -> (IndexPath, OTSubscriber)? {
@@ -218,7 +221,7 @@ extension ViewController: OTSessionDelegate {
         guard let (index, subscriber) = findSubscriber(byStreamId: stream.streamId) else {
             return
         }
-        subscriber.view.removeFromSuperview()
+        subscriber.view?.removeFromSuperview()
         subscribers.removeValue(forKey: index)
         reloadCollectionView()
     }
