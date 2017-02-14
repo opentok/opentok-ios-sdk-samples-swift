@@ -24,7 +24,7 @@ let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
+        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
     var publisher: ExamplePublisher?
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
     }
     
     fileprivate func cleanupSubscriber() {
-        subscriber?.view.removeFromSuperview()
+        subscriber?.view?.removeFromSuperview()
         subscriber = nil
     }
     
@@ -159,7 +159,7 @@ extension ViewController: OTPublisherDelegate {
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
-        subscriber?.view.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
+        subscriber?.view?.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
         if let subsView = subscriber?.view {
             view.addSubview(subsView)
         }

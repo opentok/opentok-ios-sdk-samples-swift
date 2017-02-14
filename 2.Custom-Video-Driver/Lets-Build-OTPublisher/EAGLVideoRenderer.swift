@@ -98,12 +98,9 @@ class EAGLVideoRenderer {
     }
     
     func drawFrame(frame f: OTVideoFrame, withViewport:CGRect) {
-        if !isInitialized {
-            return
-        }
-        
-        if lastFrameTime == f.timestamp.value {
-            return
+        guard let frameFormat = f.format, isInitialized, lastFrameTime != f.timestamp.value
+            else {
+                return
         }
         
         ensureGLContext()
@@ -112,7 +109,7 @@ class EAGLVideoRenderer {
         updateTextureDataForFrame(frame: f)
         
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        let imageSize = CGSize(width: CGFloat(f.format.imageWidth), height: CGFloat(f.format.imageHeight))
+        let imageSize = CGSize(width: CGFloat(frameFormat.imageWidth), height: CGFloat(frameFormat.imageHeight))
         if flushVertices {
             flushVertices = false
             updateVerticesWithViewportSize()
@@ -124,8 +121,8 @@ class EAGLVideoRenderer {
                      GLenum(GL_DYNAMIC_DRAW))
         glDrawArrays(GLenum(GL_TRIANGLE_FAN), 0, 4)
         lastFrameTime = f.timestamp.value
-        lastDrawnWidth = f.format.imageWidth
-        lastDrawnHeight = f.format.imageHeight
+        lastDrawnWidth = frameFormat.imageWidth
+        lastDrawnHeight = frameFormat.imageHeight
     }
     
     func clearFrame() {
@@ -281,15 +278,16 @@ class EAGLVideoRenderer {
     fileprivate var lastDrawnWidth = UInt32(0)
     
     fileprivate func updateTextureSizesForFrame(frame: OTVideoFrame) {
-        if (frame.format.imageHeight == lastDrawnHeight &&
-            frame.format.imageWidth == lastDrawnWidth) {
-            return
+        guard let frameFormat = frame.format, frameFormat.imageHeight != lastDrawnHeight,
+            frameFormat.imageWidth != lastDrawnWidth
+            else {
+                return
         }
         
-        let lumaWidth = GLsizei(frame.format.imageWidth)
-        let lumaHeight = GLsizei(frame.format.imageHeight)
-        let chromaWidth = GLsizei(frame.format.imageWidth / 2)
-        let chromaHeight = GLsizei(frame.format.imageHeight / 2)
+        let lumaWidth = GLsizei(frameFormat.imageWidth)
+        let lumaHeight = GLsizei(frameFormat.imageHeight)
+        let chromaWidth = GLsizei(frameFormat.imageWidth / 2)
+        let chromaHeight = GLsizei(frameFormat.imageHeight / 2)
         
         for i in 0..<EAGLVideoRenderer.kNumTextureSets {
             glActiveTexture(GLenum(GL_TEXTURE0 + i * 3))
@@ -329,6 +327,10 @@ class EAGLVideoRenderer {
     
     fileprivate var currentTextureSet: GLint = 0
     fileprivate func updateTextureDataForFrame(frame: OTVideoFrame) {
+        guard let frameFormat = frame.format
+            else {
+                return
+        }
         let textureOffset = GLint(currentTextureSet * 3)
         
         glActiveTexture(GLenum(GL_TEXTURE0 + textureOffset))
@@ -336,8 +338,8 @@ class EAGLVideoRenderer {
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
                      GL_LUMINANCE,
-                     GLsizei(frame.format.imageWidth),
-                     GLsizei(frame.format.imageHeight),
+                     GLsizei(frameFormat.imageWidth),
+                     GLsizei(frameFormat.imageHeight),
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
@@ -348,8 +350,8 @@ class EAGLVideoRenderer {
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
                      GL_LUMINANCE,
-                     GLsizei(frame.format.imageWidth / 2),
-                     GLsizei(frame.format.imageHeight / 2),
+                     GLsizei(frameFormat.imageWidth / 2),
+                     GLsizei(frameFormat.imageHeight / 2),
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
@@ -360,8 +362,8 @@ class EAGLVideoRenderer {
         glTexImage2D(GLenum(GL_TEXTURE_2D),
                      0,
                      GL_LUMINANCE,
-                     GLsizei(frame.format.imageWidth / 2),
-                     GLsizei(frame.format.imageHeight / 2),
+                     GLsizei(frameFormat.imageWidth / 2),
+                     GLsizei(frameFormat.imageHeight / 2),
                      0,
                      GLenum(GL_LUMINANCE),
                      GLenum(GL_UNSIGNED_BYTE),
