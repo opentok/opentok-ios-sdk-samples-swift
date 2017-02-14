@@ -24,7 +24,7 @@ let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)
+        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
     var publisher: OTPublisher?
@@ -65,9 +65,11 @@ class ViewController: UIViewController {
         settings.name = UIDevice.current.name
         publisher = OTPublisher(delegate: self, settings: settings)
         var error: OTError? = nil
-        session.publish(publisher!, error: &error)
-        publisher!.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
-        view.addSubview(publisher!.view)
+        if let pub = publisher, let pubView = pub.view {
+            session.publish(pub, error: &error)
+            pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+            view.addSubview(pubView)
+        }
     }
     
     fileprivate func doSubscribe(_ stream: OTStream) {
@@ -136,7 +138,7 @@ extension ViewController: OTPublisherDelegate {
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
-        subscriber?.view.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
+        subscriber?.view?.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
         if let subsView = subscriber?.view {
             view.addSubview(subsView)
         }
