@@ -1,11 +1,11 @@
 PODS:
-  - OpenTok (2.10.0)
+  - OpenTok (2.10.1)
 
 DEPENDENCIES:
   - OpenTok
 
 SPEC CHECKSUMS:
-  OpenTok: 0b4d35b08b126e960484579a0d851f1a02f1d643
+  OpenTok: df1bb3fcb63c79eef6a805abe6e60c54e8086684
 
 PODFILE CHECKSUM: d4b63399d3fef5486044af412f4a623ab30c4aa3
 
