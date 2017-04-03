@@ -8,7 +8,7 @@
 
 import OpenTok
 
-class ExamplePublisher: OTPublisher {    
+class ExamplePublisher: OTPublisherKit {
     // Video capturer is not "retained" by the capturer so it is important
     // to save it as an instance variable
     var exampleCapturer: ExampleVideoCapture?
@@ -31,7 +31,7 @@ class ExamplePublisher: OTPublisher {
         videoRender = exampleRenderer!
     }
     
-    override var view: UIView {
+    var view: UIView {
         get {
             return exampleRenderer!
         }
