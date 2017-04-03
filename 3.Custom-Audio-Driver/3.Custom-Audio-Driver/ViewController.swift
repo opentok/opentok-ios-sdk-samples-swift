@@ -45,10 +45,10 @@ class ViewController: UIViewController {
      * expect a delegate method to call us back with the results of this action.
      */
     private func doConnect() {
+        var error: OTError?
         defer {
             process(error: error)
-        }
-        var error: OTError?
+        }        
         session.connect(withToken: kToken, error: &error)
     }
     
@@ -58,13 +58,13 @@ class ViewController: UIViewController {
      * to the OpenTok session.
      */
     fileprivate func doPublish() {
+        var error: OTError? = nil
         defer {
             process(error: error)
         }
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
         publisher = OTPublisher(delegate: self, settings: settings)
-        var error: OTError? = nil
         if let pub = publisher, let pubView = pub.view {
             session.publish(pub, error: &error)
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
@@ -73,11 +73,11 @@ class ViewController: UIViewController {
     }
     
     fileprivate func doSubscribe(_ stream: OTStream) {
+        var error: OTError?
         defer {
             process(error: error)
         }
         subscriber = OTSubscriber(stream: stream, delegate: self)
-        var error: OTError?
         session.subscribe(subscriber!, error: &error)
     }
     

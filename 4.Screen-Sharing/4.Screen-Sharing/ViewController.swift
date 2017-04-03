@@ -60,10 +60,10 @@ class ViewController: UIViewController {
      * expect a delegate method to call us back with the results of this action.
      */
     private func doConnect() {
+        var error: OTError?
         defer {
             process(error: error)
-        }
-        var error: OTError?
+        }        
         session.connect(withToken: kToken, error: &error)
     }
     
@@ -73,6 +73,7 @@ class ViewController: UIViewController {
      * to the OpenTok session.
      */
     fileprivate func doPublish() {
+        var error: OTError? = nil
         defer {
             process(error: error)
         }
@@ -85,16 +86,16 @@ class ViewController: UIViewController {
         capturer = ScreenCapturer(withView: view)
         publisher?.videoCapture = capturer
         
-        var error: OTError? = nil
         session.publish(publisher!, error: &error)
     }
     
     fileprivate func doSubscribe(_ stream: OTStream) {
+        var error: OTError?
         defer {
             process(error: error)
         }
         subscriber = OTSubscriber(stream: stream, delegate: self)
-        var error: OTError?
+        
         session.subscribe(subscriber!, error: &error)
     }
     

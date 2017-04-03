@@ -66,10 +66,11 @@ class ViewController: UIViewController {
      * expect a delegate method to call us back with the results of this action.
      */
     private func doConnect() {
+        var error: OTError?
         defer {
             process(error: error)
         }
-        var error: OTError?
+        
         session.connect(withToken: kToken, error: &error)
     }
     
@@ -79,12 +80,13 @@ class ViewController: UIViewController {
      * to the OpenTok session.
      */
     fileprivate func doPublish() {
+        var error: OTError? = nil
         defer {
             process(error: error)
         }
         publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
         publisher?.videoCapture = photoVideoCapture
-        var error: OTError? = nil
+        
         session.publish(publisher!, error: &error)
         publisher!.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
         view.addSubview(publisher!.view)
