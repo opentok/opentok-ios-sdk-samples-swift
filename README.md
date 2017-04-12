@@ -14,6 +14,8 @@ using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
 Quick Start
 -----------------------------
  
+ 1. Get values for **API Key**, **Session ID**, and **Token**. See [Obtaining OpenTok Credentials](#obtaining-opentok-credentials) for important information.
+ 
  1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
  
  1. In Terminal, `cd` to your project directory and type `pod install`.
