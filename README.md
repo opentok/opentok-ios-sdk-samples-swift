@@ -10,6 +10,30 @@ used with the latest version of the
 modify the source code herein for your own projects. Please consider sharing
 your modifications with us, especially if they might benefit other developers
 using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
+ 
+Quick Start
+-----------------------------
+ 
+ 1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+ 
+ 1. In Terminal, `cd` to your project directory and type `pod install`.
+ 
+ 1. Reopen your project in Xcode using the new `Opentok-iOS-samples.xcworkspace` file.
+ 
+ 1. Replace the following empty strings with the corresponding API Key, Session ID, and Token values:
+ 
+     ```swift
+     // *** Fill the following variables using your own Project info  ***
+     // ***            https://tokbox.com/account/#/                  ***
+     // Replace with your OpenTok API key
+     let kApiKey = ""
+     // Replace with your generated session ID
+     let kSessionId = ""
+     // Replace with your generated token
+     let kToken = ""
+     ```
+ 
+ 1. Use Xcode to build and run the app on an iOS simulator or device.
 
 What's Inside
 -------------
@@ -43,8 +67,3 @@ capture implementations provided herein.
 	for a multi-party call. The application publishes audio/video from an iOS device and 
 	can connect to multiple subscribers. However it shows only one subscriber video at a 
 	time due to CPU limitations on iOS devices.
-
-Referencing OpenTok.framework
------------------------------
-
-Samples use CocoaPods in order to install the OpenTok.framework. You'll find a Podfile in each sample. Run `pod install` to fetch the framework. After CocoaPods is finished, open the generated workspace file. (Do not open the project file or the dependency with the framework will not be set)
