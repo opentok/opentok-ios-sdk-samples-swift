@@ -9,8 +9,7 @@
 import UIKit
 import OpenTok
 
-let kWidgetHeight = 240
-let kWidgetWidth = 320
+let kWidgetRatio: CGFloat = 1.333
 
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
@@ -66,7 +65,7 @@ class ViewController: UIViewController {
         }
         publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
         session.publish(publisher!, error: &error)
-        publisher!.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+        publisher!.view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
         view.addSubview(publisher!.view)
     }
     
@@ -159,7 +158,7 @@ extension ViewController: OTPublisherDelegate {
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
-        subscriber?.view?.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
+        subscriber?.view?.frame = CGRect(x: 0, y: view.frame.width / kWidgetRatio, width: view.frame.width, height: view.frame.width / kWidgetRatio)
         if let subsView = subscriber?.view {
             view.addSubview(subsView)
         }
