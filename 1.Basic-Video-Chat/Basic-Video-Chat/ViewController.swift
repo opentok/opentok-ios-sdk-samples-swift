@@ -9,9 +9,6 @@
 import UIKit
 import OpenTok
 
-let kWidgetHeight = 240
-let kWidgetWidth = 320
-
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
@@ -71,7 +68,7 @@ class ViewController: UIViewController {
         session.publish(publisher, error: &error)
         
         if let pubView = publisher.view {
-            pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+            pubView.frame = CGRect(x: 0, y: 0, width: 240, height: 320)
             view.addSubview(pubView)
         }
     }
@@ -99,15 +96,11 @@ class ViewController: UIViewController {
     
     fileprivate func processError(_ error: OTError?) {
         if let err = error {
-            showAlert(errorStr: err.localizedDescription)
-        }
-    }
-    
-    fileprivate func showAlert(errorStr err: String) {
-        DispatchQueue.main.async {
-            let controller = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(controller, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                let controller = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(controller, animated: true, completion: nil)
+            }
         }
     }
 }
@@ -166,7 +159,7 @@ extension ViewController: OTPublisherDelegate {
 extension ViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         if let subsView = subscriber?.view {
-            subsView.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
+            subsView.frame = CGRect(x: 0, y: 320, width: 240, height: 320)
             view.addSubview(subsView)
         }
     }
@@ -177,4 +170,3 @@ extension ViewController: OTSubscriberDelegate {
     
     func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {}
 }
-
