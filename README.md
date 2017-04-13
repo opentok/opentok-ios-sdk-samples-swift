@@ -69,3 +69,7 @@ capture implementations provided herein.
 	for a multi-party call. The application publishes audio/video from an iOS device and 
 	can connect to multiple subscribers. However it shows only one subscriber video at a 
 	time due to CPU limitations on iOS devices.
+	
+#### Obtaining OpenTok Credentials
+
+To use OpenTok's framework you need a Session ID, Token, and API Key you can get these values at the [OpenTok Developer Dashboard](https://dashboard.tokbox.com/) . For production deployment, you must generate the Session ID and Token values using one of the [OpenTok Server SDKs](https://tokbox.com/developer/sdks/server/).
