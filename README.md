@@ -71,6 +71,5 @@ capture implementations provided herein.
 	time due to CPU limitations on iOS devices.
 	
 ## Obtaining OpenTok Credentials
--------------
 
 To use the OpenTok platform you need a Session ID, Token, and API Key - you can get these values by creating a project on your [Account Page](https://tokbox.com/account/) and scrolling down to the Project Tools section of your Project page. For production deployment, you must generate the Session ID and Token values using one of the [OpenTok Server SDKs](https://tokbox.com/developer/sdks/server/).
