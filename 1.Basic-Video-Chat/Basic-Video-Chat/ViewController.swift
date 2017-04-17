@@ -18,6 +18,8 @@ let kSessionId = ""
 // Replace with your generated token
 let kToken = ""
 
+let kWidgetHeight = 240
+let kWidgetWidth = 320
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
@@ -68,7 +70,7 @@ class ViewController: UIViewController {
         session.publish(publisher, error: &error)
         
         if let pubView = publisher.view {
-            pubView.frame = CGRect(x: 0, y: 0, width: 240, height: 320)
+            pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(pubView)
         }
     }
@@ -159,7 +161,7 @@ extension ViewController: OTPublisherDelegate {
 extension ViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         if let subsView = subscriber?.view {
-            subsView.frame = CGRect(x: 0, y: 320, width: 240, height: 320)
+            subsView.frame = CGRect(x: 0, y: kWidgetHeight, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(subsView)
         }
     }
