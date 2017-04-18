@@ -22,8 +22,9 @@ let kToken = ""
 
 // room: 0=0=
 let kApiKey = "45328772"
-let kToken = "T1==cGFydG5lcl9pZD00NTMyODc3MiZzaWc9Yjk4MGRkOGY0YzA2YWU5NmU2YmJlNjAyOTRmMDBiODc5MzE5ZWZlMzpzZXNzaW9uX2lkPTJfTVg0ME5UTXlPRGMzTW41LU1UUTVNalF5T0RBMU1UVTJObjQxZG0xQ1JsbFRlbFJrS3pKMWVGTk1jWGhwU0hsWGJIQi1mZyZjcmVhdGVfdGltZT0xNDkyNDI4MDUyJm5vbmNlPTAuMzA5ODM5MzQ0MTE3NzkwNDYmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTQ5MjUxNDQ1MiZjb25uZWN0aW9uX2RhdGE9JTdCJTIydXNlck5hbWUlMjIlM0ElMjJBbm9ueW1vdXMlMjBVc2VyMjA1JTIyJTdE"
+let kToken = "T1==cGFydG5lcl9pZD00NTMyODc3MiZzaWc9MzA4OTMyYTc2MmU3MzdiNThjMWRjOGVlZGZhODcyMDllOWY2MTczNTpzZXNzaW9uX2lkPTJfTVg0ME5UTXlPRGMzTW41LU1UUTVNalF5T0RBMU1UVTJObjQxZG0xQ1JsbFRlbFJrS3pKMWVGTk1jWGhwU0hsWGJIQi1mZyZjcmVhdGVfdGltZT0xNDkyNTA1NTE0Jm5vbmNlPTAuNTI3Njc2OTQ2NzE2MzgzMSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDkyNTkxOTE0JmNvbm5lY3Rpb25fZGF0YT0lN0IlMjJ1c2VyTmFtZSUyMiUzQSUyMkFub255bW91cyUyMFVzZXIyOTUlMjIlN0Q="
 let kSessionId = "2_MX40NTMyODc3Mn5-MTQ5MjQyODA1MTU2Nn41dm1CRllTelRkKzJ1eFNMcXhpSHlXbHB-fg"
+
 
 
 class ChatViewController: UICollectionViewController {
@@ -36,7 +37,8 @@ class ChatViewController: UICollectionViewController {
         settings.name = UIDevice.current.name
         return OTPublisher(delegate: self, settings: settings)!
     }()
-        
+    
+    var subscribers: [OTSubscriber] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,12 +70,16 @@ class ChatViewController: UICollectionViewController {
             processError(error)
         }
         
+        // REMOVE THIS!
+        
+        
+        publisher.publishAudio = false
+        
+        
+        ///
         session.publish(publisher, error: &error)
         
-        if let pubView = publisher.view {
-            /*pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
-            view.addSubview(pubView)*/
-        }
+        collectionView?.reloadData()
     }
     
     /**
@@ -87,14 +93,19 @@ class ChatViewController: UICollectionViewController {
         defer {
             processError(error)
         }
-        /*subscriber = OTSubscriber(stream: stream, delegate: self)
-        
-        session.subscribe(subscriber!, error: &error)*/
+        guard let subscriber = OTSubscriber(stream: stream, delegate: self)
+            else {
+                print("Error while subscribing")
+                return
+        }
+        session.subscribe(subscriber, error: &error)
+        subscribers.append(subscriber)        
+        collectionView?.reloadData()
     }
     
     fileprivate func cleanupSubscriber(_ stream: OTStream) {
-        /*subscriber?.view?.removeFromSuperview()
-        subscriber = nil*/
+        subscribers = subscribers.filter { $0.stream?.streamId != stream.streamId }
+        collectionView?.reloadData()
     }
     
     fileprivate func processError(_ error: OTError?) {
@@ -109,6 +120,31 @@ class ChatViewController: UICollectionViewController {
             controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(controller, animated: true, completion: nil)
         }
+    }
+    
+    // MARK: - UICollectionView methods
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return subscribers.count + 1
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
+        let videoView: UIView = {
+            if (indexPath.row == 0) {
+                return publisher.view!
+            } else {
+                let sub = subscribers[indexPath.row - 1]
+                return sub.view!
+            }
+        }()
+        
+        videoView.frame = cell.bounds
+        cell.addSubview(videoView)
+        return cell
+    }
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
 }
 
@@ -149,6 +185,19 @@ extension ChatViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print("Publisher failed: \(error.localizedDescription)")
     }
+}
+
+// MARK: - OTSubscriber delegate callbacks
+extension ChatViewController: OTSubscriberDelegate {
+    func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
+        print("Subscriber connected")
+    }
     
+    func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
+        print("Subscriber failed: \(error.localizedDescription)")
+    }
+    
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
+    }
 }
 
