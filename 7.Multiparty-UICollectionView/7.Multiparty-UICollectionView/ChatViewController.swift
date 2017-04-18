@@ -20,13 +20,6 @@ let kSessionId = ""
 let kToken = ""
 */
 
-// room: 0=0=
-let kApiKey = "45328772"
-let kToken = "T1==cGFydG5lcl9pZD00NTMyODc3MiZzaWc9MzA4OTMyYTc2MmU3MzdiNThjMWRjOGVlZGZhODcyMDllOWY2MTczNTpzZXNzaW9uX2lkPTJfTVg0ME5UTXlPRGMzTW41LU1UUTVNalF5T0RBMU1UVTJObjQxZG0xQ1JsbFRlbFJrS3pKMWVGTk1jWGhwU0hsWGJIQi1mZyZjcmVhdGVfdGltZT0xNDkyNTA1NTE0Jm5vbmNlPTAuNTI3Njc2OTQ2NzE2MzgzMSZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNDkyNTkxOTE0JmNvbm5lY3Rpb25fZGF0YT0lN0IlMjJ1c2VyTmFtZSUyMiUzQSUyMkFub255bW91cyUyMFVzZXIyOTUlMjIlN0Q="
-let kSessionId = "2_MX40NTMyODc3Mn5-MTQ5MjQyODA1MTU2Nn41dm1CRllTelRkKzJ1eFNMcXhpSHlXbHB-fg"
-
-
-
 class ChatViewController: UICollectionViewController {
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
@@ -69,14 +62,6 @@ class ChatViewController: UICollectionViewController {
         defer {
             processError(error)
         }
-        
-        // REMOVE THIS!
-        
-        
-        publisher.publishAudio = false
-        
-        
-        ///
         session.publish(publisher, error: &error)
         
         collectionView?.reloadData()
