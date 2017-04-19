@@ -37,14 +37,14 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     fileprivate func resizeAndPad(image img: UIImage) -> CGImage {
         let source = img.cgImage!
         let size = CGSize(width: source.width, height: source.height)
-        let destSizes = dimensions(forInputSize: size)
+//        let destSizes = dimensions(forInputSize: size)
         
-        UIGraphicsBeginImageContextWithOptions(destSizes.container, false, 1.0)
+        UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
         let ctx = UIGraphicsGetCurrentContext()
         
         ctx?.scaleBy(x: 1, y: -1)
-        ctx?.translateBy(x: 0, y: -destSizes.rect.size.height)
-        ctx?.draw(source, in: destSizes.rect)
+        ctx?.translateBy(x: 0, y: -size.height)
+        ctx?.draw(source, in: CGRect(x: 0, y: 0, width: size.width, height:size.height))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
