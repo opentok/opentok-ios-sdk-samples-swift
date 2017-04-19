@@ -17,9 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A5ABC3AD0565DC0FF31F81D5 /* Pods-4.Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4.Screen-Sharing.release.xcconfig"; path = "../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
-		B7CCA2AC43D3C6B11CB7171A /* Pods-4.Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4.Screen-Sharing.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
-		DB21FC555CC616F991CC34B3 /* Pods_4_Screen_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_4_Screen_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DE15B31D951F9200EFFA79 /* 4.Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4.Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8DE15B61D951F9200EFFA79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8DE15B81D951F9200EFFA79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,30 +39,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CCBABB7440CE0246C2222EFF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DB21FC555CC616F991CC34B3 /* Pods_4_Screen_Sharing.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CECFE9417085A2A6A0F3AC15 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B7CCA2AC43D3C6B11CB7171A /* Pods-4.Screen-Sharing.debug.xcconfig */,
-				A5ABC3AD0565DC0FF31F81D5 /* Pods-4.Screen-Sharing.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F8DE15AA1D951F9200EFFA79 = {
 			isa = PBXGroup;
 			children = (
 				F8DE15B51D951F9200EFFA79 /* 4.Screen-Sharing */,
 				F8DE15B41D951F9200EFFA79 /* Products */,
-				CECFE9417085A2A6A0F3AC15 /* Pods */,
-				CCBABB7440CE0246C2222EFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +77,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "4.Screen-Sharing" */;
 			buildPhases = (
-				19EE6A18528B738FC6FCC8D0 /* [CP] Check Pods Manifest.lock */,
 				F8DE15AF1D951F9200EFFA79 /* Sources */,
 				F8DE15B01D951F9200EFFA79 /* Frameworks */,
 				F8DE15B11D951F9200EFFA79 /* Resources */,
-				FE507CB9E22CB70C9DE0E70A /* [CP] Embed Pods Frameworks */,
-				3DA7CBEA6AEDBC6492D43691 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,54 +139,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		19EE6A18528B738FC6FCC8D0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		3DA7CBEA6AEDBC6492D43691 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FE507CB9E22CB70C9DE0E70A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-4.Screen-Sharing/Pods-4.Screen-Sharing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F8DE15AF1D951F9200EFFA79 /* Sources */ = {
@@ -339,7 +266,6 @@
 		};
 		F8DE15C61D951F9200EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7CCA2AC43D3C6B11CB7171A /* Pods-4.Screen-Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -357,7 +283,6 @@
 		};
 		F8DE15C71D951F9200EFFA79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5ABC3AD0565DC0FF31F81D5 /* Pods-4.Screen-Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

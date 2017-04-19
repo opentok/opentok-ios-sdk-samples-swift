@@ -20,10 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		59369E3170B7AE6CE908E5FD /* Pods_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EDA8C9A226E45BF85F5595C /* Pods_5_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_5_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5A185D25A2AF98F4F2AD0F0 /* Pods-5.Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Live-Photo-Capture.release.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
-		C65B28CAD9DB382C7018A257 /* Pods-5.Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Live-Photo-Capture.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
 		F872F76A1D6C851400A0674B /* 5.Live-Photo-Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "5.Live-Photo-Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F872F76D1D6C851400A0674B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F872F76F1D6C851400A0674B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,32 +45,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		60BDCAF11033A5E32B14101B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				59369E3170B7AE6CE908E5FD /* Pods_Live_Photo_Capture.framework */,
-				8EDA8C9A226E45BF85F5595C /* Pods_5_Live_Photo_Capture.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C3961391E1EDE3BC90BC9C6A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C65B28CAD9DB382C7018A257 /* Pods-5.Live-Photo-Capture.debug.xcconfig */,
-				A5A185D25A2AF98F4F2AD0F0 /* Pods-5.Live-Photo-Capture.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F872F7611D6C851400A0674B = {
 			isa = PBXGroup;
 			children = (
 				F872F7891D6C87E300A0674B /* Project 2 - Custom Audio Driver */,
 				F872F76C1D6C851400A0674B /* Live-Photo-Capture */,
 				F872F76B1D6C851400A0674B /* Products */,
-				60BDCAF11033A5E32B14101B /* Frameworks */,
-				C3961391E1EDE3BC90BC9C6A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,12 +94,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F872F77C1D6C851400A0674B /* Build configuration list for PBXNativeTarget "5.Live-Photo-Capture" */;
 			buildPhases = (
-				16E78A198C7FAB56B7CBE4EC /* [CP] Check Pods Manifest.lock */,
 				F872F7661D6C851400A0674B /* Sources */,
 				F872F7671D6C851400A0674B /* Frameworks */,
 				F872F7681D6C851400A0674B /* Resources */,
-				BC01D0BE42DC06F4E72E4CB9 /* [CP] Embed Pods Frameworks */,
-				B1DA0301F3BBAD00652082AD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,54 +155,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		16E78A198C7FAB56B7CBE4EC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B1DA0301F3BBAD00652082AD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC01D0BE42DC06F4E72E4CB9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F872F7661D6C851400A0674B /* Sources */ = {
@@ -358,7 +283,6 @@
 		};
 		F872F77D1D6C851400A0674B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C65B28CAD9DB382C7018A257 /* Pods-5.Live-Photo-Capture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -377,7 +301,6 @@
 		};
 		F872F77E1D6C851400A0674B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5A185D25A2AF98F4F2AD0F0 /* Pods-5.Live-Photo-Capture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
