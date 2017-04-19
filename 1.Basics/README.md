@@ -4,17 +4,36 @@ Project 1: Basics
 The Basics app is a very simple application meant to get a new developer
 started using the OpenTok iOS SDK.
 
+Quick Start
+-----------
+
+To use this application:
+
+1. Follow the instructions in the [Quick Start](../README.md#quick-start)
+   section of the main README file for this repository.
+
+   Among other things, you need to set values for the `kApiKey`, `kSessionId`,
+   and `kToken` constants. See [Obtaining OpenTok
+   Credentials](../README.md#obtaining-opentok-credentials)
+   in the main README file for the repository.
+
+2. When you run the application, it connects to an OpenTok session and
+   publishes an audio-video stream from your device to the session.
+
+3. Run the app on a second client. You can do this by deploying the app to an
+   iOS device and testing it in the simulator at the same time. Or you can use
+   the browser_demo.html file to connect in a browser (see the following
+   section).
+
+   When the second client connects, it also publishes a stream to the session,
+   and both clients subscribe to (view) each other’s stream.
+
 Application Notes
 -----------------
 
 *   Follow the code from the `ViewController.viewDidLoad(_:)` method through
     to the OpenTok callbacks to see how streams are created and handled in
     the OpenTok iOS SDK.
-
-*   In the VideoController.swift file, set values for the `kApiKey`, `kSessionId`,
-    and `kToken` constants. For testing, you can obtain these values at your
-    [OpenTok account page][1]. In a production application, use one of the
-    [OpenTok server SDKs][2] to generate session IDs and tokens.
 
 *   By default, all delegate methods from classes in the OpenTok iOS SDK are
     invoked on the main queue. This means that you can directly modify the view

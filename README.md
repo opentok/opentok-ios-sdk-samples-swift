@@ -12,9 +12,11 @@ your modifications with us, especially if they might benefit other developers
 using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
  
 Quick Start
------------------------------
- 
- 1. Get values for **API Key**, **Session ID**, and **Token**. See [Obtaining OpenTok Credentials](#obtaining-opentok-credentials) for important information.
+-----------
+
+ 1. Get values for your OpenTok **API key**, **session ID**, and **token**.
+    See [Obtaining OpenTok Credentials](#obtaining-opentok-credentials)
+    for important information.
  
  1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
  
@@ -22,7 +24,8 @@ Quick Start
  
  1. Reopen your project in Xcode using the new `Opentok-iOS-samples.xcworkspace` file.
  
- 1. Replace the following empty strings with the corresponding API Key, Session ID, and Token values:
+ 1. In the ViewController.swift file, replace the following empty strings
+    with the corresponding API Key, session ID, and token values:
  
      ```swift
      // *** Fill the following variables using your own Project info  ***
@@ -45,31 +48,36 @@ each, you will have an understanding of the OpenTok iOS SDK API. Additionally,
 you will be able to get started with writing your own extensions to the default
 capture implementations provided herein.
 
-1.	**Basics** - This basic application demonstrates a short path to
+1.	**Basics** -- This basic application demonstrates a short path to
 	getting started with the OpenTok iOS SDK.
 
-2.	**Custom Video Driver** - This project provides classes that implement
+2.	**Custom Video Driver** -- This project provides classes that implement
 	the OTVideoCapture and OTVideoRender interfaces of the core Publisher and
 	Subscriber classes. Using these modules, we can see the basic workflow of
 	sourcing video frames from the device camera in and out of OpenTok, via the
 	OTPublisherKit and OTSubscriberKit interfaces.
 
-3. **Custom-Audio-Driver** - This project demonstrate how to use an external audio
+3. **Custom-Audio-Driver** -- This project demonstrate how to use an external audio
 	source with the OpenTok SDK. This project utilizes CoreAudio and the AUGraph API
 	to create an audio session suitable for voice and video communications.
 
-4. **Screen-Sharing** - This project demonstrates how to use a custom video capturer 
+4. **Screen-Sharing** -- This project demonstrates how to use a custom video capturer
 	to publish a stream that uses a UI view (instead of a camera) as the video source.
 
-5. **Live-Photo-Capture** - This project extends the video capture module implemented 
+5. **Live-Photo-Capture** -- This project extends the video capture module implemented
 	in project 2, and demonstrates how the AVFoundation media capture APIs can be used to
 	simultaneously stream video and capture high-resolution photos from the same camera.
 
-6. **Simple-Multiparty** - This project demonstrates how to use the OpenTok iOS SDK 
+6. **Simple-Multiparty** -- This project demonstrates how to use the OpenTok iOS SDK
 	for a multi-party call. The application publishes audio/video from an iOS device and 
 	can connect to multiple subscribers. However it shows only one subscriber video at a 
 	time due to CPU limitations on iOS devices.
 	
 ## Obtaining OpenTok Credentials
 
-To use the OpenTok platform you need a Session ID, Token, and API Key - you can get these values by creating a project on your [Account Page](https://tokbox.com/account/) and scrolling down to the Project Tools section of your Project page. For production deployment, you must generate the Session ID and Token values using one of the [OpenTok Server SDKs](https://tokbox.com/developer/sdks/server/).
+To use the OpenTok platform you need a session ID, token, and API Key.
+You can get these values by creating a project on your [OpenTok Account
+Page](https://tokbox.com/account/) and scrolling down to the Project Tools
+section of your Project page. For production deployment, you must generate the
+session ID and token values using one of the [OpenTok Server
+SDKs](https://tokbox.com/developer/sdks/server/).
