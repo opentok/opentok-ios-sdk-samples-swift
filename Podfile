@@ -1,8 +1,8 @@
 use_frameworks!
 workspace 'Opentok-iOS-samples'
 
-target '1.Hello-World' do
-	project '1.Hello-World/1.Hello-World.xcodeproj'
+target '1.Basics' do
+	project '1.Basics/1.Basics.xcodeproj'
 	pod 'OpenTok'
 end
 

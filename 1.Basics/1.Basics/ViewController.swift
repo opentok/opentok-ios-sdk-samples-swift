@@ -9,9 +9,6 @@
 import UIKit
 import OpenTok
 
-let kWidgetHeight = 240
-let kWidgetWidth = 320
-
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
@@ -21,6 +18,8 @@ let kSessionId = ""
 // Replace with your generated token
 let kToken = ""
 
+let kWidgetHeight = 240
+let kWidgetWidth = 320
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
@@ -99,15 +98,11 @@ class ViewController: UIViewController {
     
     fileprivate func processError(_ error: OTError?) {
         if let err = error {
-            showAlert(errorStr: err.localizedDescription)
-        }
-    }
-    
-    fileprivate func showAlert(errorStr err: String) {
-        DispatchQueue.main.async {
-            let controller = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(controller, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                let controller = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(controller, animated: true, completion: nil)
+            }
         }
     }
 }
@@ -160,7 +155,6 @@ extension ViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print("Publisher failed: \(error.localizedDescription)")
     }
-    
 }
 
 // MARK: - OTSubscriber delegate callbacks
@@ -176,7 +170,5 @@ extension ViewController: OTSubscriberDelegate {
         print("Subscriber failed: \(error.localizedDescription)")
     }
     
-    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
-    }
+    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {}
 }
-
