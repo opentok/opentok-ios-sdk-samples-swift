@@ -114,22 +114,20 @@ class ChatViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
-        let videoView: UIView = {
+        let videoView: UIView? = {
             if (indexPath.row == 0) {
-                return publisher.view!
+                return publisher.view
             } else {
                 let sub = subscribers[indexPath.row - 1]
-                return sub.view!
+                return sub.view
             }
         }()
         
-        videoView.frame = cell.bounds
-        cell.addSubview(videoView)
+        if let viewToAdd = videoView {
+            viewToAdd.frame = cell.bounds
+            cell.addSubview(viewToAdd)
+        }
         return cell
-    }
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
     }
 }
 

@@ -10,9 +10,7 @@ import UIKit
 
 extension Int {
     var isEven: Bool {
-        get {
-            return self % 2 == 0
-        }
+        return self % 2 == 0
     }
 }
 
@@ -56,7 +54,7 @@ class MultipartyLayout: UICollectionViewLayout {
         var attribs = [UICollectionViewLayoutAttributes]()
         let ip = IndexPath(item: 0, section: 0)
         let attr = UICollectionViewLayoutAttributes(forCellWith: ip)
-        attr.frame = collectionView!.superview!.bounds
+        attr.frame = collectionView?.superview?.bounds ?? CGRect()
         attribs.append(attr)
         
         return attribs
@@ -65,8 +63,8 @@ class MultipartyLayout: UICollectionViewLayout {
     // Will layout publisher view over subscriber view
     fileprivate func attributesForPublisherAndOneSubscriber() -> [UICollectionViewLayoutAttributes] {
         var attribs = [UICollectionViewLayoutAttributes]()
-        let height = collectionView!.superview!.bounds.size.height / 2
-        let width = collectionView!.superview!.bounds.size.width
+        let height = (collectionView?.superview?.bounds.size.height ?? 0) / 2
+        let width = collectionView?.superview?.bounds.size.width ?? 0
         
         let pubIp = IndexPath(item: 0, section: 0)
         let pubAttribs = UICollectionViewLayoutAttributes(forCellWith: pubIp)
@@ -86,12 +84,12 @@ class MultipartyLayout: UICollectionViewLayout {
     {
         var attribs = [UICollectionViewLayoutAttributes]()
         let rows = CGFloat(((views  - 1) / 2) + 1)
-        let height = collectionView!.superview!.bounds.size.height / CGFloat(rows)
-        let width = collectionView!.superview!.bounds.size.width / 2
+        let height = (collectionView?.superview?.bounds.size.height ?? 0) / CGFloat(rows)
+        let width = (collectionView?.superview?.bounds.size.width ?? 0) / 2
         
         let pubIp = IndexPath(item: 0, section: 0)
         let pubAttribs = UICollectionViewLayoutAttributes(forCellWith: pubIp)
-        pubAttribs.frame = CGRect(x: 0, y: 0, width: collectionView!.superview!.bounds.size.width, height: height)
+        pubAttribs.frame = CGRect(x: 0, y: 0, width: collectionView?.superview?.bounds.size.width ?? 0, height: height)
         attribs.append(pubAttribs)
         attribs.append(contentsOf: attributesForViewsInRows(initialYOffset: height,
                                                             totalNumberOfViews: views,
@@ -105,8 +103,8 @@ class MultipartyLayout: UICollectionViewLayout {
     {
         var attribs = [UICollectionViewLayoutAttributes]()
         let rows = views / 2
-        let height = collectionView!.superview!.bounds.size.height / CGFloat(rows)
-        let width = collectionView!.superview!.bounds.size.width / 2
+        let height = (collectionView?.superview?.bounds.size.height ?? 0) / CGFloat(rows)
+        let width = (collectionView?.superview?.bounds.size.width ?? 0) / 2
         
         attribs.append(contentsOf: attributesForViewsInRows(initialYOffset: 0,
                                                             totalNumberOfViews: views,
@@ -147,9 +145,7 @@ class MultipartyLayout: UICollectionViewLayout {
     }
     
     override var collectionViewContentSize: CGSize {
-        get {
-            return collectionView!.superview!.bounds.size
-        }
+        return collectionView?.superview?.bounds.size ?? CGSize()
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
