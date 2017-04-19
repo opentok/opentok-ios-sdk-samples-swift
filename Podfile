@@ -30,3 +30,8 @@ target '6.Simple-Multiparty' do
 	project '6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj'
 	pod 'OpenTok'
 end
+
+target '7.Multiparty-UICollectionView' do
+  project '7.Multiparty-UICollectionView/7.Multiparty-UICollectionView.xcodeproj'
+  pod 'OpenTok'
+end
