@@ -3,7 +3,7 @@
 If you plan to build a multiparty, social-like app you will probably want to use `UICollectionView` to layout the different views of the participants.
 
 *Important:* To use this application, follow the instructions in the
-[Quick Start](../README.md/quick-start) section of the main README file
+[Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
 
 The reason of using UICollectionView is because it allows to easily specify the way the views are displayed.

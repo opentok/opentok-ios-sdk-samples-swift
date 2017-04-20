@@ -4,7 +4,7 @@ Previous samples subscribe to only one stream. In a multiparty video audio call
 there should be multiple parties.
 
 *Important:* To use this application, follow the instructions in the
-[Quick Start](../README.md/quick-start) section of the main README file
+[Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
 
 This simple multiparty app is able to handle only four subscriber parties. On a
