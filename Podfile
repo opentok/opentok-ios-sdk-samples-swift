@@ -2,7 +2,7 @@ use_frameworks!
 workspace 'Opentok-iOS-samples'
 
 def shared_pods
-    pod 'OpenTok', '~> 2.10.0'
+    pod 'OpenTok', '= 2.10.2'
 end
 
 target '1.Basics' do
