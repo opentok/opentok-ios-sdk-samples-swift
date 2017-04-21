@@ -12,7 +12,6 @@
 		F882D7331D92B85B00FD72FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F882D7311D92B85B00FD72FD /* Main.storyboard */; };
 		F882D7351D92B85B00FD72FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F882D7341D92B85B00FD72FD /* Assets.xcassets */; };
 		F882D7381D92B85B00FD72FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F882D7361D92B85B00FD72FD /* LaunchScreen.storyboard */; };
-		F882D7401D92BC3200FD72FD /* AudioDeviceWithVolumeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882D73F1D92BC3200FD72FD /* AudioDeviceWithVolumeControl.swift */; };
 		F882D7421D92BC9D00FD72FD /* DefaultAudioDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F882D7411D92BC9D00FD72FD /* DefaultAudioDevice.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 		F882D7341D92B85B00FD72FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F882D7371D92B85B00FD72FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F882D7391D92B85B00FD72FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F882D73F1D92BC3200FD72FD /* AudioDeviceWithVolumeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDeviceWithVolumeControl.swift; sourceTree = "<group>"; };
 		F882D7411D92BC9D00FD72FD /* DefaultAudioDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAudioDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,7 +62,6 @@
 				F882D7341D92B85B00FD72FD /* Assets.xcassets */,
 				F882D7361D92B85B00FD72FD /* LaunchScreen.storyboard */,
 				F882D7391D92B85B00FD72FD /* Info.plist */,
-				F882D73F1D92BC3200FD72FD /* AudioDeviceWithVolumeControl.swift */,
 				F882D7411D92BC9D00FD72FD /* DefaultAudioDevice.swift */,
 			);
 			name = "Custom-Audio-Driver";
@@ -147,7 +144,6 @@
 				F882D7301D92B85B00FD72FD /* ViewController.swift in Sources */,
 				F882D72E1D92B85B00FD72FD /* AppDelegate.swift in Sources */,
 				F882D7421D92BC9D00FD72FD /* DefaultAudioDevice.swift in Sources */,
-				F882D7401D92BC3200FD72FD /* AudioDeviceWithVolumeControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

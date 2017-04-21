@@ -58,6 +58,7 @@ class DefaultAudioDevice: NSObject {
     fileprivate var isAudioSessionSetup = false
     
     var areListenerBlocksSetup = false
+    var streamFormat = AudioStreamBasicDescription()
 
     static let sharedInstance: DefaultAudioDevice = {
         return DefaultAudioDevice()
@@ -115,16 +116,7 @@ class DefaultAudioDevice: NSObject {
             isAudioSessionSetup = true
         }
         
-        let (bus, scope): (AudioUnitElement, AudioUnitScope) = {
-            if playout {
-                return (DefaultAudioDevice.kOutputBus, kAudioUnitScope_Output)
-            } else {
-                return (DefaultAudioDevice.kInputBus, kAudioUnitScope_Input)
-            }
-        }()
-        
         let bytesPerSample = UInt32(MemoryLayout<Int16>.size)
-        var streamFormat = AudioStreamBasicDescription()
         streamFormat.mFormatID = kAudioFormatLinearPCM
         streamFormat.mFormatFlags = kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked
         streamFormat.mBytesPerPacket = bytesPerSample
@@ -155,13 +147,22 @@ class DefaultAudioDevice: NSObject {
             return false
         }
         
-        var value = UnsafePointer<UInt32>(bitPattern: 1)
+        var value: UInt32 = 1
         if playout {
-            AudioUnitSetProperty(playoutVoiceUnit!, kAudioOutputUnitProperty_EnableIO, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
-            AudioUnitSetProperty(playoutVoiceUnit!, kAudioUnitProperty_StreamFormat, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+            AudioUnitSetProperty(playoutVoiceUnit!, kAudioOutputUnitProperty_EnableIO,
+                                 kAudioUnitScope_Output, DefaultAudioDevice.kOutputBus, &value,
+                                 UInt32(MemoryLayout<UInt32>.size))
+            
+            AudioUnitSetProperty(playoutVoiceUnit!, kAudioUnitProperty_StreamFormat,
+                                 kAudioUnitScope_Input, DefaultAudioDevice.kOutputBus, &streamFormat,
+                                 UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         } else {
-            AudioUnitSetProperty(recordingVoiceUnit!, kAudioOutputUnitProperty_EnableIO, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
-            AudioUnitSetProperty(recordingVoiceUnit!, kAudioUnitProperty_StreamFormat, scope, bus, &value, UInt32(MemoryLayout<UInt32>.size))
+            AudioUnitSetProperty(recordingVoiceUnit!, kAudioOutputUnitProperty_EnableIO,
+                                 kAudioUnitScope_Input, DefaultAudioDevice.kInputBus, &value,
+                                 UInt32(MemoryLayout<UInt32>.size))
+            AudioUnitSetProperty(recordingVoiceUnit!, kAudioUnitProperty_StreamFormat,
+                                 kAudioUnitScope_Output, DefaultAudioDevice.kInputBus, &streamFormat,
+                                 UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
         }
         
         if playout {
@@ -169,6 +170,8 @@ class DefaultAudioDevice: NSObject {
         } else {
             setupRecordingCallback()
         }
+        
+        setBluetoothAsPreferredInputDevice()
         
         return true
     }
@@ -189,18 +192,18 @@ class DefaultAudioDevice: NSObject {
         let selfPointer = Unmanaged.passUnretained(self).toOpaque()
         var inputCallback = AURenderCallbackStruct(inputProc: recordCb, inputProcRefCon: selfPointer)
         AudioUnitSetProperty(recordingVoiceUnit!,
-                             kAudioUnitProperty_SetRenderCallback,
+                             kAudioOutputUnitProperty_SetInputCallback,
                              kAudioUnitScope_Global,
                              DefaultAudioDevice.kInputBus,
                              &inputCallback,
                              UInt32(MemoryLayout<AURenderCallbackStruct>.size))
         
-        let value = UnsafePointer<UInt32>(bitPattern: 0)
+        var value = 0
         AudioUnitSetProperty(recordingVoiceUnit!,
                              kAudioUnitProperty_ShouldAllocateBuffer,
                              kAudioUnitScope_Output,
                              DefaultAudioDevice.kInputBus,
-                             value,
+                             &value,
                              UInt32(MemoryLayout<UInt32>.size))
     }
     
@@ -485,15 +488,14 @@ extension DefaultAudioDevice {
         avAudioSessionPreffSampleRate = session.preferredSampleRate
         avAudioSessionChannels = session.inputNumberOfChannels
         do {
-            let audioOptions = AVAudioSessionCategoryOptions.mixWithOthers.rawValue |
-                AVAudioSessionCategoryOptions.allowBluetooth.rawValue |
-                AVAudioSessionCategoryOptions.defaultToSpeaker.rawValue
             
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions(rawValue: audioOptions))
-            try session.setMode(AVAudioSessionModeVideoChat)            
-            try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))            
+            
+            try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))
             try session.setPreferredIOBufferDuration(0.01)
-            
+            let audioOptions = AVAudioSessionCategoryOptions.mixWithOthers.rawValue |
+            AVAudioSessionCategoryOptions.allowBluetooth.rawValue |
+            AVAudioSessionCategoryOptions.defaultToSpeaker.rawValue
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, mode: AVAudioSessionModeVideoChat, options: AVAudioSessionCategoryOptions(rawValue: audioOptions))
             setupListenerBlocks()
             
             try session.setActive(true)
