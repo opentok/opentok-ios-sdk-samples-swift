@@ -37,7 +37,6 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     fileprivate func resizeAndPad(image img: UIImage) -> CGImage {
         let source = img.cgImage!
         let size = CGSize(width: source.width, height: source.height)
-//        let destSizes = dimensions(forInputSize: size)
         
         UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
         let ctx = UIGraphicsGetCurrentContext()
