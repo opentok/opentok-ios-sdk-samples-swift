@@ -1,20 +1,23 @@
 # Project 7: Multiparty App Using UICollectionView
 
-If you plan to build a multiparty, social-like app you will probably want to use `UICollectionView` to layout the different views of the participants.
+If you plan to build a multiparty app, you may want to use `UICollectionView` to dynamically
+adapt to the screen size and display the video views of all participants in an OpenTok session.
 
 *Important:* To use this application, follow the instructions in the
 [Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
 
-The reason of using UICollectionView is because it allows to easily specify the way the views are displayed.
-
-This sample uses a custom layout to dynamically adapt the screen size to display all participants.
+Use `UICollectionView` to easily specify the way views are displayed.
 
 ## Creating a custom layout for UICollectionView
 
-When building custom layouts, you need to subclass `UICollectionViewLayout` and override two methods and a computed property.
+When building custom layouts, you need to subclass `UICollectionViewLayout` and override two
+methods (`prepare()` and `layoutAttributesForElements(in:)`) and a computed property
+(`collectionViewContentSize`).
 
-First, you need to return how big the whole `UICollectionView` is. In our case, since we want to just cover the whole screen without the need of having any scroll, we would just return the size of the `UICollectionView` container. We do that by overriding `collectionViewContentSize`:
+First, you need to return the size of the entire `UICollectionView`. In our case, since we want
+to fill the entire screen without scrolling, we simply return the size of the `UICollectionView`
+container by overriding `collectionViewContentSize()`:
 
 ```swift
 override var collectionViewContentSize: CGSize {
@@ -22,7 +25,10 @@ override var collectionViewContentSize: CGSize {
 }
 ```
 
-When the view is going to be layed out, `UIKit` will call `prepare` function of our subclass. Here we should do the preparations for the values we will return when the views are being actually drawed. It is recommended to use a cache which will be populated in this method, so in the next method we will just return the contents of the cache. The content of the cache are `UICollectionViewLayoutAttributes` which specified the size and position of each item.
+When the view is going to be laid out, `UIKit` calls the implementation of the
+`MultipartyLayout.prepare()` method. This method prepares values used when the views are drawn.
+It populates a cache, which is a `UICollectionViewLayoutAttributes` object that specifies the size
+and position of each item:
 
 ```swift
 override func prepare() {
@@ -58,8 +64,8 @@ override func prepare() {
 }
 ```
 
-Lastly, we need to return the actual view sizes in the method which is called when the views are layed out in the view. We will do that in `layoutAttributesForElements`
-function.
+The implementation of the `UICollectionViewLayout.layoutAttributesForElements(in:)` method is
+called when the views are laid out. It returns the cache containing the actual view sizes:
 
 ```swift
 override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
