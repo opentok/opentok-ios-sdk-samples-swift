@@ -189,6 +189,77 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
         videoFormat.imageHeight = captureHeight
         return 0
     }
+    
+    fileprivate func frontFacingCamera() -> AVCaptureDevice? {
+        return camera(withPosition: .front)
+    }
+    
+    fileprivate func backFacingCamera() -> AVCaptureDevice? {
+        return camera(withPosition: .back)
+    }
+    
+    fileprivate var hasMultipleCameras : Bool {
+        return AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo).count > 1
+    }
+    
+    func setCameraPosition(_ position: AVCaptureDevicePosition) -> Bool {
+        guard let preset = captureSession?.sessionPreset else {
+            return false
+        }
+        
+        let newVideoInput: AVCaptureDeviceInput? = {
+            do {
+                if position == AVCaptureDevicePosition.back {
+                    return try AVCaptureDeviceInput.init(device: backFacingCamera())
+                } else if position == AVCaptureDevicePosition.front {
+                    return try AVCaptureDeviceInput.init(device: frontFacingCamera())
+                } else {
+                    return nil
+                }
+            } catch {
+                return nil
+            }
+        }()
+        
+        guard let newInput = newVideoInput else {
+            return false
+        }
+        
+        var success = true
+        
+        captureQueue.sync {
+            captureSession?.beginConfiguration()
+            captureSession?.removeInput(videoInput)
+            
+            if captureSession?.canAddInput(newInput) ?? false {
+                captureSession?.addInput(newInput)
+                videoInput = newInput
+            } else {
+                success = false
+                captureSession?.addInput(videoInput)
+            }
+            
+            captureSession?.commitConfiguration()
+        }
+        
+        if success {
+            capturePreset = preset
+        }
+        
+        return success
+    }
+    
+    func toggleCameraPosition() -> Bool {
+        guard hasMultipleCameras else {
+            return false
+        }
+        
+        if  videoInput?.device.position == .front {
+            return setCameraPosition(.back)
+        } else {
+            return setCameraPosition(.front)
+        }
+    }
 }
 
 extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
