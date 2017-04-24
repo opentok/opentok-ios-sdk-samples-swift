@@ -22,7 +22,7 @@ To use this application:
 
 3. Run the app on a second client. You can do this by deploying the app to an
    iOS device and testing it in the simulator at the same time. Or you can use
-   the browser_demo.html file to connect in a browser (see the following
+   the [browser-demo.html](../browser-demo.html) file to connect in a browser (see the following
    section).
 
    When the second client connects, it also publishes a stream to the session,
@@ -56,11 +56,11 @@ Application Notes
     passing in the OTStream object. This causes the app to subscribe to the
     stream.
 
-*   Use the browser-demo.html file (in located in the root directory of this
+*   Use the [browser-demo.html](../browser-demo.html) file (in located in the root directory of this
     project), to connect to the OpenTok session and publish an audio-video
     stream from a web browser:
 
-    * Edit browser-demo.html file and modify the variables `apiKey`,
+    * Edit [browser-demo.html](../browser-demo.html) file and modify the variables `apiKey`,
       `sessionId`, and `token` with your OpenTok API Key, and with the matching
       session ID and token. (Note that you would normally use the OpenTok
       server-side libraries to issue unique tokens to each client in a session.
@@ -68,10 +68,10 @@ Application Notes
       Also, depending on your app, you may use the OpenTok server-side
       libraries to generate new sessions.)
 
-    * Add the browser_demo.html file to a web server. (You cannot run WebRTC
+    * Add the [browser-demo.html](../browser-demo.html) file to a web server. (You cannot run WebRTC
       video in web pages loaded from the desktop.)
 
-    * In a browser, load the browser_demo.html file from the web server. Click
+    * In a browser, load the [browser-demo.html](../browser-demo.html) file from the web server. Click
       the Connect and Publish buttons. Run the app on your iOS device to send
       and receive streams between the device and the browser.
 
