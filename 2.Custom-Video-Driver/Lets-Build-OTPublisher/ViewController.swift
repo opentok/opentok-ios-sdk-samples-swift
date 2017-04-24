@@ -102,6 +102,11 @@ class ViewController: UIViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
+    
+    
+    @IBAction func toggleCamera(_ sender: Any) {
+        publisher?.exampleCapturer?.toggleCameraPosition()
+    }
 }
 
 // MARK: - OTSession delegate callbacks
