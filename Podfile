@@ -5,37 +5,37 @@ def shared_pods
     pod 'OpenTok', '= 2.10.2'
 end
 
-target '1.Basics' do
-  project '1.Basics/1.Basics.xcodeproj'
+target 'Basic-Video-Chat' do
+  project 'Basic-Video-Chat/Basic-Video-Chat.xcodeproj'
   shared_pods
 end
 
-target '2.Custom-Video-Driver' do
-  project '2.Custom-Video-Driver/2.Custom-Video-Driver.xcodeproj'
+target 'Custom-Video-Driver' do
+  project 'Custom-Video-Driver/Custom-Video-Driver.xcodeproj'
   shared_pods
 end
 
-target '3.Custom-Audio-Driver' do
-  project '3.Custom-Audio-Driver/3.Custom-Audio-Driver.xcodeproj'
+target 'Custom-Audio-Driver' do
+  project 'Custom-Audio-Driver/Custom-Audio-Driver.xcodeproj'
   shared_pods
 end
 
-target '4.Screen-Sharing' do
-  project '4.Screen-Sharing/4.Screen-Sharing.xcodeproj'
+target 'Screen-Sharing' do
+  project 'Screen-Sharing/Screen-Sharing.xcodeproj'
   shared_pods
 end
 
-target '5.Live-Photo-Capture' do
-  project '5.Live-Photo-Capture/5.Live-Photo-Capture.xcodeproj'
+target 'Live-Photo-Capture' do
+  project 'Live-Photo-Capture/Live-Photo-Capture.xcodeproj'
   shared_pods
 end
 
-target '6.Simple-Multiparty' do
-  project '6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj'
+target 'Simple-Multiparty' do
+  project 'Simple-Multiparty/Simple-Multiparty.xcodeproj'
   shared_pods
 end
 
-target '7.Multiparty-UICollectionView' do
-  project '7.Multiparty-UICollectionView/7.Multiparty-UICollectionView.xcodeproj'
+target 'Multiparty-UICollectionView' do
+  project 'Multiparty-UICollectionView/Multiparty-UICollectionView.xcodeproj'
   shared_pods
 end
