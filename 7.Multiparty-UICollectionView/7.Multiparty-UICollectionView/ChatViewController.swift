@@ -9,7 +9,6 @@
 import UIKit
 import OpenTok
 
-/*
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
@@ -18,27 +17,26 @@ let kApiKey = ""
 let kSessionId = ""
 // Replace with your generated token
 let kToken = ""
-*/
 
 class ChatViewController: UICollectionViewController {
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
-    
+
     lazy var publisher: OTPublisher = {
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
         return OTPublisher(delegate: self, settings: settings)!
     }()
-    
+
     var subscribers: [OTSubscriber] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         doConnect()
     }
-    
+
     /**
      * Asynchronously begins the session connect process. Some time later, we will
      * expect a delegate method to call us back with the results of this action.
@@ -48,7 +46,7 @@ class ChatViewController: UICollectionViewController {
         defer {
             processError(error)
         }
-        
+
         session.connect(withToken: kToken, error: &error)
     }
 
@@ -63,10 +61,10 @@ class ChatViewController: UICollectionViewController {
             processError(error)
         }
         session.publish(publisher, error: &error)
-        
+
         collectionView?.reloadData()
     }
-    
+
     /**
      * Instantiates a subscriber for the given stream and asynchronously begins the
      * process to begin receiving A/V content for this stream. Unlike doPublish,
@@ -84,21 +82,21 @@ class ChatViewController: UICollectionViewController {
                 return
         }
         session.subscribe(subscriber, error: &error)
-        subscribers.append(subscriber)        
+        subscribers.append(subscriber)
         collectionView?.reloadData()
     }
-    
+
     fileprivate func cleanupSubscriber(_ stream: OTStream) {
         subscribers = subscribers.filter { $0.stream?.streamId != stream.streamId }
         collectionView?.reloadData()
     }
-    
+
     fileprivate func processError(_ error: OTError?) {
         if let err = error {
             showAlert(errorStr: err.localizedDescription)
         }
     }
-    
+
     fileprivate func showAlert(errorStr err: String) {
         DispatchQueue.main.async {
             let controller = UIAlertController(title: "Error", message: err, preferredStyle: .alert)
@@ -106,12 +104,12 @@ class ChatViewController: UICollectionViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
-    
+
     // MARK: - UICollectionView methods
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return subscribers.count + 1
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
         let videoView: UIView? = {
@@ -122,7 +120,7 @@ class ChatViewController: UICollectionViewController {
                 return sub.view
             }
         }()
-        
+
         if let viewToAdd = videoView {
             viewToAdd.frame = cell.bounds
             cell.addSubview(viewToAdd)
@@ -137,21 +135,21 @@ extension ChatViewController: OTSessionDelegate {
         print("Session connected")
         doPublish()
     }
-    
+
     func sessionDidDisconnect(_ session: OTSession) {
         print("Session disconnected")
     }
-    
+
     func session(_ session: OTSession, streamCreated stream: OTStream) {
         print("Session streamCreated: \(stream.streamId)")
         doSubscribe(stream)
     }
-    
+
     func session(_ session: OTSession, streamDestroyed stream: OTStream) {
         print("Session streamDestroyed: \(stream.streamId)")
         cleanupSubscriber(stream)
     }
-    
+
     func session(_ session: OTSession, didFailWithError error: OTError) {
         print("session Failed to connect: \(error.localizedDescription)")
     }
@@ -161,10 +159,10 @@ extension ChatViewController: OTSessionDelegate {
 extension ChatViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
     }
-    
-    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {        
+
+    func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
     }
-    
+
     func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print("Publisher failed: \(error.localizedDescription)")
     }
@@ -175,12 +173,11 @@ extension ChatViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
         print("Subscriber connected")
     }
-    
+
     func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print("Subscriber failed: \(error.localizedDescription)")
     }
-    
+
     func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {
     }
 }
-
