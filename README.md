@@ -43,15 +43,10 @@ Quick Start
 What's Inside
 -------------
 
-Each of the projects build on the lessons of the previous. After reviewing
-each, you will have an understanding of the OpenTok iOS SDK API. Additionally,
-you will be able to get started with writing your own extensions to the default
-capture implementations provided herein.
-
-**Basic-Video-Chat** -- This basic application demonstrates a short path to
+**Basic Video Chat** -- This basic application demonstrates a short path to
 getting started with the OpenTok iOS SDK.
 
-**Custom-Audio-Driver** -- This project demonstrate how to use an external audio
+**Custom Audio Driver** -- This project demonstrate how to use an external audio
 source with the OpenTok SDK. This project utilizes CoreAudio and the AUGraph API
 to create an audio session suitable for voice and video communications.
 
@@ -61,14 +56,14 @@ Subscriber classes. Using these modules, we can see the basic workflow of
 sourcing video frames from the device camera in and out of OpenTok, via the
 OTPublisherKit and OTSubscriberKit interfaces.
 
-**Live-Photo-Capture** -- This project extends the video capture module implemented
+**Live Photo Capture** -- This project extends the video capture module implemented
 in project 2, and demonstrates how the AVFoundation media capture APIs can be used to
 simultaneously stream video and capture high-resolution photos from the same camera.
 
-**Screen-Sharing** -- This project demonstrates how to use a custom video capturer
+**Screen Sharing** -- This project demonstrates how to use a custom video capturer
 to publish a stream that uses a UI view (instead of a camera) as the video source.
 
-**Simple-Multiparty** -- This project demonstrates how to use the OpenTok iOS SDK
+**Simple Multiparty** -- This project demonstrates how to use the OpenTok iOS SDK
 for a multi-party call. The application publishes audio/video from an iOS device and 
 can connect to multiple subscribers. However it shows only one subscriber video at a 
 time due to CPU limitations on iOS devices.
