@@ -169,6 +169,4 @@ extension ViewController: OTSubscriberDelegate {
     func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print("Subscriber failed: \(error.localizedDescription)")
     }
-    
-    func subscriberVideoDataReceived(_ subscriber: OTSubscriber) {}
 }
