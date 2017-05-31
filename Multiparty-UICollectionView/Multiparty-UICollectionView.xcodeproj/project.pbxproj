@@ -12,7 +12,6 @@
 		A053760B1EB1638C00645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376021EB1638C00645696 /* LaunchScreen.storyboard */; };
 		A053760C1EB1638C00645696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376041EB1638C00645696 /* Main.storyboard */; };
 		A053760D1EB1638C00645696 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05376061EB1638C00645696 /* ChatViewController.swift */; };
-		A053760E1EB1638C00645696 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A05376071EB1638C00645696 /* Info.plist */; };
 		A053760F1EB1638C00645696 /* MultipartyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05376081EB1638C00645696 /* MultipartyLayout.swift */; };
 /* End PBXBuildFile section */
 
@@ -127,7 +126,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A053760E1EB1638C00645696 /* Info.plist in Resources */,
 				A053760C1EB1638C00645696 /* Main.storyboard in Resources */,
 				A053760A1EB1638C00645696 /* Assets.xcassets in Resources */,
 				A053760B1EB1638C00645696 /* LaunchScreen.storyboard in Resources */,
