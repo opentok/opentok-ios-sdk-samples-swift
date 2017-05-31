@@ -56,7 +56,7 @@ Application Notes
     passing in the OTStream object. This causes the app to subscribe to the
     stream.
 
-*   To add a second publisher (which will display as a subscriber in your emulator), either run the app a second time in an iOS device or use the OpenTok Playground to connect to the session in a supported web browser (Chrome, Firefox, or Internet Explorer 10-11) by following the steps below:
+ To add a second publisher (which will display as a subscriber in your emulator), either run the app a second time in an iOS device or use the OpenTok Playground to connect to the session in a supported web browser (Chrome, Firefox, or Internet Explorer 10-11) by following the steps below:
 
 1. Go to [OpenTok Playground](https://tokbox.com/developer/tools/playground) (must be logged into your [Account](https://tokbox.com/account))
 2. Select the **Join existing session** tab
