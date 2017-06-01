@@ -27,4 +27,5 @@ pod install
 xcodebuild -workspace Simple-Multiparty.xcworkspace  -scheme Simple-Multiparty -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 cd ../Multiparty-UICollectionView/
+pod install
 xcodebuild -workspace Multiparty-UICollectionView.xcworkspace  -scheme Multiparty-UICollectionView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
