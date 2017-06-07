@@ -10,7 +10,7 @@ used with the latest version of the
 modify the source code herein for your own projects. Please consider sharing
 your modifications with us, especially if they might benefit other developers
 using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
- 
+
 Quick Start
 -----------
 
@@ -22,10 +22,10 @@ Quick Start
  
  1. In Terminal, `cd` to your project directory and type `pod install`.
  
- 1. Reopen your project in Xcode using the new `Opentok-iOS-samples.xcworkspace` file.
+ 1. Reopen your project in Xcode using the new `.xcworkspace` file.
  
  1. In the ViewController.swift file, replace the following empty strings
-    with the corresponding API Key, session ID, and token values:
+    with the corresponding API key, session ID, and token values:
  
      ```swift
      // *** Fill the following variables using your own Project info  ***
@@ -70,7 +70,7 @@ time due to CPU limitations on iOS devices.
 	
 ## Obtaining OpenTok Credentials
 
-To use the OpenTok platform you need a session ID, token, and API Key.
+To use the OpenTok platform you need a session ID, token, and API key.
 You can get these values by creating a project on your [OpenTok Account
 Page](https://tokbox.com/account/) and scrolling down to the Project Tools
 section of your Project page. For production deployment, you must generate the
