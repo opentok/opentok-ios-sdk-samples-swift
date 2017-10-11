@@ -195,7 +195,7 @@ class EAGLVideoRenderer {
     fileprivate func setupTextures() {
         glGenTextures(EAGLVideoRenderer.kNumTextures, UnsafeMutablePointer(mutating: textures))
         for (index, texture) in textures.enumerated() {
-            glActiveTexture(UInt32(GL_TEXTURE0 + index))
+            glActiveTexture(UInt32(GL_TEXTURE0 + Int32(index)))
             glBindTexture(GLenum(GL_TEXTURE_2D), texture)
             glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MIN_FILTER), GL_LINEAR);
             glTexParameteri(GLenum(GL_TEXTURE_2D), GLenum(GL_TEXTURE_MAG_FILTER), GL_LINEAR);

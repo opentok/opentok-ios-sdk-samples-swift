@@ -105,7 +105,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func toggleCamera(_ sender: Any) {
-        publisher?.exampleCapturer?.toggleCameraPosition()
+        let _ = publisher?.exampleCapturer?.toggleCameraPosition()
     }
 }
 

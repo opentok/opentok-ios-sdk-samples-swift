@@ -63,13 +63,13 @@ class ExampleVideoRender: UIView {
         displayLink!.isPaused = false
     }
     
-    func willResignActive() {
+    @objc func willResignActive() {
         displayLink!.isPaused = true
         glkView?.deleteDrawable()
         renderer!.teardownGL()
     }
     
-    func didBecomeActive() {
+    @objc func didBecomeActive() {
         renderer!.setupGL()
         displayLink!.isPaused = false
     }

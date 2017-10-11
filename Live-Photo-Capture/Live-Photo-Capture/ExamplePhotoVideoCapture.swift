@@ -11,7 +11,7 @@ import AVFoundation
 
 class ExamplePhotoVideoCapture: ExampleVideoCapture {
     var stillImageOutput: AVCaptureStillImageOutput?
-    var oldPreset: String?
+    var oldPreset: AVCaptureSession.Preset?
     
     private func waitForSensor() {
         let now = CACurrentMediaTime()
@@ -25,9 +25,14 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
     private func pauseVideoCaptureForPhoto() {
         captureSession?.beginConfiguration()
         oldPreset = captureSession?.sessionPreset
-        captureSession?.sessionPreset = AVCaptureSessionPresetPhoto
+        captureSession?.sessionPreset = AVCaptureSession.Preset.photo
         stillImageOutput = AVCaptureStillImageOutput()
-        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        guard let stillImageOutput = self.stillImageOutput
+            else {
+                print("Error creating output")
+                return
+        }
+        stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
         captureSession?.addOutput(stillImageOutput)
         captureSession?.commitConfiguration()
         
@@ -35,18 +40,25 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
     }
     
     private func resumeVideoCapture() {
+        guard let stillImageOutput = self.stillImageOutput
+            else {
+                print("Error, output is nil")
+                return
+        }
         captureSession?.beginConfiguration()
-        captureSession?.sessionPreset = oldPreset
+        if let oldPreset = self.oldPreset {
+            captureSession?.sessionPreset = oldPreset
+        }
         captureSession?.removeOutput(stillImageOutput)
         captureSession?.commitConfiguration()
     }
     
     private func doPhotoCapture() -> UIImage? {
         guard let connection:AVCaptureConnection = stillImageOutput?.connections.filter({ conn -> Bool in
-            (conn as! AVCaptureConnection).inputPorts.contains( where: {
-                return ($0 as! AVCaptureInputPort).mediaType == AVMediaTypeVideo
+            conn.inputPorts.contains( where: {
+                return $0.mediaType == AVMediaType.video
             })
-        }).first as? AVCaptureConnection
+        }).first
             else {
                 return nil
         }
@@ -54,7 +66,8 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
         let sem = DispatchSemaphore(value: 0)
         var resultImage: UIImage? = nil
         stillImageOutput?.captureStillImageAsynchronously(from: connection, completionHandler: { (buffer, error) in
-            let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
+            guard let b = buffer else { return }
+            let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(b)
             resultImage = UIImage(data: data!)
             sem.signal()
         })

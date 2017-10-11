@@ -378,7 +378,7 @@ extension DefaultAudioDevice: OTAudioDevice {
 
 // MARK: - AVAudioSession
 extension DefaultAudioDevice {
-    func onInterruptionEvent(notification: Notification) {
+    @objc func onInterruptionEvent(notification: Notification) {
         let type = notification.userInfo?[AVAudioSessionInterruptionTypeKey]
         safetyQueue.async {
             self.handleInterruptionEvent(type: type as? Int)
@@ -408,13 +408,13 @@ extension DefaultAudioDevice {
         }
     }
     
-    func onRouteChangeEvent(notification: Notification) {
+    @objc func onRouteChangeEvent(notification: Notification) {
         safetyQueue.async {
             self.handleRouteChangeEvent(notification: notification)
         }
     }
     
-    func appDidBecomeActive(notification: Notification) {
+    @objc func appDidBecomeActive(notification: Notification) {
         safetyQueue.async {
             self.handleInterruptionEvent(type: Int(AVAudioSessionInterruptionType.ended.rawValue))
         }
@@ -637,7 +637,7 @@ func updateRecordingDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
         audioDevice.recordingDelayHWAndOS += UInt32(ioInterval * 1000000)
         audioDevice.recordingDelayHWAndOS += UInt32(audioDevice.recordingAudioUnitPropertyLatency * 1000000)
         
-        audioDevice.recordingDelayHWAndOS = audioDevice.recordingDelayHWAndOS - 500 / 1000
+        audioDevice.recordingDelayHWAndOS = audioDevice.recordingDelayHWAndOS - UInt32(500) / 1000
         
         audioDevice.recordingDelayMeasurementCounter = 0
     }

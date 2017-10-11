@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         doConnect()
     }
     
-    func handleSingleTap(_ gestureRecognizer: UIGestureRecognizer) {
+    @objc func handleSingleTap(_ gestureRecognizer: UIGestureRecognizer) {
         photoVideoCapture.takePhoto { (photo) in
             self.imageView.image = photo
             self.imageView.setNeedsDisplay()
