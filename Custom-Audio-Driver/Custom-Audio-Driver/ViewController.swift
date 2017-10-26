@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     var publisher: OTPublisher?
     var subscriber: OTSubscriber?
-    let customAudioDevice = DefaultAudioDevice.sharedInstance
+    let customAudioDevice = DefaultAudioDevice()
     
     // Change to `false` to subscribe to streams other than your own.
     var subscribeToSelf = false
