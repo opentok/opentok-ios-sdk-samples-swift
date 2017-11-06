@@ -45,9 +45,14 @@ class DefaultAudioDevice: NSObject {
     var recordingAudioUnitPropertyLatency: Float64 = 0
     var playoutDelay: UInt32 = 0
     var playing = false
-    var playbackRequested = false
+    var playoutInitialized = false
     var recording = false
-    var recordingRequested = false
+    var recordingInitialized = false
+    var interruptedPlayback = false
+    var isRecorderInterrupted = false
+    var isPlayerInterrupted = false
+    var isResetting = false
+    var restartRetryCount = 0
     fileprivate var recordingVoiceUnit: AudioUnit?
     fileprivate var playoutVoiceUnit: AudioUnit?
     
@@ -60,10 +65,6 @@ class DefaultAudioDevice: NSObject {
     var areListenerBlocksSetup = false
     var streamFormat = AudioStreamBasicDescription()
 
-    static let sharedInstance: DefaultAudioDevice = {
-        return DefaultAudioDevice()
-    }()
-    
     override init() {
         audioFormat.sampleRate = DefaultAudioDevice.kSampleRate
         audioFormat.numChannels = 1
@@ -81,33 +82,45 @@ class DefaultAudioDevice: NSObject {
         }
     }
     
+    fileprivate func restartAudioAfterInterruption() {
+        if isRecorderInterrupted {
+            if startCapture() {
+                isRecorderInterrupted = false
+                restartRetryCount = 0
+            } else {
+                restartRetryCount += 1
+                if restartRetryCount < 3 {
+                    safetyQueue.asyncAfter(deadline: DispatchTime.now(), execute: { [unowned self] in
+                        self.restartAudioAfterInterruption()
+                    })
+                } else {
+                    isRecorderInterrupted = false
+                    isPlayerInterrupted = false
+                    restartRetryCount = 0
+                    print("ERROR[OpenTok]:Unable to acquire audio session")
+                }
+            }
+        }
+        if isPlayerInterrupted {
+            isPlayerInterrupted = false
+            let _ = startRendering()
+        }
+    }
+    
     fileprivate func doRestartAudio(numberOfAttempts: Int) {
-        if numberOfAttempts <= 0 {
-            print("Error restarting audio")
-            return
-        }
         
-        var success = true
-        if recordingRequested {
-            success = success && stopCapture()
+        if recording {
+            let _ = stopCapture()
             disposeAudioUnit(audioUnit: &recordingVoiceUnit)
-            success = success && startCapture()
+            let _ = startCapture()
         }
         
-        if playbackRequested {
-            success = success && self.stopRendering()
+        if playing {
+            let _ = self.stopRendering()
             disposeAudioUnit(audioUnit: &playoutVoiceUnit)
-            success = success && self.startRendering()
+            let _ = self.startRendering()
         }
-        
-        if success {
-            recordingRequested = false
-            playbackRequested = false
-        } else {
-            safetyQueue.asyncAfter(deadline: .now() + 1, execute: {
-                self.doRestartAudio(numberOfAttempts: numberOfAttempts - 1)
-            })
-        }
+        isResetting = false
     }
     
     fileprivate func setupAudioUnit(withPlayout playout: Bool) -> Bool {
@@ -156,6 +169,10 @@ class DefaultAudioDevice: NSObject {
             AudioUnitSetProperty(playoutVoiceUnit!, kAudioUnitProperty_StreamFormat,
                                  kAudioUnitScope_Input, DefaultAudioDevice.kOutputBus, &streamFormat,
                                  UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
+            // Disable Input on playout
+            var enableInput = 0
+            AudioUnitSetProperty(playoutVoiceUnit!, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Input,
+                                 DefaultAudioDevice.kInputBus, &enableInput, UInt32(MemoryLayout<UInt32>.size))
         } else {
             AudioUnitSetProperty(recordingVoiceUnit!, kAudioOutputUnitProperty_EnableIO,
                                  kAudioUnitScope_Input, DefaultAudioDevice.kInputBus, &value,
@@ -163,6 +180,10 @@ class DefaultAudioDevice: NSObject {
             AudioUnitSetProperty(recordingVoiceUnit!, kAudioUnitProperty_StreamFormat,
                                  kAudioUnitScope_Output, DefaultAudioDevice.kInputBus, &streamFormat,
                                  UInt32(MemoryLayout<AudioStreamBasicDescription>.size))
+            // Disable Output on record
+            var enableOutput = 0
+            AudioUnitSetProperty(recordingVoiceUnit!, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output,
+                                 DefaultAudioDevice.kOutputBus, &enableOutput, UInt32(MemoryLayout<UInt32>.size))
         }
         
         if playout {
@@ -261,7 +282,7 @@ extension DefaultAudioDevice: OTAudioDevice {
         return true
     }
     func renderingIsInitialized() -> Bool {
-        return true
+        return playoutInitialized
     }
     func isRendering() -> Bool {
         return playing
@@ -279,15 +300,19 @@ extension DefaultAudioDevice: OTAudioDevice {
         return true
     }
     func captureIsInitialized() -> Bool {
-        return true
+        return recordingInitialized
     }
     
     func initializeRendering() -> Bool {
-        return !playing
+        if playing { return false }
+        
+        playoutInitialized = true
+        return playoutInitialized
     }
     
     func startRendering() -> Bool {
         if playing { return true }
+        playing = true
         if playoutVoiceUnit == nil {
             playing = setupAudioUnit(withPlayout: true)
             if !playing {
@@ -317,7 +342,7 @@ extension DefaultAudioDevice: OTAudioDevice {
             return false
         }
         
-        if !recording && !recordingRequested {
+        if !recording && !isPlayerInterrupted && !isResetting {
             tearDownAudio()
         }
         
@@ -326,7 +351,10 @@ extension DefaultAudioDevice: OTAudioDevice {
     
     
     func initializeCapture() -> Bool {
-        return !recording
+        if recording { return false }
+        
+        recordingInitialized = true
+        return recordingInitialized
     }
     
     func startCapture() -> Bool {
@@ -367,7 +395,7 @@ extension DefaultAudioDevice: OTAudioDevice {
         
         freeupAudioBuffers()
         
-        if !recording && !recordingRequested {
+        if !recording && !isRecorderInterrupted && !isResetting {
             tearDownAudio()
         }
         
@@ -392,17 +420,17 @@ extension DefaultAudioDevice {
         
         switch  UInt(interruptionType) {
         case AVAudioSessionInterruptionType.began.rawValue:
-            recordingRequested = recording
-            playbackRequested = playing
             if recording {
+                isRecorderInterrupted = true
                 let _ = stopCapture()
             }
             if playing {
+                isPlayerInterrupted = true
                 let _ = stopRendering()
             }
         case AVAudioSessionInterruptionType.ended.rawValue:
             configureAudioSessionWithDesiredAudioRoute(desiredAudioRoute: DefaultAudioDevice.kAudioDeviceBluetooth)
-            restartAudio()
+            restartAudioAfterInterruption()
         default:
             break
         }
@@ -450,8 +478,6 @@ extension DefaultAudioDevice {
                 return
             }
             
-            recordingRequested = recording
-            playbackRequested = playing
             restartAudio()
         }
     }
@@ -488,8 +514,6 @@ extension DefaultAudioDevice {
         avAudioSessionPreffSampleRate = session.preferredSampleRate
         avAudioSessionChannels = session.inputNumberOfChannels
         do {
-            
-            
             try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))
             try session.setPreferredIOBufferDuration(0.01)
             let audioOptions = AVAudioSessionCategoryOptions.mixWithOthers.rawValue |
