@@ -13,7 +13,6 @@
 		F872F7751D6C851400A0674B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F872F7741D6C851400A0674B /* Assets.xcassets */; };
 		F872F7781D6C851400A0674B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F872F7761D6C851400A0674B /* LaunchScreen.storyboard */; };
 		F872F7851D6C87DD00A0674B /* EAGLVideoRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */; };
-		F872F7861D6C87DD00A0674B /* ExamplePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F7821D6C87DD00A0674B /* ExamplePublisher.swift */; };
 		F872F7871D6C87DD00A0674B /* ExampleVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F7831D6C87DD00A0674B /* ExampleVideoCapture.swift */; };
 		F872F7881D6C87DD00A0674B /* ExampleVideoRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */; };
 		F872F78B1D6C889500A0674B /* ExamplePhotoVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F78A1D6C889500A0674B /* ExamplePhotoVideoCapture.swift */; };
@@ -28,7 +27,6 @@
 		F872F7771D6C851400A0674B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F872F7791D6C851400A0674B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EAGLVideoRenderer.swift; path = "../Custom-Video-Driver/Lets-Build-OTPublisher/EAGLVideoRenderer.swift"; sourceTree = "<group>"; };
-		F872F7821D6C87DD00A0674B /* ExamplePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExamplePublisher.swift; path = "../Custom-Video-Driver/Lets-Build-OTPublisher/ExamplePublisher.swift"; sourceTree = "<group>"; };
 		F872F7831D6C87DD00A0674B /* ExampleVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleVideoCapture.swift; path = "../Custom-Video-Driver/Lets-Build-OTPublisher/ExampleVideoCapture.swift"; sourceTree = "<group>"; };
 		F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExampleVideoRender.swift; path = "../Custom-Video-Driver/Lets-Build-OTPublisher/ExampleVideoRender.swift"; sourceTree = "<group>"; };
 		F872F78A1D6C889500A0674B /* ExamplePhotoVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplePhotoVideoCapture.swift; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */,
-				F872F7821D6C87DD00A0674B /* ExamplePublisher.swift */,
 				F872F7831D6C87DD00A0674B /* ExampleVideoCapture.swift */,
 				F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */,
 			);
@@ -167,7 +164,6 @@
 				F872F7871D6C87DD00A0674B /* ExampleVideoCapture.swift in Sources */,
 				F872F76E1D6C851400A0674B /* AppDelegate.swift in Sources */,
 				F872F7881D6C87DD00A0674B /* ExampleVideoRender.swift in Sources */,
-				F872F7861D6C87DD00A0674B /* ExamplePublisher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

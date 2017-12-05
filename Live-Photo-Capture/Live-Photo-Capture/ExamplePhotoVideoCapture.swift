@@ -41,38 +41,32 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
         captureSession?.commitConfiguration()
     }
     
-    private func doPhotoCapture() -> UIImage? {
+    private func doPhotoCapture(completionHandler handler: @escaping (_ photo: UIImage?) -> ()) {
         guard let connection:AVCaptureConnection = stillImageOutput?.connections.filter({ conn -> Bool in
             (conn as! AVCaptureConnection).inputPorts.contains( where: {
                 return ($0 as! AVCaptureInputPort).mediaType == AVMediaTypeVideo
             })
         }).first as? AVCaptureConnection
             else {
-                return nil
+                handler(nil)
+                return
         }
-        
-        let sem = DispatchSemaphore(value: 0)
-        var resultImage: UIImage? = nil
+
         stillImageOutput?.captureStillImageAsynchronously(from: connection, completionHandler: { (buffer, error) in
             let data = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer)
-            resultImage = UIImage(data: data!)
-            sem.signal()
+            let resultImage = UIImage(data: data!)
+            handler(resultImage)
         })
-        
-        let time = Double(30) * Double(NSEC_PER_SEC)
-        let timeout =  DispatchTime.init(uptimeNanoseconds: UInt64(time))
-        let _ = sem.wait(timeout: timeout)
-        return resultImage
     }
     
     func takePhoto(completionHandler handler: @escaping (_ photo: UIImage?) -> ()) {
         captureQueue.async {
             self.pauseVideoCaptureForPhoto()
-            let image = self.doPhotoCapture()
-            DispatchQueue.main.async {
-                handler(image)
-            }
-            
+            self.doPhotoCapture(completionHandler: { img in
+                DispatchQueue.main.async {
+                    handler(img)
+                }
+            })
             self.resumeVideoCapture()
         }
     }
