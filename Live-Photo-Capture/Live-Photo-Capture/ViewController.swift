@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
-    var publisher: ExamplePublisher?
+    var publisher: OTPublisher?
     
     var subscriber: OTSubscriber?
     
@@ -84,12 +84,18 @@ class ViewController: UIViewController {
         defer {
             process(error: error)
         }
-        publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
-        publisher?.videoCapture = photoVideoCapture
-        
-        session.publish(publisher!, error: &error)
-        publisher!.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
-        view.addSubview(publisher!.view)
+        let pubSettings = OTPublisherSettings()
+        pubSettings.name = UIDevice.current.name
+        publisher = OTPublisher(delegate: self, settings: pubSettings)
+        if let pub = publisher {
+            pub.videoCapture = photoVideoCapture
+            session.publish(pub, error: &error)
+            
+            if let pubView = pub.view {
+                pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+                view.addSubview(pubView)
+            }
+        }
     }
     
     fileprivate func process(error err: OTError?) {

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F84DC3AB1D5C8B2900402BD9 /* ExamplePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AA1D5C8B2900402BD9 /* ExamplePublisher.swift */; };
 		F84DC3AD1D5C8B6400402BD9 /* ExampleVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */; };
 		F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */; };
 		F86C64BC1D5C8A150081846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C64BB1D5C8A150081846D /* AppDelegate.swift */; };
@@ -19,7 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F84DC3AA1D5C8B2900402BD9 /* ExamplePublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplePublisher.swift; sourceTree = "<group>"; };
 		F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVideoCapture.swift; sourceTree = "<group>"; };
 		F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVideoRender.swift; sourceTree = "<group>"; };
 		F86C64B81D5C8A150081846D /* Custom-Video-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Video-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +66,6 @@
 				F86C64C21D5C8A150081846D /* Assets.xcassets */,
 				F86C64C41D5C8A150081846D /* LaunchScreen.storyboard */,
 				F86C64C71D5C8A150081846D /* Info.plist */,
-				F84DC3AA1D5C8B2900402BD9 /* ExamplePublisher.swift */,
 				F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */,
 				F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */,
 				F8C551FF1D635AFE00484097 /* EAGLVideoRenderer.swift */,
@@ -152,7 +149,6 @@
 			files = (
 				F86C64BE1D5C8A150081846D /* ViewController.swift in Sources */,
 				F86C64BC1D5C8A150081846D /* AppDelegate.swift in Sources */,
-				F84DC3AB1D5C8B2900402BD9 /* ExamplePublisher.swift in Sources */,
 				F8C552001D635AFE00484097 /* EAGLVideoRenderer.swift in Sources */,
 				F84DC3AD1D5C8B6400402BD9 /* ExampleVideoCapture.swift in Sources */,
 				F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */,

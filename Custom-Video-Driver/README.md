@@ -15,23 +15,9 @@ camera.
 [Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
 
-ExamplePublisher and ExampleSubscriber
-------------------------------------------
-
-For our example, we create the ExamplePublisher and ExampleSubscriber
-classes. Like the OTPublisher and OTSubscriber classes, these are subclasses of
-the core OTPublisherKit and OTSubscriberKit classes, and they provide
-implementations for the video capture and render interfaces, where needed.
-
-ExamplePublisher binds the device's camera to the core publisher class,
-OTPublisherKit. The enabling mechanisms behind the scenes are a driver to
-interface with AVFoundation (to manage the camera and provide video), and the
-OTVideoCapture interface, which allows us to source arbitrary video data into
-the OTPublisherKit runtime.
-
 ### ExampleVideoRender
 
-Both ExampleSubscriber and ExamplePublisher need an instance supporting the
+Both OTSubscriber and OTPublisher need an instance supporting the
 `OTVideoRender` protocol to display video contents. In short, the instance
 ID that is set to the `videoRender` property will receive YUV frames (I420) as
 they are captured (publisher) or as they are received (subscriber). Note that,
@@ -56,7 +42,7 @@ rendering endpoint by the OpenTok iOS SDK.
 
 This class interfaces with AVFoundation to provide video capture support from
 the device's camera hardware. By implementing the OTVideoCapture interface, it
-can be used as a video capture endpoint ExamplePublisher to provide video for
+can be used as a video capture endpoint OTPublisher to provide video for
 publishing.
 
 To see ExampleVideoCapture in action, put a breakpoint on
