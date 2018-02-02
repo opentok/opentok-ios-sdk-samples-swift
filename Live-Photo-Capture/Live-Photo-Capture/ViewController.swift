@@ -15,11 +15,11 @@ let kWidgetWidth = 320
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
-let kApiKey = "100"
+let kApiKey = ""
 // Replace with your generated session ID
-let kSessionId = "2_MX4xMDB-flR1ZSBOb3YgMTkgMTE6MDk6NTggUFNUIDIwMTN-MC4zNzQxNzIxNX4"
+let kSessionId = ""
 // Replace with your generated token
-let kToken = "T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9NGI5NzAyYjNkMjY2ZTBkMDczNzUwYzRkZDU1ZTMxYTljMDgyYzhlZTpzZXNzaW9uX2lkPTJfTVg0eE1EQi1mbFIxWlNCT2IzWWdNVGtnTVRFNk1EazZOVGdnVUZOVUlESXdNVE4tTUM0ek56UXhOekl4Tlg0JmNyZWF0ZV90aW1lPTE0OTMyNTAzMDImcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ5MzI1MDMwMi4zMTIyMDMxMjU2NzEyJmV4cGlyZV90aW1lPTE0OTU4NDIzMDI="
+let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
