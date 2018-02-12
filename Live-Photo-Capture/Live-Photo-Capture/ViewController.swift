@@ -15,18 +15,18 @@ let kWidgetWidth = 320
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
-let kApiKey = "100"
+let kApiKey = ""
 // Replace with your generated session ID
-let kSessionId = "2_MX4xMDB-flR1ZSBOb3YgMTkgMTE6MDk6NTggUFNUIDIwMTN-MC4zNzQxNzIxNX4"
+let kSessionId = ""
 // Replace with your generated token
-let kToken = "T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9NGI5NzAyYjNkMjY2ZTBkMDczNzUwYzRkZDU1ZTMxYTljMDgyYzhlZTpzZXNzaW9uX2lkPTJfTVg0eE1EQi1mbFIxWlNCT2IzWWdNVGtnTVRFNk1EazZOVGdnVUZOVUlESXdNVE4tTUM0ek56UXhOekl4Tlg0JmNyZWF0ZV90aW1lPTE0OTMyNTAzMDImcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ5MzI1MDMwMi4zMTIyMDMxMjU2NzEyJmV4cGlyZV90aW1lPTE0OTU4NDIzMDI="
+let kToken = ""
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
-    var publisher: ExamplePublisher?
+    var publisher: OTPublisher?
     
     var subscriber: OTSubscriber?
     
@@ -84,12 +84,18 @@ class ViewController: UIViewController {
         defer {
             process(error: error)
         }
-        publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
-        publisher?.videoCapture = photoVideoCapture
-        
-        session.publish(publisher!, error: &error)
-        publisher!.view.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
-        view.addSubview(publisher!.view)
+        let pubSettings = OTPublisherSettings()
+        pubSettings.name = UIDevice.current.name
+        publisher = OTPublisher(delegate: self, settings: pubSettings)
+        if let pub = publisher {
+            pub.videoCapture = photoVideoCapture
+            session.publish(pub, error: &error)
+            
+            if let pubView = pub.view {
+                pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+                view.addSubview(pubView)
+            }
+        }
     }
     
     fileprivate func process(error err: OTError?) {

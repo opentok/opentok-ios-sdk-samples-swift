@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
-    var publisher: ExamplePublisher?
+    var publisher: OTPublisher?
     
     var subscriber: OTSubscriber?
     
@@ -63,10 +63,19 @@ class ViewController: UIViewController {
         defer {
             processError(error)
         }
-        publisher = ExamplePublisher(delegate: self, name: UIDevice.current.name)
-        session.publish(publisher!, error: &error)
-        publisher!.view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
-        view.addSubview(publisher!.view)
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        
+        publisher = OTPublisher(delegate: self, settings: settings)
+        if let pub = publisher {
+            let videoRender = ExampleVideoRender()
+            pub.videoCapture = ExampleVideoCapture()
+            pub.videoRender = videoRender
+            session.publish(pub, error: &error)
+            
+            videoRender.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
+            view.addSubview(videoRender)
+        }
     }
     
     /**
@@ -105,7 +114,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func toggleCamera(_ sender: Any) {
-        let _ = publisher?.exampleCapturer?.toggleCameraPosition()
+        if let capturer = publisher?.videoCapture as? ExampleVideoCapture {
+            let _ = capturer.toggleCameraPosition()
+        }
     }
 }
 
