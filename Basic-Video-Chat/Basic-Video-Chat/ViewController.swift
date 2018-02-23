@@ -34,9 +34,6 @@ class ViewController: UIViewController {
     
     var subscriber: OTSubscriber?
     
-    // Change to `false` to subscribe to streams other than your own.
-    var subscribeToSelf = true
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,6 +93,10 @@ class ViewController: UIViewController {
         subscriber = nil
     }
     
+    fileprivate func cleanupPublisher() {
+        publisher.view?.removeFromSuperview()
+    }
+    
     fileprivate func processError(_ error: OTError?) {
         if let err = error {
             DispatchQueue.main.async {
@@ -120,7 +121,7 @@ extension ViewController: OTSessionDelegate {
     
     func session(_ session: OTSession, streamCreated stream: OTStream) {
         print("Session streamCreated: \(stream.streamId)")
-        if subscriber == nil && !subscribeToSelf {
+        if subscriber == nil {
             doSubscribe(stream)
         }
     }
@@ -141,12 +142,11 @@ extension ViewController: OTSessionDelegate {
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
-        if subscriber == nil && subscribeToSelf {
-            doSubscribe(stream)
-        }
+        print("Publishing")
     }
     
     func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
+        cleanupPublisher()
         if let subStream = subscriber?.stream, subStream.streamId == stream.streamId {
             cleanupSubscriber()
         }
