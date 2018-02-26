@@ -32,9 +32,7 @@ class ViewController: UIViewController {
     var capturer: ScreenCapturer?
     
     @IBOutlet var timeText: UILabel!
-    
-    // Change to `false` to subscribe to streams other than your own.
-    var subscribeToSelf = false
+
     fileprivate let formatter: DateFormatter = {
         let fmt = DateFormatter()
         fmt.dateStyle = .short
