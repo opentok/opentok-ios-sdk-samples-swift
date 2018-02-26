@@ -31,9 +31,6 @@ class ViewController: UIViewController {
     var subscriber: OTSubscriber?
     let customAudioDevice = DefaultAudioDevice()
     
-    // Change to `false` to subscribe to streams other than your own.
-    var subscribeToSelf = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         OTAudioDeviceManager.setAudioDevice(customAudioDevice)
@@ -125,9 +122,7 @@ extension ViewController: OTSessionDelegate {
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
-        if subscribeToSelf {
-            doSubscribe(stream)
-        }
+        print("Publishing")
     }
     
     func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {

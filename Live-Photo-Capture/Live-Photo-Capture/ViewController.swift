@@ -30,8 +30,6 @@ class ViewController: UIViewController {
     
     var subscriber: OTSubscriber?
     
-    // Change to `false` to subscribe to streams other than your own.
-    var subscribeToSelf = true
     let captureSession = AVCaptureSession()
     
     

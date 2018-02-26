@@ -30,8 +30,6 @@ class ViewController: UIViewController {
     
     var subscriber: OTSubscriber?
     
-    // Change to `false` to subscribe to streams other than your own.
-    var subscribeToSelf = true
     let captureSession = AVCaptureSession()
     
     let captureQueue = DispatchQueue(label: "com.tokbox.VideoCapture", attributes: [])
@@ -133,7 +131,7 @@ extension ViewController: OTSessionDelegate {
     
     func session(_ session: OTSession, streamCreated stream: OTStream) {
         print("Session streamCreated: \(stream.streamId)")
-        if subscriber == nil && !subscribeToSelf {
+        if subscriber == nil {
             doSubscribe(stream)
         }
     }
@@ -154,9 +152,7 @@ extension ViewController: OTSessionDelegate {
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
-        if subscriber == nil && subscribeToSelf {
-            doSubscribe(stream)
-        }
+        print("Publishing")
     }
     
     func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
