@@ -661,7 +661,7 @@ func updateRecordingDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
         audioDevice.recordingDelayHWAndOS += UInt32(ioInterval * 1000000)
         audioDevice.recordingDelayHWAndOS += UInt32(audioDevice.recordingAudioUnitPropertyLatency * 1000000)
         
-        audioDevice.recordingDelayHWAndOS = audioDevice.recordingDelayHWAndOS - 500 / 1000
+        audioDevice.recordingDelayHWAndOS = audioDevice.recordingDelayHWAndOS.advanced(by: -500) / 1000
         
         audioDevice.recordingDelayMeasurementCounter = 0
     }
