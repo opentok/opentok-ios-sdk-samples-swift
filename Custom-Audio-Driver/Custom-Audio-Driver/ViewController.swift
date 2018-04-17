@@ -111,6 +111,9 @@ extension ViewController: OTSessionDelegate {
     
     func session(_ session: OTSession, streamDestroyed stream: OTStream) {
         print("Session streamDestroyed: \(stream.streamId)")
+        if let subStream = subscriber?.stream, subStream.streamId == stream.streamId {
+            subscriber?.view?.removeFromSuperview()
+        }
     }
     
     func session(_ session: OTSession, didFailWithError error: OTError) {

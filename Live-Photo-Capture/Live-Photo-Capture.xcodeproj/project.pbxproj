@@ -46,7 +46,7 @@
 		F872F7611D6C851400A0674B = {
 			isa = PBXGroup;
 			children = (
-				F872F7891D6C87E300A0674B /* Project 2 - Custom Audio Driver */,
+				F872F7891D6C87E300A0674B /* Live-Photo-Capture */,
 				F872F76C1D6C851400A0674B /* Live-Photo-Capture */,
 				F872F76B1D6C851400A0674B /* Products */,
 			);
@@ -74,14 +74,14 @@
 			path = "Live-Photo-Capture";
 			sourceTree = "<group>";
 		};
-		F872F7891D6C87E300A0674B /* Project 2 - Custom Audio Driver */ = {
+		F872F7891D6C87E300A0674B /* Live-Photo-Capture */ = {
 			isa = PBXGroup;
 			children = (
 				F872F7811D6C87DD00A0674B /* EAGLVideoRenderer.swift */,
 				F872F7831D6C87DD00A0674B /* ExampleVideoCapture.swift */,
 				F872F7841D6C87DD00A0674B /* ExampleVideoRender.swift */,
 			);
-			name = "Project 2 - Custom Audio Driver";
+			name = "Live-Photo-Capture";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
