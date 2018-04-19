@@ -10,10 +10,13 @@ import OpenTok
 import GLKit
 
 protocol ExampleVideoRenderDelegate {
-    func renderer(_ renderer: ExampleVideoRender, didReceiveFrame: OTVideoFrame)
+    func renderer(_ renderer: ExampleVideoRender, didReceiveFrame videoFrame: OTVideoFrame)
 }
 
 class ExampleVideoRender: UIView {
+    
+    var delegate: ExampleVideoRenderDelegate?
+    
     fileprivate var glContext: EAGLContext?
     fileprivate var renderer: EAGLVideoRenderer?
     fileprivate var glkView: GLKView?
@@ -150,6 +153,10 @@ extension ExampleVideoRender: OTVideoRender {
             lastVideoFrame?.planes?.addPointer(vPlane)
             
             fLock.unlock()
+            
+            if let delegate = delegate {
+                delegate.renderer(self, didReceiveFrame: frame)
+            }
         }
     }
 }
