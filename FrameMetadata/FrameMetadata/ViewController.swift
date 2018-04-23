@@ -208,6 +208,10 @@ extension ViewController: ExampleVideoRenderDelegate {
     }
 }
 
+/*
+ * This piece is optional: we demonstrate how to attach a metadata to a video frame before transitmmiting to the OpenTok platform.
+ * You don't have to attach a metadata to make the transmission work
+ */
 extension ViewController: FrameCapturerMetadataDelegate {
     func finishPreparingFrame(_ videoFrame: OTVideoFrame?) {
         guard let videoFrame = videoFrame else {
