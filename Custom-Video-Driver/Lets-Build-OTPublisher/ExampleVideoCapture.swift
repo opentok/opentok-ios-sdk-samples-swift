@@ -45,12 +45,18 @@ extension String {
     }
 }
 
+protocol FrameCapturerMetadataDelegate {
+    func finishPreparingFrame(_ videoFrame: OTVideoFrame?)
+}
+
 class ExampleVideoCapture: NSObject, OTVideoCapture {
     var captureSession: AVCaptureSession?
     var videoInput: AVCaptureDeviceInput?
     var videoOutput: AVCaptureVideoDataOutput?
     
     var videoCaptureConsumer: OTVideoCaptureConsumer?
+    
+    var delegate: FrameCapturerMetadataDelegate?
     
     fileprivate var capturePreset: String {
         didSet {
@@ -313,6 +319,10 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
             for idx in 0..<CVPixelBufferGetPlaneCount(imageBuffer) {
                 videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddressOfPlane(imageBuffer, idx))
             }
+        }
+        
+        if let delegate = delegate {
+            delegate.finishPreparingFrame(videoFrame)
         }
         
         videoCaptureConsumer!.consumeFrame(videoFrame)
