@@ -67,6 +67,8 @@ to publish a stream that uses a UI view (instead of a camera) as the video sourc
 for a multi-party call. The application publishes audio/video from an iOS device and 
 can connect to multiple subscribers. However it shows only one subscriber video at a 
 time due to CPU limitations on iOS devices.
+
+**FrameMetadata** -- This project shows how to set metadata (limited to 32 bytes) to a video frame, as well as how to read metadata from a video frame.
 	
 ## Obtaining OpenTok Credentials
 
