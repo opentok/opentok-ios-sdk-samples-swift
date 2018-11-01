@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6622AA59577C567C75E6C685 /* Pods_Multiparty_UICollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74CD30FBA32CB20C1058B67 /* Pods_Multiparty_UICollectionView.framework */; };
 		A05376091EB1638C00645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05376001EB1638C00645696 /* AppDelegate.swift */; };
 		A053760A1EB1638C00645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05376011EB1638C00645696 /* Assets.xcassets */; };
 		A053760B1EB1638C00645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376021EB1638C00645696 /* LaunchScreen.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2958EC744E8C10459E33FA64 /* Pods-Multiparty-UICollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multiparty-UICollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-Multiparty-UICollectionView/Pods-Multiparty-UICollectionView.release.xcconfig"; sourceTree = "<group>"; };
+		760E93080CE25E434B40AE44 /* Pods-Multiparty-UICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multiparty-UICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Multiparty-UICollectionView/Pods-Multiparty-UICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
 		A05376001EB1638C00645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05376011EB1638C00645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05376031EB1638C00645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -23,6 +26,7 @@
 		A05376061EB1638C00645696 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A05376071EB1638C00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376081EB1638C00645696 /* MultipartyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartyLayout.swift; sourceTree = "<group>"; };
+		A74CD30FBA32CB20C1058B67 /* Pods_Multiparty_UICollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Multiparty_UICollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F852CCBF1EA4D88200ADB206 /* Multiparty-UICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multiparty-UICollectionView.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -31,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6622AA59577C567C75E6C685 /* Pods_Multiparty_UICollectionView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,11 +56,30 @@
 			path = "Multiparty-UICollectionView";
 			sourceTree = "<group>";
 		};
+		DEA7AEB21012A7B28A490656 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				760E93080CE25E434B40AE44 /* Pods-Multiparty-UICollectionView.debug.xcconfig */,
+				2958EC744E8C10459E33FA64 /* Pods-Multiparty-UICollectionView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E6D3AD03F2BC311F89237453 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A74CD30FBA32CB20C1058B67 /* Pods_Multiparty_UICollectionView.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F852CCB61EA4D88200ADB206 = {
 			isa = PBXGroup;
 			children = (
 				A05375FF1EB1638C00645696 /* Multiparty-UICollectionView */,
 				F852CCC01EA4D88200ADB206 /* Products */,
+				DEA7AEB21012A7B28A490656 /* Pods */,
+				E6D3AD03F2BC311F89237453 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +98,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F852CCD11EA4D88200ADB206 /* Build configuration list for PBXNativeTarget "Multiparty-UICollectionView" */;
 			buildPhases = (
+				BC209E2C33F3B2360D0406BA /* [CP] Check Pods Manifest.lock */,
 				F852CCBB1EA4D88200ADB206 /* Sources */,
 				F852CCBC1EA4D88200ADB206 /* Frameworks */,
 				F852CCBD1EA4D88200ADB206 /* Resources */,
@@ -133,6 +158,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BC209E2C33F3B2360D0406BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Multiparty-UICollectionView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F852CCBB1EA4D88200ADB206 /* Sources */ = {
@@ -278,6 +324,7 @@
 		};
 		F852CCD21EA4D88200ADB206 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 760E93080CE25E434B40AE44 /* Pods-Multiparty-UICollectionView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Multiparty-UICollectionView/Info.plist";
@@ -290,6 +337,7 @@
 		};
 		F852CCD31EA4D88200ADB206 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2958EC744E8C10459E33FA64 /* Pods-Multiparty-UICollectionView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Multiparty-UICollectionView/Info.plist";
