@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		948F22D66DC1BF2BC12E5EDC /* Pods_Basic_Video_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055672B7070121829B64BD46 /* Pods_Basic_Video_Chat.framework */; };
 		A05375D71EB1633400645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375CF1EB1633400645696 /* AppDelegate.swift */; };
 		A05375D81EB1633400645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05375D01EB1633400645696 /* Assets.xcassets */; };
 		A05375D91EB1633400645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375D11EB1633400645696 /* LaunchScreen.storyboard */; };
 		A05375DA1EB1633400645696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375D31EB1633400645696 /* Main.storyboard */; };
 		A05375DC1EB1633400645696 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375D61EB1633400645696 /* ViewController.swift */; };
+		AD4ABD1477FE1A61D0FD1A42 /* Pods_Basic_Video_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63BAB03773D383C38190AA07 /* Pods_Basic_Video_Chat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		055672B7070121829B64BD46 /* Pods_Basic_Video_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basic_Video_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		110672412C400D4999036DC1 /* Pods-Basic-Video-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.debug.xcconfig"; sourceTree = "<group>"; };
-		43BBB1D1EF1A41EC8BE1300B /* Pods-Basic-Video-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.release.xcconfig"; sourceTree = "<group>"; };
+		1944D5282A5C46FC301CE4D8 /* Pods-Basic-Video-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.release.xcconfig"; sourceTree = "<group>"; };
+		63BAB03773D383C38190AA07 /* Pods_Basic_Video_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basic_Video_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB3F6F47DA9BEC54CECAB97 /* Pods-Basic-Video-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		A05375CF1EB1633400645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05375D01EB1633400645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05375D21EB1633400645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,17 +33,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				948F22D66DC1BF2BC12E5EDC /* Pods_Basic_Video_Chat.framework in Frameworks */,
+				AD4ABD1477FE1A61D0FD1A42 /* Pods_Basic_Video_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B97BB266B02EAA0A0E8F6A9 /* Frameworks */ = {
+		6231A4832BBDF1AB941F1567 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				055672B7070121829B64BD46 /* Pods_Basic_Video_Chat.framework */,
+				7EB3F6F47DA9BEC54CECAB97 /* Pods-Basic-Video-Chat.debug.xcconfig */,
+				1944D5282A5C46FC301CE4D8 /* Pods-Basic-Video-Chat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		674A65137038B5B473CBA28E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				63BAB03773D383C38190AA07 /* Pods_Basic_Video_Chat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -66,8 +75,8 @@
 			children = (
 				A05375CE1EB1633400645696 /* Basic-Video-Chat */,
 				F86C649B1D5C7C630081846D /* Products */,
-				FCAD65F0F1BD9B53A9B3A415 /* Pods */,
-				3B97BB266B02EAA0A0E8F6A9 /* Frameworks */,
+				6231A4832BBDF1AB941F1567 /* Pods */,
+				674A65137038B5B473CBA28E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,15 +88,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FCAD65F0F1BD9B53A9B3A415 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				110672412C400D4999036DC1 /* Pods-Basic-Video-Chat.debug.xcconfig */,
-				43BBB1D1EF1A41EC8BE1300B /* Pods-Basic-Video-Chat.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,7 +95,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F86C64AC1D5C7C630081846D /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */;
 			buildPhases = (
-				92FB71179CE9B9BE2824ED56 /* [CP] Check Pods Manifest.lock */,
+				F8A6DC6D1A927CD8D07281FB /* [CP] Check Pods Manifest.lock */,
 				F86C64961D5C7C630081846D /* Sources */,
 				F86C64971D5C7C630081846D /* Frameworks */,
 				F86C64981D5C7C630081846D /* Resources */,
@@ -159,7 +159,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		92FB71179CE9B9BE2824ED56 /* [CP] Check Pods Manifest.lock */ = {
+		F8A6DC6D1A927CD8D07281FB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -315,7 +315,7 @@
 		};
 		F86C64AD1D5C7C630081846D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 110672412C400D4999036DC1 /* Pods-Basic-Video-Chat.debug.xcconfig */;
+			baseConfigurationReference = 7EB3F6F47DA9BEC54CECAB97 /* Pods-Basic-Video-Chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -331,7 +331,7 @@
 		};
 		F86C64AE1D5C7C630081846D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43BBB1D1EF1A41EC8BE1300B /* Pods-Basic-Video-Chat.release.xcconfig */;
+			baseConfigurationReference = 1944D5282A5C46FC301CE4D8 /* Pods-Basic-Video-Chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";

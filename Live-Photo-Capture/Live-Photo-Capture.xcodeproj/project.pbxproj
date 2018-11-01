@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5BDBF853D9674B2B15C07FE7 /* Pods_Live_Photo_Capture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF3EE8D79A76D4FA65995CA3 /* Pods_Live_Photo_Capture.framework */; };
+		75A701AF0B4612CC4ECDB78D /* Pods_Live_Photo_Capture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34065D50334A3BA40741B4B /* Pods_Live_Photo_Capture.framework */; };
 		F872F76E1D6C851400A0674B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F76D1D6C851400A0674B /* AppDelegate.swift */; };
 		F872F7701D6C851400A0674B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872F76F1D6C851400A0674B /* ViewController.swift */; };
 		F872F7731D6C851400A0674B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F872F7711D6C851400A0674B /* Main.storyboard */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A48E03915D1865846FBF86B /* Pods-Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
-		3C8B26B19C429FF326ADF39D /* Pods-Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
-		AF3EE8D79A76D4FA65995CA3 /* Pods_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B5928D6897160533CB7262F /* Pods-Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
+		83ED9D9A11DE579DBA4DC9D9 /* Pods-Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
+		D34065D50334A3BA40741B4B /* Pods_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F872F76A1D6C851400A0674B /* Live-Photo-Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live-Photo-Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F872F76D1D6C851400A0674B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F872F76F1D6C851400A0674B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,26 +41,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BDBF853D9674B2B15C07FE7 /* Pods_Live_Photo_Capture.framework in Frameworks */,
+				75A701AF0B4612CC4ECDB78D /* Pods_Live_Photo_Capture.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D2F3105395B48A21BC4E01F /* Pods */ = {
+		3303A604A8B56510FF0AC2A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1A48E03915D1865846FBF86B /* Pods-Live-Photo-Capture.debug.xcconfig */,
-				3C8B26B19C429FF326ADF39D /* Pods-Live-Photo-Capture.release.xcconfig */,
+				83ED9D9A11DE579DBA4DC9D9 /* Pods-Live-Photo-Capture.debug.xcconfig */,
+				5B5928D6897160533CB7262F /* Pods-Live-Photo-Capture.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AEF69982581573D60C1C07CA /* Frameworks */ = {
+		A8DB2E7409295DDFDC6F497B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AF3EE8D79A76D4FA65995CA3 /* Pods_Live_Photo_Capture.framework */,
+				D34065D50334A3BA40741B4B /* Pods_Live_Photo_Capture.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -71,8 +71,8 @@
 				F872F7891D6C87E300A0674B /* Live-Photo-Capture */,
 				F872F76C1D6C851400A0674B /* Live-Photo-Capture */,
 				F872F76B1D6C851400A0674B /* Products */,
-				4D2F3105395B48A21BC4E01F /* Pods */,
-				AEF69982581573D60C1C07CA /* Frameworks */,
+				3303A604A8B56510FF0AC2A0 /* Pods */,
+				A8DB2E7409295DDFDC6F497B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,7 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F872F77C1D6C851400A0674B /* Build configuration list for PBXNativeTarget "Live-Photo-Capture" */;
 			buildPhases = (
-				5F3FB17900D13825CFD9BF40 /* [CP] Check Pods Manifest.lock */,
+				1B26E6E1CC14788F57E3337C /* [CP] Check Pods Manifest.lock */,
 				F872F7661D6C851400A0674B /* Sources */,
 				F872F7671D6C851400A0674B /* Frameworks */,
 				F872F7681D6C851400A0674B /* Resources */,
@@ -179,7 +179,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F3FB17900D13825CFD9BF40 /* [CP] Check Pods Manifest.lock */ = {
+		1B26E6E1CC14788F57E3337C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,7 +325,7 @@
 		};
 		F872F77D1D6C851400A0674B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A48E03915D1865846FBF86B /* Pods-Live-Photo-Capture.debug.xcconfig */;
+			baseConfigurationReference = 83ED9D9A11DE579DBA4DC9D9 /* Pods-Live-Photo-Capture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -344,7 +344,7 @@
 		};
 		F872F77E1D6C851400A0674B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C8B26B19C429FF326ADF39D /* Pods-Live-Photo-Capture.release.xcconfig */;
+			baseConfigurationReference = 5B5928D6897160533CB7262F /* Pods-Live-Photo-Capture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

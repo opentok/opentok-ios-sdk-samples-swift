@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		857C7F0943FF4754C464552C /* Pods_Simple_Multiparty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4C1D9E525BBABD104EED01 /* Pods_Simple_Multiparty.framework */; };
 		A05375F91EB1637B00645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375F11EB1637B00645696 /* AppDelegate.swift */; };
 		A05375FA1EB1637B00645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05375F21EB1637B00645696 /* Assets.xcassets */; };
 		A05375FB1EB1637B00645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375F31EB1637B00645696 /* LaunchScreen.storyboard */; };
 		A05375FC1EB1637B00645696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375F51EB1637B00645696 /* Main.storyboard */; };
 		A05375FE1EB1637B00645696 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375F81EB1637B00645696 /* ViewController.swift */; };
+		A76E36958331254DDD2EFB4D /* Pods_Simple_Multiparty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8B553E2BB802774573EB89 /* Pods_Simple_Multiparty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		43A948CBB25A4B6F7E5D3331 /* Pods-Simple-Multiparty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.release.xcconfig"; sourceTree = "<group>"; };
+		9A36FBC05DAAB1856AEDCA1C /* Pods-Simple-Multiparty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.release.xcconfig"; sourceTree = "<group>"; };
 		A05375F11EB1637B00645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05375F21EB1637B00645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05375F41EB1637B00645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A05375F61EB1637B00645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A05375F71EB1637B00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05375F81EB1637B00645696 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AD4C1D9E525BBABD104EED01 /* Pods_Simple_Multiparty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Multiparty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7D2E9FAD418639DFE389A35 /* Pods-Simple-Multiparty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.debug.xcconfig"; sourceTree = "<group>"; };
+		BA8B553E2BB802774573EB89 /* Pods_Simple_Multiparty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Multiparty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E563002DA21DEFCAD1F939 /* Pods-Simple-Multiparty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.debug.xcconfig"; sourceTree = "<group>"; };
 		F829C8E51D9AB57700CDFBD5 /* Simple-Multiparty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple-Multiparty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -33,30 +33,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				857C7F0943FF4754C464552C /* Pods_Simple_Multiparty.framework in Frameworks */,
+				A76E36958331254DDD2EFB4D /* Pods_Simple_Multiparty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3979480AE250BAA182069C18 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B7D2E9FAD418639DFE389A35 /* Pods-Simple-Multiparty.debug.xcconfig */,
-				43A948CBB25A4B6F7E5D3331 /* Pods-Simple-Multiparty.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		95EE6AD203E92633DD15066C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AD4C1D9E525BBABD104EED01 /* Pods_Simple_Multiparty.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A05375F01EB1637B00645696 /* Simple-Multiparty */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,13 +53,30 @@
 			path = "Simple-Multiparty";
 			sourceTree = "<group>";
 		};
+		DB030FAD5E43EF325961424C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8E563002DA21DEFCAD1F939 /* Pods-Simple-Multiparty.debug.xcconfig */,
+				9A36FBC05DAAB1856AEDCA1C /* Pods-Simple-Multiparty.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DE1A997B23DE9CDC45C3083C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA8B553E2BB802774573EB89 /* Pods_Simple_Multiparty.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F829C8DC1D9AB57700CDFBD5 = {
 			isa = PBXGroup;
 			children = (
 				A05375F01EB1637B00645696 /* Simple-Multiparty */,
 				F829C8E61D9AB57700CDFBD5 /* Products */,
-				3979480AE250BAA182069C18 /* Pods */,
-				95EE6AD203E92633DD15066C /* Frameworks */,
+				DB030FAD5E43EF325961424C /* Pods */,
+				DE1A997B23DE9CDC45C3083C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,7 +95,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F829C8F71D9AB57700CDFBD5 /* Build configuration list for PBXNativeTarget "Simple-Multiparty" */;
 			buildPhases = (
-				09CE2843883AA9D13D046C09 /* [CP] Check Pods Manifest.lock */,
+				1B9CDDF122D9E43D484B1292 /* [CP] Check Pods Manifest.lock */,
 				F829C8E11D9AB57700CDFBD5 /* Sources */,
 				F829C8E21D9AB57700CDFBD5 /* Frameworks */,
 				F829C8E31D9AB57700CDFBD5 /* Resources */,
@@ -158,7 +158,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		09CE2843883AA9D13D046C09 /* [CP] Check Pods Manifest.lock */ = {
+		1B9CDDF122D9E43D484B1292 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -319,7 +319,7 @@
 		};
 		F829C8F81D9AB57700CDFBD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7D2E9FAD418639DFE389A35 /* Pods-Simple-Multiparty.debug.xcconfig */;
+			baseConfigurationReference = D8E563002DA21DEFCAD1F939 /* Pods-Simple-Multiparty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -333,7 +333,7 @@
 		};
 		F829C8F91D9AB57700CDFBD5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43A948CBB25A4B6F7E5D3331 /* Pods-Simple-Multiparty.release.xcconfig */;
+			baseConfigurationReference = 9A36FBC05DAAB1856AEDCA1C /* Pods-Simple-Multiparty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";

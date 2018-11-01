@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		99B7AC855C0296CF30AB6741 /* Pods_Screen_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C8C7B87112EC0C6BC58D11 /* Pods_Screen_Sharing.framework */; };
+		1B3AC50507FADE0C17797279 /* Pods_Screen_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F28135D63C7599861B6D32 /* Pods_Screen_Sharing.framework */; };
 		A05375E81EB1636800645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375DE1EB1636800645696 /* AppDelegate.swift */; };
 		A05375E91EB1636800645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05375DF1EB1636800645696 /* Assets.xcassets */; };
 		A05375EA1EB1636800645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375E01EB1636800645696 /* LaunchScreen.storyboard */; };
@@ -18,9 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C1095F703569179E2CD7109 /* Pods-Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
-		3FA83F6981995327C20D6640 /* Pods-Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
-		74C8C7B87112EC0C6BC58D11 /* Pods_Screen_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screen_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65F28135D63C7599861B6D32 /* Pods_Screen_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screen_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C539F0FE091613EC6FD6381 /* Pods-Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
 		A05375DE1EB1636800645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05375DF1EB1636800645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05375E11EB1636800645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -29,6 +28,7 @@
 		A05375E51EB1636800645696 /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		A05375E61EB1636800645696 /* ScreenCapturer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapturer.swift; sourceTree = "<group>"; };
 		A05375E71EB1636800645696 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EF21CB9B56A89957618F88D4 /* Pods-Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
 		F8DE15B31D951F9200EFFA79 /* Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,20 +37,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99B7AC855C0296CF30AB6741 /* Pods_Screen_Sharing.framework in Frameworks */,
+				1B3AC50507FADE0C17797279 /* Pods_Screen_Sharing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B73E9892FF60264A281BDF6 /* Pods */ = {
+		07A0EC816B414C6397DB2269 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3FA83F6981995327C20D6640 /* Pods-Screen-Sharing.debug.xcconfig */,
-				1C1095F703569179E2CD7109 /* Pods-Screen-Sharing.release.xcconfig */,
+				65F28135D63C7599861B6D32 /* Pods_Screen_Sharing.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A05375DD1EB1636800645696 /* Screen-Sharing */ = {
@@ -68,12 +67,13 @@
 			path = "Screen-Sharing";
 			sourceTree = "<group>";
 		};
-		E74B0006CBA9DFCB938D8D0C /* Frameworks */ = {
+		BA7807BD5FBF8DEEACDDE48D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				74C8C7B87112EC0C6BC58D11 /* Pods_Screen_Sharing.framework */,
+				6C539F0FE091613EC6FD6381 /* Pods-Screen-Sharing.debug.xcconfig */,
+				EF21CB9B56A89957618F88D4 /* Pods-Screen-Sharing.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		F8DE15AA1D951F9200EFFA79 = {
@@ -81,8 +81,8 @@
 			children = (
 				A05375DD1EB1636800645696 /* Screen-Sharing */,
 				F8DE15B41D951F9200EFFA79 /* Products */,
-				5B73E9892FF60264A281BDF6 /* Pods */,
-				E74B0006CBA9DFCB938D8D0C /* Frameworks */,
+				BA7807BD5FBF8DEEACDDE48D /* Pods */,
+				07A0EC816B414C6397DB2269 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +101,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "Screen-Sharing" */;
 			buildPhases = (
-				A04A122F8411F0D68C0C269F /* [CP] Check Pods Manifest.lock */,
+				03BE30E6BCCEAAC2977A5F74 /* [CP] Check Pods Manifest.lock */,
 				F8DE15AF1D951F9200EFFA79 /* Sources */,
 				F8DE15B01D951F9200EFFA79 /* Frameworks */,
 				F8DE15B11D951F9200EFFA79 /* Resources */,
@@ -166,7 +166,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A04A122F8411F0D68C0C269F /* [CP] Check Pods Manifest.lock */ = {
+		03BE30E6BCCEAAC2977A5F74 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,7 +328,7 @@
 		};
 		F8DE15C61D951F9200EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FA83F6981995327C20D6640 /* Pods-Screen-Sharing.debug.xcconfig */;
+			baseConfigurationReference = 6C539F0FE091613EC6FD6381 /* Pods-Screen-Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -346,7 +346,7 @@
 		};
 		F8DE15C71D951F9200EFFA79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C1095F703569179E2CD7109 /* Pods-Screen-Sharing.release.xcconfig */;
+			baseConfigurationReference = EF21CB9B56A89957618F88D4 /* Pods-Screen-Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

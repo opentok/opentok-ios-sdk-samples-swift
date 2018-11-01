@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6622AA59577C567C75E6C685 /* Pods_Multiparty_UICollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74CD30FBA32CB20C1058B67 /* Pods_Multiparty_UICollectionView.framework */; };
+		442662D46662C322C038935C /* Pods_Multiparty_UICollectionView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3C225C00CD9CF20D660B2E /* Pods_Multiparty_UICollectionView.framework */; };
 		A05376091EB1638C00645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05376001EB1638C00645696 /* AppDelegate.swift */; };
 		A053760A1EB1638C00645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05376011EB1638C00645696 /* Assets.xcassets */; };
 		A053760B1EB1638C00645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376021EB1638C00645696 /* LaunchScreen.storyboard */; };
@@ -17,8 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2958EC744E8C10459E33FA64 /* Pods-Multiparty-UICollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multiparty-UICollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-Multiparty-UICollectionView/Pods-Multiparty-UICollectionView.release.xcconfig"; sourceTree = "<group>"; };
-		760E93080CE25E434B40AE44 /* Pods-Multiparty-UICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multiparty-UICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Multiparty-UICollectionView/Pods-Multiparty-UICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
+		4D3C225C00CD9CF20D660B2E /* Pods_Multiparty_UICollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Multiparty_UICollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68DA875DD849DD9538A8854E /* Pods-Multiparty-UICollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multiparty-UICollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-Multiparty-UICollectionView/Pods-Multiparty-UICollectionView.release.xcconfig"; sourceTree = "<group>"; };
 		A05376001EB1638C00645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05376011EB1638C00645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05376031EB1638C00645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -26,7 +26,7 @@
 		A05376061EB1638C00645696 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A05376071EB1638C00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376081EB1638C00645696 /* MultipartyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipartyLayout.swift; sourceTree = "<group>"; };
-		A74CD30FBA32CB20C1058B67 /* Pods_Multiparty_UICollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Multiparty_UICollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55F081430974C1E9F6AA7E7 /* Pods-Multiparty-UICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multiparty-UICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Multiparty-UICollectionView/Pods-Multiparty-UICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
 		F852CCBF1EA4D88200ADB206 /* Multiparty-UICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multiparty-UICollectionView.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -35,13 +35,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6622AA59577C567C75E6C685 /* Pods_Multiparty_UICollectionView.framework in Frameworks */,
+				442662D46662C322C038935C /* Pods_Multiparty_UICollectionView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C1E7DAB727BA2075E57B04E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E55F081430974C1E9F6AA7E7 /* Pods-Multiparty-UICollectionView.debug.xcconfig */,
+				68DA875DD849DD9538A8854E /* Pods-Multiparty-UICollectionView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A05375FF1EB1638C00645696 /* Multiparty-UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -56,19 +65,10 @@
 			path = "Multiparty-UICollectionView";
 			sourceTree = "<group>";
 		};
-		DEA7AEB21012A7B28A490656 /* Pods */ = {
+		F2D8669341A2EB6061B377A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				760E93080CE25E434B40AE44 /* Pods-Multiparty-UICollectionView.debug.xcconfig */,
-				2958EC744E8C10459E33FA64 /* Pods-Multiparty-UICollectionView.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		E6D3AD03F2BC311F89237453 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A74CD30FBA32CB20C1058B67 /* Pods_Multiparty_UICollectionView.framework */,
+				4D3C225C00CD9CF20D660B2E /* Pods_Multiparty_UICollectionView.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -78,8 +78,8 @@
 			children = (
 				A05375FF1EB1638C00645696 /* Multiparty-UICollectionView */,
 				F852CCC01EA4D88200ADB206 /* Products */,
-				DEA7AEB21012A7B28A490656 /* Pods */,
-				E6D3AD03F2BC311F89237453 /* Frameworks */,
+				9C1E7DAB727BA2075E57B04E /* Pods */,
+				F2D8669341A2EB6061B377A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,7 +98,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F852CCD11EA4D88200ADB206 /* Build configuration list for PBXNativeTarget "Multiparty-UICollectionView" */;
 			buildPhases = (
-				BC209E2C33F3B2360D0406BA /* [CP] Check Pods Manifest.lock */,
+				831FC3D03A699EB136272662 /* [CP] Check Pods Manifest.lock */,
 				F852CCBB1EA4D88200ADB206 /* Sources */,
 				F852CCBC1EA4D88200ADB206 /* Frameworks */,
 				F852CCBD1EA4D88200ADB206 /* Resources */,
@@ -160,7 +160,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BC209E2C33F3B2360D0406BA /* [CP] Check Pods Manifest.lock */ = {
+		831FC3D03A699EB136272662 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -324,7 +324,7 @@
 		};
 		F852CCD21EA4D88200ADB206 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 760E93080CE25E434B40AE44 /* Pods-Multiparty-UICollectionView.debug.xcconfig */;
+			baseConfigurationReference = E55F081430974C1E9F6AA7E7 /* Pods-Multiparty-UICollectionView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Multiparty-UICollectionView/Info.plist";
@@ -337,7 +337,7 @@
 		};
 		F852CCD31EA4D88200ADB206 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2958EC744E8C10459E33FA64 /* Pods-Multiparty-UICollectionView.release.xcconfig */;
+			baseConfigurationReference = 68DA875DD849DD9538A8854E /* Pods-Multiparty-UICollectionView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/Multiparty-UICollectionView/Info.plist";
