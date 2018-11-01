@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B3AC50507FADE0C17797279 /* Pods_Screen_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F28135D63C7599861B6D32 /* Pods_Screen_Sharing.framework */; };
 		A05375E81EB1636800645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375DE1EB1636800645696 /* AppDelegate.swift */; };
 		A05375E91EB1636800645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05375DF1EB1636800645696 /* Assets.xcassets */; };
 		A05375EA1EB1636800645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375E01EB1636800645696 /* LaunchScreen.storyboard */; };
@@ -18,8 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		65F28135D63C7599861B6D32 /* Pods_Screen_Sharing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screen_Sharing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C539F0FE091613EC6FD6381 /* Pods-Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
 		A05375DE1EB1636800645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05375DF1EB1636800645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05375E11EB1636800645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -28,7 +25,6 @@
 		A05375E51EB1636800645696 /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		A05375E61EB1636800645696 /* ScreenCapturer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapturer.swift; sourceTree = "<group>"; };
 		A05375E71EB1636800645696 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EF21CB9B56A89957618F88D4 /* Pods-Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
 		F8DE15B31D951F9200EFFA79 /* Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,21 +33,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B3AC50507FADE0C17797279 /* Pods_Screen_Sharing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07A0EC816B414C6397DB2269 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				65F28135D63C7599861B6D32 /* Pods_Screen_Sharing.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A05375DD1EB1636800645696 /* Screen-Sharing */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,22 +54,11 @@
 			path = "Screen-Sharing";
 			sourceTree = "<group>";
 		};
-		BA7807BD5FBF8DEEACDDE48D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6C539F0FE091613EC6FD6381 /* Pods-Screen-Sharing.debug.xcconfig */,
-				EF21CB9B56A89957618F88D4 /* Pods-Screen-Sharing.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F8DE15AA1D951F9200EFFA79 = {
 			isa = PBXGroup;
 			children = (
 				A05375DD1EB1636800645696 /* Screen-Sharing */,
 				F8DE15B41D951F9200EFFA79 /* Products */,
-				BA7807BD5FBF8DEEACDDE48D /* Pods */,
-				07A0EC816B414C6397DB2269 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +77,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8DE15C51D951F9200EFFA79 /* Build configuration list for PBXNativeTarget "Screen-Sharing" */;
 			buildPhases = (
-				03BE30E6BCCEAAC2977A5F74 /* [CP] Check Pods Manifest.lock */,
 				F8DE15AF1D951F9200EFFA79 /* Sources */,
 				F8DE15B01D951F9200EFFA79 /* Frameworks */,
 				F8DE15B11D951F9200EFFA79 /* Resources */,
@@ -164,27 +139,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		03BE30E6BCCEAAC2977A5F74 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Screen-Sharing-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F8DE15AF1D951F9200EFFA79 /* Sources */ = {
@@ -328,7 +282,6 @@
 		};
 		F8DE15C61D951F9200EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C539F0FE091613EC6FD6381 /* Pods-Screen-Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -346,7 +299,6 @@
 		};
 		F8DE15C71D951F9200EFFA79 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF21CB9B56A89957618F88D4 /* Pods-Screen-Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
