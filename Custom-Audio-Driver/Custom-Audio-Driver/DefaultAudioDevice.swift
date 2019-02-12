@@ -56,8 +56,8 @@ class DefaultAudioDevice: NSObject {
     fileprivate var recordingVoiceUnit: AudioUnit?
     fileprivate var playoutVoiceUnit: AudioUnit?
     
-    fileprivate var previousAVAudioSessionCategory = ""
-    fileprivate var avAudioSessionMode = ""
+    fileprivate var previousAVAudioSessionCategory: AVAudioSession.Category?
+    fileprivate var avAudioSessionMode: AVAudioSession.Mode?
     fileprivate var avAudioSessionPreffSampleRate = Double(0)
     fileprivate var avAudioSessionChannels = 0
     fileprivate var isAudioSessionSetup = false
@@ -244,7 +244,9 @@ class DefaultAudioDevice: NSObject {
         
         let session = AVAudioSession.sharedInstance()
         do {
-            try session.setCategory(previousAVAudioSessionCategory)
+            guard let previousAVAudioSessionCategory = previousAVAudioSessionCategory else { return }
+            try session.setCategory(previousAVAudioSessionCategory, mode: .default)
+            guard let avAudioSessionMode = avAudioSessionMode else { return }
             try session.setMode(avAudioSessionMode)
             try session.setPreferredSampleRate(avAudioSessionPreffSampleRate)
             try session.setPreferredInputNumberOfChannels(avAudioSessionChannels)
@@ -406,7 +408,7 @@ extension DefaultAudioDevice: OTAudioDevice {
 
 // MARK: - AVAudioSession
 extension DefaultAudioDevice {
-    func onInterruptionEvent(notification: Notification) {
+    @objc func onInterruptionEvent(notification: Notification) {
         let type = notification.userInfo?[AVAudioSessionInterruptionTypeKey]
         safetyQueue.async {
             self.handleInterruptionEvent(type: type as? Int)
@@ -419,7 +421,7 @@ extension DefaultAudioDevice {
         }
         
         switch  UInt(interruptionType) {
-        case AVAudioSessionInterruptionType.began.rawValue:
+        case AVAudioSession.InterruptionType.began.rawValue:
             if recording {
                 isRecorderInterrupted = true
                 let _ = stopCapture()
@@ -428,7 +430,7 @@ extension DefaultAudioDevice {
                 isPlayerInterrupted = true
                 let _ = stopRendering()
             }
-        case AVAudioSessionInterruptionType.ended.rawValue:
+        case AVAudioSession.InterruptionType.ended.rawValue:
             configureAudioSessionWithDesiredAudioRoute(desiredAudioRoute: DefaultAudioDevice.kAudioDeviceBluetooth)
             restartAudioAfterInterruption()
         default:
@@ -436,15 +438,15 @@ extension DefaultAudioDevice {
         }
     }
     
-    func onRouteChangeEvent(notification: Notification) {
+    @objc func onRouteChangeEvent(notification: Notification) {
         safetyQueue.async {
             self.handleRouteChangeEvent(notification: notification)
         }
     }
     
-    func appDidBecomeActive(notification: Notification) {
+    @objc func appDidBecomeActive(notification: Notification) {
         safetyQueue.async {
-            self.handleInterruptionEvent(type: Int(AVAudioSessionInterruptionType.ended.rawValue))
+            self.handleInterruptionEvent(type: Int(AVAudioSession.InterruptionType.ended.rawValue))
         }
     }
     
@@ -453,12 +455,12 @@ extension DefaultAudioDevice {
             return
         }
         
-        if reason == AVAudioSessionRouteChangeReason.routeConfigurationChange.rawValue {
+        if reason == AVAudioSession.RouteChangeReason.routeConfigurationChange.rawValue {
             return
         }
         
-        if reason == AVAudioSessionRouteChangeReason.override.rawValue ||
-            reason == AVAudioSessionRouteChangeReason.categoryChange.rawValue {
+        if reason == AVAudioSession.RouteChangeReason.override.rawValue ||
+            reason == AVAudioSession.RouteChangeReason.categoryChange.rawValue {
             
             let oldRouteDesc = notification.userInfo?[AVAudioSessionRouteChangePreviousRouteKey] as! AVAudioSessionRouteDescription
             let outputs = oldRouteDesc.outputs
@@ -490,13 +492,11 @@ extension DefaultAudioDevice {
         let notificationCenter = NotificationCenter.default
         
         notificationCenter.addObserver(self, selector: #selector(DefaultAudioDevice.onInterruptionEvent),
-                                       name: Notification.Name.AVAudioSessionInterruption, object: nil)
-        
+                                       name: AVAudioSession.interruptionNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(DefaultAudioDevice.onRouteChangeEvent(notification:)),
-                                       name: Notification.Name.AVAudioSessionRouteChange, object: nil)
-        
+                                       name: AVAudioSession.routeChangeNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(DefaultAudioDevice.appDidBecomeActive(notification:)),
-                                       name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+                                       name: UIApplication.didBecomeActiveNotification, object: nil)
         
         areListenerBlocksSetup = true
     }
@@ -516,10 +516,10 @@ extension DefaultAudioDevice {
         do {
             try session.setPreferredSampleRate(Double(DefaultAudioDevice.kSampleRate))
             try session.setPreferredIOBufferDuration(0.01)
-            let audioOptions = AVAudioSessionCategoryOptions.mixWithOthers.rawValue |
-            AVAudioSessionCategoryOptions.allowBluetooth.rawValue |
-            AVAudioSessionCategoryOptions.defaultToSpeaker.rawValue
-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord, mode: AVAudioSessionModeVideoChat, options: AVAudioSessionCategoryOptions(rawValue: audioOptions))
+            let audioOptions = AVAudioSession.CategoryOptions.mixWithOthers.rawValue |
+                AVAudioSession.CategoryOptions.allowBluetooth.rawValue |
+                AVAudioSession.CategoryOptions.defaultToSpeaker.rawValue
+            try session.setCategory(AVAudioSession.Category.playAndRecord, mode: AVAudioSession.Mode.videoChat, options: AVAudioSession.CategoryOptions(rawValue: audioOptions))
             setupListenerBlocks()
             
             try session.setActive(true)
@@ -534,7 +534,7 @@ extension DefaultAudioDevice {
 // MARK: - Audio Route functions
 extension DefaultAudioDevice {
     fileprivate func setBluetoothAsPreferredInputDevice() {
-        let btRoutes = [AVAudioSessionPortBluetoothA2DP, AVAudioSessionPortBluetoothLE, AVAudioSessionPortBluetoothHFP]
+        let btRoutes = [AVAudioSession.Port.bluetoothA2DP, AVAudioSession.Port.bluetoothLE, AVAudioSession.Port.bluetoothHFP]
         AVAudioSession.sharedInstance().availableInputs?.forEach({ el in
             if btRoutes.contains(el.portType) {
                 do {
@@ -554,9 +554,9 @@ extension DefaultAudioDevice {
         }
         do {
             if desiredAudioRoute == DefaultAudioDevice.kAudioDeviceSpeaker {
-                try session.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+                try session.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
             } else {
-                try session.overrideOutputAudioPort(AVAudioSessionPortOverride.none)
+                try session.overrideOutputAudioPort(AVAudioSession.PortOverride.none)
             }
         } catch let err as NSError {
             print("Error setting audio route: \(err)")
