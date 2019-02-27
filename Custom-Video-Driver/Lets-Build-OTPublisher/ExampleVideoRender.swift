@@ -50,29 +50,29 @@ class ExampleVideoRender: UIView {
         
         NotificationCenter.default
             .addObserver(self, selector: #selector(ExampleVideoRender.willResignActive),
-                         name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+                         name: UIApplication.willResignActiveNotification, object: nil)
         NotificationCenter.default
             .addObserver(self, selector: #selector(ExampleVideoRender.didBecomeActive),
-                         name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+                         name: UIApplication.didBecomeActiveNotification, object: nil)
         
         
         displayLinkProxy = DisplayLinkProxy(glkView: glkView!, videoRender: self)
         displayLink = CADisplayLink(target: displayLinkProxy!, selector:#selector(DisplayLinkProxy.displayLinkDidFire(_:)))
         displayLink!.frameInterval = 2
-        displayLink!.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        displayLink!.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
         
         renderer!.setupGL()
         
         displayLink!.isPaused = false
     }
     
-    func willResignActive() {
+    @objc func willResignActive() {
         displayLink!.isPaused = true
         glkView?.deleteDrawable()
         renderer!.teardownGL()
     }
     
-    func didBecomeActive() {
+    @objc func didBecomeActive() {
         renderer!.setupGL()
         displayLink!.isPaused = false
     }
