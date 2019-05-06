@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A240E2DBDEF385013E44F481 /* Pods_Custom_Video_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB41F6C4F2B8CC4125EF0D2F /* Pods_Custom_Video_Driver.framework */; };
 		F84DC3AD1D5C8B6400402BD9 /* ExampleVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */; };
 		F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */; };
 		F86C64BC1D5C8A150081846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C64BB1D5C8A150081846D /* AppDelegate.swift */; };
@@ -18,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9706FAE9A425CCF8ACC827C2 /* Pods-Custom-Video-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Video-Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Custom-Video-Driver/Pods-Custom-Video-Driver.debug.xcconfig"; sourceTree = "<group>"; };
+		B36BAC5A1AF42AC57B7CC942 /* Pods-Custom-Video-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Video-Driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-Custom-Video-Driver/Pods-Custom-Video-Driver.release.xcconfig"; sourceTree = "<group>"; };
+		DB41F6C4F2B8CC4125EF0D2F /* Pods_Custom_Video_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Custom_Video_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84DC3AC1D5C8B6400402BD9 /* ExampleVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVideoCapture.swift; sourceTree = "<group>"; };
 		F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVideoRender.swift; sourceTree = "<group>"; };
 		F86C64B81D5C8A150081846D /* Custom-Video-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Video-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,17 +39,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A240E2DBDEF385013E44F481 /* Pods_Custom_Video_Driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B131EC705F1D5E9138D45767 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DB41F6C4F2B8CC4125EF0D2F /* Pods_Custom_Video_Driver.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D51DFBCFC5119CFE6D503980 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9706FAE9A425CCF8ACC827C2 /* Pods-Custom-Video-Driver.debug.xcconfig */,
+				B36BAC5A1AF42AC57B7CC942 /* Pods-Custom-Video-Driver.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F86C64AF1D5C8A150081846D = {
 			isa = PBXGroup;
 			children = (
 				F86C64BA1D5C8A150081846D /* Lets-Build-OTPublisher */,
 				F86C64B91D5C8A150081846D /* Products */,
+				D51DFBCFC5119CFE6D503980 /* Pods */,
+				B131EC705F1D5E9138D45767 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +104,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F86C64CA1D5C8A150081846D /* Build configuration list for PBXNativeTarget "Custom-Video-Driver" */;
 			buildPhases = (
+				A5957C97EB431CB21D347D88 /* [CP] Check Pods Manifest.lock */,
 				F86C64B41D5C8A150081846D /* Sources */,
 				F86C64B51D5C8A150081846D /* Frameworks */,
 				F86C64B61D5C8A150081846D /* Resources */,
@@ -141,6 +166,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A5957C97EB431CB21D347D88 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Custom-Video-Driver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F86C64B41D5C8A150081846D /* Sources */ = {
@@ -281,6 +331,7 @@
 		};
 		F86C64CB1D5C8A150081846D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9706FAE9A425CCF8ACC827C2 /* Pods-Custom-Video-Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -299,6 +350,7 @@
 		};
 		F86C64CC1D5C8A150081846D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B36BAC5A1AF42AC57B7CC942 /* Pods-Custom-Video-Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
