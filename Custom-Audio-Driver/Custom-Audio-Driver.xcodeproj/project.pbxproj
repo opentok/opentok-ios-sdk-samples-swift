@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		61122DE3CED62CF172F3DB96 /* Pods_Custom_Audio_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB59E80E2C2C37503A3B4369 /* Pods_Custom_Audio_Driver.framework */; };
 		A053761A1EB16D9700645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05376111EB16D9700645696 /* AppDelegate.swift */; };
 		A053761B1EB16D9700645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05376121EB16D9700645696 /* Assets.xcassets */; };
 		A053761C1EB16D9700645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376131EB16D9700645696 /* LaunchScreen.storyboard */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		34E3D1000A6E167D00845E84 /* Pods-Custom-Audio-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Audio-Driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		A05376111EB16D9700645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A05376121EB16D9700645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05376141EB16D9700645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -27,8 +25,6 @@
 		A05376181EB16D9700645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376191EB16D9700645696 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A07707041EDF7B8300E8FB97 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		AB59E80E2C2C37503A3B4369 /* Pods_Custom_Audio_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Custom_Audio_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D51943F324A1C8E988B957AB /* Pods-Custom-Audio-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Audio-Driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver.release.xcconfig"; sourceTree = "<group>"; };
 		F882D72A1D92B85B00FD72FD /* Custom-Audio-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Audio-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,22 +33,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61122DE3CED62CF172F3DB96 /* Pods_Custom_Audio_Driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		41EABA0C3D437FEC95D6B7B8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				34E3D1000A6E167D00845E84 /* Pods-Custom-Audio-Driver.debug.xcconfig */,
-				D51943F324A1C8E988B957AB /* Pods-Custom-Audio-Driver.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		A05376101EB16D9700645696 /* Custom-Audio-Driver */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,22 +53,12 @@
 			path = "Custom-Audio-Driver";
 			sourceTree = "<group>";
 		};
-		D54B44DE9750179FF9904749 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AB59E80E2C2C37503A3B4369 /* Pods_Custom_Audio_Driver.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F882D7211D92B85B00FD72FD = {
 			isa = PBXGroup;
 			children = (
 				A07707041EDF7B8300E8FB97 /* Default-568h@2x.png */,
 				A05376101EB16D9700645696 /* Custom-Audio-Driver */,
 				F882D72B1D92B85B00FD72FD /* Products */,
-				41EABA0C3D437FEC95D6B7B8 /* Pods */,
-				D54B44DE9750179FF9904749 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +77,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F882D73C1D92B85B00FD72FD /* Build configuration list for PBXNativeTarget "Custom-Audio-Driver" */;
 			buildPhases = (
-				8DB3C457C967D681870710C0 /* [CP] Check Pods Manifest.lock */,
 				F882D7261D92B85B00FD72FD /* Sources */,
 				F882D7271D92B85B00FD72FD /* Frameworks */,
 				F882D7281D92B85B00FD72FD /* Resources */,
@@ -163,31 +138,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8DB3C457C967D681870710C0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Custom-Audio-Driver-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F882D7261D92B85B00FD72FD /* Sources */ = {
@@ -331,7 +281,6 @@
 		};
 		F882D73D1D92B85B00FD72FD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34E3D1000A6E167D00845E84 /* Pods-Custom-Audio-Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -345,7 +294,6 @@
 		};
 		F882D73E1D92B85B00FD72FD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D51943F324A1C8E988B957AB /* Pods-Custom-Audio-Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
