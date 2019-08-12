@@ -73,10 +73,12 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     let captureQueue: DispatchQueue
     
     fileprivate func updateFrameOrientation() {
-        guard let inputDevice = self.videoInput else {
-            return;
+        DispatchQueue.main.async {
+            guard let inputDevice = self.videoInput else {
+                return;
+            }
+            self.videoFrameOrientation = UIApplication.shared.currentDeviceOrientation(cameraPosition: inputDevice.device.position)
         }
-        self.videoFrameOrientation = UIApplication.shared.currentDeviceOrientation(cameraPosition: inputDevice.device.position)
     }
     
     override init() {
