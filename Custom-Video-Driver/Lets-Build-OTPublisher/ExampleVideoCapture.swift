@@ -68,8 +68,18 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     fileprivate var captureHeight: UInt32
     fileprivate var capturing = false
     fileprivate let videoFrame: OTVideoFrame
+    fileprivate var videoFrameOrientation: OTVideoOrientation = .up
     
     let captureQueue: DispatchQueue
+    
+    fileprivate func updateFrameOrientation() {
+        DispatchQueue.main.async {
+            guard let inputDevice = self.videoInput else {
+                return;
+            }
+            self.videoFrameOrientation = UIApplication.shared.currentDeviceOrientation(cameraPosition: inputDevice.device.position)
+        }
+    }
     
     override init() {
         capturePreset = AVCaptureSession.Preset.vga640x480
@@ -121,12 +131,8 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     
     fileprivate func frameRateRange(forFrameRate fps: Int) -> AVFrameRateRange? {
         return videoInput?.device.activeFormat.videoSupportedFrameRateRanges.filter({ range in
-            guard let range = range as? AVFrameRateRange
-                else {
-                    return false
-            }
             return range.minFrameRate <= Double(fps) && Double(fps) <= range.maxFrameRate
-        }).first as? AVFrameRateRange
+        }).first
     }
     
     fileprivate func setFrameRate(fps: Int = 20) {
@@ -150,7 +156,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     }
     
     fileprivate func camera(withPosition pos: AVCaptureDevice.Position) -> AVCaptureDevice? {
-        return AVCaptureDevice.devices(for: AVMediaType.video).filter({ ($0 as! AVCaptureDevice).position == pos }).first as? AVCaptureDevice
+        return AVCaptureDevice.devices(for: AVMediaType.video).filter({ $0.position == pos }).first
     }
     
     fileprivate func updateCaptureFormat(width w: UInt32, height h: UInt32) {
@@ -161,6 +167,10 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
 
     // MARK: - OTVideoCapture protocol
     func initCapture() {
+        NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification,
+                                               object: nil,
+                                               queue: .main,
+                                               using: { (_) in self.updateFrameOrientation() })
         captureQueue.async {
             do {
                 try self.setupAudioVideoSession()
@@ -171,8 +181,8 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     }
     
     func start() -> Int32 {
-        capturing = true
-        self.captureSession?.startRunning()
+        self.updateFrameOrientation()
+        self.capturing = true
         return 0
     }
     
@@ -190,7 +200,10 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
         captureSession = nil
         videoOutput = nil
         videoInput = nil
-
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIDevice.orientationDidChangeNotification,
+                                                  object: nil)
     }
     
     func isCaptureStarted() -> Bool {
@@ -227,7 +240,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
                     guard let backFacingCamera = backFacingCamera() else { return nil }
                     return try AVCaptureDeviceInput.init(device: backFacingCamera)
                 } else if position == AVCaptureDevice.Position.front {
-                    guard let frontFacingCamera = backFacingCamera() else { return nil }
+                    guard let frontFacingCamera = frontFacingCamera() else { return nil }
                     return try AVCaptureDeviceInput.init(device: frontFacingCamera)
                 } else {
                     return nil
@@ -245,12 +258,12 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
         
         captureQueue.sync {
             captureSession?.beginConfiguration()
-            guard var videoInput = videoInput else { return }
+            guard let videoInput = self.videoInput else { return }
             captureSession?.removeInput(videoInput)
             
             if captureSession?.canAddInput(newInput) ?? false {
                 captureSession?.addInput(newInput)
-                videoInput = newInput
+                self.videoInput = newInput
             } else {
                 success = false
                 captureSession?.addInput(videoInput)
@@ -280,12 +293,12 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
 }
 
 extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didDrop sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         print("Dropping frame")
-    }        
+    }
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
-        
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
+    {
         if !capturing || videoCaptureConsumer == nil {
             return
         }
@@ -319,8 +332,7 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         videoFrame.format?.estimatedFramesPerSecond = Double(minFrameDuration.timescale) / Double(minFrameDuration.value)
         videoFrame.format?.estimatedCaptureDelay = 100
-        videoFrame.orientation = UIApplication.shared
-            .currentDeviceOrientation(cameraPosition: videoInput.device.position)
+        videoFrame.orientation = self.videoFrameOrientation
         
         videoFrame.clearPlanes()
         
