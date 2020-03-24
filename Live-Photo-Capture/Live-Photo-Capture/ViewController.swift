@@ -86,13 +86,12 @@ class ViewController: UIViewController {
         pubSettings.name = UIDevice.current.name
         publisher = OTPublisher(delegate: self, settings: pubSettings)
         if let pub = publisher {
+            let videoRender = ExampleVideoRender()
+            pub.videoRender = videoRender
             pub.videoCapture = photoVideoCapture
             session.publish(pub, error: &error)
-            
-            if let pubView = pub.view {
-                pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
-                view.addSubview(pubView)
-            }
+            videoRender.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+            view.addSubview(videoRender)
         }
     }
     

@@ -17,6 +17,12 @@ class ExampleVideoRender: UIView {
     
     var delegate: ExampleVideoRenderDelegate?
     
+    var mirroring: Bool = true {
+        willSet(newValue) {
+            renderer?.mirroring = newValue
+        }
+    }
+    
     fileprivate var glContext: EAGLContext?
     fileprivate var renderer: EAGLVideoRenderer?
     fileprivate var glkView: GLKView?
@@ -61,6 +67,7 @@ class ExampleVideoRender: UIView {
         displayLink!.frameInterval = 2
         displayLink!.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
         
+        renderer!.mirroring = mirroring
         renderer!.setupGL()
         
         displayLink!.isPaused = false

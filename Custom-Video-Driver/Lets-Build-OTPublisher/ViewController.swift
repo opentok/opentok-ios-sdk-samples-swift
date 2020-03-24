@@ -112,8 +112,11 @@ class ViewController: UIViewController {
     
     
     @IBAction func toggleCamera(_ sender: Any) {
-        if let capturer = publisher?.videoCapture as? ExampleVideoCapture {
+        if let capturer = publisher?.videoCapture as? ExampleVideoCapture,
+            let renderer = publisher?.videoRender as? ExampleVideoRender {
+            
             let _ = capturer.toggleCameraPosition()
+            renderer.mirroring = (capturer.cameraPosition == AVCaptureDevice.Position.front) ? true : false
         }
     }
 }
