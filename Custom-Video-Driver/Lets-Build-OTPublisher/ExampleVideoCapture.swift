@@ -111,7 +111,6 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
                 print("Failed to acquire camera device for video")
                 return
         }
-       
         videoInput = try AVCaptureDeviceInput(device: device)
         guard let videoInput = self.videoInput else {
             print("There was an error creating videoInput")
