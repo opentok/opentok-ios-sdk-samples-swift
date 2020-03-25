@@ -58,6 +58,12 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     
     var delegate: FrameCapturerMetadataDelegate?
     
+    var cameraPosition: AVCaptureDevice.Position {
+        get {
+            videoInput?.device.position ?? .unspecified
+        }
+    }
+    
     fileprivate var capturePreset: AVCaptureSession.Preset {
         didSet {
             (captureWidth, captureHeight) = capturePreset.dimensionForCapturePreset()
@@ -68,7 +74,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     fileprivate var captureHeight: UInt32
     fileprivate var capturing = false
     fileprivate let videoFrame: OTVideoFrame
-    fileprivate var videoFrameOrientation: OTVideoOrientation = .up
+    fileprivate var videoFrameOrientation: OTVideoOrientation = .left  //potrait
     
     let captureQueue: DispatchQueue
     
@@ -102,7 +108,6 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
                 print("Failed to acquire camera device for video")
                 return
         }
-
         videoInput = try AVCaptureDeviceInput(device: device)
         guard let videoInput = self.videoInput else {
             print("There was an error creating videoInput")

@@ -16,18 +16,21 @@ protocol ExampleVideoRenderDelegate {
 class ExampleVideoRender: UIView {
     
     var delegate: ExampleVideoRenderDelegate?
+    var mirroring: Bool = true {
+        didSet {
+            if let renderer = renderer {
+                renderer.mirroring = mirroring
+            }
+        }
+    }
     
     fileprivate var glContext: EAGLContext?
     fileprivate var renderer: EAGLVideoRenderer?
     fileprivate var glkView: GLKView?
-    
     fileprivate var frameLock: NSLock?
-    
     fileprivate var renderingEnabled: Bool = true
     fileprivate var clearRenderer = 0
-    
     fileprivate var lastVideoFrame: OTVideoFrame?
-    
     fileprivate var displayLinkProxy: DisplayLinkProxy?
     fileprivate var displayLink: CADisplayLink?
     
@@ -35,15 +38,14 @@ class ExampleVideoRender: UIView {
         super.init(frame: frame)
         glContext = EAGLContext(api:.openGLES2)
         renderer = EAGLVideoRenderer(context: glContext!)
+       
         glkView = GLKView(frame: CGRect.zero, context: glContext!)
-        
         glkView?.drawableColorFormat = .RGBA8888
         glkView?.drawableDepthFormat = .formatNone
         glkView?.drawableStencilFormat = .formatNone
         glkView?.drawableMultisample = .multisampleNone
         glkView?.delegate = self;
         glkView?.layer.masksToBounds = true;
-        
         addSubview(glkView!)
         
         frameLock = NSLock()
@@ -61,6 +63,7 @@ class ExampleVideoRender: UIView {
         displayLink!.frameInterval = 2
         displayLink!.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
         
+        renderer!.mirroring = mirroring
         renderer!.setupGL()
         
         displayLink!.isPaused = false
