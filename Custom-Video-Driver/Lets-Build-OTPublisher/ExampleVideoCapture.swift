@@ -60,7 +60,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     
     var cameraPosition: AVCaptureDevice.Position {
         get {
-            videoInput?.device.position ?? .unspecified
+            return videoInput?.device.position ?? .unspecified
         }
     }
     
