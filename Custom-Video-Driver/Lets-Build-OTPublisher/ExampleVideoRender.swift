@@ -31,6 +31,7 @@ class ExampleVideoRender: UIView {
     fileprivate var renderingEnabled: Bool = true
     fileprivate var clearRenderer = 0
     fileprivate var lastVideoFrame: OTVideoFrame?
+    fileprivate var lastVideoFrameRendered: Bool = true
     fileprivate var displayLinkProxy: DisplayLinkProxy?
     fileprivate var displayLink: CADisplayLink?
     
@@ -115,20 +116,22 @@ extension ExampleVideoRender: GLKViewDelegate {
             frameLock?.unlock()
         }
         frameLock?.lock()
-        guard let frame = lastVideoFrame
+        //Coming from bg you will double render and deallocate will crash below. Hence check for lastVideoFrameRendered == false
+        guard let frame = lastVideoFrame , lastVideoFrameRendered == false
             else {
                 return
         }
         
         renderer?.drawFrame(frame: frame, withViewport: view.frame)
+        lastVideoFrameRendered = true
         
         let yPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 0)?.assumingMemoryBound(to: GLubyte.self)
         let uPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 1)?.assumingMemoryBound(to: GLubyte.self)
         let vPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 2)?.assumingMemoryBound(to: GLubyte.self)
-        let planeSize = calculatePlaneSize(forFrame: frame)
-        yPlane?.deallocate(capacity: planeSize.ySize)
-        uPlane?.deallocate(capacity: planeSize.uSize)
-        vPlane?.deallocate(capacity: planeSize.vSize)
+        
+        yPlane?.deallocate()
+        uPlane?.deallocate()
+        vPlane?.deallocate()
     }
     
 }
@@ -154,6 +157,8 @@ extension ExampleVideoRender: OTVideoRender {
             lastVideoFrame?.planes?.addPointer(yPlane)
             lastVideoFrame?.planes?.addPointer(uPlane)
             lastVideoFrame?.planes?.addPointer(vPlane)
+            
+            lastVideoFrameRendered = false
             
             fLock.unlock()
             
