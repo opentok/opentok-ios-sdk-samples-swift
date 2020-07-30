@@ -124,7 +124,13 @@ extension ExampleVideoRender: GLKViewDelegate {
         
         renderer?.drawFrame(frame: frame, withViewport: view.frame)
         lastVideoFrameRendered = true
-        
+        deallocateFrame(frame)
+    }
+    
+    func deallocateFrame(_ frame: OTVideoFrame?) -> Void {
+        guard let frame = frame else {
+            return
+        }
         let yPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 0)?.assumingMemoryBound(to: GLubyte.self)
         let uPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 1)?.assumingMemoryBound(to: GLubyte.self)
         let vPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 2)?.assumingMemoryBound(to: GLubyte.self)
@@ -141,7 +147,9 @@ extension ExampleVideoRender: OTVideoRender {
         if let fLock = frameLock, let format = frame.format {
             fLock.lock()
             assert(format.pixelFormat == .I420)
-            
+            if lastVideoFrameRendered == false {
+                deallocateFrame(lastVideoFrame ?? nil)
+            }
             lastVideoFrame = OTVideoFrame(format: format)
             lastVideoFrame?.timestamp = frame.timestamp
             
