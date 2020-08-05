@@ -29,9 +29,7 @@ class ExampleVideoRender: UIView {
     fileprivate var glkView: GLKView?
     fileprivate var frameLock: NSLock?
     fileprivate var renderingEnabled: Bool = true
-    fileprivate var clearRenderer = 0
     fileprivate var lastVideoFrame: OTVideoFrame?
-    fileprivate var lastVideoFrameRendered: Bool = true
     fileprivate var displayLinkProxy: DisplayLinkProxy?
     fileprivate var displayLink: CADisplayLink?
     
@@ -83,8 +81,10 @@ class ExampleVideoRender: UIView {
     
     var needsRendererUpdate: Bool {
         get {
+            guard lastVideoFrame != nil else {
+                return false
+            }
             return renderer?.lastFrameTime != lastVideoFrame?.timestamp.value
-                || clearRenderer != 0
         }
     }
         
@@ -117,20 +117,21 @@ extension ExampleVideoRender: GLKViewDelegate {
         }
         frameLock?.lock()
         //Coming from bg you will double render and deallocate will crash below. Hence check for lastVideoFrameRendered == false
-        guard let frame = lastVideoFrame , lastVideoFrameRendered == false
+        guard let lastVideoFrame = lastVideoFrame
             else {
                 return
         }
         
-        renderer?.drawFrame(frame: frame, withViewport: view.frame)
-        lastVideoFrameRendered = true
-        deallocateFrame(frame)
+        renderer?.drawFrame(frame: lastVideoFrame, withViewport: view.frame)
+        deallocateFrame(lastVideoFrame)
+        self.lastVideoFrame = nil
     }
     
     func deallocateFrame(_ frame: OTVideoFrame?) -> Void {
         guard let frame = frame else {
             return
         }
+        
         let yPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 0)?.assumingMemoryBound(to: GLubyte.self)
         let uPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 1)?.assumingMemoryBound(to: GLubyte.self)
         let vPlane: UnsafeMutablePointer<GLubyte>? = frame.planes?.pointer(at: 2)?.assumingMemoryBound(to: GLubyte.self)
@@ -138,6 +139,7 @@ extension ExampleVideoRender: GLKViewDelegate {
         yPlane?.deallocate()
         uPlane?.deallocate()
         vPlane?.deallocate()
+
     }
     
 }
@@ -147,9 +149,9 @@ extension ExampleVideoRender: OTVideoRender {
         if let fLock = frameLock, let format = frame.format {
             fLock.lock()
             assert(format.pixelFormat == .I420)
-            if lastVideoFrameRendered == false {
-                deallocateFrame(lastVideoFrame ?? nil)
-            }
+
+            deallocateFrame(lastVideoFrame)
+            
             lastVideoFrame = OTVideoFrame(format: format)
             lastVideoFrame?.timestamp = frame.timestamp
             
@@ -165,9 +167,7 @@ extension ExampleVideoRender: OTVideoRender {
             lastVideoFrame?.planes?.addPointer(yPlane)
             lastVideoFrame?.planes?.addPointer(uPlane)
             lastVideoFrame?.planes?.addPointer(vPlane)
-            
-            lastVideoFrameRendered = false
-            
+    
             fLock.unlock()
             
             if let delegate = delegate {
