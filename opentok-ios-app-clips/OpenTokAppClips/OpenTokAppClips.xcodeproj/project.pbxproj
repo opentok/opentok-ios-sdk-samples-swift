@@ -1,0 +1,1174 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4537DD0A24FE79C1009C7051 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD0924FE79C1009C7051 /* AudioToolbox.framework */; };
+		4537DD0C24FE79C8009C7051 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD0B24FE79C8009C7051 /* AVFoundation.framework */; };
+		4537DD0E24FE79D0009C7051 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD0D24FE79D0009C7051 /* CoreGraphics.framework */; };
+		4537DD1024FE79DA009C7051 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD0F24FE79DA009C7051 /* CoreMedia.framework */; };
+		4537DD1224FE79E2009C7051 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1124FE79E2009C7051 /* CoreTelephony.framework */; };
+		4537DD1424FE79EB009C7051 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1324FE79EB009C7051 /* CoreVideo.framework */; };
+		4537DD1624FE79F4009C7051 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1524FE79F4009C7051 /* Foundation.framework */; };
+		4537DD1824FE7A02009C7051 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1724FE7A02009C7051 /* QuartzCore.framework */; };
+		4537DD1A24FE7A13009C7051 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1924FE7A13009C7051 /* SystemConfiguration.framework */; };
+		4537DD1C24FE7A1C009C7051 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1B24FE7A1C009C7051 /* UIKit.framework */; };
+		4537DD1E24FE7A25009C7051 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1D24FE7A25009C7051 /* VideoToolbox.framework */; };
+		4537DD2024FE7A33009C7051 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD1F24FE7A33009C7051 /* OpenGLES.framework */; };
+		4537DD2224FE7A3A009C7051 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD2124FE7A3A009C7051 /* GLKit.framework */; };
+		4537DD2424FE7A53009C7051 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD2324FE7A53009C7051 /* libsqlite3.tbd */; };
+		4537DD2624FE7A61009C7051 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4537DD2524FE7A61009C7051 /* libc++.tbd */; };
+		457238D024F7E164004BD330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457238CF24F7E164004BD330 /* AppDelegate.swift */; };
+		457238D224F7E164004BD330 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457238D124F7E164004BD330 /* SceneDelegate.swift */; };
+		457238D424F7E164004BD330 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457238D324F7E164004BD330 /* ViewController.swift */; };
+		457238D724F7E164004BD330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457238D524F7E164004BD330 /* Main.storyboard */; };
+		457238D924F7E165004BD330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 457238D824F7E165004BD330 /* Assets.xcassets */; };
+		457238DC24F7E165004BD330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457238DA24F7E165004BD330 /* LaunchScreen.storyboard */; };
+		457238E824F7E165004BD330 /* MyAppClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457238E724F7E165004BD330 /* MyAppClipTests.swift */; };
+		457238F324F7E165004BD330 /* MyAppClipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457238F224F7E165004BD330 /* MyAppClipUITests.swift */; };
+		457238F724F7E165004BD330 /* MyAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 457238CD24F7E164004BD330 /* MyAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4577C36624F7DF6C0098FBF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577C36524F7DF6C0098FBF3 /* AppDelegate.swift */; };
+		4577C36824F7DF6C0098FBF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577C36724F7DF6C0098FBF3 /* SceneDelegate.swift */; };
+		4577C36A24F7DF6C0098FBF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577C36924F7DF6C0098FBF3 /* ViewController.swift */; };
+		4577C36D24F7DF6C0098FBF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4577C36B24F7DF6C0098FBF3 /* Main.storyboard */; };
+		4577C36F24F7DF6D0098FBF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4577C36E24F7DF6D0098FBF3 /* Assets.xcassets */; };
+		4577C37224F7DF6D0098FBF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4577C37024F7DF6D0098FBF3 /* LaunchScreen.storyboard */; };
+		4577C37D24F7DF6D0098FBF3 /* OpenTokAppClipsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577C37C24F7DF6D0098FBF3 /* OpenTokAppClipsTests.swift */; };
+		4577C38824F7DF6D0098FBF3 /* OpenTokAppClipsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577C38724F7DF6D0098FBF3 /* OpenTokAppClipsUITests.swift */; };
+		8094385B98CC51E63A8B4B5B /* Pods_MyAppClip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E54794C91945B9FC74AC0FE /* Pods_MyAppClip.framework */; };
+		E804F7EA3FFFDB4BDBA3E3B1 /* Pods_OpenTokAppClips.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EB97EC51765AF19D5C76C99 /* Pods_OpenTokAppClips.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		457238E424F7E165004BD330 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4577C35A24F7DF6C0098FBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 457238CC24F7E164004BD330;
+			remoteInfo = MyAppClip;
+		};
+		457238EF24F7E165004BD330 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4577C35A24F7DF6C0098FBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 457238CC24F7E164004BD330;
+			remoteInfo = MyAppClip;
+		};
+		457238F524F7E165004BD330 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4577C35A24F7DF6C0098FBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 457238CC24F7E164004BD330;
+			remoteInfo = MyAppClip;
+		};
+		4577C37924F7DF6D0098FBF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4577C35A24F7DF6C0098FBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4577C36124F7DF6C0098FBF3;
+			remoteInfo = OpenTokAppClips;
+		};
+		4577C38424F7DF6D0098FBF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4577C35A24F7DF6C0098FBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4577C36124F7DF6C0098FBF3;
+			remoteInfo = OpenTokAppClips;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		457238F824F7E165004BD330 /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				457238F724F7E165004BD330 /* MyAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0EB97EC51765AF19D5C76C99 /* Pods_OpenTokAppClips.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenTokAppClips.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		110767DDF5C80AD78DEEA184 /* Pods-MyAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppClip.debug.xcconfig"; path = "Target Support Files/Pods-MyAppClip/Pods-MyAppClip.debug.xcconfig"; sourceTree = "<group>"; };
+		2F9C5A551C062A475059901F /* Pods-OpenTokAppClips.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenTokAppClips.debug.xcconfig"; path = "Target Support Files/Pods-OpenTokAppClips/Pods-OpenTokAppClips.debug.xcconfig"; sourceTree = "<group>"; };
+		4537DD0924FE79C1009C7051 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4537DD0B24FE79C8009C7051 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4537DD0D24FE79D0009C7051 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4537DD0F24FE79DA009C7051 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		4537DD1124FE79E2009C7051 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4537DD1324FE79EB009C7051 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		4537DD1524FE79F4009C7051 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4537DD1724FE7A02009C7051 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4537DD1924FE7A13009C7051 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4537DD1B24FE7A1C009C7051 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4537DD1D24FE7A25009C7051 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		4537DD1F24FE7A33009C7051 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4537DD2124FE7A3A009C7051 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		4537DD2324FE7A53009C7051 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		4537DD2524FE7A61009C7051 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		457238CD24F7E164004BD330 /* MyAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		457238CF24F7E164004BD330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		457238D124F7E164004BD330 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		457238D324F7E164004BD330 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		457238D624F7E164004BD330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		457238D824F7E165004BD330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		457238DB24F7E165004BD330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		457238DD24F7E165004BD330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		457238DE24F7E165004BD330 /* MyAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyAppClip.entitlements; sourceTree = "<group>"; };
+		457238E324F7E165004BD330 /* MyAppClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAppClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		457238E724F7E165004BD330 /* MyAppClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppClipTests.swift; sourceTree = "<group>"; };
+		457238E924F7E165004BD330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		457238EE24F7E165004BD330 /* MyAppClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyAppClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		457238F224F7E165004BD330 /* MyAppClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppClipUITests.swift; sourceTree = "<group>"; };
+		457238F424F7E165004BD330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4572391224F97AE2004BD330 /* OpenTokAppClips.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenTokAppClips.entitlements; sourceTree = "<group>"; };
+		4577C36224F7DF6C0098FBF3 /* OpenTokAppClips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenTokAppClips.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4577C36524F7DF6C0098FBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4577C36724F7DF6C0098FBF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4577C36924F7DF6C0098FBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4577C36C24F7DF6C0098FBF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4577C36E24F7DF6D0098FBF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4577C37124F7DF6D0098FBF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4577C37324F7DF6D0098FBF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4577C37824F7DF6D0098FBF3 /* OpenTokAppClipsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenTokAppClipsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4577C37C24F7DF6D0098FBF3 /* OpenTokAppClipsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTokAppClipsTests.swift; sourceTree = "<group>"; };
+		4577C37E24F7DF6D0098FBF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4577C38324F7DF6D0098FBF3 /* OpenTokAppClipsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenTokAppClipsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4577C38724F7DF6D0098FBF3 /* OpenTokAppClipsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTokAppClipsUITests.swift; sourceTree = "<group>"; };
+		4577C38924F7DF6D0098FBF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E54794C91945B9FC74AC0FE /* Pods_MyAppClip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyAppClip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B58C1C100C1C27624929EF25 /* Pods-MyAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyAppClip.release.xcconfig"; path = "Target Support Files/Pods-MyAppClip/Pods-MyAppClip.release.xcconfig"; sourceTree = "<group>"; };
+		D1193565AC12D00155AA0841 /* Pods-OpenTokAppClips.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenTokAppClips.release.xcconfig"; path = "Target Support Files/Pods-OpenTokAppClips/Pods-OpenTokAppClips.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		457238CA24F7E164004BD330 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4537DD2624FE7A61009C7051 /* libc++.tbd in Frameworks */,
+				4537DD2424FE7A53009C7051 /* libsqlite3.tbd in Frameworks */,
+				4537DD2224FE7A3A009C7051 /* GLKit.framework in Frameworks */,
+				4537DD2024FE7A33009C7051 /* OpenGLES.framework in Frameworks */,
+				4537DD1E24FE7A25009C7051 /* VideoToolbox.framework in Frameworks */,
+				4537DD1C24FE7A1C009C7051 /* UIKit.framework in Frameworks */,
+				4537DD1A24FE7A13009C7051 /* SystemConfiguration.framework in Frameworks */,
+				4537DD1824FE7A02009C7051 /* QuartzCore.framework in Frameworks */,
+				4537DD1624FE79F4009C7051 /* Foundation.framework in Frameworks */,
+				4537DD1424FE79EB009C7051 /* CoreVideo.framework in Frameworks */,
+				4537DD1224FE79E2009C7051 /* CoreTelephony.framework in Frameworks */,
+				4537DD1024FE79DA009C7051 /* CoreMedia.framework in Frameworks */,
+				4537DD0E24FE79D0009C7051 /* CoreGraphics.framework in Frameworks */,
+				4537DD0C24FE79C8009C7051 /* AVFoundation.framework in Frameworks */,
+				4537DD0A24FE79C1009C7051 /* AudioToolbox.framework in Frameworks */,
+				8094385B98CC51E63A8B4B5B /* Pods_MyAppClip.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		457238E024F7E165004BD330 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		457238EB24F7E165004BD330 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C35F24F7DF6C0098FBF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E804F7EA3FFFDB4BDBA3E3B1 /* Pods_OpenTokAppClips.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C37524F7DF6D0098FBF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C38024F7DF6D0098FBF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		457238CE24F7E164004BD330 /* MyAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				457238CF24F7E164004BD330 /* AppDelegate.swift */,
+				457238D124F7E164004BD330 /* SceneDelegate.swift */,
+				457238D324F7E164004BD330 /* ViewController.swift */,
+				457238D524F7E164004BD330 /* Main.storyboard */,
+				457238D824F7E165004BD330 /* Assets.xcassets */,
+				457238DA24F7E165004BD330 /* LaunchScreen.storyboard */,
+				457238DD24F7E165004BD330 /* Info.plist */,
+				457238DE24F7E165004BD330 /* MyAppClip.entitlements */,
+			);
+			path = MyAppClip;
+			sourceTree = "<group>";
+		};
+		457238E624F7E165004BD330 /* MyAppClipTests */ = {
+			isa = PBXGroup;
+			children = (
+				457238E724F7E165004BD330 /* MyAppClipTests.swift */,
+				457238E924F7E165004BD330 /* Info.plist */,
+			);
+			path = MyAppClipTests;
+			sourceTree = "<group>";
+		};
+		457238F124F7E165004BD330 /* MyAppClipUITests */ = {
+			isa = PBXGroup;
+			children = (
+				457238F224F7E165004BD330 /* MyAppClipUITests.swift */,
+				457238F424F7E165004BD330 /* Info.plist */,
+			);
+			path = MyAppClipUITests;
+			sourceTree = "<group>";
+		};
+		4577C35924F7DF6C0098FBF3 = {
+			isa = PBXGroup;
+			children = (
+				4577C36424F7DF6C0098FBF3 /* OpenTokAppClips */,
+				4577C37B24F7DF6D0098FBF3 /* OpenTokAppClipsTests */,
+				4577C38624F7DF6D0098FBF3 /* OpenTokAppClipsUITests */,
+				457238CE24F7E164004BD330 /* MyAppClip */,
+				457238E624F7E165004BD330 /* MyAppClipTests */,
+				457238F124F7E165004BD330 /* MyAppClipUITests */,
+				4577C36324F7DF6C0098FBF3 /* Products */,
+				78BE057BAF25663CF1333428 /* Pods */,
+				7DB418DAEA89C1ECC7D31069 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4577C36324F7DF6C0098FBF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4577C36224F7DF6C0098FBF3 /* OpenTokAppClips.app */,
+				4577C37824F7DF6D0098FBF3 /* OpenTokAppClipsTests.xctest */,
+				4577C38324F7DF6D0098FBF3 /* OpenTokAppClipsUITests.xctest */,
+				457238CD24F7E164004BD330 /* MyAppClip.app */,
+				457238E324F7E165004BD330 /* MyAppClipTests.xctest */,
+				457238EE24F7E165004BD330 /* MyAppClipUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4577C36424F7DF6C0098FBF3 /* OpenTokAppClips */ = {
+			isa = PBXGroup;
+			children = (
+				4572391224F97AE2004BD330 /* OpenTokAppClips.entitlements */,
+				4577C36524F7DF6C0098FBF3 /* AppDelegate.swift */,
+				4577C36724F7DF6C0098FBF3 /* SceneDelegate.swift */,
+				4577C36924F7DF6C0098FBF3 /* ViewController.swift */,
+				4577C36B24F7DF6C0098FBF3 /* Main.storyboard */,
+				4577C36E24F7DF6D0098FBF3 /* Assets.xcassets */,
+				4577C37024F7DF6D0098FBF3 /* LaunchScreen.storyboard */,
+				4577C37324F7DF6D0098FBF3 /* Info.plist */,
+			);
+			path = OpenTokAppClips;
+			sourceTree = "<group>";
+		};
+		4577C37B24F7DF6D0098FBF3 /* OpenTokAppClipsTests */ = {
+			isa = PBXGroup;
+			children = (
+				4577C37C24F7DF6D0098FBF3 /* OpenTokAppClipsTests.swift */,
+				4577C37E24F7DF6D0098FBF3 /* Info.plist */,
+			);
+			path = OpenTokAppClipsTests;
+			sourceTree = "<group>";
+		};
+		4577C38624F7DF6D0098FBF3 /* OpenTokAppClipsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4577C38724F7DF6D0098FBF3 /* OpenTokAppClipsUITests.swift */,
+				4577C38924F7DF6D0098FBF3 /* Info.plist */,
+			);
+			path = OpenTokAppClipsUITests;
+			sourceTree = "<group>";
+		};
+		78BE057BAF25663CF1333428 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F9C5A551C062A475059901F /* Pods-OpenTokAppClips.debug.xcconfig */,
+				D1193565AC12D00155AA0841 /* Pods-OpenTokAppClips.release.xcconfig */,
+				110767DDF5C80AD78DEEA184 /* Pods-MyAppClip.debug.xcconfig */,
+				B58C1C100C1C27624929EF25 /* Pods-MyAppClip.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		7DB418DAEA89C1ECC7D31069 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4537DD2524FE7A61009C7051 /* libc++.tbd */,
+				4537DD2324FE7A53009C7051 /* libsqlite3.tbd */,
+				4537DD2124FE7A3A009C7051 /* GLKit.framework */,
+				4537DD1F24FE7A33009C7051 /* OpenGLES.framework */,
+				4537DD1D24FE7A25009C7051 /* VideoToolbox.framework */,
+				4537DD1B24FE7A1C009C7051 /* UIKit.framework */,
+				4537DD1924FE7A13009C7051 /* SystemConfiguration.framework */,
+				4537DD1724FE7A02009C7051 /* QuartzCore.framework */,
+				4537DD1524FE79F4009C7051 /* Foundation.framework */,
+				4537DD1324FE79EB009C7051 /* CoreVideo.framework */,
+				4537DD1124FE79E2009C7051 /* CoreTelephony.framework */,
+				4537DD0F24FE79DA009C7051 /* CoreMedia.framework */,
+				4537DD0D24FE79D0009C7051 /* CoreGraphics.framework */,
+				4537DD0B24FE79C8009C7051 /* AVFoundation.framework */,
+				4537DD0924FE79C1009C7051 /* AudioToolbox.framework */,
+				0EB97EC51765AF19D5C76C99 /* Pods_OpenTokAppClips.framework */,
+				9E54794C91945B9FC74AC0FE /* Pods_MyAppClip.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		457238CC24F7E164004BD330 /* MyAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 457238FF24F7E165004BD330 /* Build configuration list for PBXNativeTarget "MyAppClip" */;
+			buildPhases = (
+				2A081963BCB068F4A839F99B /* [CP] Check Pods Manifest.lock */,
+				457238C924F7E164004BD330 /* Sources */,
+				457238CA24F7E164004BD330 /* Frameworks */,
+				457238CB24F7E164004BD330 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyAppClip;
+			productName = MyAppClip;
+			productReference = 457238CD24F7E164004BD330 /* MyAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+		457238E224F7E165004BD330 /* MyAppClipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4572390024F7E165004BD330 /* Build configuration list for PBXNativeTarget "MyAppClipTests" */;
+			buildPhases = (
+				457238DF24F7E165004BD330 /* Sources */,
+				457238E024F7E165004BD330 /* Frameworks */,
+				457238E124F7E165004BD330 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				457238E524F7E165004BD330 /* PBXTargetDependency */,
+			);
+			name = MyAppClipTests;
+			productName = MyAppClipTests;
+			productReference = 457238E324F7E165004BD330 /* MyAppClipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		457238ED24F7E165004BD330 /* MyAppClipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4572390124F7E165004BD330 /* Build configuration list for PBXNativeTarget "MyAppClipUITests" */;
+			buildPhases = (
+				457238EA24F7E165004BD330 /* Sources */,
+				457238EB24F7E165004BD330 /* Frameworks */,
+				457238EC24F7E165004BD330 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				457238F024F7E165004BD330 /* PBXTargetDependency */,
+			);
+			name = MyAppClipUITests;
+			productName = MyAppClipUITests;
+			productReference = 457238EE24F7E165004BD330 /* MyAppClipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		4577C36124F7DF6C0098FBF3 /* OpenTokAppClips */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4577C38C24F7DF6D0098FBF3 /* Build configuration list for PBXNativeTarget "OpenTokAppClips" */;
+			buildPhases = (
+				E98C928F322144DB2E2889B5 /* [CP] Check Pods Manifest.lock */,
+				4577C35E24F7DF6C0098FBF3 /* Sources */,
+				4577C35F24F7DF6C0098FBF3 /* Frameworks */,
+				4577C36024F7DF6C0098FBF3 /* Resources */,
+				457238F824F7E165004BD330 /* Embed App Clips */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				457238F624F7E165004BD330 /* PBXTargetDependency */,
+			);
+			name = OpenTokAppClips;
+			productName = OpenTokAppClips;
+			productReference = 4577C36224F7DF6C0098FBF3 /* OpenTokAppClips.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4577C37724F7DF6D0098FBF3 /* OpenTokAppClipsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4577C38F24F7DF6D0098FBF3 /* Build configuration list for PBXNativeTarget "OpenTokAppClipsTests" */;
+			buildPhases = (
+				4577C37424F7DF6D0098FBF3 /* Sources */,
+				4577C37524F7DF6D0098FBF3 /* Frameworks */,
+				4577C37624F7DF6D0098FBF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4577C37A24F7DF6D0098FBF3 /* PBXTargetDependency */,
+			);
+			name = OpenTokAppClipsTests;
+			productName = OpenTokAppClipsTests;
+			productReference = 4577C37824F7DF6D0098FBF3 /* OpenTokAppClipsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4577C38224F7DF6D0098FBF3 /* OpenTokAppClipsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4577C39224F7DF6D0098FBF3 /* Build configuration list for PBXNativeTarget "OpenTokAppClipsUITests" */;
+			buildPhases = (
+				4577C37F24F7DF6D0098FBF3 /* Sources */,
+				4577C38024F7DF6D0098FBF3 /* Frameworks */,
+				4577C38124F7DF6D0098FBF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4577C38524F7DF6D0098FBF3 /* PBXTargetDependency */,
+			);
+			name = OpenTokAppClipsUITests;
+			productName = OpenTokAppClipsUITests;
+			productReference = 4577C38324F7DF6D0098FBF3 /* OpenTokAppClipsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4577C35A24F7DF6C0098FBF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					457238CC24F7E164004BD330 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					457238E224F7E165004BD330 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 457238CC24F7E164004BD330;
+					};
+					457238ED24F7E165004BD330 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 457238CC24F7E164004BD330;
+					};
+					4577C36124F7DF6C0098FBF3 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					4577C37724F7DF6D0098FBF3 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 4577C36124F7DF6C0098FBF3;
+					};
+					4577C38224F7DF6D0098FBF3 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 4577C36124F7DF6C0098FBF3;
+					};
+				};
+			};
+			buildConfigurationList = 4577C35D24F7DF6C0098FBF3 /* Build configuration list for PBXProject "OpenTokAppClips" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4577C35924F7DF6C0098FBF3;
+			productRefGroup = 4577C36324F7DF6C0098FBF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4577C36124F7DF6C0098FBF3 /* OpenTokAppClips */,
+				4577C37724F7DF6D0098FBF3 /* OpenTokAppClipsTests */,
+				4577C38224F7DF6D0098FBF3 /* OpenTokAppClipsUITests */,
+				457238CC24F7E164004BD330 /* MyAppClip */,
+				457238E224F7E165004BD330 /* MyAppClipTests */,
+				457238ED24F7E165004BD330 /* MyAppClipUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		457238CB24F7E164004BD330 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457238DC24F7E165004BD330 /* LaunchScreen.storyboard in Resources */,
+				457238D924F7E165004BD330 /* Assets.xcassets in Resources */,
+				457238D724F7E164004BD330 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		457238E124F7E165004BD330 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		457238EC24F7E165004BD330 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C36024F7DF6C0098FBF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4577C37224F7DF6D0098FBF3 /* LaunchScreen.storyboard in Resources */,
+				4577C36F24F7DF6D0098FBF3 /* Assets.xcassets in Resources */,
+				4577C36D24F7DF6C0098FBF3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C37624F7DF6D0098FBF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C38124F7DF6D0098FBF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A081963BCB068F4A839F99B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyAppClip-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E98C928F322144DB2E2889B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OpenTokAppClips-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		457238C924F7E164004BD330 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457238D424F7E164004BD330 /* ViewController.swift in Sources */,
+				457238D024F7E164004BD330 /* AppDelegate.swift in Sources */,
+				457238D224F7E164004BD330 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		457238DF24F7E165004BD330 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457238E824F7E165004BD330 /* MyAppClipTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		457238EA24F7E165004BD330 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457238F324F7E165004BD330 /* MyAppClipUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C35E24F7DF6C0098FBF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4577C36A24F7DF6C0098FBF3 /* ViewController.swift in Sources */,
+				4577C36624F7DF6C0098FBF3 /* AppDelegate.swift in Sources */,
+				4577C36824F7DF6C0098FBF3 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C37424F7DF6D0098FBF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4577C37D24F7DF6D0098FBF3 /* OpenTokAppClipsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4577C37F24F7DF6D0098FBF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4577C38824F7DF6D0098FBF3 /* OpenTokAppClipsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		457238E524F7E165004BD330 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 457238CC24F7E164004BD330 /* MyAppClip */;
+			targetProxy = 457238E424F7E165004BD330 /* PBXContainerItemProxy */;
+		};
+		457238F024F7E165004BD330 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 457238CC24F7E164004BD330 /* MyAppClip */;
+			targetProxy = 457238EF24F7E165004BD330 /* PBXContainerItemProxy */;
+		};
+		457238F624F7E165004BD330 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 457238CC24F7E164004BD330 /* MyAppClip */;
+			targetProxy = 457238F524F7E165004BD330 /* PBXContainerItemProxy */;
+		};
+		4577C37A24F7DF6D0098FBF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4577C36124F7DF6C0098FBF3 /* OpenTokAppClips */;
+			targetProxy = 4577C37924F7DF6D0098FBF3 /* PBXContainerItemProxy */;
+		};
+		4577C38524F7DF6D0098FBF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4577C36124F7DF6C0098FBF3 /* OpenTokAppClips */;
+			targetProxy = 4577C38424F7DF6D0098FBF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		457238D524F7E164004BD330 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				457238D624F7E164004BD330 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		457238DA24F7E165004BD330 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				457238DB24F7E165004BD330 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4577C36B24F7DF6C0098FBF3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4577C36C24F7DF6C0098FBF3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4577C37024F7DF6D0098FBF3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4577C37124F7DF6D0098FBF3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		457238F924F7E165004BD330 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 110767DDF5C80AD78DEEA184 /* Pods-MyAppClip.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyAppClip/MyAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = MyAppClip/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		457238FA24F7E165004BD330 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B58C1C100C1C27624929EF25 /* Pods-MyAppClip.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyAppClip/MyAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = MyAppClip/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		457238FB24F7E165004BD330 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = MyAppClipTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips.MyAppClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyAppClip.app/MyAppClip";
+			};
+			name = Debug;
+		};
+		457238FC24F7E165004BD330 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = MyAppClipTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips.MyAppClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyAppClip.app/MyAppClip";
+			};
+			name = Release;
+		};
+		457238FD24F7E165004BD330 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = MyAppClipUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips.MyAppClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyAppClip;
+			};
+			name = Debug;
+		};
+		457238FE24F7E165004BD330 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = MyAppClipUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips.MyAppClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyAppClip;
+			};
+			name = Release;
+		};
+		4577C38A24F7DF6D0098FBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4577C38B24F7DF6D0098FBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4577C38D24F7DF6D0098FBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F9C5A551C062A475059901F /* Pods-OpenTokAppClips.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OpenTokAppClips/OpenTokAppClips.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = OpenTokAppClips/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4577C38E24F7DF6D0098FBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1193565AC12D00155AA0841 /* Pods-OpenTokAppClips.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OpenTokAppClips/OpenTokAppClips.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = OpenTokAppClips/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClips;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		4577C39024F7DF6D0098FBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = OpenTokAppClipsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClipsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenTokAppClips.app/OpenTokAppClips";
+			};
+			name = Debug;
+		};
+		4577C39124F7DF6D0098FBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = OpenTokAppClipsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClipsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenTokAppClips.app/OpenTokAppClips";
+			};
+			name = Release;
+		};
+		4577C39324F7DF6D0098FBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = OpenTokAppClipsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClipsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OpenTokAppClips;
+			};
+			name = Debug;
+		};
+		4577C39424F7DF6D0098FBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				INFOPLIST_FILE = OpenTokAppClipsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vonage.OpenTokAppClipsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OpenTokAppClips;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		457238FF24F7E165004BD330 /* Build configuration list for PBXNativeTarget "MyAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457238F924F7E165004BD330 /* Debug */,
+				457238FA24F7E165004BD330 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4572390024F7E165004BD330 /* Build configuration list for PBXNativeTarget "MyAppClipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457238FB24F7E165004BD330 /* Debug */,
+				457238FC24F7E165004BD330 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4572390124F7E165004BD330 /* Build configuration list for PBXNativeTarget "MyAppClipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457238FD24F7E165004BD330 /* Debug */,
+				457238FE24F7E165004BD330 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4577C35D24F7DF6C0098FBF3 /* Build configuration list for PBXProject "OpenTokAppClips" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4577C38A24F7DF6D0098FBF3 /* Debug */,
+				4577C38B24F7DF6D0098FBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4577C38C24F7DF6D0098FBF3 /* Build configuration list for PBXNativeTarget "OpenTokAppClips" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4577C38D24F7DF6D0098FBF3 /* Debug */,
+				4577C38E24F7DF6D0098FBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4577C38F24F7DF6D0098FBF3 /* Build configuration list for PBXNativeTarget "OpenTokAppClipsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4577C39024F7DF6D0098FBF3 /* Debug */,
+				4577C39124F7DF6D0098FBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4577C39224F7DF6D0098FBF3 /* Build configuration list for PBXNativeTarget "OpenTokAppClipsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4577C39324F7DF6D0098FBF3 /* Debug */,
+				4577C39424F7DF6D0098FBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4577C35A24F7DF6C0098FBF3 /* Project object */;
+}

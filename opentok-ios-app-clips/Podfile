@@ -1,0 +1,12 @@
+platform :ios, '9.0'
+use_frameworks!
+
+project 'OpenTokAppClips/OpenTokAppClips.xcodeproj'
+
+target 'OpenTokAppClips' do
+  pod 'OpenTok','2.18.0'
+end
+
+target 'MyAppClip' do
+  pod 'OpenTok','2.18.0'
+end
