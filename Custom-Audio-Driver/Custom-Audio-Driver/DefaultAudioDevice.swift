@@ -10,7 +10,7 @@ import Foundation
 import OpenTok
 
 class DefaultAudioDevice: NSObject {
-#if (arch(i386) || arch(x86_64)) && os(iOS)
+#if targetEnvironment(simulator)
     static let kSampleRate: UInt16 = 44100
 #else
     static let kSampleRate: UInt16 = 48000
@@ -259,12 +259,12 @@ class DefaultAudioDevice: NSObject {
     
     fileprivate func freeupAudioBuffers() {
         if var data = bufferList?.pointee, data.mBuffers.mData != nil {
-            data.mBuffers.mData?.assumingMemoryBound(to: UInt16.self).deallocate(capacity: Int(bufferNumFrames))
+            data.mBuffers.mData?.assumingMemoryBound(to: UInt16.self).deallocate()
             data.mBuffers.mData = nil
         }
         
         if let list = bufferList {
-            list.deallocate(capacity: 1)
+            list.deallocate()
         }
         
         bufferList = nil
@@ -592,8 +592,8 @@ func recordCb(inRefCon:UnsafeMutableRawPointer,
     if audioDevice.bufferList == nil || inNumberFrames > audioDevice.bufferNumFrames {
         if audioDevice.bufferList != nil {
             audioDevice.bufferList!.pointee.mBuffers.mData?
-                .assumingMemoryBound(to: UInt16.self).deallocate(capacity: Int(inNumberFrames))
-            audioDevice.bufferList?.deallocate(capacity: 1)
+                .assumingMemoryBound(to: UInt16.self).deallocate()
+            audioDevice.bufferList?.deallocate()
         }
         
         audioDevice.bufferList = UnsafeMutablePointer<AudioBufferList>.allocate(capacity: 1)
