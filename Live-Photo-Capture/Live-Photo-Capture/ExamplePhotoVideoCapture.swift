@@ -27,7 +27,7 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
         oldPreset = captureSession?.sessionPreset
         captureSession?.sessionPreset = AVCaptureSession.Preset.photo
         stillImageOutput = AVCaptureStillImageOutput()
-        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
         guard let stillImageOutput = self.stillImageOutput else {
             print("Error setting stillImageOutput")
             return
@@ -58,7 +58,7 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
             (conn ).inputPorts.contains( where: {
                 return ($0 ).mediaType == AVMediaType.video
             })
-        }).first as? AVCaptureConnection
+        }).first
             else {
                 handler(nil)
                 return
