@@ -79,12 +79,14 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     
     // MARK: - OTVideoCapture protocol
     func initCapture() {
-        timer.setEventHandler { 
-            let screen = self.screenShoot()
-            let padded = self.resizeAndPad(image: screen)
-            self.consume(frame: padded)
+        timer.setEventHandler {
+            DispatchQueue.main.async {
+                let screen = self.screenShoot()
+                let padded = self.resizeAndPad(image: screen)
+                self.consume(frame: padded)
+            }
         }
-        timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.milliseconds(100))
+        timer.schedule(deadline: DispatchTime.now(), repeating: DispatchTimeInterval.milliseconds(100))
     }
     
     func start() -> Int32 {
