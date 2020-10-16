@@ -196,20 +196,20 @@ extension ViewController: OTSubscriberDelegate {
 
 extension ViewController: ExampleVideoRenderDelegate {
     func renderer(_ renderer: ExampleVideoRender, didReceiveFrame videoFrame: OTVideoFrame) {
-        guard let metadata = videoFrame.metadata, let timestampe = String(data: metadata, encoding: .utf8) else {
+        guard let metadata = videoFrame.metadata, let timestamp = String(data: metadata, encoding: .utf8) else {
             print("Receiving video frame without metadata attached")
             return
         }
         
         DispatchQueue.main.async {
-            self.metadataLabel.text = timestampe
-            print("Receiving video frame metadata", timestampe)
+            self.metadataLabel.text = timestamp
+            print("Receiving video frame metadata", timestamp)
         }
     }
 }
 
 /*
- * This piece is optional: we demonstrate how to attach a metadata to a video frame before transitmmiting to the OpenTok platform.
+ * This piece is optional: we demonstrate how to attach a metadata to a video frame before transmitting to the OpenTok platform.
  * You don't have to attach a metadata to make the transmission work
  */
 extension ViewController: FrameCapturerMetadataDelegate {
@@ -227,9 +227,9 @@ extension ViewController: FrameCapturerMetadataDelegate {
         
         let timestamp = self.dateFormatter.string(from: Date())
 
-        let metdata = Data(timestamp.utf8)
+        let metadata = Data(timestamp.utf8)
         var error: OTError?
-        videoFrame.setMetadata(metdata, error: &error)
+        videoFrame.setMetadata(metadata, error: &error)
         if let error = error {
             print(error)
         }
