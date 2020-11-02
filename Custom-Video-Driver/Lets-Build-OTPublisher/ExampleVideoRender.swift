@@ -59,7 +59,11 @@ class ExampleVideoRender: UIView {
         
         displayLinkProxy = DisplayLinkProxy(glkView: glkView!, videoRender: self)
         displayLink = CADisplayLink(target: displayLinkProxy!, selector:#selector(DisplayLinkProxy.displayLinkDidFire(_:)))
-        displayLink!.preferredFramesPerSecond = 30
+        
+        if #available(iOS 10, *) {
+            displayLink!.preferredFramesPerSecond = 30
+        }
+        
         displayLink!.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
         
         renderer!.mirroring = mirroring

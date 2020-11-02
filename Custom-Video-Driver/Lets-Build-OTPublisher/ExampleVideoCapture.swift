@@ -163,6 +163,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     }
     
     fileprivate func camera(withPosition pos: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        guard #available(iOS 10, *) else { return nil }
         return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: pos).devices.first
     }
     
@@ -232,7 +233,8 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
         return camera(withPosition: .back)
     }
     
-    fileprivate var hasMultipleCameras : Bool {
+    fileprivate var hasMultipleCameras: Bool {
+        guard #available(iOS 10, *) else { return false }
         return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .unspecified).devices.count > 1
     }
     
