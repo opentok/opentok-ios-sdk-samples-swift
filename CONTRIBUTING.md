@@ -7,7 +7,6 @@ that we would be interested in hearing about.
     -  If you find a bug, please first report it using Github Issues.
     -  Issues that have already been identified as a bug will be labelled `bug`.
     -  If you'd like to submit a fix for a bug, send a Pull Request from your own fork and mention the Issue number.
-        +  Include a test that isolates the bug and verifies that it was fixed.
 *  New Features
     -  If you'd like to accomplish something in the library that it doesn't already do, describe the problem in a new
        Github Issue.
@@ -15,8 +14,8 @@ that we would be interested in hearing about.
     -  If you'd like to implement the new feature, please wait for feedback from the project maintainers before spending
        too much time writing the code. In some cases, `enhancement`s may not align well with the project objectives at
        the time.
-*  Tests, Documentation, Miscellaneous
-    -  If you think the test coverage could be improved, the documentation could be clearer, you've got an alternative
+*  Documentation and Miscellaneous
+    -  If you think the documentation could be clearer, you've got an alternative
        implementation of something that may have more advantages, or any other change we would still be glad hear about
        it.
        -  If its a trivial change, go ahead and send a Pull Request with the changes you have in mind
