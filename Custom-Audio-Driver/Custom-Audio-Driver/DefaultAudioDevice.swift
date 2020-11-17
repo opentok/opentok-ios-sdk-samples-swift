@@ -109,6 +109,8 @@ class DefaultAudioDevice: NSObject {
     
     fileprivate func doRestartAudio(numberOfAttempts: Int) {
         
+        isResetting = true
+        
         if recording {
             let _ = stopCapture()
             disposeAudioUnit(audioUnit: &recordingVoiceUnit)
