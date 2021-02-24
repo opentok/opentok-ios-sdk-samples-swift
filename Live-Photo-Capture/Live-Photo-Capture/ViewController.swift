@@ -27,12 +27,8 @@ class ViewController: UIViewController {
     }()
     
     var publisher: OTPublisher?
-    
     var subscriber: OTSubscriber?
-    
-    let captureSession = AVCaptureSession()
-    
-    
+
     let captureQueue = DispatchQueue(label: "com.tokbox.VideoCapture")
     let photoVideoCapture = ExamplePhotoVideoCapture()
     
