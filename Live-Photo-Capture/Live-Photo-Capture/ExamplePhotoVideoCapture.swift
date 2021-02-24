@@ -27,7 +27,7 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
         oldPreset = captureSession?.sessionPreset
         captureSession?.sessionPreset = AVCaptureSession.Preset.photo
         stillImageOutput = AVCaptureStillImageOutput()
-        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
         guard let stillImageOutput = self.stillImageOutput else {
             print("Error setting stillImageOutput")
             return
@@ -55,10 +55,10 @@ class ExamplePhotoVideoCapture: ExampleVideoCapture {
     
     private func doPhotoCapture(completionHandler handler: @escaping (_ photo: UIImage?) -> ()) {
         guard let connection:AVCaptureConnection = stillImageOutput?.connections.filter({ conn -> Bool in
-            (conn as! AVCaptureConnection).inputPorts.contains( where: {
-                return ($0 as! AVCaptureInput.Port).mediaType == AVMediaType.video
+            (conn ).inputPorts.contains( where: {
+                return ($0 ).mediaType == AVMediaType.video
             })
-        }).first as? AVCaptureConnection
+        }).first
             else {
                 handler(nil)
                 return
