@@ -19,6 +19,7 @@ extension UIApplication {
             case .portrait: return .left
             case .portraitUpsideDown: return .right
             case .unknown: return .up
+            @unknown default: fatalError()
             }
         } else {
             switch orientation {
@@ -27,6 +28,7 @@ extension UIApplication {
             case .portrait: return .left
             case .portraitUpsideDown: return .right
             case .unknown: return .up
+            @unknown default: fatalError()
             }
         }
     }
@@ -161,7 +163,8 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     }
     
     fileprivate func camera(withPosition pos: AVCaptureDevice.Position) -> AVCaptureDevice? {
-        return AVCaptureDevice.devices(for: AVMediaType.video).filter({ $0.position == pos }).first
+        guard #available(iOS 10, *) else { return nil }
+        return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: pos).devices.first
     }
     
     fileprivate func updateCaptureFormat(width w: UInt32, height h: UInt32) {
@@ -230,8 +233,9 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
         return camera(withPosition: .back)
     }
     
-    fileprivate var hasMultipleCameras : Bool {
-        return AVCaptureDevice.devices(for: AVMediaType.video).count > 1
+    fileprivate var hasMultipleCameras: Bool {
+        guard #available(iOS 10, *) else { return false }
+        return AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .unspecified).devices.count > 1
     }
     
     func setCameraPosition(_ position: AVCaptureDevice.Position) -> Bool {
