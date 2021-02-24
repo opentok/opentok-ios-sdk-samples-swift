@@ -1,16 +1,16 @@
 PODS:
-  - OpenTok (2.18.1)
+  - OpenTok (2.19.0)
 
 DEPENDENCIES:
-  - OpenTok (= 2.18.1)
+  - OpenTok (= 2.19.0)
 
 SPEC REPOS:
   trunk:
     - OpenTok
 
 SPEC CHECKSUMS:
-  OpenTok: 2a816f5d77fbf2e2ebb5aec841bd21fb7dc7737b
+  OpenTok: 3ac356cce06545a573234582702abaf671d44909
 
 PODFILE CHECKSUM: efae206ed400b0d7d68c425811c3a89c6c670270
 
-COCOAPODS: 1.10.0.rc.1
+COCOAPODS: 1.10.1
