@@ -318,46 +318,9 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
                 return
         }
         
-        guard let videoInput = videoInput
-            else {
-                print("Capturer does not have a valid input")
-                return
-        }
-        
         let time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
         
-        videoFrame.timestamp = time
-        let height = UInt32(CVPixelBufferGetHeight(imageBuffer))
-        let width = UInt32(CVPixelBufferGetWidth(imageBuffer))
-        
-        if width != captureWidth || height != captureHeight {
-            updateCaptureFormat(width: width, height: height)
-        }
-        
-        videoFrame.format?.imageWidth = width
-        videoFrame.format?.imageHeight = height
-        let minFrameDuration = videoInput.device.activeVideoMinFrameDuration
-        
-        videoFrame.format?.estimatedFramesPerSecond = Double(minFrameDuration.timescale) / Double(minFrameDuration.value)
-        videoFrame.format?.estimatedCaptureDelay = 100
-        videoFrame.orientation = self.videoFrameOrientation
-        
-        videoFrame.clearPlanes()
-        
-        if !CVPixelBufferIsPlanar(imageBuffer) {
-            videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddress(imageBuffer))
-        } else {
-            for idx in 0..<CVPixelBufferGetPlaneCount(imageBuffer) {
-                videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddressOfPlane(imageBuffer, idx))
-            }
-        }
-        
-        if let delegate = delegate {
-            delegate.finishPreparingFrame(videoFrame)
-        }
-        
-        videoCaptureConsumer!.consumeFrame(videoFrame)
+        videoCaptureConsumer?.consumeImageBuffer(imageBuffer, orientation: videoFrameOrientation, timestamp: time, metadata: videoFrame.metadata)
         
         CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)));
     }
