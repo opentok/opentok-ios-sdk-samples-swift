@@ -308,11 +308,9 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
-        if !capturing || videoCaptureConsumer == nil {
-            return
-        }
-        
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        guard capturing,
+              let videoCaptureConsumer = videoCaptureConsumer,
+              let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
             else {
                 print("Error acquiring sample buffer")
                 return
@@ -321,7 +319,7 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         let time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
         
-        videoCaptureConsumer?.consumeImageBuffer(imageBuffer, orientation: videoFrameOrientation, timestamp: time, metadata: videoFrame.metadata)
+        videoCaptureConsumer.consumeImageBuffer(imageBuffer, orientation: videoFrameOrientation, timestamp: time, metadata: videoFrame.metadata)
         
         CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
     }
