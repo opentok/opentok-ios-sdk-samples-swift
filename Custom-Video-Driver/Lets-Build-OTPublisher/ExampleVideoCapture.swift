@@ -319,9 +319,10 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         
         let time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+        CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
         
         videoCaptureConsumer?.consumeImageBuffer(imageBuffer, orientation: videoFrameOrientation, timestamp: time, metadata: videoFrame.metadata)
         
-        CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)));
+        CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
     }
 }
