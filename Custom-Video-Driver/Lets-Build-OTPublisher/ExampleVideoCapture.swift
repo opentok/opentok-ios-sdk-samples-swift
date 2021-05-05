@@ -308,57 +308,19 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
-        if !capturing || videoCaptureConsumer == nil {
-            return
-        }
-        
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        guard capturing,
+              let videoCaptureConsumer = videoCaptureConsumer,
+              let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
             else {
                 print("Error acquiring sample buffer")
-                return
-        }
-        
-        guard let videoInput = videoInput
-            else {
-                print("Capturer does not have a valid input")
                 return
         }
         
         let time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
         
-        videoFrame.timestamp = time
-        let height = UInt32(CVPixelBufferGetHeight(imageBuffer))
-        let width = UInt32(CVPixelBufferGetWidth(imageBuffer))
+        videoCaptureConsumer.consumeImageBuffer(imageBuffer, orientation: videoFrameOrientation, timestamp: time, metadata: videoFrame.metadata)
         
-        if width != captureWidth || height != captureHeight {
-            updateCaptureFormat(width: width, height: height)
-        }
-        
-        videoFrame.format?.imageWidth = width
-        videoFrame.format?.imageHeight = height
-        let minFrameDuration = videoInput.device.activeVideoMinFrameDuration
-        
-        videoFrame.format?.estimatedFramesPerSecond = Double(minFrameDuration.timescale) / Double(minFrameDuration.value)
-        videoFrame.format?.estimatedCaptureDelay = 100
-        videoFrame.orientation = self.videoFrameOrientation
-        
-        videoFrame.clearPlanes()
-        
-        if !CVPixelBufferIsPlanar(imageBuffer) {
-            videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddress(imageBuffer))
-        } else {
-            for idx in 0..<CVPixelBufferGetPlaneCount(imageBuffer) {
-                videoFrame.planes?.addPointer(CVPixelBufferGetBaseAddressOfPlane(imageBuffer, idx))
-            }
-        }
-        
-        if let delegate = delegate {
-            delegate.finishPreparingFrame(videoFrame)
-        }
-        
-        videoCaptureConsumer!.consumeFrame(videoFrame)
-        
-        CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)));
+        CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
     }
 }
