@@ -10,7 +10,6 @@ import Foundation
 import OpenTok
 
 class ScreenCapturer: NSObject, OTVideoCapture {
-    var videoContentHint: OTVideoContentHint
     var videoCaptureConsumer: OTVideoCaptureConsumer?
 
     let MAX_EDGE_SIZE_LIMIT: CGFloat = 1280.0
@@ -24,7 +23,6 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     fileprivate var pixelBuffer: CVPixelBuffer?
     
     init(withView: UIView) {
-        self.videoContentHint = .none
         captureView = withView        
         timer = DispatchSource.makeTimerSource(flags: .strict, queue: captureQueue)
     }
