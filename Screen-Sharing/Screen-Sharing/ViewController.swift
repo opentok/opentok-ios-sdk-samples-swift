@@ -83,6 +83,7 @@ class ViewController: UIViewController {
         
         capturer = ScreenCapturer(withView: view)
         publisher?.videoCapture = capturer
+        publisher?.videoCapture?.videoContentHint = .text
         
         session.publish(publisher!, error: &error)
     }

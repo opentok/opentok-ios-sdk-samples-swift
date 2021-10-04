@@ -52,6 +52,7 @@ protocol FrameCapturerMetadataDelegate {
 }
 
 class ExampleVideoCapture: NSObject, OTVideoCapture {
+    var videoContentHint: OTVideoContentHint
     var captureSession: AVCaptureSession?
     var videoInput: AVCaptureDeviceInput?
     var videoOutput: AVCaptureVideoDataOutput?
@@ -90,6 +91,7 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     }
     
     override init() {
+        self.videoContentHint = .none
         capturePreset = AVCaptureSession.Preset.vga640x480
         captureQueue = DispatchQueue(label: "com.tokbox.VideoCapture", attributes: [])
         (captureWidth, captureHeight) = capturePreset.dimensionForCapturePreset()
