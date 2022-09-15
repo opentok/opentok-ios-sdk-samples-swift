@@ -12,11 +12,11 @@ import OpenTok
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
-let kApiKey = ""
+let kApiKey = "47521351"
 // Replace with your generated session ID
-let kSessionId = ""
+let kSessionId = "2_MX40NzUyMTM1MX5-MTY2MzE4Mjk3NTY1Mn5ZaWtsby9HNVlHSk9Jak40bkZtV3pyZVF-fg"
 // Replace with your generated token
-let kToken = ""
+let kToken = "T1==cGFydG5lcl9pZD00NzUyMTM1MSZzaWc9NWQ4Yzc3MjNlNDY5MzYxMjY1NjQ4YjIxZDNmMDUwNjgzYTQwMDRkNTpzZXNzaW9uX2lkPTJfTVg0ME56VXlNVE0xTVg1LU1UWTJNekU0TWprM05UWTFNbjVaYVd0c2J5OUhOVmxIU2s5SmFrNDBia1p0VjNweVpWRi1mZyZjcmVhdGVfdGltZT0xNjYzMTgzMDE4Jm5vbmNlPTAuOTMzMzA0ODAwMjY1NzUzNCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNjYzMjY5NDE3JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9"
 
 class ViewController: UIViewController {
 
@@ -35,11 +35,14 @@ class ViewController: UIViewController {
         settings.name = UIDevice.current.name
         return OTPublisher(delegate: self, settings: settings)!
     }()
+
+    let customAudioDevice = DefaultAudioDevice()
+
     var error: OTError?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        OTAudioDeviceManager.setAudioDevice(customAudioDevice)
         session.connect(withToken: kToken, error: &error)
         
         userName.text = UIDevice.current.name
