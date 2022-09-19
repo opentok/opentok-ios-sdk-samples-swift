@@ -293,6 +293,7 @@ extension DefaultAudioDevice: OTAudioDevice {
         return recording
     }
     func estimatedRenderDelay() -> UInt16 {
+        //No problem with casting. plaoutDelay will never be bigger than 1000
         return UInt16(playoutDelay)
     }
     func estimatedCaptureDelay() -> UInt16 {
@@ -630,20 +631,29 @@ func updatePlayoutDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
     audioDevice.playoutDelayMeasurementCounter += 1
     if audioDevice.playoutDelayMeasurementCounter >= 100 {
         // Update HW and OS delay every second, unlikely to change
-        audioDevice.playoutDelay = 0
+        var tempPlayoutDelay: UInt32 = 0
         let session = AVAudioSession.sharedInstance()
         
         // HW output latency
         let interval = session.outputLatency
-        audioDevice.playoutDelay += UInt32(interval * 1000000)
+        tempPlayoutDelay += UInt32(interval * 1000000)
         // HW buffer duration
         let ioInterval = session.ioBufferDuration
-        audioDevice.playoutDelay += UInt32(ioInterval * 1000000)
-        audioDevice.playoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * 1000000)
+        tempPlayoutDelay += UInt32(ioInterval * 1000000)
+        tempPlayoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * 1000000)
         // To ms
-        audioDevice.playoutDelay = (audioDevice.playoutDelay - 500) / 1000
+        tempPlayoutDelay = (audioDevice.playoutDelay - 500) / 1000
         
-        audioDevice.playoutDelayMeasurementCounter = 0
+        //playout valid interval [0 - 1000]ms
+        if(tempPlayoutDelay > 1000)
+        {
+            //input parameter error
+            audioDevice.playoutDelayMeasurementCounter = 100
+        } else
+        {
+            audioDevice.playoutDelay = tempPlayoutDelay
+            audioDevice.playoutDelayMeasurementCounter = 0
+        }
     }
 }
 
