@@ -21,6 +21,8 @@ class DefaultAudioDevice: NSObject {
     static let kAudioDeviceBluetooth = "AudioSessionManagerDevice_Bluetooth"
     static let kAudioDeviceSpeaker = "AudioSessionManagerDevice_Speaker"
     static let kStandardPlayoutDelay: UInt8 = 15
+    static let kToMicroSecond: Double = 1000000
+    static let kMaxDelay: UInt16 = 1000
     
     var audioFormat = OTAudioFormat()
     let safetyQueue = DispatchQueue(label: "ot-audio-driver")
@@ -637,11 +639,11 @@ func updatePlayoutDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
         
         // HW output latency
         let interval = session.outputLatency
-        tempPlayoutDelay += UInt32(interval * 1000000)
+        tempPlayoutDelay += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
         // HW buffer duration
         let ioInterval = session.ioBufferDuration
-        tempPlayoutDelay += UInt32(ioInterval * 1000000)
-        tempPlayoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * 1000000)
+        tempPlayoutDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
+        tempPlayoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
         // To ms
         if( tempPlayoutDelay >= 500 ) {
             tempPlayoutDelay = (tempPlayoutDelay - 500) / 1000
@@ -649,8 +651,8 @@ func updatePlayoutDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
             tempPlayoutDelay = UInt32(DefaultAudioDevice.kStandardPlayoutDelay)
         }
         
-        //playout valid interval [0 - 1000]ms
-        if(tempPlayoutDelay > 1000)
+        //playout valid interval [0 - kMaxDelay]ms
+        if(tempPlayoutDelay > DefaultAudioDevice.kMaxDelay)
         {
             //input parameter error
             audioDevice.playoutDelayMeasurementCounter = 100
@@ -670,11 +672,11 @@ func updateRecordingDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
         let session = AVAudioSession.sharedInstance()
         let interval = session.inputLatency
         
-        audioDevice.recordingDelayHWAndOS += UInt32(interval * 1000000)
+        audioDevice.recordingDelayHWAndOS += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
         let ioInterval = session.ioBufferDuration
         
-        audioDevice.recordingDelayHWAndOS += UInt32(ioInterval * 1000000)
-        audioDevice.recordingDelayHWAndOS += UInt32(audioDevice.recordingAudioUnitPropertyLatency * 1000000)
+        audioDevice.recordingDelayHWAndOS += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.recordingDelayHWAndOS += UInt32(audioDevice.recordingAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
         
         audioDevice.recordingDelayHWAndOS = audioDevice.recordingDelayHWAndOS.advanced(by: -500) / 1000
         
