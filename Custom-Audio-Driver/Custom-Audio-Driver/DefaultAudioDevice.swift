@@ -22,7 +22,7 @@ class DefaultAudioDevice: NSObject {
     static let kAudioDeviceSpeaker = "AudioSessionManagerDevice_Speaker"
     static let kStandardPlayoutDelay: UInt8 = 15
     static let kToMicroSecond: Double = 1000000
-    static let kMaxDelay: UInt16 = 1000
+    static let kMaxPlayoutDelay: UInt8 = 150
     
     var audioFormat = OTAudioFormat()
     let safetyQueue = DispatchQueue(label: "ot-audio-driver")
@@ -296,8 +296,7 @@ extension DefaultAudioDevice: OTAudioDevice {
         return recording
     }
     func estimatedRenderDelay() -> UInt16 {
-        //No problem with casting. plaoutDelay will never be bigger than 1000
-        return UInt16(playoutDelay)
+        return UInt16(min(self.playoutDelay, UInt32(DefaultAudioDevice.kMaxPlayoutDelay)))
     }
     func estimatedCaptureDelay() -> UInt16 {
         return UInt16(recordingDelay)
@@ -634,33 +633,21 @@ func updatePlayoutDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
     audioDevice.playoutDelayMeasurementCounter += 1
     if audioDevice.playoutDelayMeasurementCounter >= 100 {
         // Update HW and OS delay every second, unlikely to change
-        var tempPlayoutDelay: UInt32 = 0
+        audioDevice.playoutDelay = 0
         let session = AVAudioSession.sharedInstance()
         
         // HW output latency
         let interval = session.outputLatency
-        tempPlayoutDelay += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.playoutDelay += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
         // HW buffer duration
         let ioInterval = session.ioBufferDuration
-        tempPlayoutDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
-        tempPlayoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.playoutDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.playoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
         // To ms
-        if( tempPlayoutDelay >= 500 ) {
-            tempPlayoutDelay = (tempPlayoutDelay - 500) / 1000
-        } else {
-            tempPlayoutDelay = UInt32(DefaultAudioDevice.kStandardPlayoutDelay)
+        if ( audioDevice.playoutDelay >= 500 ) {
+            audioDevice.playoutDelay = (audioDevice.playoutDelay - 500) / 1000
         }
-        
-        //playout valid interval [0 - kMaxDelay]ms
-        if(tempPlayoutDelay > DefaultAudioDevice.kMaxDelay)
-        {
-            //input parameter error
-            audioDevice.playoutDelayMeasurementCounter = 100
-        } else
-        {
-            audioDevice.playoutDelay = tempPlayoutDelay
-            audioDevice.playoutDelayMeasurementCounter = 0
-        }
+        audioDevice.playoutDelayMeasurementCounter = 0
     }
 }
 
