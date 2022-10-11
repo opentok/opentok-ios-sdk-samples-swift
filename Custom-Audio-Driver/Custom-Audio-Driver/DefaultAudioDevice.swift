@@ -297,7 +297,6 @@ extension DefaultAudioDevice: OTAudioDevice {
         return UInt16(min(self.playoutDelay, UInt32(DefaultAudioDevice.kMaxPlayoutDelay)))
     }
     func estimatedCaptureDelay() -> UInt16 {
-        NSLog("recordingDelay = %d", self.recordingDelay)
         return UInt16(self.recordingDelay)
     }
     func captureIsAvailable() -> Bool {
