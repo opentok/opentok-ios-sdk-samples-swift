@@ -42,7 +42,6 @@ class DefaultAudioDevice: NSObject {
     var playoutAudioUnitPropertyLatency: Float64 = 0
     var playoutDelayMeasurementCounter: UInt32 = 0
     var recordingDelayMeasurementCounter: UInt32 = 0
-    var recordingDelayHWAndOS: UInt32 = 0
     var recordingDelay: UInt32 = 0
     var recordingAudioUnitPropertyLatency: Float64 = 0
     var playoutDelay: UInt32 = 0
@@ -298,7 +297,8 @@ extension DefaultAudioDevice: OTAudioDevice {
         return UInt16(min(self.playoutDelay, UInt32(DefaultAudioDevice.kMaxPlayoutDelay)))
     }
     func estimatedCaptureDelay() -> UInt16 {
-        return UInt16(recordingDelay)
+        NSLog("recordingDelay = %d", self.recordingDelay)
+        return UInt16(self.recordingDelay)
     }
     func captureIsAvailable() -> Bool {
         return true
@@ -654,20 +654,18 @@ func updateRecordingDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
     audioDevice.recordingDelayMeasurementCounter += 1
     
     if audioDevice.recordingDelayMeasurementCounter >= 100 {
-        audioDevice.recordingDelayHWAndOS = 0
+        audioDevice.recordingDelay = 0
         let session = AVAudioSession.sharedInstance()
         let interval = session.inputLatency
         
-        audioDevice.recordingDelayHWAndOS += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.recordingDelay += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
         let ioInterval = session.ioBufferDuration
         
-        audioDevice.recordingDelayHWAndOS += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
-        audioDevice.recordingDelayHWAndOS += UInt32(audioDevice.recordingAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.recordingDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
+        audioDevice.recordingDelay += UInt32(audioDevice.recordingAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
         
-        audioDevice.recordingDelayHWAndOS = audioDevice.recordingDelayHWAndOS.advanced(by: -500) / 1000
+        audioDevice.recordingDelay = audioDevice.recordingDelay.advanced(by: -500) / 1000
         
         audioDevice.recordingDelayMeasurementCounter = 0
     }
-    
-    audioDevice.recordingDelay = audioDevice.recordingDelayHWAndOS
 }
