@@ -20,7 +20,6 @@ class DefaultAudioDevice: NSObject {
     static let kAudioDeviceHeadset = "AudioSessionManagerDevice_Headset"
     static let kAudioDeviceBluetooth = "AudioSessionManagerDevice_Bluetooth"
     static let kAudioDeviceSpeaker = "AudioSessionManagerDevice_Speaker"
-    static let kStandardPlayoutDelay: UInt8 = 15
     static let kToMicroSecond: Double = 1000000
     static let kMaxPlayoutDelay: UInt8 = 150
     
