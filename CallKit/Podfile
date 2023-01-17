@@ -3,6 +3,6 @@ use_frameworks!
 
 require_relative '../OpenTokSDKVersion'
 
-target 'Multiparty-UICollectionView' do
+target 'CallKitDemo' do
   pod 'OpenTok', OpenTokSDKVersion
 end
