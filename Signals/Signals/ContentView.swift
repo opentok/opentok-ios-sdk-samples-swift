@@ -9,15 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 50) {
-            Spacer()
-            SignalParameterView()
-           
+        VStack(alignment: .center) {
+
+            
             SendSignalButtonView()
-          
+            
+            
+            //SignalParameterView()
+           
+            
+            Divider()
             SignalMessagesView()
         }
-        .padding(20)
+        .padding(30)
     }
 }
 struct ContentView_Previews: PreviewProvider {

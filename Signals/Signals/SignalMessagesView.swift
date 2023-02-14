@@ -26,8 +26,7 @@ struct SignalMessagesView {
 extension SignalMessagesView: View {
     var body: some View {
         LazyVStack(alignment: .leading) {
-            Section("Messages")
-            {
+    
                 ForEach(messages) { message in
                     Spacer()
                     VStack(alignment: .leading) {
@@ -63,7 +62,7 @@ extension SignalMessagesView: View {
                     
                 }
                 
-            }
+         
             
         }
         .padding()
