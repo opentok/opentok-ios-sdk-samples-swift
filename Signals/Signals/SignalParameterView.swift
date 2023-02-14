@@ -15,9 +15,8 @@ struct SignalParameterView {
 
 extension SignalParameterView: View {
     var body: some View {
-        VStack(spacing:25) {
+        VStack(spacing:40) {
             ConnectionsView(isAllConnections: $isAllConnections)
-            let gridItems = [GridItem()]
             HStack {
                
                     Text("Signal type:")

@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 50) {
-         
+            Spacer()
             SignalParameterView()
            
             SendSignalButtonView()
-            Spacer()
+          
             SignalMessagesView()
         }
         .padding(20)

@@ -30,18 +30,36 @@ extension SignalMessagesView: View {
             {
                 ForEach(messages) { message in
                     Spacer()
-                    HStack {
-                        /*@START_MENU_TOKEN@*/Text(message.streamId)/*@END_MENU_TOKEN@*/
-                            .padding(.horizontal)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            if message.msg.count > 20 {
+                                Image(systemName: "arrow.up.forward.square.fill")
+                                    .foregroundColor(.green)
+                            } else {
+                                Image(systemName: "arrow.down.left.square.fill")
+                                    .foregroundColor(.brown)
+                            }
+                            Text(message.streamId)
+                                .padding(.horizontal)
+                            Spacer()
+                            Text("Greetings")
+                              
+                            
+                        }
                         Spacer()
-                        
                         Text(message.msg)
                             .padding(.horizontal)
-                            .multilineTextAlignment(.trailing)
+                            
                             .allowsTightening(true)
-                            .lineLimit(2)
+                            .lineLimit(1)
                     }
-                    Spacer()
+                    .padding(5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color(uiColor: .tertiaryLabel), lineWidth: 1)
+                            .shadow(radius: 5)
+                       
+                            
+                    )
                     
                 }
                 
@@ -49,6 +67,7 @@ extension SignalMessagesView: View {
             
         }
         .padding()
+                        
        }
     
 }
