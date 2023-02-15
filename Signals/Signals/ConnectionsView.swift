@@ -11,6 +11,8 @@ struct ConnectionsView {
     let all = [
         "Myself",
         "Stream 1132",
+        "Stream 32084",
+        "Stream 1132",
         "Stream 32084"
     ]
     @Binding var isAllConnections : Bool
@@ -21,15 +23,16 @@ extension ConnectionsView: View {
     
     var body: some View {
         VStack {
-            Toggle("Send signal to all connections:", isOn: $isAllConnections)
+            Toggle("Signal all", isOn: $isAllConnections)
             if (isAllConnections == false) {
-                Section("Select connection(s) to use:", content: {
+                Text("Choose connections:")
+                   
                     List(all, id: \.self, selection: $allSelect) { name in
                         Text(name)
                     }
                     .multilineTextAlignment(.leading)
                     .environment(\.editMode, .constant(EditMode.active))
-                })
+                
             }
         }
     }
