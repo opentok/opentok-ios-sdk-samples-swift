@@ -8,17 +8,17 @@
 import SwiftUI
 struct SendSignalButtonView {
     @Binding var enterData : Bool
+    @EnvironmentObject var vonageVideo: VonageVideo
 }
 extension SendSignalButtonView: View {
     var body: some View {
         
         VStack {
-            Button("Hello !!") {
-                
+            Button("Signal") {
+                // action below in TapGesture
             }
             .foregroundColor(Color.white)
             .background(Color.black)
-            .cornerRadius(8)
             .font(.largeTitle)
             .fontWeight(.heavy)
             .shadow(radius: 20)
@@ -29,7 +29,7 @@ extension SendSignalButtonView: View {
                     })
             .highPriorityGesture(TapGesture()
                 .onEnded { _ in
-                    // send signal
+                    vonageVideo.sendSignalToAll(type: nil, data: nil)
                 })
         }
     }

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SignalParameterView {
-    @State private var dataType = ""
-    @State private var retryAfterConnect = false
+    @Binding var signalType : String
+    @Binding var signalData : String
+    @Binding var retryAfterConnect : Bool
     @State private var isAllConnections = true
 }
 
@@ -21,7 +22,7 @@ extension SignalParameterView: View {
                
                     Text("Signal type:")
                     Spacer()
-                    TextField("Greetings", text: $dataType)
+                    TextField(signalType, text: $signalType)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                         .multilineTextAlignment(.center)
@@ -41,7 +42,7 @@ extension SignalParameterView: View {
                
                     Text("Signal content:")
                     Spacer()
-                TextField("Hello world !!", text: $dataType, axis: .vertical)
+                TextField("Hello world !!", text: $signalData, axis: .vertical)
                         .textFieldStyle(.roundedBorder)
                         .padding()
                         .multilineTextAlignment(.center)
@@ -50,6 +51,7 @@ extension SignalParameterView: View {
                             RoundedRectangle(cornerRadius: 18)
                                 .stroke(Color.black,lineWidth: 2))
                         .keyboardType(.asciiCapable)
+                        .disableAutocorrection(true)
                         .disableAutocorrection(true)
                         .lineLimit(2)
                     Spacer()
@@ -65,6 +67,6 @@ extension SignalParameterView: View {
 
 struct SignalParameterView_Previews: PreviewProvider {
     static var previews: some View {
-        SignalParameterView()
+        SignalParameterView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(false))
     }
 }
