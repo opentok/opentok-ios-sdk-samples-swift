@@ -29,11 +29,18 @@ extension String {
     func toBase64() -> String {
         return Data(self.utf8).base64EncodedString()
     }
-
+   
+    func lastFourCharacter() -> String {
+        return "..." + self.suffix(4)
+    }
+    
 }
 
-class VonageVideo: NSObject {
+class VonageVideoSDK: NSObject {
     @Published var isSessionConnected = false
+    @Published var connections: [String] = []
+    var myConnection : String? = nil
+    
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
@@ -49,27 +56,35 @@ class VonageVideo: NSObject {
    
  }
 // MARK: ObservableObject
-extension VonageVideo: ObservableObject {
+extension VonageVideoSDK: ObservableObject {
 
     
 }
 // MARK: - OTSession delegate callbacks
-extension VonageVideo: OTSessionDelegate {
+extension VonageVideoSDK: OTSessionDelegate {
     func sessionDidConnect(_ session: OTSession) {
        isSessionConnected = true
+        if let myConnection = session.connection?.connectionId {
+            self.myConnection = myConnection
+            connections.append("Self")
+        }
+       
     }
     
     func sessionDidDisconnect(_ session: OTSession) {
       
     }
     
+    func session(_ session: OTSession, connectionCreated connection: OTConnection) {
+        connections.append(connection.connectionId)
+    }
+    func session(_ session: OTSession, connectionDestroyed connection: OTConnection) {
+        connections = connections.filter { $0 != connection.connectionId }
+    }
     func session(_ session: OTSession, streamCreated stream: OTStream) {
-       
-      
     }
     
     func session(_ session: OTSession, streamDestroyed stream: OTStream) {
-       
     }
     
     func session(_ session: OTSession, didFailWithError error: OTError) {
@@ -78,13 +93,13 @@ extension VonageVideo: OTSessionDelegate {
     
     func session(_ session: OTSession, receivedSignalType type: String?, from connection: OTConnection?, with string: String?) {
         if let string = string?.fromBase64() {
-            print("received data \(string) from \(connection?.connectionId ?? "all")")
+            print("received data \(string) from \(connection?.connectionId ?? "")")
         }
     }
 }
 
 // MARK: - UI interface
-extension VonageVideo {
+extension VonageVideoSDK {
    
     func sendSignalToAll(type: String?, data: String?) {
         let t  = (type ?? "Greetings !!").toBase64()
@@ -92,5 +107,12 @@ extension VonageVideo {
         session.signal(withType: t , string: d, connection:nil, error: nil)
         print("signal send")
     }
+    
+//    func sendSignalToConnection(connection: String, type: String?, data: String?) {
+//        let t  = (type ?? "Greetings !!").toBase64()
+//        let d = (data ?? "Hello World").toBase64()
+//        session.signal(withType: t , string: d, connection:connection, error: nil)
+//        print("signal send")
+//    }
 }
 

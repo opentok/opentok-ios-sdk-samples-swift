@@ -14,7 +14,7 @@ struct SignalMessage: Identifiable {
     var msg: String
 }
 
-struct SignalMessagesView {
+struct MessagesView {
     @State private var messages = [
         SignalMessage(id: 1, streamId: "..7459", msg: "This is a message"),
         SignalMessage(id: 2, streamId: "..7478", msg: "This is a message This is a message, This is a message, 92749 , This is a message "),
@@ -23,7 +23,7 @@ struct SignalMessagesView {
         SignalMessage(id: 3, streamId: "..4567", msg: "This is a message")
     ]
 }
-extension SignalMessagesView: View {
+extension MessagesView: View {
     var body: some View {
         LazyVStack(alignment: .leading) {
     
@@ -73,6 +73,6 @@ extension SignalMessagesView: View {
 
 struct SignalMessagesView_Previews: PreviewProvider {
     static var previews: some View {
-        SignalMessagesView()
+        MessagesView()
     }
 }

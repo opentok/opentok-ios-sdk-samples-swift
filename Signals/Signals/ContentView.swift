@@ -7,8 +7,8 @@
 
 import SwiftUI
 struct ContentView {
-    @State var showEnterData = false
-    @StateObject  var vonageVideo = VonageVideo()
+    @State var oneClick = true
+    @StateObject  private var sdk = VonageVideoSDK()
     @State private var signalType = "Greetings"
     @State private var signalData = "Hello World"
     @State private var isRetryOnReconnect = false
@@ -18,22 +18,16 @@ extension ContentView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
-                if (vonageVideo.isSessionConnected == false) {
-                    Text("Connecting...")
+                if (sdk.isSessionConnected == false) {
+                    Text("Connecting to session ...")
                 } else {
-                    if showEnterData == false {
-                        SendSignalButtonView(enterData: $showEnterData)
-                    
-                        SignalMessagesView()
+                    if oneClick == true {
+                        OneClickView(oneClick: $oneClick)
+                        MessagesView()
                     }
                     else  {
                         VStack {
-                            SignalParameterView(signalType: $signalType, signalData: $signalData, retryAfterConnect: $isRetryOnReconnect)
-                            Button(action: {
-                                self.showEnterData.toggle()
-                            }) {
-                                Text("Close")
-                            }
+                            FormView(signalType: $signalType, signalData: $signalData, retryAfterConnect: $isRetryOnReconnect, oneClick: $oneClick)
                         }
                     }
                 }
@@ -41,7 +35,7 @@ extension ContentView: View {
                 
             }
             .padding(30)
-            .environmentObject(vonageVideo)
+            .environmentObject(sdk)
         }
     }
 }

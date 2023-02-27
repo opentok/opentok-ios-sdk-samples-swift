@@ -7,20 +7,37 @@
 
 import SwiftUI
 
-struct SignalParameterView {
+struct FormView {
+    @EnvironmentObject private var sdk: VonageVideoSDK
     @Binding var signalType : String
     @Binding var signalData : String
     @Binding var retryAfterConnect : Bool
-    @State private var isAllConnections = true
+    @State private var isAllConnections = false
+    @State private var selectedConnections = Set<String>()
+    @Binding var oneClick : Bool
 }
 
-extension SignalParameterView: View {
+extension FormView: View {
     var body: some View {
         VStack(spacing:40) {
-            ConnectionsView(isAllConnections: $isAllConnections)
+            
+            VStack {
+                Toggle("Signal all", isOn: $isAllConnections)
+                if (isAllConnections == false) {
+                    Text("Choose connections:")
+                       
+                    List(sdk.connections, id: \.self, selection: $selectedConnections) { name in
+                        Text(name.lastFourCharacter())
+                        }
+                        .multilineTextAlignment(.leading)
+                        .environment(\.editMode, .constant(EditMode.active))
+                    
+                }
+            }
+            
             HStack {
                
-                    Text("Signal type:")
+                    Text("Type:")
                     Spacer()
                     TextField(signalType, text: $signalType)
                         .textFieldStyle(.roundedBorder)
@@ -40,7 +57,7 @@ extension SignalParameterView: View {
            
             HStack {
                
-                    Text("Signal content:")
+                    Text("Content:")
                     Spacer()
                 TextField("Hello world !!", text: $signalData, axis: .vertical)
                         .textFieldStyle(.roundedBorder)
@@ -59,6 +76,15 @@ extension SignalParameterView: View {
             
           
             Toggle("Retry after reconnect:", isOn: $retryAfterConnect)
+            
+            Button(action: {
+                self.oneClick.toggle()
+                for _ in selectedConnections {
+                    sdk.sendSignalToAll(type: signalType, data: signalData)
+                }
+            }) {
+                Text("Send")
+            }
         }
         .padding()
     }
@@ -67,6 +93,6 @@ extension SignalParameterView: View {
 
 struct SignalParameterView_Previews: PreviewProvider {
     static var previews: some View {
-        SignalParameterView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(false))
+        FormView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(false), oneClick: Binding.constant(false))
     }
 }

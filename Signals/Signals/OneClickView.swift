@@ -6,30 +6,28 @@
 //
 
 import SwiftUI
-struct SendSignalButtonView {
-    @Binding var enterData : Bool
-    @EnvironmentObject var vonageVideo: VonageVideo
+struct OneClickView {
+    @Binding var oneClick : Bool
+    @EnvironmentObject private var vonageVideo: VonageVideoSDK
 }
-extension SendSignalButtonView: View {
+extension OneClickView: View {
     var body: some View {
         
         VStack {
-            Button("Signal") {
+            Button(" Say Hello to all. ") {
                 // action below in TapGesture
             }
-            .foregroundColor(Color.white)
-            .background(Color.black)
-            .font(.largeTitle)
-            .fontWeight(.heavy)
+            .foregroundColor(Color.black)
+            .background(Color.yellow)
             .shadow(radius: 20)
             .simultaneousGesture(
                 LongPressGesture()
                     .onEnded {_ in
-                        enterData = true
+                        oneClick = false
                     })
             .highPriorityGesture(TapGesture()
                 .onEnded { _ in
-                    vonageVideo.sendSignalToAll(type: nil, data: nil)
+                    vonageVideo.sendSignalToAll(type: "Greetings", data: "Hello World !!!")
                 })
         }
     }
@@ -38,6 +36,6 @@ extension SendSignalButtonView: View {
 
 struct SendSignalButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        SendSignalButtonView(enterData: Binding.constant(true))
+        OneClickView(oneClick: Binding.constant(true))
     }
 }
