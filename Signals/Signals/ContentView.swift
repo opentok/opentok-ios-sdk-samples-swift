@@ -36,6 +36,9 @@ extension ContentView: View {
             }
             .padding(30)
             .environmentObject(sdk)
+            .onDisappear {
+                sdk.closeAll()
+            }
         }
     }
 }

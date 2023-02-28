@@ -26,11 +26,12 @@ extension FormView: View {
                 if (isAllConnections == false) {
                     Text("Choose connections:")
                        
-                    List(sdk.connections, id: \.self, selection: $selectedConnections) { name in
-                        Text(name.lastFourCharacter())
-                        }
-                        .multilineTextAlignment(.leading)
-                        .environment(\.editMode, .constant(EditMode.active))
+                    List(sdk.connections, id: \.connectionId, selection: $selectedConnections) { connection in
+                        
+                            Text(sdk.isMyConnection(connection) ? "...self" : connection.connectionId.lastTenCharacter())
+                    }
+                    .multilineTextAlignment(.leading)
+                    .environment(\.editMode, .constant(EditMode.active))
                     
                 }
             }
@@ -79,8 +80,8 @@ extension FormView: View {
             
             Button(action: {
                 self.oneClick.toggle()
-                for _ in selectedConnections {
-                    sdk.sendSignalToAll(type: signalType, data: signalData)
+                for c in selectedConnections {
+                    sdk.sendSignalToConnection(connection: c, type: signalType, data: signalData)
                 }
             }) {
                 Text("Send")
@@ -94,5 +95,6 @@ extension FormView: View {
 struct SignalParameterView_Previews: PreviewProvider {
     static var previews: some View {
         FormView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(false), oneClick: Binding.constant(false))
+
     }
 }
