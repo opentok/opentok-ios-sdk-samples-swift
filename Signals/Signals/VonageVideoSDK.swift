@@ -16,11 +16,43 @@ let kSessionId = "1_MX4yODQxNTgzMn5-MTY3NjUwMjQ4MzM3NH5SdU5vTVZPYkRGL1lIdjRtYy9y
 // Replace with your generated token
 let kToken = "T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9YWQ1ZTQ0OGYxNjVkYWEzYmI3NTQ2YjRiNTE3NmZmYWJiZGYzZGUzMjpzZXNzaW9uX2lkPTFfTVg0eU9EUXhOVGd6TW41LU1UWTNOalV3TWpRNE16TTNOSDVTZFU1dlRWWlBZa1JHTDFsSWRqUnRZeTl5VFVzemRXaC1mbjQmY3JlYXRlX3RpbWU9MTY3NjUwMjQ4MyZub25jZT0wLjQxOTIzMjE5MDQwMDE4NjEmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTY3OTA5NDQ4MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
 
+struct ConnectionInfo : Equatable, Hashable {
+    let id = UUID()
+    var otConnectionHost : OTConnection
+    var otConnectionParticipant : OTConnection?
+    let displaySelf = "Self"
+    
+    static func ==(lhs: ConnectionInfo, rhs: ConnectionInfo) -> Bool {
+        return lhs.otConnectionParticipant?.connectionId == rhs.otConnectionParticipant?.connectionId
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(displayName)
+    }
+    var displayName: String {
+        get {
+            guard let otConnectionParticipant = otConnectionParticipant else {
+                return displaySelf
+            }
+            return  otConnectionParticipant.connectionId
+        }
+    }
+    
+    func getOTConnection(_ s: String) -> OTConnection {
+        guard let otConnectionParticipant = otConnectionParticipant else {
+            return otConnectionHost
+        }
+        return otConnectionParticipant
+    }
+   
+}
 
 extension String {
 
     // only letters permitted are (A-Z and a-z), numbers (0-9), "-", "_", " " and "~".
-    // hence we encode and decode with base64
+    // hence we encode and decode with base64 to accomadate other characters like emojis etc.
+    // Both sides needs to be part of this. This sample app will not use base64 encoding/decoding
+    // and rely on the isValidSignal method below.
+    
     func fromBase64() -> String? {
         guard let data = Data(base64Encoded: self) else {
             return nil
@@ -35,7 +67,9 @@ extension String {
     
    // The maximum length of the type string is 128 characters, and it must
    // contain only letters (A-Z and a-z), numbers (0-9), "-", "_", " ", and "~".
-   // you could have used base64 encoding decoding here. We went with a different approach here.
+   // you could have used base64 encoding decoding here. But just for illustration ,
+   // we assume the other  side is already deployed and we can't use base64.
+    
     func isValidSignal() -> Bool {
         return self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~] ", options: .regularExpression) == nil
     }
@@ -47,7 +81,7 @@ extension String {
 
 class VonageVideoSDK: NSObject {
     @Published var isSessionConnected = false
-    @Published var connections: [OTConnection] = []
+    @Published var connections: [ConnectionInfo] = []
     var myConnection : String? = nil
     
     lazy var session: OTSession = {
@@ -73,7 +107,7 @@ extension VonageVideoSDK: ObservableObject {
 extension VonageVideoSDK: OTSessionDelegate {
     func sessionDidConnect(_ session: OTSession) {
        isSessionConnected = true
-       connections.append(session.connection!)
+        connections.append(ConnectionInfo(otConnectionHost: session.connection!, otConnectionParticipant: nil))
     }
     
     func sessionDidDisconnect(_ session: OTSession) {
@@ -81,13 +115,14 @@ extension VonageVideoSDK: OTSessionDelegate {
     }
     
     func session(_ session: OTSession, connectionCreated connection: OTConnection) {
-        connections.append(connection)
+        connections.append(ConnectionInfo(otConnectionHost: session.connection!, otConnectionParticipant: connection))
     }
     func session(_ session: OTSession, connectionDestroyed connection: OTConnection) {
-        guard connections.contains(connection) else {
+        guard connections.contains(connections) else {
             return
         }
-        connections = connections.filter { $0 != connection }
+        let info = ConnectionInfo(otConnectionHost: session.connection!, otConnectionParticipant: connection)
+        connections = connections.filter { $0 != info }
     }
     func session(_ session: OTSession, streamCreated stream: OTStream) {
     }
@@ -100,7 +135,7 @@ extension VonageVideoSDK: OTSessionDelegate {
     }
     
     func session(_ session: OTSession, receivedSignalType type: String?, from connection: OTConnection?, with string: String?) {
-        if let string = string?.fromBase64() {
+        if let string = string {
             print("received data \(string) from \(connection?.connectionId ?? "")")
         }
     }
@@ -110,9 +145,10 @@ extension VonageVideoSDK: OTSessionDelegate {
 extension VonageVideoSDK {
    
     func sendSignalToAll(type: String?, data: String?) {
-        let t  = (type ?? "Greetings !!").toBase64()
-        let d = (data ?? "Hello World").toBase64()
-        session.signal(withType: t , string: d, connection:nil, error: nil)
+        guard let type = type, let data = data , type.isValidSignal() == true && data.isValidSignal() == true else {
+            return
+        }
+        session.signal(withType: type , string: data, connection:nil, error: nil)
         print("signal send")
     }
     
@@ -124,18 +160,14 @@ extension VonageVideoSDK {
         return session.connection?.connectionId == connection.connectionId
     }
     func sendSignalToConnection(connection: String, type: String?, data: String?) {
-        guard type?.isValidSignal() == true && data?.isValidSignal() == true else {
+        guard let type = type, let data = data ,
+                  type.isValidSignal() == true && data.isValidSignal() == true else {
             return
         }
-        let t  = type ?? "Greetings !!"
-        let d = data ?? "Hello World"
-        
-        let conn = connections.filter { c in  // a rare bug can happen if the last 10 chars are matched in two connections
-            return c.connectionId == connection
+        for c in connections where c.displayName == connection  {
+            session.signal(withType: type , string: data, connection:c.getOTConnection(connection), error: nil)
+            print("signal send")
         }
-        
-        session.signal(withType: t , string: d, connection:conn.first, error: nil)
-        print("signal send")
     }
 }
 

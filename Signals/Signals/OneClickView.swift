@@ -14,12 +14,11 @@ extension OneClickView: View {
     var body: some View {
         
         VStack {
-            Button(" Say Hello to all. ") {
+
+            
+            Button("Say Hello to all") {
                 // action below in TapGesture
             }
-            .foregroundColor(Color.black)
-            .background(Color.yellow)
-            .shadow(radius: 20)
             .simultaneousGesture(
                 LongPressGesture()
                     .onEnded {_ in

@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+let m = ["a","b"]
 struct FormView {
     @EnvironmentObject private var sdk: VonageVideoSDK
     @Binding var signalType : String
     @Binding var signalData : String
     @Binding var retryAfterConnect : Bool
     @State private var isAllConnections = false
-    @State private var selectedConnections = Set<String>()
+    @State private var selectedConns = Set<String>()
     @Binding var oneClick : Bool
 }
 
@@ -25,14 +26,20 @@ extension FormView: View {
                 Toggle("Signal all", isOn: $isAllConnections)
                 if (isAllConnections == false) {
                     Text("Choose connections:")
+                     
                        
-                    List(sdk.connections, id: \.connectionId, selection: $selectedConnections) { connection in
-                        
-                            Text(sdk.isMyConnection(connection) ? "...self" : connection.connectionId.lastTenCharacter())
+                    List(sdk.connections, id: \.displayName, selection: $selectedConns) { c in
+                        Text(c.displayName)
                     }
                     .multilineTextAlignment(.leading)
+                    .font(.system(size: 12))
                     .environment(\.editMode, .constant(EditMode.active))
-                    
+                    .listStyle(PlainListStyle())
+                    .lineLimit(2)
+                    .overlay(
+                            RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color(uiColor: .tertiaryLabel), lineWidth: 2)
+                                    )
+
                 }
             }
             
@@ -70,8 +77,7 @@ extension FormView: View {
                                 .stroke(Color.black,lineWidth: 2))
                         .keyboardType(.asciiCapable)
                         .disableAutocorrection(true)
-                        .disableAutocorrection(true)
-                        .lineLimit(2)
+                        .lineLimit(1)
                     Spacer()
                 }
             
@@ -80,14 +86,15 @@ extension FormView: View {
             
             Button(action: {
                 self.oneClick.toggle()
-                for c in selectedConnections {
-                    sdk.sendSignalToConnection(connection: c, type: signalType, data: signalData)
+                for connId in selectedConns {
+                    sdk.sendSignalToConnection(connection: connId, type: signalType, data: signalData)
                 }
             }) {
                 Text("Send")
             }
         }
-        .padding()
+        .padding(1)
+        
     }
     
 }
@@ -95,6 +102,8 @@ extension FormView: View {
 struct SignalParameterView_Previews: PreviewProvider {
     static var previews: some View {
         FormView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(false), oneClick: Binding.constant(false))
+            .environmentObject(VonageVideoSDK())
 
     }
+    
 }
