@@ -16,6 +16,7 @@ struct FormView {
     @State private var isAllConnections = false
     @State private var selectedConns = Set<String>()
     @Binding var oneClick : Bool
+    @State private var signalCharError = false
 }
 
 extension FormView: View {
@@ -52,7 +53,7 @@ extension FormView: View {
                     TextField(signalType, text: $signalType, axis: .vertical)
                         .multilineTextAlignment(.center)
                         .textFieldStyle(.roundedBorder)
-                        .border(.ultraThickMaterial, width: 4)
+                        .border(.gray, width: 2)
                         .keyboardType(.asciiCapable)
                         .disableAutocorrection(true)
                         .lineLimit(1)
@@ -68,7 +69,7 @@ extension FormView: View {
                     TextField("Hello world", text: $signalData, axis: .vertical)
                             .multilineTextAlignment(.center)
                             .textFieldStyle(.roundedBorder)
-                            .border(.ultraThickMaterial, width: 4)
+                            .border(.gray, width: 2)
                             .keyboardType(.asciiCapable)
                             .disableAutocorrection(true)
                             .lineLimit(1)
@@ -80,15 +81,20 @@ extension FormView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    self.oneClick.toggle()
-                    for connId in selectedConns {
-                        sdk.sendSignalToConnection(connection: connId, type: signalType, data: signalData, retryAfterConnect: retryAfterConnect)
+                    if signalData.isValidSignal() == false || signalType.isValidSignal() == false {
+                        signalCharError = true
+                    } else {
+                        self.oneClick.toggle()
+                        for connId in selectedConns {
+                            sdk.sendSignalToConnection(connection: connId, type: signalType, data: signalData, retryAfterConnect: retryAfterConnect)
+                        }
                     }
+             
                 }) {
                     Text("Send")
                 }
                 Spacer()
-                Button(action: {
+                Button(role: .cancel, action: {
                     self.oneClick.toggle()
                 }) {
                     Text("Cancel")
@@ -98,6 +104,9 @@ extension FormView: View {
 
         }
         .padding(1)
+        .alert("Only \"a-zA-Z0-9-_~\" and Space characters allowed for content and type.", isPresented: $signalCharError) {
+                    Button("OK", role: .cancel) { }
+            }
         
     }
     

@@ -31,7 +31,7 @@ extension MessagesView: View {
                                     .foregroundColor(.green)
                             } else {
                                 Image(systemName: "arrow.down.left.square.fill")
-                                    .foregroundColor(.brown)
+                                    .foregroundColor(.yellow)
                             }
                             Text(m.displayConnId)
                                 .padding(.horizontal)

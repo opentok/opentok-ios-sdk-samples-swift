@@ -16,7 +16,7 @@ extension OneClickView: View {
         VStack {
 
             
-            Button("Say Hello to all") {
+            Button("Hello !!!") {
                 // action below in TapGesture
             }
             .simultaneousGesture(
@@ -26,7 +26,7 @@ extension OneClickView: View {
                     })
             .highPriorityGesture(TapGesture()
                 .onEnded { _ in
-                    sdk.sendSignalToAll(type: "Greetings", data: "Hello World!!")
+                    sdk.sendSignalToAll(type: "Greetings", data: "Hello World")
                 })
         }
     }

@@ -23,7 +23,10 @@ extension ContentView: View {
                 } else {
                     if oneClick == true {
                         OneClickView(oneClick: $oneClick)
-                        MessagesView()
+                        ScrollView {
+                            MessagesView()
+                            
+                        }
                     }
                     else  {
                         VStack {

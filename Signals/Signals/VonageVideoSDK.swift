@@ -83,8 +83,8 @@ extension String {
    // we assume the other  side is already deployed and we can't use base64.
     
     func isValidSignal() -> Bool {
-        let m = self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~] ", options: .regularExpression) == nil
-        return self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~] ", options: .regularExpression) == nil
+//        let f = self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~\\s]", options: .regularExpression) == nil
+        return self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~\\s]", options: .regularExpression) == nil
     }
     func lastTenCharacter() -> String {
         return "..." + self.suffix(10)
@@ -96,9 +96,7 @@ class VonageVideoSDK: NSObject {
     @Published var isSessionConnected = false
     @Published var connsInfo: [ConnectionInfo] = []
     @Published var messages: [SMessage] = []    //unlimited and last in , first out
-    
-    var myConnection : String? = nil
-    
+
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
@@ -151,8 +149,7 @@ extension VonageVideoSDK: OTSessionDelegate {
     
     func session(_ session: OTSession, receivedSignalType type: String?, from connection: OTConnection?, with string: String?) {
         if let string = string, let type = type, let c = connection?.connectionId {
-            let msg = SMessage(connId: c, type: type, content: string, outgoing: false)
-            messages.insert(msg, at: 0)
+            messages.insert(SMessage(connId: c, type: type, content: string, outgoing: false), at: 0)
             print("received data \(string) from \(connection?.connectionId ?? "")")
         }
     }
@@ -166,16 +163,15 @@ extension VonageVideoSDK {
             return
         }
         session.signal(withType: type , string: data, connection:nil, error: nil)
+        messages.insert(SMessage(connId: nil, type: type, content: data, outgoing: true), at: 0)
+
         print("signal send")
     }
     
     func closeAll() {
         session.disconnect(nil)
     }
-    
-    func isMyConnection(_ connection: OTConnection) -> Bool {
-        return session.connection?.connectionId == connection.connectionId
-    }
+
     func sendSignalToConnection(connection: String, type: String?, data: String?, retryAfterConnect: Bool) {
         guard let type = type, let data = data ,
                   type.isValidSignal() == true && data.isValidSignal() == true else {
@@ -189,7 +185,7 @@ extension VonageVideoSDK {
                 // You can use this call for all cases. We are just distinguishing here to show various way to call signal.
                 session.signal(withType: type , string: data, connection:c.getOTConnection(), retryAfterReconnect: retryAfterConnect, error: nil)
             }
-
+            messages.insert(SMessage(connId: c.displayName, type: type, content: data, outgoing: true), at: 0)
             print("signal send")
         }
     }
