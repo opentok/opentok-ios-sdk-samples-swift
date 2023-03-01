@@ -25,10 +25,12 @@ extension FormView: View {
             VStack {
                 Toggle("Signal all", isOn: $isAllConnections)
                 if (isAllConnections == false) {
-                    Text("Choose connections:")
-                     
-                       
-                    List(sdk.connections, id: \.displayName, selection: $selectedConns) { c in
+                    HStack {
+                        Text("Choose connections:")
+                        Spacer()
+                    }
+                
+                    List(sdk.connsInfo, id: \.displayName, selection: $selectedConns) { c in
                         Text(c.displayName)
                     }
                     .multilineTextAlignment(.leading)
@@ -47,14 +49,10 @@ extension FormView: View {
                
                     Text("Type:")
                     Spacer()
-                    TextField(signalType, text: $signalType)
-                        .textFieldStyle(.roundedBorder)
-                        .padding(.horizontal)
+                    TextField(signalType, text: $signalType, axis: .vertical)
                         .multilineTextAlignment(.center)
-                    //.font(Font.system(size: 20,design: .serif))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color.black,lineWidth: 2))
+                        .textFieldStyle(.roundedBorder)
+                        .border(.ultraThickMaterial, width: 4)
                         .keyboardType(.asciiCapable)
                         .disableAutocorrection(true)
                         .lineLimit(1)
@@ -67,31 +65,37 @@ extension FormView: View {
                
                     Text("Content:")
                     Spacer()
-                TextField("Hello world !!", text: $signalData, axis: .vertical)
-                        .textFieldStyle(.roundedBorder)
-                        .padding()
-                        .multilineTextAlignment(.center)
-                    //.font(Font.system(size: 20,design: .serif))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color.black,lineWidth: 2))
-                        .keyboardType(.asciiCapable)
-                        .disableAutocorrection(true)
-                        .lineLimit(1)
+                    TextField("Hello world", text: $signalData, axis: .vertical)
+                            .multilineTextAlignment(.center)
+                            .textFieldStyle(.roundedBorder)
+                            .border(.ultraThickMaterial, width: 4)
+                            .keyboardType(.asciiCapable)
+                            .disableAutocorrection(true)
+                            .lineLimit(1)
                     Spacer()
                 }
             
           
             Toggle("Retry after reconnect:", isOn: $retryAfterConnect)
-            
-            Button(action: {
-                self.oneClick.toggle()
-                for connId in selectedConns {
-                    sdk.sendSignalToConnection(connection: connId, type: signalType, data: signalData)
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.oneClick.toggle()
+                    for connId in selectedConns {
+                        sdk.sendSignalToConnection(connection: connId, type: signalType, data: signalData, retryAfterConnect: retryAfterConnect)
+                    }
+                }) {
+                    Text("Send")
                 }
-            }) {
-                Text("Send")
+                Spacer()
+                Button(action: {
+                    self.oneClick.toggle()
+                }) {
+                    Text("Cancel")
+                }
+                Spacer()
             }
+
         }
         .padding(1)
         
@@ -101,7 +105,7 @@ extension FormView: View {
 
 struct SignalParameterView_Previews: PreviewProvider {
     static var previews: some View {
-        FormView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(false), oneClick: Binding.constant(false))
+        FormView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(true), oneClick: Binding.constant(false))
             .environmentObject(VonageVideoSDK())
 
     }

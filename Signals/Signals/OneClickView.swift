@@ -8,7 +8,7 @@
 import SwiftUI
 struct OneClickView {
     @Binding var oneClick : Bool
-    @EnvironmentObject private var vonageVideo: VonageVideoSDK
+    @EnvironmentObject private var sdk: VonageVideoSDK
 }
 extension OneClickView: View {
     var body: some View {
@@ -26,7 +26,7 @@ extension OneClickView: View {
                     })
             .highPriorityGesture(TapGesture()
                 .onEnded { _ in
-                    vonageVideo.sendSignalToAll(type: "Greetings", data: "Hello World !!!")
+                    sdk.sendSignalToAll(type: "Greetings", data: "Hello World!!")
                 })
         }
     }

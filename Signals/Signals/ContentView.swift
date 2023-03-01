@@ -11,7 +11,7 @@ struct ContentView {
     @StateObject  private var sdk = VonageVideoSDK()
     @State private var signalType = "Greetings"
     @State private var signalData = "Hello World"
-    @State private var isRetryOnReconnect = false
+    @State private var isRetryOnReconnect = true
     
 }
 extension ContentView: View {
