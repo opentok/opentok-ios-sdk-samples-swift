@@ -1,13 +1,11 @@
 //
-//  SignalParameterView.swift
-//  junk
+//  FormView.swift
 //
 //  Created by Jaideep Shah on 2/9/23.
 //
 
 import SwiftUI
 
-let m = ["a","b"]
 struct FormView {
     @EnvironmentObject private var sdk: VonageVideoSDK
     @Binding var signalType : String
@@ -112,7 +110,7 @@ extension FormView: View {
     
 }
 
-struct SignalParameterView_Previews: PreviewProvider {
+struct FormView_Previews: PreviewProvider {
     static var previews: some View {
         FormView(signalType: Binding.constant("Greeting"), signalData: Binding.constant("Hello"), retryAfterConnect: Binding.constant(true), oneClick: Binding.constant(false))
             .environmentObject(VonageVideoSDK())

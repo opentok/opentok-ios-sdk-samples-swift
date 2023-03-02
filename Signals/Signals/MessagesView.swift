@@ -1,6 +1,6 @@
 //
-//  SignalMessagesView.swift
-//  junk
+//  MessagesView.swift
+//  
 //
 //  Created by Jaideep Shah on 2/9/23.
 //
@@ -8,11 +8,6 @@
 import SwiftUI
 
 
-struct SignalMessage: Identifiable {
-    let id: Int
-    var streamId: String
-    var msg: String
-}
 
 struct MessagesView {
     @EnvironmentObject private var sdk: VonageVideoSDK
@@ -78,7 +73,7 @@ extension MessagesView: View {
     
 }
 
-struct SignalMessagesView_Previews: PreviewProvider {
+struct MessagesView_Previews: PreviewProvider {
     static var previews: some View {
         MessagesView()
     }

@@ -1,5 +1,5 @@
 //
-//  SendSignalButtonView.swift
+//  OneClickView.swift
 //  Signals
 //
 //  Created by Jaideep Shah on 2/9/23.
@@ -33,7 +33,7 @@ extension OneClickView: View {
 }
 
 
-struct SendSignalButtonView_Previews: PreviewProvider {
+struct OneClickView_Previews: PreviewProvider {
     static var previews: some View {
         OneClickView(oneClick: Binding.constant(true))
     }

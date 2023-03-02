@@ -1,5 +1,5 @@
 //
-//  VonageVideo.swift
+//  VonageVideoSDK.swift
 //  Signals
 //
 //  Created by Jaideep Shah on 2/15/23.
@@ -16,7 +16,7 @@ let kSessionId = "1_MX4yODQxNTgzMn5-MTY3NjUwMjQ4MzM3NH5SdU5vTVZPYkRGL1lIdjRtYy9y
 // Replace with your generated token
 let kToken = "T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9YWQ1ZTQ0OGYxNjVkYWEzYmI3NTQ2YjRiNTE3NmZmYWJiZGYzZGUzMjpzZXNzaW9uX2lkPTFfTVg0eU9EUXhOVGd6TW41LU1UWTNOalV3TWpRNE16TTNOSDVTZFU1dlRWWlBZa1JHTDFsSWRqUnRZeTl5VFVzemRXaC1mbjQmY3JlYXRlX3RpbWU9MTY3NjUwMjQ4MyZub25jZT0wLjQxOTIzMjE5MDQwMDE4NjEmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTY3OTA5NDQ4MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
 
-struct SMessage: Identifiable {
+struct SignalMessage: Identifiable {
     let id = UUID()
     var connId : String?
     var type: String
@@ -95,7 +95,7 @@ extension String {
 class VonageVideoSDK: NSObject {
     @Published var isSessionConnected = false
     @Published var connsInfo: [ConnectionInfo] = []
-    @Published var messages: [SMessage] = []    //unlimited and last in , first out
+    @Published var messages: [SignalMessage] = []    //unlimited and last in , first out
 
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
@@ -149,23 +149,23 @@ extension VonageVideoSDK: OTSessionDelegate {
     
     func session(_ session: OTSession, receivedSignalType type: String?, from connection: OTConnection?, with string: String?) {
         if let string = string, let type = type, let c = connection?.connectionId {
-            messages.insert(SMessage(connId: c, type: type, content: string, outgoing: false), at: 0)
-            print("received data \(string) from \(connection?.connectionId ?? "")")
+            addMessage(connection: c, type: type, data: string, outgoing: false)
         }
     }
 }
 
 // MARK: - UI interface
 extension VonageVideoSDK {
-   
+    private func addMessage(connection: String?, type: String, data: String, outgoing: Bool) {
+        messages.insert(SignalMessage(connId: connection, type: type, content: data, outgoing: outgoing), at: 0)
+    }
+    
     func sendSignalToAll(type: String?, data: String?) {
         guard let type = type, let data = data , type.isValidSignal() == true && data.isValidSignal() == true else {
             return
         }
         session.signal(withType: type , string: data, connection:nil, error: nil)
-        messages.insert(SMessage(connId: nil, type: type, content: data, outgoing: true), at: 0)
-
-        print("signal send")
+        addMessage(connection: nil, type: type, data: data, outgoing: true)
     }
     
     func closeAll() {
@@ -185,8 +185,7 @@ extension VonageVideoSDK {
                 // You can use this call for all cases. We are just distinguishing here to show various way to call signal.
                 session.signal(withType: type , string: data, connection:c.getOTConnection(), retryAfterReconnect: retryAfterConnect, error: nil)
             }
-            messages.insert(SMessage(connId: c.displayName, type: type, content: data, outgoing: true), at: 0)
-            print("signal send")
+            addMessage(connection: c.displayName, type: type, data: data, outgoing: true)
         }
     }
 }
