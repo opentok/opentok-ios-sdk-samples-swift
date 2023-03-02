@@ -23,7 +23,7 @@ extension ContentView: View {
                         .font(.title)
                 } else {
                     if oneClick == true {
-                        Button("Hello !!!") {
+                        Button("Hello !!") {
                             sdk.sendSignalToAll(type: "Greetings", data: "Hello World")
                         }
                         .font(.title)
