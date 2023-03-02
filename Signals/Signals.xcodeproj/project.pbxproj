@@ -13,7 +13,6 @@
 		1F8B1BAF2995A93800D8E8FB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F8B1BAE2995A93800D8E8FB /* Preview Assets.xcassets */; };
 		1F8B1BB82995A96400D8E8FB /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B1BB52995A96300D8E8FB /* MessagesView.swift */; };
 		1F8B1BB92995A96400D8E8FB /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B1BB62995A96300D8E8FB /* FormView.swift */; };
-		1F8B1BBC2995BAC200D8E8FB /* OneClickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B1BBB2995BAC200D8E8FB /* OneClickView.swift */; };
 		1F8B1D42299D8D0800D8E8FB /* VonageVideoSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B1D41299D8D0800D8E8FB /* VonageVideoSDK.swift */; };
 		56DC23C63C275FE32CF7EE99 /* Pods_Signals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1917EF4F2ABAD52484991C2 /* Pods_Signals.framework */; };
 /* End PBXBuildFile section */
@@ -26,7 +25,6 @@
 		1F8B1BAE2995A93800D8E8FB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1F8B1BB52995A96300D8E8FB /* MessagesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		1F8B1BB62995A96300D8E8FB /* FormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
-		1F8B1BBB2995BAC200D8E8FB /* OneClickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneClickView.swift; sourceTree = "<group>"; };
 		1F8B1D41299D8D0800D8E8FB /* VonageVideoSDK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VonageVideoSDK.swift; sourceTree = "<group>"; };
 		5494E9AFC9FCFDD7400E7E26 /* Pods-Signals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Signals.release.xcconfig"; path = "Target Support Files/Pods-Signals/Pods-Signals.release.xcconfig"; sourceTree = "<group>"; };
 		A1917EF4F2ABAD52484991C2 /* Pods_Signals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Signals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +67,6 @@
 				1F8B1D41299D8D0800D8E8FB /* VonageVideoSDK.swift */,
 				1F8B1BA72995A93600D8E8FB /* SignalsApp.swift */,
 				1F8B1BA92995A93600D8E8FB /* ContentView.swift */,
-				1F8B1BBB2995BAC200D8E8FB /* OneClickView.swift */,
 				1F8B1BB52995A96300D8E8FB /* MessagesView.swift */,
 				1F8B1BB62995A96300D8E8FB /* FormView.swift */,
 				1F8B1BAB2995A93800D8E8FB /* Assets.xcassets */,
@@ -200,7 +197,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F8B1D42299D8D0800D8E8FB /* VonageVideoSDK.swift in Sources */,
-				1F8B1BBC2995BAC200D8E8FB /* OneClickView.swift in Sources */,
 				1F8B1BAA2995A93600D8E8FB /* ContentView.swift in Sources */,
 				1F8B1BB82995A96400D8E8FB /* MessagesView.swift in Sources */,
 				1F8B1BB92995A96400D8E8FB /* FormView.swift in Sources */,

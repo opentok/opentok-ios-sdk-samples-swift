@@ -17,12 +17,24 @@ struct ContentView {
 extension ContentView: View {
     var body: some View {
         ZStack {
-            VStack(alignment: .center) {
+            VStack(alignment: .center, spacing: 25) {
                 if (sdk.isSessionConnected == false) {
-                    Text("Connecting to session ...")
+                    Text("Connecting ...")
+                        .font(.title)
                 } else {
                     if oneClick == true {
-                        OneClickView(oneClick: $oneClick)
+                        Button("Hello !!!") {
+                            sdk.sendSignalToAll(type: "Greetings", data: "Hello World")
+                        }
+                        .font(.title)
+ 
+                        //OneClickView(oneClick: $oneClick)
+                        Button {
+                            oneClick = false
+                           // print("Edit button was tapped")
+                        } label: {
+                            Image(systemName: "square.and.pencil")
+                        }
                         ScrollView {
                             MessagesView()
                             

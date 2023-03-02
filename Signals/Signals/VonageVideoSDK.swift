@@ -30,19 +30,19 @@ struct SignalMessage: Identifiable {
 }
 struct ConnectionInfo : Equatable, Hashable {
     let id = UUID()
-    var otConnectionHost : OTConnection
-    var otConnectionParticipant : OTConnection?
+    var otMyConnection : OTConnection
+    var otParticipantConnection : OTConnection?
     let displaySelf = "Self"
     
     static func ==(lhs: ConnectionInfo, rhs: ConnectionInfo) -> Bool {
-        return lhs.otConnectionParticipant?.connectionId == rhs.otConnectionParticipant?.connectionId
+        return lhs.otParticipantConnection?.connectionId == rhs.otParticipantConnection?.connectionId
     }
     func hash(into hasher: inout Hasher) {
         hasher.combine(displayName)
     }
     var displayName: String {
         get {
-            guard let otConnectionParticipant = otConnectionParticipant else {
+            guard let otConnectionParticipant = otParticipantConnection else {
                 return displaySelf
             }
             return  otConnectionParticipant.connectionId
@@ -50,8 +50,8 @@ struct ConnectionInfo : Equatable, Hashable {
     }
     
     func getOTConnection() -> OTConnection {
-        guard let otConnectionParticipant = otConnectionParticipant else {
-            return otConnectionHost
+        guard let otConnectionParticipant = otParticipantConnection else {
+            return otMyConnection
         }
         return otConnectionParticipant
     }
@@ -83,7 +83,6 @@ extension String {
    // we assume the other  side is already deployed and we can't use base64.
     
     func isValidSignal() -> Bool {
-//        let f = self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~\\s]", options: .regularExpression) == nil
         return self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~\\s]", options: .regularExpression) == nil
     }
     func lastTenCharacter() -> String {
@@ -120,7 +119,7 @@ extension VonageVideoSDK: ObservableObject {
 extension VonageVideoSDK: OTSessionDelegate {
     func sessionDidConnect(_ session: OTSession) {
        isSessionConnected = true
-        connsInfo.append(ConnectionInfo(otConnectionHost: session.connection!, otConnectionParticipant: nil))
+        connsInfo.append(ConnectionInfo(otMyConnection: session.connection!, otParticipantConnection: nil))
     }
     
     func sessionDidDisconnect(_ session: OTSession) {
@@ -128,13 +127,13 @@ extension VonageVideoSDK: OTSessionDelegate {
     }
     
     func session(_ session: OTSession, connectionCreated connection: OTConnection) {
-        connsInfo.append(ConnectionInfo(otConnectionHost: session.connection!, otConnectionParticipant: connection))
+        connsInfo.append(ConnectionInfo(otMyConnection: session.connection!, otParticipantConnection: connection))
     }
     func session(_ session: OTSession, connectionDestroyed connection: OTConnection) {
         guard connsInfo.contains(connsInfo) else {
             return
         }
-        let info = ConnectionInfo(otConnectionHost: session.connection!, otConnectionParticipant: connection)
+        let info = ConnectionInfo(otMyConnection: session.connection!, otParticipantConnection: connection)
         connsInfo = connsInfo.filter { $0 != info }
     }
     func session(_ session: OTSession, streamCreated stream: OTStream) {
