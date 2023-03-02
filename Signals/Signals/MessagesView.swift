@@ -23,10 +23,10 @@ extension MessagesView: View {
                         HStack {
                             if m.outgoing {
                                 Image(systemName: "arrow.up.forward.square.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.yellow)
                             } else {
                                 Image(systemName: "arrow.down.left.square.fill")
-                                    .foregroundColor(.yellow)
+                                    .foregroundColor(.green)
                             }
                             Text(m.displayConnId)
                                 .padding(.horizontal)
