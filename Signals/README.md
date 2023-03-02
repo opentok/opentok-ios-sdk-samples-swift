@@ -72,8 +72,24 @@ extension String {
 Screen shot (SwiftUI based)
 -----------------
 
-Starting screen 
+## Starting screen:
 
-Starting screen with Messages
+1) Tap on "Hello !!" sends a "Hello World" message to all connections.
+2) Tap on the Pen image leads to Form View (as shown below)
 
-Signal Form view
+<img width="377" alt="image" src="https://user-images.githubusercontent.com/4369083/222551087-fb729575-d57c-4b43-8f5f-27477a3a1bfc.png">
+
+
+
+## Starting screen with Scrollable Messages:
+
+<img width="377" alt="image" src="https://user-images.githubusercontent.com/4369083/222550949-200738d3-2958-4d1d-8dfd-d9043ca45edc.png">
+
+
+## Signal Form view:
+
+<img width="376" alt="image" src="https://user-images.githubusercontent.com/4369083/222550836-815c19c8-8475-49c3-bf65-be7233f3814c.png">
+
+<img width="377" alt="image" src="https://user-images.githubusercontent.com/4369083/222550889-9799aa88-88dc-4239-a589-9a4db066c518.png">
+
+
