@@ -46,11 +46,11 @@ extension MessagesView: View {
                                 .hidden()
                             Text(m.content)
                                 .padding(.horizontal)
-                                .multilineTextAlignment(.center)
+                                .multilineTextAlignment(.leading)
                                 .font(.system(size: 14))
                                 
                                 .allowsTightening(true)
-                                .lineLimit(1)
+                                .lineLimit(3)
                         }
 
                     }

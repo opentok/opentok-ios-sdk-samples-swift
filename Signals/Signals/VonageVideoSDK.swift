@@ -10,86 +10,11 @@ import OpenTok
 
 
 
-let kApiKey = "28415832"
+let kApiKey = ""
 // Replace with your generated session ID
-let kSessionId = "1_MX4yODQxNTgzMn5-MTY3NjUwMjQ4MzM3NH5SdU5vTVZPYkRGL1lIdjRtYy9yTUszdWh-fn4"
+let kSessionId = ""
 // Replace with your generated token
-let kToken = "T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9YWQ1ZTQ0OGYxNjVkYWEzYmI3NTQ2YjRiNTE3NmZmYWJiZGYzZGUzMjpzZXNzaW9uX2lkPTFfTVg0eU9EUXhOVGd6TW41LU1UWTNOalV3TWpRNE16TTNOSDVTZFU1dlRWWlBZa1JHTDFsSWRqUnRZeTl5VFVzemRXaC1mbjQmY3JlYXRlX3RpbWU9MTY3NjUwMjQ4MyZub25jZT0wLjQxOTIzMjE5MDQwMDE4NjEmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTY3OTA5NDQ4MyZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
-
-struct SignalMessage: Identifiable {
-    let id = UUID()
-    var connId : String?
-    var type: String
-    var content: String
-    var outgoing: Bool
-    var displayConnId: String {
-        get {
-            return connId == nil ? "All" : connId!.lastTenCharacter()
-        }
-    }
-}
-struct ConnectionInfo : Equatable, Hashable {
-    let id = UUID()
-    var otMyConnection : OTConnection
-    var otParticipantConnection : OTConnection?
-    let displaySelf = "Self"
-    
-    static func ==(lhs: ConnectionInfo, rhs: ConnectionInfo) -> Bool {
-        return lhs.otParticipantConnection?.connectionId == rhs.otParticipantConnection?.connectionId
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(displayName)
-    }
-    var displayName: String {
-        get {
-            guard let otConnectionParticipant = otParticipantConnection else {
-                return displaySelf
-            }
-            return  otConnectionParticipant.connectionId
-        }
-    }
-    
-    func getOTConnection() -> OTConnection {
-        guard let otConnectionParticipant = otParticipantConnection else {
-            return otMyConnection
-        }
-        return otConnectionParticipant
-    }
-   
-}
-
-extension String {
-
-    // only letters permitted are (A-Z and a-z), numbers (0-9), "-", "_", " " and "~".
-    // hence we encode and decode with base64 to accomadate other characters like emojis etc.
-    // Both sides needs to be part of this. This sample app will not use base64 encoding/decoding
-    // and rely on the isValidSignal method below.
-    
-    func fromBase64() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
-
-        return String(data: data, encoding: .ascii)
-    }
-
-    func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
-    }
-    
-   // The maximum length of the type string is 128 characters, and it must
-   // contain only letters (A-Z and a-z), numbers (0-9), "-", "_", " ", and "~".
-   // you could have used base64 encoding decoding here. But just for illustration ,
-   // we assume the other  side is already deployed and we can't use base64.
-    
-    func isValidSignal() -> Bool {
-        return self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~\\s]", options: .regularExpression) == nil
-    }
-    func lastTenCharacter() -> String {
-        return "..." + self.suffix(10)
-    }
-    
-}
+let kToken = ""
 
 class VonageVideoSDK: NSObject {
     @Published var isSessionConnected = false
@@ -189,3 +114,77 @@ extension VonageVideoSDK {
     }
 }
 
+struct SignalMessage: Identifiable {
+    let id = UUID()
+    var connId : String?
+    var type: String
+    var content: String
+    var outgoing: Bool
+    var displayConnId: String {
+        get {
+            return connId == nil ? "All" : connId!.lastTenCharacter()
+        }
+    }
+}
+struct ConnectionInfo : Equatable, Hashable {
+    let id = UUID()
+    var otMyConnection : OTConnection
+    var otParticipantConnection : OTConnection?
+    let displaySelf = "Self"
+    
+    static func ==(lhs: ConnectionInfo, rhs: ConnectionInfo) -> Bool {
+        return lhs.otParticipantConnection?.connectionId == rhs.otParticipantConnection?.connectionId
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(displayName)
+    }
+    var displayName: String {
+        get {
+            guard let otConnectionParticipant = otParticipantConnection else {
+                return displaySelf
+            }
+            return  otConnectionParticipant.connectionId
+        }
+    }
+    
+    func getOTConnection() -> OTConnection {
+        guard let otConnectionParticipant = otParticipantConnection else {
+            return otMyConnection
+        }
+        return otConnectionParticipant
+    }
+   
+}
+
+extension String {
+
+    // only letters permitted are (A-Z and a-z), numbers (0-9), "-", "_", " " and "~".
+    // hence we encode and decode with base64 to accomadate other characters like emojis etc.
+    // Both sides needs to be part of this. This sample app will not use base64 encoding/decoding
+    // and rely on the isValidSignal method below.
+    
+    func fromBase64() -> String? {
+        guard let data = Data(base64Encoded: self) else {
+            return nil
+        }
+
+        return String(data: data, encoding: .ascii)
+    }
+
+    func toBase64() -> String {
+        return Data(self.utf8).base64EncodedString()
+    }
+    
+   // The maximum length of the type string is 128 characters, and it must
+   // contain only letters (A-Z and a-z), numbers (0-9), "-", "_", " ", and "~".
+   // you could have used base64 encoding decoding here. But just for illustration ,
+   // we assume the other  side is already deployed and we can't use base64.
+    
+    func isValidSignal() -> Bool {
+        return self.count <= 128 && self.range(of: "[^a-zA-Z0-9-_~\\s]", options: .regularExpression) == nil
+    }
+    func lastTenCharacter() -> String {
+        return "..." + self.suffix(10)
+    }
+    
+}
