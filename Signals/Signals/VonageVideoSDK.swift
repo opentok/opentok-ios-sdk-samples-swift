@@ -22,6 +22,7 @@ class VonageVideoSDK: NSObject {
     @Published var messages: [SignalMessage] = []    //unlimited and last in , first out
 
     lazy var session: OTSession = {
+        //make sure you have entered the credentials above , else you get an exception here
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
