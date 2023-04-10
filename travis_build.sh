@@ -29,3 +29,7 @@ xcodebuild -workspace Simple-Multiparty.xcworkspace  -scheme Simple-Multiparty -
 cd ../Multiparty-UICollectionView/
 pod install
 xcodebuild -workspace Multiparty-UICollectionView.xcworkspace  -scheme Multiparty-UICollectionView -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
+
+cd ../CallKit/
+pod install
+xcodebuild -workspace CallKitDemo.xcworkspace  -scheme CallKitDemo -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
