@@ -1,8 +1,8 @@
-platform :ios, '9.0'
+platform :ios, '13.0'
 use_frameworks!
 
 require_relative '../OpenTokSDKVersion'
 
 target 'Multiparty-UICollectionView' do
-  pod 'OpenTok', OpenTokSDKVersion
+  pod 'OTXCFramework', OpenTokSDKVersion
 end
