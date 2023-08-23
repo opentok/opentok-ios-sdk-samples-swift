@@ -115,6 +115,10 @@ class ViewController: UIViewController {
         
         session.publish(publisher, error: &error)
         
+        if error != nil {
+            fatalError("An error occurred: \(String(describing: error))")
+        }
+        
         if let pubView = publisher.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(pubView)
@@ -172,11 +176,9 @@ class ViewController: UIViewController {
     }
     
     var logoTransformer: CustomTransformer = CustomTransformer() // Create an instance of CustomTransformer
-    
-    var isSet = false
 
     @objc func buttonTapped(_ sender: UIButton) {
-        if !isSet {
+        if publisher.videoTransformers.isEmpty {
             // Create background blur Vonage transformer
             guard let backgroundBlur = OTVideoTransformer(name: "BackgroundBlur", properties: "{\"radius\":\"High\"}") else { return }
             // Create custom transformer
@@ -191,13 +193,11 @@ class ViewController: UIViewController {
             publisher.videoTransformers = myVideoTransformers
 
             buttonVideoTransformerToggle.setTitle("reset", for: .normal)
-            isSet = true
         } else {
             // Clear all transformers from video stream
             publisher.videoTransformers = []
 
             buttonVideoTransformerToggle.setTitle("set", for: .normal)
-            isSet = false
         }
     }
 }
