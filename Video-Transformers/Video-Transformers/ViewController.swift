@@ -175,7 +175,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var logoTransformer: CustomTransformer = CustomTransformer() // Create an instance of CustomTransformer
+    let logoTransformer: CustomTransformer = CustomTransformer() // Create an instance of CustomTransformer
 
     @objc func buttonTapped(_ sender: UIButton) {
         if publisher.videoTransformers.isEmpty {
