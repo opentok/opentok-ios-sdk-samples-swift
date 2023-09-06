@@ -33,3 +33,7 @@ xcodebuild -workspace Multiparty-UICollectionView.xcworkspace  -scheme Multipart
 cd ../CallKit/
 pod install
 xcodebuild -workspace CallKitDemo.xcworkspace  -scheme CallKitDemo -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
+
+cd Video-Transformers/
+pod install
+xcodebuild -workspace Video-Transformers.xcworkspace  -scheme Video-Transformers -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
