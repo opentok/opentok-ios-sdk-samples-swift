@@ -22,6 +22,13 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     fileprivate var capturing: Bool = false
     fileprivate var videoFrame = OTVideoFrame(format: OTVideoFormat(argbWithWidth: 0, height: 0))
     fileprivate var pixelBuffer: CVPixelBuffer?
+
+    private enum TimerState {
+        case unknown
+        case suspended
+        case resumed
+    }
+    private var timerState: TimerState = .unknown
     
     init(withView: UIView) {
         self.videoContentHint = .none
@@ -81,6 +88,7 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     
     // MARK: - OTVideoCapture protocol
     func initCapture() {
+        timerState = .unknown
         timer.setEventHandler {
             DispatchQueue.main.async {
                 let screen = self.screenShoot()
@@ -94,7 +102,7 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     func start() -> Int32 {
         capturing = true
         captureQueue.sync {
-            timer.resume()
+            resume()
         }
         return 0
     }
@@ -102,13 +110,14 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     func stop() -> Int32 {
         capturing = false
         captureQueue.sync {
-            timer.cancel()
+            suspend()
         }
         return 0
     }
     
     func releaseCapture() {
         timer.cancel()
+        resume()
     }
     
     func isCaptureStarted() -> Bool {
@@ -118,6 +127,22 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     func captureSettings(_ videoFormat: OTVideoFormat) -> Int32 {
         videoFormat.pixelFormat = .ARGB
         return 0
+    }
+
+    func resume() {
+        if timerState == .resumed {
+            return
+        }
+        timerState = .resumed
+        timer.resume()
+    }
+    
+    func suspend() {
+        if timerState == .suspended {
+            return
+        }
+        timerState = .suspended
+        timer.suspend()
     }
 }
 
