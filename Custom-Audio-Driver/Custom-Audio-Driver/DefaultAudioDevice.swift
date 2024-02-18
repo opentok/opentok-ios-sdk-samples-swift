@@ -398,7 +398,7 @@ extension DefaultAudioDevice: OTAudioDevice {
         
         freeupAudioBuffers()
         
-        if !recording && !isRecorderInterrupted && !isResetting {
+        if !playing && !isRecorderInterrupted && !isResetting {
             tearDownAudio()
         }
         
