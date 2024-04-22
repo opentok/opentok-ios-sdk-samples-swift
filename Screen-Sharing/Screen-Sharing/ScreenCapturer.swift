@@ -104,7 +104,7 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     func start() -> Int32 {
         capturing = true
         captureQueue.sync {
-            resume()
+            timerResume()
         }
         return 0
     }
@@ -112,7 +112,7 @@ class ScreenCapturer: NSObject, OTVideoCapture {
     func stop() -> Int32 {
         capturing = false
         captureQueue.sync {
-            suspend()
+            timerSuspend()
         }
         return 0
     }
