@@ -44,7 +44,6 @@ class Accelerater{
     }
 
     func convertFrameVImageYUV(_ frame: OTVideoFrame, to pixelBufferRef: CVPixelBuffer?) -> vImage_Error{
-        let start  = CFAbsoluteTimeGetCurrent()
         if pixelBufferRef == nil {
             print("No PixelBuffer refrance found")
             return vImage_Error(kvImageInvalidParameter)
@@ -95,8 +94,7 @@ class Accelerater{
         yPlane.deallocate()
         uPlane.deallocate()
         vPlane.deallocate()
-        let end = CFAbsoluteTimeGetCurrent()
-//        print("Decoding time \((end-start)*1000)")
+
         return convertError
 
     }
@@ -121,13 +119,12 @@ class ExampleVideoRender: UIView {
     
     var delegate: ExampleVideoRenderDelegate?
     
-    fileprivate var frameLock: NSLock?
+    var frameLock = NSLock()
     var bufferDisplayLayer: AVSampleBufferDisplayLayer = AVSampleBufferDisplayLayer()
     let accel = Accelerater()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        frameLock = NSLock()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -148,8 +145,8 @@ class ExampleVideoRender: UIView {
 
 extension ExampleVideoRender: OTVideoRender {
     func renderVideoFrame(_ frame: OTVideoFrame) {
-        if let fLock = frameLock, let format = frame.format {
-            fLock.lock()
+        if let format = frame.format {
+            frameLock.lock()
             assert(format.pixelFormat == .I420)
             
             if let sampleBuffer = createSampleBufferWithVideoFrame(frame,
@@ -158,7 +155,7 @@ extension ExampleVideoRender: OTVideoRender {
                 bufferDisplayLayer.enqueue(sampleBuffer)
             }
             
-            fLock.unlock()
+            frameLock.unlock()
         }
     }
     
@@ -260,78 +257,6 @@ extension ExampleVideoRender: OTVideoRender {
         CVPixelBufferUnlockBaseAddress(pixelBuffer, [])
         
         return buffer
-    }
-    
-    
-    func makeSampleBuffer() -> CMSampleBuffer? {
-        let scale = UIScreen.main.scale
-        let size = CGSize(
-            width: (bounds.width * scale),
-            height: (bounds.height * scale))
-        
-        var pixelBuffer: CVPixelBuffer?
-        var status = CVPixelBufferCreate(kCFAllocatorDefault,
-                                         Int(size.width),
-                                         Int(size.height),
-                                         kCVPixelFormatType_32ARGB,
-                                         [
-                                            kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue!,
-                                            kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue!,
-                                            kCVPixelBufferIOSurfacePropertiesKey: [:] as CFDictionary,
-                                         ] as CFDictionary, &pixelBuffer)
-        
-        if status != kCVReturnSuccess {
-            assertionFailure("[UIPiPView] Failed to create CVPixelBuffer: \(status)")
-            return nil
-        }
-        
-        CVPixelBufferLockBaseAddress(pixelBuffer!, [])
-        defer { CVPixelBufferUnlockBaseAddress(pixelBuffer!, []) }
-        
-        let context = CGContext(
-            data: CVPixelBufferGetBaseAddress(pixelBuffer!),
-            width: Int(size.width),
-            height: Int(size.height),
-            bitsPerComponent: 8,
-            bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!),
-            space: CGColorSpaceCreateDeviceRGB(),
-            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)!
-        
-        context.translateBy(x: 0, y: size.height)
-        context.scaleBy(x: scale, y: -scale)
-        layer.render(in: context)
-        
-        var formatDescription: CMFormatDescription?
-        status = CMVideoFormatDescriptionCreateForImageBuffer(
-            allocator: kCFAllocatorDefault,
-            imageBuffer: pixelBuffer!,
-            formatDescriptionOut: &formatDescription)
-        
-        if status != kCVReturnSuccess {
-            assertionFailure("[UIPiPView] Failed to create CMFormatDescription: \(status)")
-            return nil
-        }
-        
-        let now = CMTime(seconds: CACurrentMediaTime(), preferredTimescale: 60)
-        let timingInfo = CMSampleTimingInfo(
-            duration: .init(seconds: 1, preferredTimescale: 60),
-            presentationTimeStamp: now,
-            decodeTimeStamp: now)
-        
-        do {
-            if #available(iOS 13.0, *) {
-                return try CMSampleBuffer(
-                    imageBuffer: pixelBuffer!,
-                    formatDescription: formatDescription!,
-                    sampleTiming: timingInfo)
-            } else {
-                assertionFailure("[UIPiPView] UIPiPView cannot be used on this device or OS.")
-                return nil
-            }
-        } catch {
-            assertionFailure("[UIPiPView] Failed to create CVSampleBuffer: \(error)")
-            return nil
-        }
     }
     
   }

@@ -71,12 +71,12 @@ class ViewController: UIViewController {
         
         publisher = OTPublisher(delegate: self, settings: settings)
         
-//        session.publish(publisher!, error: &error)
+        session.publish(publisher!, error: &error)
          
-//         if let pubView = publisher!.view {
-//             pubView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
-//             view.addSubview(pubView)
-//         }
+         if let pubView = publisher!.view {
+             pubView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
+             view.addSubview(pubView)
+         }
     }
     
     /**
@@ -92,17 +92,12 @@ class ViewController: UIViewController {
         }
         subscriber = OTSubscriber(stream: stream, delegate: self)
         
-        
         let videoRender = ExampleVideoRender()
         subscriber?.videoRender = videoRender
         
         session.subscribe(subscriber!, error: &error)
-
-        let frame = CGRect(x: 0, y: view.frame.width / kWidgetRatio, width: view.frame.width, height: view.frame.width / kWidgetRatio)
-        videoRender.frame = frame
-        view.addSubview(videoRender)
         
-        pipSetup(frame: frame, videoRender: videoRender)
+        pipSetup(videoRender: videoRender)
         
     }
     
@@ -125,10 +120,12 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate func pipSetup(frame: CGRect, videoRender: ExampleVideoRender) {
+    fileprivate func pipSetup(videoRender: ExampleVideoRender) {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         
+        let frame = CGRect(x: 0, y: view.frame.width / kWidgetRatio, width: view.frame.width, height: view.frame.width / kWidgetRatio)
+
         let bufferDisplayLayer = videoRender.bufferDisplayLayer
         bufferDisplayLayer.frame = frame
 
