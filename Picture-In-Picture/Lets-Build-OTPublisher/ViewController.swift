@@ -15,11 +15,11 @@ let kWidgetRatio: CGFloat = 1.333
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
-let kApiKey = ""
+let kApiKey = "47565621"
 // Replace with your generated session ID
-let kSessionId = ""
+let kSessionId = "2_MX40NzU2NTYyMX5-MTcxNDYxNzE0MzkxMn5neE81RGhDTUM5YVNVY0s0bHI3Q0F0aEV-fn4"
 // Replace with your generated token
-let kToken = ""
+let kToken = "T1==cGFydG5lcl9pZD00NzU2NTYyMSZzaWc9OTY4YWExZWZjNDQwMGZiMDJmOTI0ZGE2NDQwMDY1MjRjZWVjODA2ZTpzZXNzaW9uX2lkPTJfTVg0ME56VTJOVFl5TVg1LU1UY3hORFl4TnpFME16a3hNbjVuZUU4MVJHaERUVU01WVZOVlkwczBiSEkzUTBGMGFFVi1mbjQmY3JlYXRlX3RpbWU9MTcxNDYxNzE1MyZub25jZT0wLjAzNzU3Mzk0MDY1Njc0NTkxJnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE3MTcyMDkxNTImaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0="
 
 
 
@@ -152,6 +152,8 @@ class ViewController: UIViewController {
         pipController.startPictureInPicture()
     }
     
+    @IBAction func nextViewTapped(_ sender: Any) {
+    }
     
     @objc func appMovedToBackground() {
         print("app move to background", pipController.isPictureInPicturePossible)
