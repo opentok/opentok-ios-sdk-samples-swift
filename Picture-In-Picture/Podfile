@@ -1,0 +1,8 @@
+platform :ios, '13.0'
+use_frameworks!
+
+require_relative '../OpenTokSDKVersion'
+
+target 'Picture-In-Picture' do
+  pod 'OTXCFramework', OpenTokSDKVersion
+end
