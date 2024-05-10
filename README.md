@@ -68,6 +68,9 @@ for a multi-party call. The application publishes audio/video from an iOS device
 can connect to multiple subscribers. However it shows only one subscriber video at a 
 time due to CPU limitations on iOS devices.
 
+**Picture In Picture** -- This project demonstrates how to implement Picture In Picture on a 
+subcribed video stream.
+
 **FrameMetadata** -- This project shows how to set metadata (limited to 32 bytes) to a video frame, as well as how to read metadata from a video frame.
 	
 ## Obtaining OpenTok Credentials
