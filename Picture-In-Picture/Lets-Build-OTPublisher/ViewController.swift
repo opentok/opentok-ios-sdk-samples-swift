@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         session.publish(publisher!, error: &error)
          
          if let pubView = publisher!.view {
-             pubView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
+             pubView.frame = CGRect(x: 0, y: view.frame.width / kWidgetRatio, width: view.frame.width, height: view.frame.width / kWidgetRatio)
              view.addSubview(pubView)
          }
     }
@@ -96,6 +96,10 @@ class ViewController: UIViewController {
         subscriber?.videoRender = videoRender
         
         session.subscribe(subscriber!, error: &error)
+        
+        NotificationCenter.default.removeObserver(subscriber,
+                                 name: UIApplication.willResignActiveNotification,
+                                 object: nil)
         
         pipSetup(videoRender: videoRender)
         
@@ -121,10 +125,8 @@ class ViewController: UIViewController {
     }
     
     fileprivate func pipSetup(videoRender: ExampleVideoRender) {
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         
-        let frame = CGRect(x: 0, y: view.frame.width / kWidgetRatio, width: view.frame.width, height: view.frame.width / kWidgetRatio)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width / kWidgetRatio)
 
         let bufferDisplayLayer = videoRender.bufferDisplayLayer
         bufferDisplayLayer.frame = frame
@@ -134,32 +136,10 @@ class ViewController: UIViewController {
         
         let contentSource = AVPictureInPictureController.ContentSource(sampleBufferDisplayLayer: videoRender.bufferDisplayLayer, playbackDelegate: self)
         
-        
-        
         pipController = AVPictureInPictureController(contentSource: contentSource)
+        pipController.canStartPictureInPictureAutomaticallyFromInline = true
         pipController.delegate = self
         
-        pipObservation = pipController.observe(\AVPictureInPictureController.isPictureInPicturePossible,
-                                                options: [.initial, .new]) { [weak self] _, change in
-            
-            print("isPictureInPicturePossible: \(change.newValue ?? false)")
-            
-            self?.pipController.startPictureInPicture()
-        }
-    }
-    
-    @IBAction func startPIP(_ sender: Any) {
-        pipController.startPictureInPicture()
-    }
-    
-    @IBAction func nextViewTapped(_ sender: Any) {
-    }
-    
-    @objc func appMovedToBackground() {
-        print("app move to background", pipController.isPictureInPicturePossible)
-        if pipController.isPictureInPicturePossible {
-            pipController.startPictureInPicture()
-        }
     }
 }
 
@@ -167,7 +147,7 @@ class ViewController: UIViewController {
 extension ViewController: OTSessionDelegate {
     func sessionDidConnect(_ session: OTSession) {
         print("Session connected")
-        doPublish()
+//        doPublish()
     }
     
     func sessionDidDisconnect(_ session: OTSession) {
@@ -215,13 +195,6 @@ extension ViewController: OTPublisherDelegate {
 // MARK: - OTSubscriber delegate callbacks
 extension ViewController: OTSubscriberDelegate {
     func subscriberDidConnect(toStream subscriberKit: OTSubscriberKit) {
-//        subscriber?.view?.frame = CGRect(x: 0, y: view.frame.width / kWidgetRatio, width: view.frame.width, height: view.frame.width / kWidgetRatio)
-        
-
-        
-//        if let subsView = subscriber?.view {
-//            view.addSubview(subsView)
-//        }
     }
     
     func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
