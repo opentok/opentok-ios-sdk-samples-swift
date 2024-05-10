@@ -120,7 +120,8 @@ class ExampleVideoRender: UIView {
     var delegate: ExampleVideoRenderDelegate?
     
     var frameLock = NSLock()
-    var bufferDisplayLayer: AVSampleBufferDisplayLayer = AVSampleBufferDisplayLayer()
+    var bufferDisplayLayer =  AVSampleBufferDisplayLayer()
+    var pipBufferDisplayLayer: AVSampleBufferDisplayLayer?
     let accel = Accelerater()
     
     override init(frame: CGRect) {
@@ -153,6 +154,7 @@ extension ExampleVideoRender: OTVideoRender {
                                                                    width: Int(frame.format!.imageWidth),
                                                                    height: Int(frame.format!.imageHeight)) {
                 bufferDisplayLayer.enqueue(sampleBuffer)
+                pipBufferDisplayLayer?.enqueue(sampleBuffer)
             }
             
             frameLock.unlock()

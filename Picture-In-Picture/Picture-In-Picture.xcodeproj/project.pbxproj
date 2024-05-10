@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6510F38796E0E44CC144B1FC /* Pods_Picture_In_Picture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0685123659B7FADE5415B782 /* Pods_Picture_In_Picture.framework */; };
+		EA65E79C2BEE08920060F604 /* SampleBufferVideoCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65E79B2BEE08920060F604 /* SampleBufferVideoCallView.swift */; };
 		F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */; };
 		F86C64BC1D5C8A150081846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C64BB1D5C8A150081846D /* AppDelegate.swift */; };
 		F86C64BE1D5C8A150081846D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86C64BD1D5C8A150081846D /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 		81DA78E557B6CC9FACB46457 /* Pods-Custom-Video-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Video-Driver.debug.xcconfig"; path = "Target Support Files/Pods-Custom-Video-Driver/Pods-Custom-Video-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		859ECA77BD688D6216193F82 /* Pods-Picture-In-Picture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picture-In-Picture.debug.xcconfig"; path = "Target Support Files/Pods-Picture-In-Picture/Pods-Picture-In-Picture.debug.xcconfig"; sourceTree = "<group>"; };
 		B049AB366F84CA3525E1BF9C /* Pods-Picture-In-Picture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Picture-In-Picture.release.xcconfig"; path = "Target Support Files/Pods-Picture-In-Picture/Pods-Picture-In-Picture.release.xcconfig"; sourceTree = "<group>"; };
+		EA65E79B2BEE08920060F604 /* SampleBufferVideoCallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleBufferVideoCallView.swift; sourceTree = "<group>"; };
 		F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleVideoRender.swift; sourceTree = "<group>"; };
 		F86C64B81D5C8A150081846D /* Picture-In-Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Picture-In-Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86C64BB1D5C8A150081846D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				F86C64C41D5C8A150081846D /* LaunchScreen.storyboard */,
 				F86C64C71D5C8A150081846D /* Info.plist */,
 				F84DC3AE1D5C8BF400402BD9 /* ExampleVideoRender.swift */,
+				EA65E79B2BEE08920060F604 /* SampleBufferVideoCallView.swift */,
 			);
 			path = "Lets-Build-OTPublisher";
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA65E79C2BEE08920060F604 /* SampleBufferVideoCallView.swift in Sources */,
 				F86C64BE1D5C8A150081846D /* ViewController.swift in Sources */,
 				F86C64BC1D5C8A150081846D /* AppDelegate.swift in Sources */,
 				F84DC3AF1D5C8BF400402BD9 /* ExampleVideoRender.swift in Sources */,
