@@ -15,7 +15,7 @@ for this repository.
 
 ### ExampleVideoRender
 
-OTSubscriber need an instance supporting the
+OTSubscriber needs an instance supporting the
 `OTVideoRender` protocol to display video contents. In short, the instance
 ID that is set to the `videoRender` property will receive YUV frames (I420) 
 as they are received (subscriber).

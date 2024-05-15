@@ -1,11 +1,3 @@
-//
-//  ExampleVideoRender.swift
-//  Lets-Build-OTPublisher
-//
-//  Created by Roberto Perez Cubero on 11/08/16.
-//  Copyright © 2016 tokbox. All rights reserved.
-//
-
 import OpenTok
 import GLKit
 import Foundation
@@ -53,10 +45,8 @@ class Accelerater{
         let height = frame.format?.imageHeight ?? 0
         let subsampledWidth = frame.format!.imageWidth/2
         let subsampledHeight = frame.format!.imageHeight/2
-//        print("subsample height \(subsampledHeight) \(subsampledWidth)")
         let planeSize = calculatePlaneSize(forFrame: frame)
 
-//        print("ysize : \(planeSize.ySize) \(planeSize.uSize) \(planeSize.vSize)")
         let yPlane = UnsafeMutablePointer<GLubyte>.allocate(capacity: planeSize.ySize)
         let uPlane = UnsafeMutablePointer<GLubyte>.allocate(capacity: planeSize.uSize)
         let vPlane = UnsafeMutablePointer<GLubyte>.allocate(capacity: planeSize.vSize)
@@ -132,16 +122,6 @@ class ExampleVideoRender: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func calculatePlaneSize(forFrame frame: OTVideoFrame)
-        -> (ySize: Int, uSize: Int, vSize: Int)
-    {
-        guard let frameFormat = frame.format
-            else {
-                return (0, 0 ,0)
-        }
-        let baseSize = Int(frameFormat.imageWidth * frameFormat.imageHeight) * MemoryLayout<GLubyte>.size
-        return (baseSize, baseSize / 4, baseSize / 4)
-    }
 }
 
 extension ExampleVideoRender: OTVideoRender {
@@ -197,58 +177,9 @@ extension ExampleVideoRender: OTVideoRender {
             sampleBufferOut: &sampleBuffer
         )
         
-        //        print("osStatus CMSampleBufferCreateReadyWithImageBuffer = \(osStatus)")
-        // Print out errors
-        if osStatus == kCMSampleBufferError_AllocationFailed {
-            print("osStatus == kCMSampleBufferError_AllocationFailed")
-        }
-        if osStatus == kCMSampleBufferError_RequiredParameterMissing {
-            print("osStatus == kCMSampleBufferError_RequiredParameterMissing")
-        }
-        if osStatus == kCMSampleBufferError_AlreadyHasDataBuffer {
-            print("osStatus == kCMSampleBufferError_AlreadyHasDataBuffer")
-        }
-        if osStatus == kCMSampleBufferError_BufferNotReady {
-            print("osStatus == kCMSampleBufferError_BufferNotReady")
-        }
-        if osStatus == kCMSampleBufferError_SampleIndexOutOfRange {
-            print("osStatus == kCMSampleBufferError_SampleIndexOutOfRange")
-        }
-        if osStatus == kCMSampleBufferError_BufferHasNoSampleSizes {
-            print("osStatus == kCMSampleBufferError_BufferHasNoSampleSizes")
-        }
-        if osStatus == kCMSampleBufferError_BufferHasNoSampleTimingInfo {
-            print("osStatus == kCMSampleBufferError_BufferHasNoSampleTimingInfo")
-        }
-        if osStatus == kCMSampleBufferError_ArrayTooSmall {
-            print("osStatus == kCMSampleBufferError_ArrayTooSmall")
-        }
-        if osStatus == kCMSampleBufferError_InvalidEntryCount {
-            print("osStatus == kCMSampleBufferError_InvalidEntryCount")
-        }
-        if osStatus == kCMSampleBufferError_CannotSubdivide {
-            print("osStatus == kCMSampleBufferError_CannotSubdivide")
-        }
-        if osStatus == kCMSampleBufferError_SampleTimingInfoInvalid {
-            print("osStatus == kCMSampleBufferError_SampleTimingInfoInvalid")
-        }
-        if osStatus == kCMSampleBufferError_InvalidMediaTypeForOperation {
-            print("osStatus == kCMSampleBufferError_InvalidMediaTypeForOperation")
-        }
-        if osStatus == kCMSampleBufferError_InvalidSampleData {
-            print("osStatus == kCMSampleBufferError_InvalidSampleData")
-        }
-        if osStatus == kCMSampleBufferError_InvalidMediaFormat {
-            print("osStatus == kCMSampleBufferError_InvalidMediaFormat")
-        }
-        if osStatus == kCMSampleBufferError_Invalidated {
-            print("osStatus == kCMSampleBufferError_Invalidated")
-        }
-        if osStatus == kCMSampleBufferError_DataFailed {
-            print("osStatus == kCMSampleBufferError_DataFailed")
-        }
-        if osStatus == kCMSampleBufferError_DataCanceled {
-            print("osStatus == kCMSampleBufferError_DataCanceled")
+        if osStatus != noErr {
+            let errorMessage = osStatusToString(status: osStatus)
+            print("osStatus error: \(errorMessage)")
         }
         
         guard let buffer = sampleBuffer else {
@@ -259,6 +190,47 @@ extension ExampleVideoRender: OTVideoRender {
         CVPixelBufferUnlockBaseAddress(pixelBuffer, [])
         
         return buffer
+    }
+    
+    func osStatusToString(status: OSStatus) -> String {
+        switch status {
+        case kCMSampleBufferError_DataCanceled:
+            return "kCMSampleBufferError_DataCanceled"
+        case kCMSampleBufferError_DataFailed:
+            return "kCMSampleBufferError_DataFailed"
+        case kCMSampleBufferError_Invalidated:
+            return "kCMSampleBufferError_Invalidated"
+        case kCMSampleBufferError_InvalidMediaFormat:
+            return "kCMSampleBufferError_InvalidMediaFormat"
+        case kCMSampleBufferError_InvalidSampleData:
+            return "kCMSampleBufferError_InvalidSampleData"
+        case kCMSampleBufferError_InvalidMediaTypeForOperation:
+            return "kCMSampleBufferError_InvalidMediaTypeForOperation"
+        case kCMSampleBufferError_SampleTimingInfoInvalid:
+            return "kCMSampleBufferError_SampleTimingInfoInvalid"
+        case kCMSampleBufferError_CannotSubdivide:
+            return "kCMSampleBufferError_CannotSubdivide"
+        case kCMSampleBufferError_InvalidEntryCount:
+            return "kCMSampleBufferError_InvalidEntryCount"
+        case kCMSampleBufferError_ArrayTooSmall:
+            return "kCMSampleBufferError_ArrayTooSmall"
+        case kCMSampleBufferError_BufferHasNoSampleTimingInfo:
+            return "kCMSampleBufferError_BufferHasNoSampleTimingInfo"
+        case kCMSampleBufferError_BufferHasNoSampleSizes:
+            return "kCMSampleBufferError_BufferHasNoSampleSizes"
+        case kCMSampleBufferError_SampleIndexOutOfRange:
+            return "kCMSampleBufferError_SampleIndexOutOfRange"
+        case kCMSampleBufferError_BufferNotReady:
+            return "kCMSampleBufferError_BufferNotReady"
+        case kCMSampleBufferError_AlreadyHasDataBuffer:
+            return "kCMSampleBufferError_AlreadyHasDataBuffer"
+        case kCMSampleBufferError_RequiredParameterMissing:
+            return "kCMSampleBufferError_RequiredParameterMissing"
+        case kCMSampleBufferError_AllocationFailed:
+            return "kCMSampleBufferError_AllocationFailed"
+        default:
+            return "Unknown error with code \(status)"
+        }
     }
     
   }
