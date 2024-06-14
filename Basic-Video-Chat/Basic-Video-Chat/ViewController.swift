@@ -26,13 +26,9 @@ class ViewController: UIViewController {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
-    lazy var publisher: OTPublisher = {
-        let settings = OTPublisherSettings()
-        settings.name = UIDevice.current.name
-        return OTPublisher(delegate: self, settings: settings)!
-    }()
-    
+    var publisher: OTPublisher?
     var subscriber: OTSubscriber?
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +59,13 @@ class ViewController: UIViewController {
         defer {
             processError(error)
         }
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        publisher = OTPublisher(delegate: self, settings: settings)!
+      
+        session.publish(publisher!, error: &error)
         
-        session.publish(publisher, error: &error)
-        
-        if let pubView = publisher.view {
+        if let pubView = publisher!.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(pubView)
         }
@@ -94,7 +93,10 @@ class ViewController: UIViewController {
     }
     
     fileprivate func cleanupPublisher() {
-        publisher.view?.removeFromSuperview()
+        if let publisher = publisher {
+            publisher.view?.removeFromSuperview()
+        }
+        
     }
     
     fileprivate func processError(_ error: OTError?) {
@@ -142,7 +144,20 @@ extension ViewController: OTSessionDelegate {
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
-        print("Publishing")
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                   if  self.publisher!.videoCapture?.isCaptureStarted() == true ,
+                       AVCaptureDevice.authorizationStatus(for: .video) == .authorized
+                   {
+                       print("Later - video stream w = \(stream.videoDimensions.width)")
+                   }
+               })
+               
+               if self.publisher!.videoCapture?.isCaptureStarted() == true ,
+                  AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+                   print("Initial (valid) - video stream   w = \(stream.videoDimensions.width)")
+               } else {
+                   print("Capturer not yet started or camera permissions not given.")
+               }
     }
     
     func publisher(_ publisher: OTPublisherKit, streamDestroyed stream: OTStream) {
