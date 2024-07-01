@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.27.2
+
+### Added
+
+- Support Vonage Media Processor library as a opt-in library.
+- Supports Noise Suppression
+
+### Fixed
+
+- Decoupled Media Processor library
+
 ## 2.26.0
 
 ### Added

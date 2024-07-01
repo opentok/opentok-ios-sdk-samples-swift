@@ -154,5 +154,5 @@ To use CocoaPods to add the OpenTok library and its dependencies into this sampl
 simply open Terminal, navigate to the root directory of the project and run: `pod install`.
 
 
-The Video-Transformers app is a very simple application meant to get a new developer
+The Media-Transformers app is a very simple application meant to get a new developer
 started using the OpenTok iOS SDK.

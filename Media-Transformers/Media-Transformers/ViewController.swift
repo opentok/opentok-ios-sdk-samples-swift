@@ -69,7 +69,7 @@ class CustomTransformer: NSObject, OTCustomVideoTransformer {
 
 class ViewController: UIViewController {
     
-    var buttonVideoTransformerToggle: UIButton!
+    var buttonMediaTransformerToggle: UIButton!
     
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
@@ -125,18 +125,18 @@ class ViewController: UIViewController {
         }
         
         // Configure toogle button
-        buttonVideoTransformerToggle = UIButton(type: .custom)
-        buttonVideoTransformerToggle.frame = CGRect(x: kWidgetWidth - 65, y: 50, width: 50, height: 25)
-        buttonVideoTransformerToggle.layer.cornerRadius = 5.0
-        self.view.addSubview(buttonVideoTransformerToggle)
-        self.view.bringSubviewToFront(buttonVideoTransformerToggle)
-        buttonVideoTransformerToggle.setTitle("set", for: .normal)
-        buttonVideoTransformerToggle.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        buttonVideoTransformerToggle.setTitleColor(.gray, for: .normal)
-        buttonVideoTransformerToggle.backgroundColor = .white
-        buttonVideoTransformerToggle.layer.borderWidth = 1.0
-        buttonVideoTransformerToggle.layer.borderColor = UIColor.gray.cgColor
-        buttonVideoTransformerToggle.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        buttonMediaTransformerToggle = UIButton(type: .custom)
+        buttonMediaTransformerToggle.frame = CGRect(x: kWidgetWidth - 65, y: 50, width: 50, height: 25)
+        buttonMediaTransformerToggle.layer.cornerRadius = 5.0
+        self.view.addSubview(buttonMediaTransformerToggle)
+        self.view.bringSubviewToFront(buttonMediaTransformerToggle)
+        buttonMediaTransformerToggle.setTitle("set", for: .normal)
+        buttonMediaTransformerToggle.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        buttonMediaTransformerToggle.setTitleColor(.gray, for: .normal)
+        buttonMediaTransformerToggle.backgroundColor = .white
+        buttonMediaTransformerToggle.layer.borderWidth = 1.0
+        buttonMediaTransformerToggle.layer.borderColor = UIColor.gray.cgColor
+        buttonMediaTransformerToggle.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
 
     }
     
@@ -192,12 +192,31 @@ class ViewController: UIViewController {
             // Set video transformers to publisher video stream
             publisher.videoTransformers = myVideoTransformers
 
-            buttonVideoTransformerToggle.setTitle("reset", for: .normal)
+            buttonMediaTransformerToggle.setTitle("reset", for: .normal)
         } else {
             // Clear all transformers from video stream
             publisher.videoTransformers = []
 
-            buttonVideoTransformerToggle.setTitle("set", for: .normal)
+            buttonMediaTransformerToggle.setTitle("set", for: .normal)
+        }
+
+        if publisher.audioTransformers.isEmpty {
+            // Create Noise Suppression Vonage transformer
+            guard let ns = OTAudioTransformer(name: "NoiseSuppression", properties: "") else { return }
+
+            var myAudioTransformers = [OTAudioTransformer]()
+
+            myAudioTransformers.append(ns)
+
+            // Set audio transformers to publisher audio stream
+            publisher.audioTransformers = myAudioTransformers
+
+            buttonMediaTransformerToggle.setTitle("reset", for: .normal)
+        } else {
+            // Clear all transformers from audio stream
+            publisher.audioTransformers = []
+
+            buttonMediaTransformerToggle.setTitle("set", for: .normal)
         }
     }
 }
