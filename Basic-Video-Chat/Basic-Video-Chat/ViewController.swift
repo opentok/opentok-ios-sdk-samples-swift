@@ -93,8 +93,8 @@ class ViewController: UIViewController {
     }
     
     fileprivate func cleanupPublisher() {
-        publisher = nil
         publisher!.view?.removeFromSuperview()
+        publisher = nil
     }
     
     fileprivate func processError(_ error: OTError?) {
@@ -117,6 +117,8 @@ extension ViewController: OTSessionDelegate {
     
     func sessionDidDisconnect(_ session: OTSession) {
         print("Session disconnected")
+        cleanupPublisher()
+        cleanupSubscriber()
     }
     
     func session(_ session: OTSession, streamCreated stream: OTStream) {
