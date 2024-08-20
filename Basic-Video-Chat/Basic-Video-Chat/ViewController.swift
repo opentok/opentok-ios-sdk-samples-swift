@@ -26,12 +26,7 @@ class ViewController: UIViewController {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
-    lazy var publisher: OTPublisher = {
-        let settings = OTPublisherSettings()
-        settings.name = UIDevice.current.name
-        return OTPublisher(delegate: self, settings: settings)!
-    }()
-    
+    var publisher: OTPublisher?
     var subscriber: OTSubscriber?
     
     override func viewDidLoad() {
@@ -64,9 +59,13 @@ class ViewController: UIViewController {
             processError(error)
         }
         
-        session.publish(publisher, error: &error)
+        let settings = OTPublisherSettings()
+        settings.name = UIDevice.current.name
+        publisher =  OTPublisher(delegate: self, settings: settings)!
+
+        session.publish(publisher!, error: &error)
         
-        if let pubView = publisher.view {
+        if let pubView = publisher!.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(pubView)
         }
@@ -94,7 +93,8 @@ class ViewController: UIViewController {
     }
     
     fileprivate func cleanupPublisher() {
-        publisher.view?.removeFromSuperview()
+        publisher = nil
+        publisher!.view?.removeFromSuperview()
     }
     
     fileprivate func processError(_ error: OTError?) {
