@@ -8,6 +8,7 @@
 
 import UIKit
 import OpenTok
+import Combine
 
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
@@ -21,6 +22,7 @@ let kToken = ""
 let kWidgetHeight = 240
 let kWidgetWidth = 320
 
+
 class ViewController: UIViewController {
     lazy var session: OTSession = {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
@@ -28,6 +30,7 @@ class ViewController: UIViewController {
     
     var publisher: OTPublisher?
     var subscriber: OTSubscriber?
+    var c_pub : OTSwPublisher?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,8 +64,15 @@ class ViewController: UIViewController {
         
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
-        publisher =  OTPublisher(delegate: self, settings: settings)!
+        //publisher =  OTPublisher(delegate: self, settings: settings)!
 
+        c_pub = OTSwPublisher(delegate: self , settings: settings)
+       
+        let cancellable = c_pub!.namePublisher
+            .sink { value in
+                print("Received value: \(value)")
+            }
+        
         session.publish(publisher!, error: &error)
         
         if let pubView = publisher!.view {
