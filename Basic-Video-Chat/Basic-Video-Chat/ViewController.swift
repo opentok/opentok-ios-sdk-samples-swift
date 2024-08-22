@@ -13,11 +13,11 @@ import Combine
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
-let kApiKey = ""
+let kApiKey = "28415832"
 // Replace with your generated session ID
-let kSessionId = ""
+let kSessionId = "2_MX4yODQxNTgzMn5-MTcyNDI4MTg0NTg1M351cUVTNGpMSDR4RTNHaFdiUEF0LzN0RWt-fn4"
 // Replace with your generated token
-let kToken = ""
+let kToken = "T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NWY3NzJmNjgwYmY5MTIzMmZmNjBkZTAyZDVhYjFlZjk2Y2E2N2MxMjpzZXNzaW9uX2lkPTJfTVg0eU9EUXhOVGd6TW41LU1UY3lOREk0TVRnME5UZzFNMzUxY1VWVE5HcE1TRFI0UlROSGFGZGlVRUYwTHpOMFJXdC1mbjQmY3JlYXRlX3RpbWU9MTcyNDI4MTg0NiZub25jZT0wLjY3MTM0MTU4OTA3MDc0NzUmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTcyNjg3Mzg0NiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ=="
 
 let kWidgetHeight = 240
 let kWidgetWidth = 320
@@ -28,9 +28,10 @@ class ViewController: UIViewController {
         return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
     }()
     
-    var publisher: OTPublisher?
     var subscriber: OTSubscriber?
-    var c_pub : OTSwPublisher?
+    var publisher : OTSwPublisher?
+    var subscription: AnyCancellable?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,16 +65,25 @@ class ViewController: UIViewController {
         
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
-        //publisher =  OTPublisher(delegate: self, settings: settings)!
-
-        c_pub = OTSwPublisher(delegate: self , settings: settings)
+        publisher = OTSwPublisher(delegate: self , settings: settings)
        
-        let cancellable = c_pub!.namePublisher
+        let cancellable = publisher!.namePublisher
             .sink { value in
-                print("Received value: \(value)")
+                print("Received name value: \(value)")
             }
         
+        
         session.publish(publisher!, error: &error)
+
+        publisher?.setupNetworkStatsDelegate()
+
+        // Subscribe to the subject to print the bytesSend values
+        subscription = publisher!.subject.sink { statsArray in
+            for stat in statsArray {
+                print("bytesSend: \(stat.videoBytesSent)")
+            }
+        }
+
         
         if let pubView = publisher!.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
