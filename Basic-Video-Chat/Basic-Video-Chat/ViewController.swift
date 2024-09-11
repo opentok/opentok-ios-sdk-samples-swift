@@ -77,17 +77,34 @@ class ViewController: UIViewController {
 
         publisher?.setupNetworkStatsDelegate()
 
-        // Subscribe to the subject to print the bytesSend values
-        subscription = publisher!.subject.sink { statsArray in
-            for stat in statsArray {
-                print("bytesSend: \(stat.videoBytesSent)")
+        subscription = publisher!.subject
+            .throttle(for: .seconds(10), scheduler: RunLoop.main, latest: true)
+            .sink { statsArray in
+                for stat in statsArray {
+                   // print("bytesSend: \(stat.videoBytesSent)")
+                }
             }
-        }
 
         
         if let pubView = publisher!.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
             view.addSubview(pubView)
+        }
+        Task {
+                   await self.startPublishing()
+               }
+    }
+    
+    func startPublishing() async {
+        do {
+            let createdStream = try await publisher!.waitForStreamCreated()
+            print("Stream created after await: \(createdStream)")
+            session.unpublish(publisher!, error: nil)
+            // After stream creation, you might want to wait for stream destruction
+            let destroyedStream = try await publisher!.waitForStreamDestroyed()
+            print("Stream destroyed after await: \(destroyedStream)")
+        } catch {
+            print("Error occurred after await: \(error)")
         }
     }
     
@@ -163,7 +180,7 @@ extension ViewController: OTSessionDelegate {
 
 // MARK: - OTPublisher delegate callbacks
 extension ViewController: OTPublisherDelegate {
-    func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream) {
+    func publisher(_ publisher: OTPublisherKit, streamCreated stream: OTStream)  {
         print("Publishing")
     }
     
@@ -192,3 +209,6 @@ extension ViewController: OTSubscriberDelegate {
         print("Subscriber failed: \(error.localizedDescription)")
     }
 }
+
+
+
