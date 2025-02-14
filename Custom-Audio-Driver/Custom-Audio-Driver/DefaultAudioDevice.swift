@@ -22,6 +22,7 @@ class DefaultAudioDevice: NSObject {
     static let kAudioDeviceSpeaker = "AudioSessionManagerDevice_Speaker"
     static let kToMicroSecond: Double = 1000000
     static let kMaxPlayoutDelay: UInt8 = 150
+    static let kMaxRecordingDelay: UInt16 = 500
     
     var audioFormat = OTAudioFormat()
     let safetyQueue = DispatchQueue(label: "ot-audio-driver")
@@ -297,7 +298,7 @@ extension DefaultAudioDevice: OTAudioDevice {
         return UInt16(min(self.playoutDelay, UInt32(DefaultAudioDevice.kMaxPlayoutDelay)))
     }
     func estimatedCaptureDelay() -> UInt16 {
-        return UInt16(self.recordingDelay)
+        return UInt16(min(self.recordingDelay, UInt32(DefaultAudioDevice.kMaxRecordingDelay)))
     }
     func captureIsAvailable() -> Bool {
         return true
@@ -642,9 +643,8 @@ func updatePlayoutDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
         audioDevice.playoutDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
         audioDevice.playoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
         // To ms
-        if ( audioDevice.playoutDelay >= 500 ) {
-            audioDevice.playoutDelay = (audioDevice.playoutDelay - 500) / 1000
-        }
+         audioDevice.playoutDelay = (audioDevice.playoutDelay - 500) / 1000
+
         audioDevice.playoutDelayMeasurementCounter = 0
     }
 }
