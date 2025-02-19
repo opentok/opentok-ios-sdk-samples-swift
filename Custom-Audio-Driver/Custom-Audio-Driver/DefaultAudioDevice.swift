@@ -12,7 +12,7 @@ import OpenTok
 @propertyWrapper
 struct Atomic<Value> {
     private var value: Value
-    private let queue = DispatchQueue(label: "com.example.atomicProperty")
+    private let queue = DispatchQueue(label: "com.tokbox.atomicProperty")
     
     init(wrappedValue: Value) {
         self.value = wrappedValue
