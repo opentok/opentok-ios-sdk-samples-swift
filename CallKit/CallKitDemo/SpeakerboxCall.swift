@@ -46,7 +46,14 @@ final class SpeakerboxCall: NSObject {
     
     var isMuted = false {
         didSet {
-            publisher?.publishAudio = !isMuted
+            // Prevent feedback loops
+            guard oldValue != isMuted else { return }
+
+            // Only change audio state if needed
+            let shouldPublish = !isMuted
+            if publisher?.publishAudio != shouldPublish {
+                publisher?.publishAudio = shouldPublish
+            }
         }
     }
 
@@ -106,7 +113,6 @@ final class SpeakerboxCall: NSObject {
     
     var canStartCall: ((Bool) -> Void)?
     func startCall(withAudioSession audioSession: AVAudioSession, completion: ((_ success: Bool) -> Void)?) {
-        OTAudioDeviceManager.setAudioDevice(OTDefaultAudioDevice.sharedInstance(with: audioSession))
         if session == nil {
             session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         }
@@ -122,7 +128,6 @@ final class SpeakerboxCall: NSObject {
     
     var canAnswerCall: ((Bool) -> Void)?
     func answerCall(withAudioSession audioSession: AVAudioSession, completion: ((_ success: Bool) -> Void)?) {
-        OTAudioDeviceManager.setAudioDevice(OTDefaultAudioDevice.sharedInstance(with: audioSession))
         if session == nil {
             session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         }

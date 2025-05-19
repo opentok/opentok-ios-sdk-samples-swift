@@ -97,7 +97,8 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         // we can't configure the audio session here for the case of launching it from locked screen
         // instead, we have to pre-heat the AVAudioSession by configuring as early as possible, didActivate do not get called otherwise
         // please look for  * pre-heat the AVAudioSession *
-        configureAudioSession()
+        let sessionManager = OTAudioDeviceManager.currentSessionManager()
+        sessionManager?.configureSession()
         
         /*
             Set callback blocks for significant events in the call's lifecycle, so that the CXProvider may be updated
@@ -133,7 +134,8 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         // we can't configure the audio session here for the case of launching it from locked screen
         // instead, we have to pre-heat the AVAudioSession by configuring as early as possible, didActivate do not get called otherwise
         // please look for  * pre-heat the AVAudioSession *
-        configureAudioSession()
+        let sessionManager = OTAudioDeviceManager.currentSessionManager()
+        sessionManager?.configureSession()
 
         self.answerCall = call
         
@@ -182,10 +184,8 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
             action.fail()
             return
         }
-        
         call.isMuted = action.isMuted
-        
-        // Signal to the system that the action has been successfully performed.
+
         action.fulfill()
     }
 
@@ -197,6 +197,9 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
 
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         print("Received \(#function)")
+        
+        let sessionManager = OTAudioDeviceManager.currentSessionManager()
+        sessionManager?.audioSessionDidActivate()
         
         // If we are returning from a hold state
         if answerCall?.hasConnected ?? false {
@@ -232,6 +235,10 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
 
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         print("Received \(#function)")
+        
+        if let sessionManager = OTAudioDeviceManager.currentAudioDevice() as? OTAudioSessionManager {
+            sessionManager.audioSessionDidDeactivate()
+        }
 
         /*
              Restart any non-call related audio now that the app's audio session has been
@@ -254,19 +261,5 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         let interrupttioEndedRaw = AVAudioSession.InterruptionType.ended.rawValue
         userInfo[AVAudioSessionInterruptionTypeKey] = interrupttioEndedRaw
         NotificationCenter.default.post(name: AVAudioSession.interruptionNotification, object: self, userInfo: userInfo)
-    }
-    
-    func configureAudioSession() {
-        // See https://forums.developer.apple.com/thread/64544
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(AVAudioSession.Category.playAndRecord, mode: .default)
-            try session.setActive(true)
-            try session.setMode(AVAudioSession.Mode.voiceChat)
-            try session.setPreferredSampleRate(44100.0)
-            try session.setPreferredIOBufferDuration(0.005)
-        } catch {
-            print(error)
-        }
     }
 }

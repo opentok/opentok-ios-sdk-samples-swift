@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A00A84251F3A772400B2862E /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = A00A84221F3A772400B2862E /* OTDefaultAudioDevice.m */; };
 		A04D825E1EEB1E3E00EBA4CA /* SpeakerboxCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04D825C1EEB1E3E00EBA4CA /* SpeakerboxCall.swift */; };
 		A04D825F1EEB1E3E00EBA4CA /* SpeakerboxCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04D825D1EEB1E3E00EBA4CA /* SpeakerboxCallManager.swift */; };
 		A04D82611EEB1EB000EBA4CA /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04D82601EEB1EB000EBA4CA /* ProviderDelegate.swift */; };
@@ -21,9 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A00A84201F3A772400B2862E /* CallKitDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CallKitDemo-Bridging-Header.h"; sourceTree = "<group>"; };
-		A00A84211F3A772400B2862E /* OTDefaultAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDevice.h; sourceTree = "<group>"; };
-		A00A84221F3A772400B2862E /* OTDefaultAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDevice.m; sourceTree = "<group>"; };
 		A04D825C1EEB1E3E00EBA4CA /* SpeakerboxCall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerboxCall.swift; sourceTree = "<group>"; };
 		A04D825D1EEB1E3E00EBA4CA /* SpeakerboxCallManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerboxCallManager.swift; sourceTree = "<group>"; };
 		A04D82601EEB1EB000EBA4CA /* ProviderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderDelegate.swift; sourceTree = "<group>"; };
@@ -70,8 +66,6 @@
 		A062C6221EE5FAA200FD64A3 /* CallKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				A00A84211F3A772400B2862E /* OTDefaultAudioDevice.h */,
-				A00A84221F3A772400B2862E /* OTDefaultAudioDevice.m */,
 				A0B080C71EF9BD4A0082691D /* Ringtone.caf */,
 				A0F2087B1EEF449800104C6C /* CallKitDemo.entitlements */,
 				A062C6231EE5FAA200FD64A3 /* AppDelegate.swift */,
@@ -83,7 +77,6 @@
 				A062C62A1EE5FAA200FD64A3 /* Assets.xcassets */,
 				A062C62C1EE5FAA200FD64A3 /* LaunchScreen.storyboard */,
 				A062C62F1EE5FAA200FD64A3 /* Info.plist */,
-				A00A84201F3A772400B2862E /* CallKitDemo-Bridging-Header.h */,
 			);
 			path = CallKitDemo;
 			sourceTree = "<group>";
@@ -138,6 +131,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -174,7 +168,6 @@
 				A062C6261EE5FAA200FD64A3 /* ViewController.swift in Sources */,
 				A04D825F1EEB1E3E00EBA4CA /* SpeakerboxCallManager.swift in Sources */,
 				A062C6241EE5FAA200FD64A3 /* AppDelegate.swift in Sources */,
-				A00A84251F3A772400B2862E /* OTDefaultAudioDevice.m in Sources */,
 				A04D825E1EEB1E3E00EBA4CA /* SpeakerboxCall.swift in Sources */,
 				A04D82611EEB1EB000EBA4CA /* ProviderDelegate.swift in Sources */,
 			);

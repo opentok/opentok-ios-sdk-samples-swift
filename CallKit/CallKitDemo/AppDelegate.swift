@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Trigger VoIP registration on launch
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
+        if let sessionManager = OTAudioDeviceManager.currentSessionManager() {
+            sessionManager.setManualMode()
+        }
         
         providerDelegate = ProviderDelegate(callManager: callManager)
         
@@ -52,8 +55,6 @@ extension AppDelegate: PKPushRegistryDelegate {
         if let uuidString = payload.dictionaryPayload["UUID"] as? String,
             let handle = payload.dictionaryPayload["handle"] as? String,
             let uuid = UUID(uuidString: uuidString) {
-            
-            OTAudioDeviceManager.setAudioDevice(OTDefaultAudioDevice.sharedInstance())
                 
             // display incoming call UI when receiving incoming voip notification
             let backgroundTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
