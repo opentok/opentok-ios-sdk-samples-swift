@@ -9,6 +9,21 @@
 import Foundation
 import OpenTok
 
+@propertyWrapper
+struct Atomic<Value> {
+    private var value: Value
+    private let queue = DispatchQueue(label: "com.tokbox.atomicProperty")
+    
+    init(wrappedValue: Value) {
+        self.value = wrappedValue
+    }
+    
+    var wrappedValue: Value {
+        get { queue.sync { value } }
+        set { queue.sync { value = newValue } }
+    }
+}
+
 class DefaultAudioDevice: NSObject {
 #if targetEnvironment(simulator)
     static let kSampleRate: UInt16 = 44100
@@ -20,9 +35,11 @@ class DefaultAudioDevice: NSObject {
     static let kAudioDeviceHeadset = "AudioSessionManagerDevice_Headset"
     static let kAudioDeviceBluetooth = "AudioSessionManagerDevice_Bluetooth"
     static let kAudioDeviceSpeaker = "AudioSessionManagerDevice_Speaker"
-    static let kToMicroSecond: Double = 1000000
-    static let kMaxPlayoutDelay: UInt8 = 150
-    static let kMaxRecordingDelay: UInt16 = 500
+    static let ks2us: Double = 1000000
+    static let kus2ms: Double = 1000
+    static let kMaxPlayoutDelay: UInt8 = 150 //ms
+    static let kMaxRecordingDelay: UInt16 = 500 //ms
+    static let kLatencyDelay: UInt16 = 500 //micro seconds
     
     var audioFormat = OTAudioFormat()
     let safetyQueue = DispatchQueue(label: "ot-audio-driver")
@@ -43,9 +60,9 @@ class DefaultAudioDevice: NSObject {
     var playoutAudioUnitPropertyLatency: Float64 = 0
     var playoutDelayMeasurementCounter: UInt32 = 0
     var recordingDelayMeasurementCounter: UInt32 = 0
-    var recordingDelay: UInt32 = 0
+    @Atomic var recordingDelay: UInt32 = 0
     var recordingAudioUnitPropertyLatency: Float64 = 0
-    var playoutDelay: UInt32 = 0
+    @Atomic var playoutDelay: UInt32 = 0
     var playing = false
     var playoutInitialized = false
     var recording = false
@@ -631,20 +648,27 @@ func recordCb(inRefCon:UnsafeMutableRawPointer,
 func updatePlayoutDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
     audioDevice.playoutDelayMeasurementCounter += 1
     if audioDevice.playoutDelayMeasurementCounter >= 100 {
-        // Update HW and OS delay every second, unlikely to change
-        audioDevice.playoutDelay = 0
+        // Use a temporary variable for thread safety during calculation
+        var tempPlayoutDelay: UInt32 = 0
         let session = AVAudioSession.sharedInstance()
         
         // HW output latency
         let interval = session.outputLatency
-        audioDevice.playoutDelay += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
+        tempPlayoutDelay += UInt32(interval * DefaultAudioDevice.ks2us)
         // HW buffer duration
         let ioInterval = session.ioBufferDuration
-        audioDevice.playoutDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
-        audioDevice.playoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
-        // To ms
-         audioDevice.playoutDelay = (audioDevice.playoutDelay - 500) / 1000
-
+        tempPlayoutDelay += UInt32(ioInterval * DefaultAudioDevice.ks2us)
+        tempPlayoutDelay += UInt32(audioDevice.playoutAudioUnitPropertyLatency * DefaultAudioDevice.ks2us)
+        
+        // To ms and avoid negative values
+        if tempPlayoutDelay >= UInt32(DefaultAudioDevice.kLatencyDelay) {
+            tempPlayoutDelay = (tempPlayoutDelay - UInt32(DefaultAudioDevice.kLatencyDelay)) / UInt32(DefaultAudioDevice.kus2ms)
+        } else {
+            //let outputLatency pass through, it will be non negative
+            tempPlayoutDelay = tempPlayoutDelay / UInt32(DefaultAudioDevice.kus2ms)
+        }
+        // Assign the calculated value to playoutDelay atomically
+        audioDevice.playoutDelay = tempPlayoutDelay
         audioDevice.playoutDelayMeasurementCounter = 0
     }
 }
@@ -653,18 +677,25 @@ func updateRecordingDelay(withAudioDevice audioDevice: DefaultAudioDevice) {
     audioDevice.recordingDelayMeasurementCounter += 1
     
     if audioDevice.recordingDelayMeasurementCounter >= 100 {
-        audioDevice.recordingDelay = 0
+        // Use a temporary variable for thread safety during calculation
+        var tempRecordingDelay: UInt32 = 0
         let session = AVAudioSession.sharedInstance()
         let interval = session.inputLatency
         
-        audioDevice.recordingDelay += UInt32(interval * DefaultAudioDevice.kToMicroSecond)
+        tempRecordingDelay += UInt32(interval * DefaultAudioDevice.ks2us)
         let ioInterval = session.ioBufferDuration
         
-        audioDevice.recordingDelay += UInt32(ioInterval * DefaultAudioDevice.kToMicroSecond)
-        audioDevice.recordingDelay += UInt32(audioDevice.recordingAudioUnitPropertyLatency * DefaultAudioDevice.kToMicroSecond)
+        tempRecordingDelay += UInt32(ioInterval * DefaultAudioDevice.ks2us)
+        tempRecordingDelay += UInt32(audioDevice.recordingAudioUnitPropertyLatency * DefaultAudioDevice.ks2us)
         
-        audioDevice.recordingDelay = audioDevice.recordingDelay.advanced(by: -500) / 1000
-        
+        // To ms and avoid negative values
+        if tempRecordingDelay >= UInt32(DefaultAudioDevice.kLatencyDelay) {
+            tempRecordingDelay = (tempRecordingDelay - UInt32(DefaultAudioDevice.kLatencyDelay)) / UInt32(DefaultAudioDevice.kus2ms)
+        } else {
+            //let inputLatency pass through, it will be non negative
+            tempRecordingDelay = tempRecordingDelay / UInt32(DefaultAudioDevice.kus2ms)
+        }
+        audioDevice.recordingDelay = tempRecordingDelay
         audioDevice.recordingDelayMeasurementCounter = 0
     }
 }
