@@ -46,14 +46,7 @@ final class SpeakerboxCall: NSObject {
     
     var isMuted = false {
         didSet {
-            // Prevent feedback loops
-            guard oldValue != isMuted else { return }
-
-            // Only change audio state if needed
-            let shouldPublish = !isMuted
-            if publisher?.publishAudio != shouldPublish {
-                publisher?.publishAudio = shouldPublish
-            }
+            publisher?.publishAudio = !isMuted
         }
     }
 
