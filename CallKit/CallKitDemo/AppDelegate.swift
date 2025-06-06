@@ -11,9 +11,9 @@ import PushKit
 import CallKit
 import OpenTok
 
-let apiKey = "48048351"
-let sessionId = "2_MX40ODA0ODM1MX5-MTc0OTE5NTY2MTc5NX5naDd3LzJDVDBOMTlTYmZHWDhTWDVqa2l-fn4"
-let token = "T1==cGFydG5lcl9pZD00ODA0ODM1MSZzaWc9ZjhiZWUyMjE0ZjY1YzUxODI3ODRkZWRmYTFkMWUyOWIyYmE5ODYxNDpzZXNzaW9uX2lkPTJfTVg0ME9EQTBPRE0xTVg1LU1UYzBPVEU1TlRZMk1UYzVOWDVuYURkM0x6SkRWREJPTVRsVFltWkhXRGhUV0RWcWEybC1mbjQmY3JlYXRlX3RpbWU9MTc0OTIwNDAwNSZub25jZT0wLjMyNDM2MjM2MTYzNDkyODA0JnJvbGU9bW9kZXJhdG9yJmV4cGlyZV90aW1lPTE3NDkyMDU4MDM5MTImaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0="
+let apiKey = ""
+let sessionId = ""
+let token = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

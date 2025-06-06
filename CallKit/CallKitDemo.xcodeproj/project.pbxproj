@@ -8,21 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		373FD26FC719771DA1FE9296 /* Pods_CallKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCC6CE434A3AA747DD39696 /* Pods_CallKitDemo.framework */; };
-		6FA799DB2DE9F86B00977B46 /* OpenTok.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799CF2DE9F4E000977B46 /* OpenTok.xcframework */; };
-		6FA799DC2DE9F86B00977B46 /* OpenTok.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799CF2DE9F4E000977B46 /* OpenTok.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6FA799E22DE9F8A200977B46 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799E12DE9F8A200977B46 /* VideoToolbox.framework */; };
-		6FA799E42DE9F8C400977B46 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799E32DE9F8C400977B46 /* SystemConfiguration.framework */; };
-		6FA799E62DE9F8CE00977B46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799E52DE9F8CE00977B46 /* QuartzCore.framework */; };
-		6FA799E82DE9F8D600977B46 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799E72DE9F8D600977B46 /* OpenGLES.framework */; };
-		6FA799EA2DE9F8DF00977B46 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799E92DE9F8DF00977B46 /* GLKit.framework */; };
-		6FA799EC2DE9F8E800977B46 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799EB2DE9F8E800977B46 /* CoreVideo.framework */; };
-		6FA799EE2DE9F8F000977B46 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799ED2DE9F8F000977B46 /* CoreTelephony.framework */; };
-		6FA799F02DE9F8F700977B46 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799EF2DE9F8F700977B46 /* CoreMedia.framework */; };
-		6FA799F22DE9F8FD00977B46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799F12DE9F8FD00977B46 /* CoreGraphics.framework */; };
-		6FA799F42DE9F90400977B46 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799F32DE9F90400977B46 /* CoreFoundation.framework */; };
-		6FA799F62DE9F90B00977B46 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799F52DE9F90B00977B46 /* AudioToolbox.framework */; };
-		6FA799F82DE9F91400977B46 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799F72DE9F91400977B46 /* AVFoundation.framework */; };
-		6FA799FA2DE9F92C00977B46 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA799F92DE9F92C00977B46 /* Network.framework */; };
 		A04D825E1EEB1E3E00EBA4CA /* SpeakerboxCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04D825C1EEB1E3E00EBA4CA /* SpeakerboxCall.swift */; };
 		A04D825F1EEB1E3E00EBA4CA /* SpeakerboxCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04D825D1EEB1E3E00EBA4CA /* SpeakerboxCallManager.swift */; };
 		A04D82611EEB1EB000EBA4CA /* ProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04D82601EEB1EB000EBA4CA /* ProviderDelegate.swift */; };
@@ -35,24 +20,9 @@
 		A0F2087A1EEF442E00104C6C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A0F208791EEF442E00104C6C /* Podfile */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		6FA799DD2DE9F86B00977B46 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6FA799DC2DE9F86B00977B46 /* OpenTok.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		6276A9694A42BCF2E7D4265A /* Pods-CallKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CallKitDemo.debug.xcconfig"; path = "Target Support Files/Pods-CallKitDemo/Pods-CallKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		6FA799CB2DE9E21C00977B46 /* OpenTok.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:PR6C39UQ38:Vonage"; lastKnownFileType = wrapper.xcframework; name = OpenTok.xcframework; path = Pods/OTXCFramework/OpenTok.xcframework; sourceTree = "<group>"; };
-		6FA799CF2DE9F4E000977B46 /* OpenTok.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenTok.xcframework; sourceTree = "<group>"; };
 		6FA799E12DE9F8A200977B46 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		6FA799E32DE9F8C400977B46 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6FA799E52DE9F8CE00977B46 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -88,21 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FA799E62DE9F8CE00977B46 /* QuartzCore.framework in Frameworks */,
-				6FA799DB2DE9F86B00977B46 /* OpenTok.xcframework in Frameworks */,
 				373FD26FC719771DA1FE9296 /* Pods_CallKitDemo.framework in Frameworks */,
-				6FA799E42DE9F8C400977B46 /* SystemConfiguration.framework in Frameworks */,
-				6FA799F02DE9F8F700977B46 /* CoreMedia.framework in Frameworks */,
-				6FA799F62DE9F90B00977B46 /* AudioToolbox.framework in Frameworks */,
-				6FA799EA2DE9F8DF00977B46 /* GLKit.framework in Frameworks */,
-				6FA799E22DE9F8A200977B46 /* VideoToolbox.framework in Frameworks */,
-				6FA799E82DE9F8D600977B46 /* OpenGLES.framework in Frameworks */,
-				6FA799F42DE9F90400977B46 /* CoreFoundation.framework in Frameworks */,
-				6FA799EE2DE9F8F000977B46 /* CoreTelephony.framework in Frameworks */,
-				6FA799F22DE9F8FD00977B46 /* CoreGraphics.framework in Frameworks */,
-				6FA799F82DE9F91400977B46 /* AVFoundation.framework in Frameworks */,
-				6FA799EC2DE9F8E800977B46 /* CoreVideo.framework in Frameworks */,
-				6FA799FA2DE9F92C00977B46 /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +91,6 @@
 				6FA799E32DE9F8C400977B46 /* SystemConfiguration.framework */,
 				6FA799E12DE9F8A200977B46 /* VideoToolbox.framework */,
 				6FA799CB2DE9E21C00977B46 /* OpenTok.xcframework */,
-				6FA799CF2DE9F4E000977B46 /* OpenTok.xcframework */,
 				FBCC6CE434A3AA747DD39696 /* Pods_CallKitDemo.framework */,
 			);
 			name = Frameworks;
@@ -189,7 +144,7 @@
 				A062C61C1EE5FAA200FD64A3 /* Sources */,
 				A062C61D1EE5FAA200FD64A3 /* Frameworks */,
 				A062C61E1EE5FAA200FD64A3 /* Resources */,
-				6FA799DD2DE9F86B00977B46 /* Embed Frameworks */,
+				6E75212811E76BF4FAF2A9DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,6 +234,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E75212811E76BF4FAF2A9DB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CallKitDemo/Pods-CallKitDemo-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTXCFramework/OTPrivacyResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTPrivacyResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CallKitDemo/Pods-CallKitDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
