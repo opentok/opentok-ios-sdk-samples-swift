@@ -4,5 +4,5 @@ platform :ios, MinIosSdkVersion
 use_frameworks!
 
 target 'CallKitDemo' do
-  pod 'OTXCFramework', OpenTokSDKVersion
+  pod 'OTXCFramework', :podspec => 'OTXCFramework.podspec'
 end

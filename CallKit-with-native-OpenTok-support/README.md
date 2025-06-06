@@ -52,14 +52,18 @@ The system wakes up your cell phone by making a native calling screen appear. Up
 
 ![lock1](./lock1.png) ---> ![lock2](./lock2.png)
 
-  4. **Without simulation, use a push server or [NWPusher](https://github.com/noodlewerk/NWPusher) to call**
+  4. **Without simulation, use the provided pu.sh script to call**
 
-This requires a few more steps to test:
+You will need to generate a APNs enabled P8 key in the Certificates, Identifiers & Profiles in the [Apple developer site](https://developer.apple.com/account/resources/authkeys/list).
 
-    - create your certificate
-    - configure your push notification backend or NWPusher
-    - locate your device token for testing (launch the app and get it from the console)
-    - send a remote notification from your backend or NWPusher
+Modify the parameters in the script:
+- TEAMID: Your developer account team ID
+- KEYID: Key ID that is shown in the Apple developer auth keys list.
+- SECRET: Path to the P8 key, like "~/example/AuthKey_XXXXXXXXX.p8"
+- BUNDLEID: the bundle ID of the app, followed by .voip, like "com.org.app.voip"
+- DEVICETOKEN: VoIP push token provided by PushKit
+
+Run the script in the terminal app.
 
 
 **Notice**: You might want to use [OpenTok.js Sample App](https://github.com/opentok/opentok-web-samples/tree/master/Basic%20Video%20Chat) to test the sample app together.

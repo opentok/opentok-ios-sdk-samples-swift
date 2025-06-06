@@ -106,7 +106,6 @@ final class SpeakerboxCall: NSObject {
     
     var canStartCall: ((Bool) -> Void)?
     func startCall(withAudioSession audioSession: AVAudioSession, completion: ((_ success: Bool) -> Void)?) {
-        OTAudioDeviceManager.setAudioDevice(OTDefaultAudioDevice.sharedInstance(with: audioSession))
         if session == nil {
             session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         }
@@ -122,7 +121,6 @@ final class SpeakerboxCall: NSObject {
     
     var canAnswerCall: ((Bool) -> Void)?
     func answerCall(withAudioSession audioSession: AVAudioSession, completion: ((_ success: Bool) -> Void)?) {
-        OTAudioDeviceManager.setAudioDevice(OTDefaultAudioDevice.sharedInstance(with: audioSession))
         if session == nil {
             session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         }

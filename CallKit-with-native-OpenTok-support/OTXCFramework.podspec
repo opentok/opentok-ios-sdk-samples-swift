@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "OTXCFramework"
-  s.version      = "2.30.1"
+  s.version      = "2.31.0-preview.1813"
   s.summary      = "OpenTok lets you weave interactive live WebRTC video streaming right into your application"
   s.description  = <<-DESC
                    The OpenTok iOS SDK lets you use WebRTC video sessions in apps you build for iPad,
