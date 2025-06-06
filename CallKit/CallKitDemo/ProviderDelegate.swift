@@ -16,9 +16,11 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
 
     let callManager: SpeakerboxCallManager
     private let provider: CXProvider
-
-    init(callManager: SpeakerboxCallManager) {
+    private let sessionManager: OTAudioSessionManager?
+    
+    init(callManager: SpeakerboxCallManager, sessionManager: OTAudioSessionManager?) {
         self.callManager = callManager
+        self.sessionManager = sessionManager
         provider = CXProvider(configuration: type(of: self).providerConfiguration)
 
         super.init()
@@ -54,7 +56,6 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         update.hasVideo = hasVideo
 
         // pre-heat the AVAudioSession
-        //OTAudioDeviceManager.setAudioDevice(OTDefaultAudioDevice.sharedInstance())
         
         // Report the incoming call to the system
         provider.reportNewIncomingCall(with: uuid, update: update) { error in
@@ -97,7 +98,7 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         // we can't configure the audio session here for the case of launching it from locked screen
         // instead, we have to pre-heat the AVAudioSession by configuring as early as possible, didActivate do not get called otherwise
         // please look for  * pre-heat the AVAudioSession *
-        configureAudioSession()
+        sessionManager?.preconfigureAudioSessionForCall(withMode: .videoChat)
         
         /*
             Set callback blocks for significant events in the call's lifecycle, so that the CXProvider may be updated
@@ -133,8 +134,8 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         // we can't configure the audio session here for the case of launching it from locked screen
         // instead, we have to pre-heat the AVAudioSession by configuring as early as possible, didActivate do not get called otherwise
         // please look for  * pre-heat the AVAudioSession *
-        configureAudioSession()
-
+        sessionManager?.preconfigureAudioSessionForCall(withMode: .videoChat)
+        
         self.answerCall = call
         
         // Signal to the system that the action has been successfully performed.
@@ -197,18 +198,13 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
 
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         print("Received \(#function)")
-        
+        sessionManager?.audioSessionActivated(audioSession)
+
         // If we are returning from a hold state
         if answerCall?.hasConnected ?? false {
-            //configureAudioSession()
-            // See more details on how this works in the OTDefaultAudioDevice.m method handleInterruptionEvent
-            sendFakeAudioInterruptionNotificationToStartAudioResources();
             return
         }
         if outgoingCall?.hasConnected ?? false {
-            //configureAudioSession()
-            // See more details on how this works in the OTDefaultAudioDevice.m method handleInterruptionEvent
-            sendFakeAudioInterruptionNotificationToStartAudioResources()
             return
         }
         
@@ -232,7 +228,8 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
 
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         print("Received \(#function)")
-
+        sessionManager?.audioSessionDeactivated(audioSession)
+        
         /*
              Restart any non-call related audio now that the app's audio session has been
              de-activated after having its priority restored to normal.
@@ -247,26 +244,5 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
         answerCall?.endCall()
         answerCall = nil
         callManager.removeAllCalls()
-    }
-    
-    func sendFakeAudioInterruptionNotificationToStartAudioResources() {
-        var userInfo = Dictionary<AnyHashable, Any>()
-        let interrupttioEndedRaw = AVAudioSession.InterruptionType.ended.rawValue
-        userInfo[AVAudioSessionInterruptionTypeKey] = interrupttioEndedRaw
-        NotificationCenter.default.post(name: AVAudioSession.interruptionNotification, object: self, userInfo: userInfo)
-    }
-    
-    func configureAudioSession() {
-        // See https://forums.developer.apple.com/thread/64544
-        let session = AVAudioSession.sharedInstance()
-        do {
-            try session.setCategory(AVAudioSession.Category.playAndRecord, mode: .default)
-            try session.setActive(true)
-            try session.setMode(AVAudioSession.Mode.voiceChat)
-            try session.setPreferredSampleRate(44100.0)
-            try session.setPreferredIOBufferDuration(0.005)
-        } catch {
-            print(error)
-        }
     }
 }
