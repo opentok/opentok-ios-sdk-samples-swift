@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  build          = "1834"
+  build          = "1859"
   s.name         = "OTXCFramework"
   s.version      = "2.31.0-preview.#{build}"
   s.summary      = "OpenTok lets you weave interactive live WebRTC video streaming right into your application"
