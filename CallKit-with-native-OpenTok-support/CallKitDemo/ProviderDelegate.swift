@@ -197,9 +197,9 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
     }
 
     func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
-        print("Received \(#function)")
-        sessionManager?.audioSessionActivated(audioSession)
-
+        print("Received didActivate")
+        sessionManager?.audioSessionDidActivate(audioSession)
+        
         // If we are returning from a hold state
         if answerCall?.hasConnected ?? false {
             return
@@ -227,8 +227,8 @@ final class ProviderDelegate: NSObject, CXProviderDelegate {
     }
 
     func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
-        print("Received \(#function)")
-        sessionManager?.audioSessionDeactivated(audioSession)
+        print("Received didDeactivate")
+        sessionManager?.audioSessionDidDeactivate(audioSession)
         
         /*
              Restart any non-call related audio now that the app's audio session has been
