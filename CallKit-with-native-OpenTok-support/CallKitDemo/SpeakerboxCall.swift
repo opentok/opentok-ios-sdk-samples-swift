@@ -8,6 +8,7 @@
 
 import Foundation
 import OpenTok
+import CallKit
 
 final class SpeakerboxCall: NSObject {
 
@@ -39,7 +40,6 @@ final class SpeakerboxCall: NSObject {
     }
     var isOnHold = false {
         didSet {
-            publisher?.publishAudio = !isOnHold
             stateDidChange?()
         }
     }
@@ -57,7 +57,8 @@ final class SpeakerboxCall: NSObject {
     var hasConnectedDidChange: (() -> Void)?
     var hasEndedDidChange: (() -> Void)?
     var audioChange: (() -> Void)?
-
+    var callDidEnd: ((CXCallEndedReason) -> Void)?
+    
     // MARK: Derived Properties
 
     var hasStartedConnecting: Bool {
@@ -229,6 +230,7 @@ extension SpeakerboxCall: OTSessionDelegate {
 extension SpeakerboxCall: OTPublisherDelegate {
     func publisher(_ publisher: OTPublisherKit, didFailWithError error: OTError) {
         print(#function)
+        callDidEnd?(.failed)
     }
 }
 
@@ -239,5 +241,6 @@ extension SpeakerboxCall: OTSubscriberDelegate {
     
     func subscriber(_ subscriber: OTSubscriberKit, didFailWithError error: OTError) {
         print(#function)
+        callDidEnd?(.failed)
     }
 }

@@ -22,7 +22,8 @@ final class SpeakerboxCallManager: NSObject {
 
     // MARK: Actions
 
-    func startCall(handle: String, video: Bool = false) {        
+    func startCall(handle: String, video: Bool = false) {
+        print("SpeakerboxCallManager: startCall")
         let handle = CXHandle(type: .phoneNumber, value: handle)
         let startCallAction = CXStartCallAction(call: UUID(), handle: handle)
 
@@ -35,6 +36,7 @@ final class SpeakerboxCallManager: NSObject {
     }
 
     func end(call: SpeakerboxCall) {
+        print("SpeakerboxCallManager: end")
         let endCallAction = CXEndCallAction(call: call.uuid)
         let transaction = CXTransaction()
         transaction.addAction(endCallAction)
@@ -43,6 +45,7 @@ final class SpeakerboxCallManager: NSObject {
     }
 
     func setHeld(call: SpeakerboxCall, onHold: Bool) {
+        print("SpeakerboxCallManager: setHeld \(onHold)")
         let setHeldCallAction = CXSetHeldCallAction(call: call.uuid, onHold: onHold)
         let transaction = CXTransaction()
         transaction.addAction(setHeldCallAction)
