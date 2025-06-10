@@ -58,7 +58,7 @@ You will need to generate an APNs enabled P8 key in the Certificates, Identifier
 
 Modify the parameters in the script:
 - TEAMID: Your developer account team ID
-- KEYID: Key ID that is shown in the Apple developer auth keys list.
+- KEYID: Key ID that is shown in the Apple developer auth keys list
 - SECRET: Path to the P8 key, like "~/example/AuthKey_XXXXXXXXX.p8"
 - BUNDLEID: the bundle ID of the app, followed by .voip, like "com.org.app.voip"
 - DEVICETOKEN: VoIP push token provided by PushKit
@@ -70,7 +70,7 @@ Run the script in the terminal app.
 
 ### Exploring the codes
 
-For activating the native OpenTok CallKit support you will need to activate the support by using the `OTAudioDeviceManager.currentAudioSessionManager`. This instance notifies to the SDK that should not try to activate the audio sessions, instead it will wait for the the app audio session activation and deactivation events.
+For activating the native OpenTok CallKit support you will need to enable calling services mode. The `OTAudioDeviceManager.currentAudioSessionManager` instance notifies to the SDK that should not try to activate the audio sessions, instead it will wait for the the app audio session activation and deactivation events.
 
 It’s recommended that you configure the calling services mode in the application start, for example in the `AppDelegate` `didFinishLaunchingWithOptions`method.
 
@@ -103,8 +103,8 @@ preconfigureAudioSessionForCall(withMode: .voiceChat)
 or
 preconfigureAudioSessionForCall(withMode: .videoChat)
 ```
-[VoiceChat]([voiceChat | Apple Developer Documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/voicechat)) mode is commonly used for audio only apps like the Phone app.
-[VideoChat]([videoChat | Apple Developer Documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/videochat)) mode is commonly used for video conferencing apps like Facetime.
+[VoiceChat](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/voicechat)) mode is commonly used for audio only apps like the Phone app.
+[VideoChat](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/videochat)) mode is commonly used for video conferencing apps like Facetime.
 
 You will need to notify to the SDK about the audio session configuration stages as well as activations and deactivations in the CXProvider delegate callbacks as seen below:
 
