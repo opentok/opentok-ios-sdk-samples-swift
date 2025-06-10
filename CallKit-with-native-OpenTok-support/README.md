@@ -103,8 +103,8 @@ preconfigureAudioSessionForCall(withMode: .voiceChat)
 or
 preconfigureAudioSessionForCall(withMode: .videoChat)
 ```
-[VoiceChat](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/voicechat)) mode is commonly used for audio only apps like the Phone app.
-[VideoChat](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/videochat)) mode is commonly used for video conferencing apps like Facetime.
+[VoiceChat](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/voicechat) mode is commonly used for audio only apps like the Phone app.
+[VideoChat](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/videochat) mode is commonly used for video conferencing apps like Facetime.
 
 You will need to notify to the SDK about the audio session configuration stages as well as activations and deactivations in the CXProvider delegate callbacks as seen below:
 
