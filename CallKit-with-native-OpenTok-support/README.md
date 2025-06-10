@@ -52,9 +52,9 @@ The system wakes up your cell phone by making a native calling screen appear. Up
 
 ![lock1](./lock1.png) ---> ![lock2](./lock2.png)
 
-  4. **Without simulation, use the provided pu.sh script to call**
+4. **Or use the provided pu.sh script to simulate an incoming call**
 
-You will need to generate a APNs enabled P8 key in the Certificates, Identifiers & Profiles in the [Apple developer site](https://developer.apple.com/account/resources/authkeys/list).
+You will need to generate an APNs enabled P8 key in the Certificates, Identifiers & Profiles in the [Apple developer site](https://developer.apple.com/account/resources/authkeys/list).
 
 Modify the parameters in the script:
 - TEAMID: Your developer account team ID
@@ -69,6 +69,15 @@ Run the script in the terminal app.
 **Notice**: You might want to use [OpenTok.js Sample App](https://github.com/opentok/opentok-web-samples/tree/master/Basic%20Video%20Chat) to test the sample app together.
 
 ### Exploring the codes
+
+For activating the native OpenTok CallKit support you will need to activate the support by using the `OTAudioDeviceManager.currentAudioSessionManager`. This instance notifies to the SDK that should not try to activate the audio sessions, instead it will wait for the the app audio session activation and deactivation events.
+
+It’s recommended that you configure the calling services mode in the application start, for example in the `AppDelegate` `didFinishLaunchingWithOptions`method.
+
+```swift
+let sessionManager = OTAudioDeviceManager.currentAudioSessionManager()
+sessionManager?.enableCallingServicesMode()
+```
 
 A `CXProvider` object is responsible for reporting out-of-band notifications that occur to the system. To create one, you first need to initialize a `CXProviderConfiguration` object, which encapsulates the behaviors and capabilities of calls, to pass on to the `CXProvider` initializer. In order to receive telephony events of the provider, the provider needs to specify an object conforming to the `CXProviderDelegate` protocol.
 
@@ -87,9 +96,22 @@ provider = CXProvider(configuration: providerConfiguration)
 provider.setDelegate(self, queue: nil)
 ```
 
-The `CXProviderDelegate` protocol defines events of the telephony provider (`CXProvider`) such as the call starting, the call being put on hold, or the provider’s audio session is activated.
+The `CXProviderDelegate` protocol defines events of the telephony provider (`CXProvider`) such as the call starting, the call being put on hold, or the provider’s audio session is activated. CallKit requires a `preheating` stage where the developer has to set up the required `AudioSession` configuration. The configuration is done for you by calling 
 
 ```swift
+preconfigureAudioSessionForCall(withMode: .voiceChat)
+or
+preconfigureAudioSessionForCall(withMode: .videoChat)
+```
+[VoiceChat]([voiceChat | Apple Developer Documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/voicechat)) mode is commonly used for audio only apps like the Phone app.
+[VideoChat]([videoChat | Apple Developer Documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/videochat)) mode is commonly used for video conferencing apps like Facetime.
+
+You will need to notify to the SDK about the audio session configuration stages as well as activations and deactivations in the CXProvider delegate callbacks as seen below:
+
+```swift
+
+let sessionManager = OTAudioDeviceManager.currentAudioSessionManager()
+
 // MARK: CXProviderDelegate
 func providerDidReset(_ provider: CXProvider) {
     print("Provider did reset")
@@ -97,20 +119,14 @@ func providerDidReset(_ provider: CXProvider) {
 
 func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
     print("Provider performs the start call action")
-
-    /*
-      Configure the audio session, but do not start call audio here, since it must be done once
-      the audio session has been activated by the system after having its priority elevated.
-    */
+    // Pre-heating stage for outgoing calls
+    sessionManager?.preconfigureAudioSessionForCall(withMode: .videoChat)
 }
 
 func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
     print("Provider performs the answer call action")
-
-    /*
-      Configure the audio session, but do not start call audio here, since it must be done once
-      the audio session has been activated by the system after having its priority elevated.
-    */
+    // Pre-heating stage for incoming calls
+    sessionManager?.preconfigureAudioSessionForCall(withMode: .videoChat)
 }
 
 func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
@@ -121,10 +137,14 @@ func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
 
 func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
     print("Provider performs the hold call action")
+
+    // You may want to mute/unmute the publisher here
 }
 
 func provider(_ provider: CXProvider, perform action: CXSetMutedCallAction) {
     print("Provider performs the mute call action")
+
+    // You may want to mute/unmute the publisher here
 }
 ``` 
 
@@ -138,6 +158,7 @@ func provider(_ provider: CXProvider, timedOutPerforming action: CXAction) {
 
 func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
     // Start call audio media, now that the audio session has been activated after having its priority boosted.
+    sessionManager?.audioSessionDidActivate(audioSession)
 }
 
 func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
@@ -145,6 +166,7 @@ func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession
         Restart any non-call related audio now that the app's audio session has been
         de-activated after having its priority restored to normal.
     */
+    sessionManager?.audioSessionDidDeactivate(audioSession)
 }
 ```
 
@@ -191,12 +213,3 @@ provider.reportNewIncomingCall(with: uuid, update: update) { error in
 ```
 
 ![call](./call.jpeg)
-
-
-### A glitch
-
-There is a small [issue](https://forums.developer.apple.com/thread/64544) when accepting a call from a locked screen. The underlying audio session does not get activated propertly inside the CallKit framework. Apple's engineers propose a workaround by setting up the audio session as early as possible to make the case work out temporarily: 
-
-```
-then a workaround would be to configure your app's audio session (call `configureAudioSession()`) earlier in your app's lifecycle, before the `-provider:performAnswerCallAction:` method is invoked.
-```
