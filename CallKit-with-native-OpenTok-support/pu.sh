@@ -2,9 +2,11 @@
 
 PAYLOAD=""
 
+uuid=$(uuidgen | tr '[:upper:]' '[:lower:]')
+
 if [ -z "$1" ]
   then
-    PAYLOAD="{\"aps\":{\"content-available\" : 1}, \"UUID\":\"d030f126-f523-476a-89cf-08fd0d806fe0\", \"handle\":\"Ford Prefect\"}"
+    PAYLOAD="{\"aps\":{\"content-available\" : 1}, \"UUID\":\"$uuid\", \"handle\":\"Ford Prefect\"}"
   else 
     PAYLOAD=$(<$1)
 fi
