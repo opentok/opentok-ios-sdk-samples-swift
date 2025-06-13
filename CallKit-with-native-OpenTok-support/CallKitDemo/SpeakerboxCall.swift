@@ -105,9 +105,16 @@ final class SpeakerboxCall: NSObject {
     var publisher: OTPublisher?
     var subscriber: OTSubscriber?
     
+    func assertSessionParams() {
+        assert(!apiKey.isEmpty, "Empty API key, session will not be instantiated")
+        assert(!sessionId.isEmpty, "Empty Session ID, session will not be instantiated")
+        assert(!token.isEmpty, "Empty token, session will not connect")
+    }
+    
     var canStartCall: ((Bool) -> Void)?
     func startCall(withAudioSession audioSession: AVAudioSession, completion: ((_ success: Bool) -> Void)?) {
         if session == nil {
+            assertSessionParams()
             session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         }
         canStartCall = completion
@@ -115,14 +122,16 @@ final class SpeakerboxCall: NSObject {
         var error: OTError?
         hasStartedConnecting = true
         session?.connect(withToken: token, error: &error)
-        if error != nil {
-            print(error!)
+        if let error = error {
+            print(error)
+            callDidEnd?(.failed)
         }
     }
     
     var canAnswerCall: ((Bool) -> Void)?
     func answerCall(withAudioSession audioSession: AVAudioSession, completion: ((_ success: Bool) -> Void)?) {
         if session == nil {
+            assertSessionParams()
             session = OTSession(apiKey: apiKey, sessionId: sessionId, delegate: self)
         }
         
@@ -131,8 +140,9 @@ final class SpeakerboxCall: NSObject {
         var error: OTError?
         hasStartedConnecting = true
         session?.connect(withToken: token, error: &error)
-        if error != nil {
-            print(error!)
+        if let error = error {
+            print(error)
+            callDidEnd?(.failed)
         }
     }
     
@@ -142,13 +152,23 @@ final class SpeakerboxCall: NSObject {
             settings.name = UIDevice.current.name
             settings.audioTrack = true
             settings.videoTrack = false
-            publisher = OTPublisher.init(delegate: self, settings: settings)
+            publisher = OTPublisher(delegate: self, settings: settings)
         }
         
         var error: OTError?
         session?.publish(publisher!, error: &error)
-        if error != nil {
-            print(error!)
+        if let error = error {
+            print(error)
+            
+            if let session = session {
+                var error: OTError?
+                session.disconnect(&error)
+                if let error = error {
+                    print(error)
+                }
+            }
+            
+            callDidEnd?(.failed)
         }
     }
     
@@ -169,8 +189,8 @@ final class SpeakerboxCall: NSObject {
         if let session = session {
             var error: OTError?
             session.disconnect(&error)
-            if error != nil {
-                print(error!)
+            if let error = error {
+                print(error)
             }
         }
         session = nil
