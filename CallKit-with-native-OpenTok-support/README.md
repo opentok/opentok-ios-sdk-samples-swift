@@ -3,8 +3,9 @@
 
 
 ## CallKit Integration with OpenTok
-A sample app to demonstrate how to integrate the [CallKit](https://developer.apple.com/documentation/callkit) into OpenTok iOS SDK. This sample app is built based on the [SpeakerBox](https://developer.apple.com/library/content/samplecode/Speakerbox/Introduction/Intro.html) app from [WWDC 2016 CallKit Session](https://developer.apple.com/videos/play/wwdc2016/230/)
+A sample app to demonstrate how to integrate the [CallKit](https://developer.apple.com/documentation/callkit) into OpenTok iOS SDK. This sample app is built based on the [SpeakerBox](https://developer.apple.com/library/content/samplecode/Speakerbox/Introduction/Intro.html) app from [WWDC 2016 CallKit Session](https://developer.apple.com/videos/play/wwdc2016/230/).
 
+For more information, see [this documentation](https://tokbox.com/developer/guides/mobile/ios/#user-content-call-kit).
 ### Install the project files
 
 Use CocoaPods to install the project files and dependencies.
@@ -68,7 +69,7 @@ Run the script in the terminal app.
 
 **Notice**: You might want to use [OpenTok.js Sample App](https://github.com/opentok/opentok-web-samples/tree/master/Basic%20Video%20Chat) to test the sample app together.
 
-### Exploring the codes
+### Exploring the code
 
 For activating the native OpenTok CallKit support you will need to enable calling services mode. The `OTAudioDeviceManager.currentAudioSessionManager` instance notifies to the SDK that should not try to activate the audio sessions, instead it will wait for the the app audio session activation and deactivation events.
 
