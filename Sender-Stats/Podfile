@@ -1,0 +1,8 @@
+require_relative '../OpenTokSDKVersion'
+
+platform :ios, MinIosSdkVersion
+use_frameworks!
+
+target 'Sender-Stats' do
+  pod 'OTXCFramework', :podspec => 'OTXCFramework.podspec'
+end
