@@ -6,8 +6,8 @@ This sample app demonstrates how to get and show sender stats to the user. It sh
 *Important:* To use this application, follow the instructions in the
 [Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
-
-![Sender stats example](./readme-images/senderStatsExample1.png){:height="767px" width="400px"}
+<img src="./readme-images/senderStatsExample1.png" width="767" height="400">
+![Sender stats example](./readme-images/senderStatsExample1.png)
 
 ## Setting up the statistis
 
