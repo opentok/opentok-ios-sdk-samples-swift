@@ -30,7 +30,10 @@ class ChatViewController: UICollectionViewController {
     }
 
     lazy var session: OTCustomSession = {
-        return OTCustomSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
+        guard let session = OTCustomSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self) else {
+            fatalError("Please fill in the kApiKey, kSessionId & kToken")
+        }
+        return session
     }()
     
     /**
