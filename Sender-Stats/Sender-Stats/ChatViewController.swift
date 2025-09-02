@@ -289,7 +289,10 @@ extension ChatViewController: OTSubscriberKitNetworkStatsDelegate {
     /**
      * **Sender stats step 3**
      * videoNetworkStatsUpdated method needs to be implemented
-     * to capture information about sender stats as follows
+     * to capture information about sender stats as follows.
+     *
+     * The stats could still be nil sometimes due to network issues or latency,
+     * even if the publisher’s sender stats track is enabled.
      */
     func subscriber(_ subscriber: OTSubscriberKit, videoNetworkStatsUpdated stats: OTSubscriberKitVideoNetworkStats) {
         guard let senderStats = stats.senderStats else { return }
