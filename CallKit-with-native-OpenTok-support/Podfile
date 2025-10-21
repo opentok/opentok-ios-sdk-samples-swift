@@ -1,0 +1,8 @@
+require_relative '../OpenTokSDKVersion'
+
+platform :ios, MinIosSdkVersion
+use_frameworks!
+
+target 'CallKitDemo' do
+  pod 'OTXCFramework', OpenTokSDKVersion
+end
