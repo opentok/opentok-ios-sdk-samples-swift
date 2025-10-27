@@ -1,0 +1,8 @@
+require_relative '../OpenTokSDKVersion'
+
+platform :ios, MinIosSdkVersion
+use_frameworks!
+
+target 'Basic-Video-Renderer' do
+  pod 'OTXCFramework', OpenTokSDKVersion
+end
