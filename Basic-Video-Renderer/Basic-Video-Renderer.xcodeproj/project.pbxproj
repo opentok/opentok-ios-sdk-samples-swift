@@ -12,6 +12,8 @@
 		A05375D91EB1633400645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375D11EB1633400645696 /* LaunchScreen.storyboard */; };
 		A05375DA1EB1633400645696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375D31EB1633400645696 /* Main.storyboard */; };
 		A05375DC1EB1633400645696 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375D61EB1633400645696 /* ViewController.swift */; };
+		BBA1186C2EAFE28B0069CD4A /* CustomVideoRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA1186B2EAFE28B0069CD4A /* CustomVideoRender.swift */; };
+		BBA1186E2EAFE2A80069CD4A /* CustomRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA1186D2EAFE2A80069CD4A /* CustomRenderView.swift */; };
 		DF8EE2A03953B22ED015A6EF /* Pods_Basic_Video_Renderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B37A9F28224666D39F7DBA7 /* Pods_Basic_Video_Renderer.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		A05375D51EB1633400645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05375D61EB1633400645696 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BA58EE726F82D07860713FBF /* Pods-Basic-Video-Renderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Renderer.release.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Renderer/Pods-Basic-Video-Renderer.release.xcconfig"; sourceTree = "<group>"; };
+		BBA1186B2EAFE28B0069CD4A /* CustomVideoRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoRender.swift; sourceTree = "<group>"; };
+		BBA1186D2EAFE2A80069CD4A /* CustomRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRenderView.swift; sourceTree = "<group>"; };
 		F86C649A1D5C7C630081846D /* Basic-Video-Renderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Renderer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -49,6 +53,8 @@
 				A05375D31EB1633400645696 /* Main.storyboard */,
 				A05375D51EB1633400645696 /* Info.plist */,
 				A05375D61EB1633400645696 /* ViewController.swift */,
+				BBA1186B2EAFE28B0069CD4A /* CustomVideoRender.swift */,
+				BBA1186D2EAFE2A80069CD4A /* CustomRenderView.swift */,
 			);
 			path = "Basic-Video-Renderer";
 			sourceTree = "<group>";
@@ -210,6 +216,8 @@
 			files = (
 				A05375DC1EB1633400645696 /* ViewController.swift in Sources */,
 				A05375D71EB1633400645696 /* AppDelegate.swift in Sources */,
+				BBA1186C2EAFE28B0069CD4A /* CustomVideoRender.swift in Sources */,
+				BBA1186E2EAFE2A80069CD4A /* CustomRenderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
