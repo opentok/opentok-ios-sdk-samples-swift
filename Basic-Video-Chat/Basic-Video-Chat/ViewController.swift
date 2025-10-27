@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     var publisher: OTPublisher?
     var subscriber: OTSubscriber?
-    
+    let renderer = CustomVideoRender()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,13 +61,15 @@ class ViewController: UIViewController {
         
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
-        publisher =  OTPublisher(delegate: self, settings: settings)!
-
+        publisher = OTPublisher(delegate: self, settings: settings)!
+        publisher?.videoRender = renderer
         session.publish(publisher!, error: &error)
         
         if let pubView = publisher!.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
+            renderer.renderView.frame = pubView.frame
             view.addSubview(pubView)
+            pubView.addSubview(renderer.renderView)
         }
     }
     
