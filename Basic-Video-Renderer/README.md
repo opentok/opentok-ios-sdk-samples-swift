@@ -13,11 +13,11 @@ To use this application:
    section of the main README file for this repository.
 
    Among other things, you need to set values for the `kApiKey`, `kSessionId`,
-   and `kToken` constants. See [Obtaining OpenTok
+   and `kToken` constants. See [Obtaining 
    Credentials](../README.md#obtaining-opentok-credentials)
    in the main README file for the repository.
 
-2. When you run the application, it connects to an OpenTok session and
+2. When you run the application, it connects to a session and
    publishes an audio-video stream from your device to the session.
 
 3. Run the app on a second client. You can do this by deploying the app to an
@@ -32,7 +32,7 @@ Application Notes
 -----------------
 
 *   Follow the code from the `ViewController.viewDidLoad(_:)` method through
-    to the OpenTok callbacks to see how streams are created and handled in
+    to the callbacks to see how streams are created and handled in
     the OpenTok iOS SDK.
 
 *   By default, all delegate methods from classes in the OpenTok iOS SDK are
@@ -44,7 +44,7 @@ Application Notes
     a Session object. The app then calls the
     `OTSession.connectWithToken(_:, error:)` to connect to the session. The
     `OTSessionDelegate.sessionDidConnect(_:)` message is sent when the app
-    connects to the OpenTok session.
+    connects to the session.
 
 *   The `doPublish()` method of the app initializes a publisher and passes it
     into the `OTSession.publish(_:,error:)` method. This publishes an
