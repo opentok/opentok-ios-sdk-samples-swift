@@ -65,11 +65,14 @@ class ViewController: UIViewController {
         
         let settings = OTPublisherSettings()
         settings.name = UIDevice.current.name
-        publisher = OTPublisher(delegate: self, settings: settings)!
-        publisher?.videoRender = renderer
-        session.publish(publisher!, error: &error)
+        guard let publisher = OTPublisher(delegate: self, settings: settings) else {
+            fatalError("Could not create publisher, check your settings")
+        }
+        self.publisher = publisher
+        publisher.videoRender = renderer
+        session.publish(publisher, error: &error)
         
-        if let pubView = publisher!.view {
+        if let pubView = publisher.view {
             pubView.frame = CGRect(x: 0, y: 0, width: kWidgetWidth, height: kWidgetHeight)
             renderer.renderView.frame = pubView.frame
             view.addSubview(pubView)
@@ -88,9 +91,12 @@ class ViewController: UIViewController {
         defer {
             processError(error)
         }
-        subscriber = OTSubscriber(stream: stream, delegate: self)
         
-        session.subscribe(subscriber!, error: &error)
+        guard let subscriber = OTSubscriber(stream: stream, delegate: self) else {
+            fatalError("Could not create subscriber, check your stream.session and stream.connection")
+        }
+        self.subscriber = subscriber
+        session.subscribe(subscriber, error: &error)
     }
     
     fileprivate func cleanupSubscriber() {
@@ -99,17 +105,16 @@ class ViewController: UIViewController {
     }
     
     fileprivate func cleanupPublisher() {
-        publisher!.view?.removeFromSuperview()
+        publisher?.view?.removeFromSuperview()
         publisher = nil
     }
     
     fileprivate func processError(_ error: OTError?) {
-        if let err = error {
-            DispatchQueue.main.async {
-                let controller = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
-                controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(controller, animated: true, completion: nil)
-            }
+        guard let error else { return }
+        DispatchQueue.main.async {
+            let controller = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(controller, animated: true, completion: nil)
         }
     }
 }
