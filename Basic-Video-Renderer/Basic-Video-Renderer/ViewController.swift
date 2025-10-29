@@ -12,11 +12,11 @@ import OpenTok
 // *** Fill the following variables using your own Project info  ***
 // ***            https://tokbox.com/account/#/                  ***
 // Replace with your OpenTok API key
-let kApiKey = "48073631"
+let kApiKey = ""
 // Replace with your generated session ID
-let kSessionId = "1_MX40ODA3MzYzMX5-MTc2MTUwNTY4OTI3OX41WEVNQzJLK0hhUUZRZVdRanJCV283UXN-fn4"
+let kSessionId = ""
 // Replace with your generated token
-let kToken = "T1==cGFydG5lcl9pZD00ODA3MzYzMSZzaWc9OWYwOGM2NzQwNmI0N2M3NWY5NzRlNjZiNTcwYjY3ZWMzODFjZGU2YzpzZXNzaW9uX2lkPTFfTVg0ME9EQTNNell6TVg1LU1UYzJNVFV3TlRZNE9USTNPWDQxV0VWTlF6SkxLMGhoVVVaUlpWZFJhbkpDVjI4M1VYTi1mbjQmY3JlYXRlX3RpbWU9MTc2MTUwNTcxOCZub25jZT0wLjQ4MDM4NzY2MTYwNTIxMjk2JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE3NjE1MDkzMTcmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0="
+let kToken = ""
 
 let kWidgetHeight = 240
 let kWidgetWidth = 320
