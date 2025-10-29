@@ -23,7 +23,11 @@ let kWidgetWidth = 320
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(applicationId: kAppId, sessionId: kSessionId, delegate: self)!
+        if let newSession = OTSession(applicationId: kAppId, sessionId: kSessionId, delegate: self) {
+            return newSession
+        } else {
+            fatalError("Could not create session, check if kAppId, kSessionId and kToken are correct")
+        }
     }()
     
     var publisher: OTPublisher?
