@@ -11,9 +11,9 @@ import OpenTok
 
 // *** Fill the following variables using your own Project info  ***
 // *** https://developer.vonage.com/en/video/getting-started#create-an-application ***
-// Replace with your Vonage Video APP ID
+// Replace with your Vonage Video application Id
 let kAppId = ""
-// Replace with your generated session ID
+// Replace with your generated session Id
 let kSessionId = ""
 // Replace with your generated token
 let kToken = ""
