@@ -2,7 +2,7 @@ Basic Video Renderer Sample App
 ===============================
 
 The Basic-Video-Renderer app is a very simple application meant to get a new developer
-started using the OpenTok iOS SDK.
+started using the Vonage Client SDK.
 
 Quick Start
 -----------
@@ -12,7 +12,7 @@ To use this application:
 1. Follow the instructions in the [Quick Start](../README.md#quick-start)
    section of the main README file for this repository.
 
-   Among other things, you need to set values for the `kApiKey`, `kSessionId`,
+   Among other things, you need to set values for the `kAppId`, `kSessionId`,
    and `kToken` constants. See [Obtaining 
    Credentials](../README.md#obtaining-opentok-credentials)
    in the main README file for the repository.
@@ -33,9 +33,9 @@ Application Notes
 
 *   Follow the code from the `ViewController.viewDidLoad(_:)` method through
     to the callbacks to see how streams are created and handled in
-    the OpenTok iOS SDK.
+    the Vonage iOS SDK.
 
-*   By default, all delegate methods from classes in the OpenTok iOS SDK are
+*   By default, all delegate methods from classes in the Vonage iOS SDK are
     invoked on the main queue. This means that you can directly modify the view
     hierarchy from inside the callback, without any asynchronous callouts.
 
@@ -55,6 +55,9 @@ Application Notes
     method calls `OTSubscriber(stream:,delegate:)`,
     passing in the OTStream object. This causes the app to subscribe to the
     stream.
+    
+*   Setup your video renderer in the `doPublish()` method, assign the `publisher.videoRender` property,
+    add proper subViews
 
  To add a second publisher (which will display as a subscriber in your emulator), either run the app a second time in an iOS device or use the OpenTok Playground to connect to the session in a supported web browser (Chrome, Firefox, or Internet Explorer 10-11) by following the steps below:
 
