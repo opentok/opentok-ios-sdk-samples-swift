@@ -1,18 +1,18 @@
 //
 //  ViewController.swift
-//  Hello-World
+//  Basic-Video-Renderer
 //
-//  Created by Roberto Perez Cubero on 11/08/16.
-//  Copyright © 2016 tokbox. All rights reserved.
+//  Created by Artur Osinski on 29/10/25.
+//  Copyright © 2025 Vonage. All rights reserved.
 //
 
 import UIKit
 import OpenTok
 
 // *** Fill the following variables using your own Project info  ***
-// ***            https://tokbox.com/account/#/                  ***
-// Replace with your OpenTok API key
-let kApiKey = ""
+// *** https://developer.vonage.com/en/video/getting-started#create-an-application ***
+// Replace with your Vonage Video APP ID
+let kAppId = ""
 // Replace with your generated session ID
 let kSessionId = ""
 // Replace with your generated token
@@ -23,7 +23,7 @@ let kWidgetWidth = 320
 
 class ViewController: UIViewController {
     lazy var session: OTSession = {
-        return OTSession(apiKey: kApiKey, sessionId: kSessionId, delegate: self)!
+        return OTSession(applicationId: kAppId, sessionId: kSessionId, delegate: self)!
     }()
     
     var publisher: OTPublisher?

@@ -3,7 +3,7 @@
 //  Basic-Video-Renderer
 //
 //  Created by Artur Osiński on 27/10/2025.
-//  Copyright © 2025 tokbox. All rights reserved.
+//  Copyright © 2025 Vonage. All rights reserved.
 //
 
 import OpenTok

@@ -4,5 +4,5 @@ platform :ios, MinIosSdkVersion
 use_frameworks!
 
 target 'Basic-Video-Renderer' do
-  pod 'OTXCFramework', OpenTokSDKVersion
+  pod 'VonageClientSDKVideo', OpenTokSDKVersion
 end
