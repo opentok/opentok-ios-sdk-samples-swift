@@ -10,16 +10,10 @@ import OpenTok
 
 class CustomVideoRender: NSObject, OTVideoRender {
     
-    var renderView: UIView
+    let renderView = CustomRenderView(frame: .zero)
 
-    override init() {
-        // Initialize with your custom render view
-        self.renderView = CustomRenderView(frame: .zero)
-        super.init()
-    }
-    
     func renderVideoFrame(_ frame: OTVideoFrame) {
         // Cast to your custom view type and pass the frame for rendering
-        (renderView as? CustomRenderView)?.renderVideoFrame(frame)
+        renderView.renderVideoFrame(frame)
     }
 }
