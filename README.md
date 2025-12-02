@@ -1,3 +1,5 @@
+:warning: **This repository has been deprecated in favour of the [Vonage iOS samples](https://github.com/Vonage/vonage-video-ios-sdk-samples)** :warning:
+
 [![Build Status](https://travis-ci.org/opentok/opentok-ios-sdk-samples-swift.svg?branch=main)](https://travis-ci.org/opentok/opentok-ios-sdk-samples-swift)
 
 OpenTok iOS SDK Samples
