@@ -74,6 +74,8 @@ time due to CPU limitations on iOS devices.
 subcribed video stream.
 
 **FrameMetadata** -- This project shows how to set metadata (limited to 32 bytes) to a video frame, as well as how to read metadata from a video frame.
+
+**Sender Stats** -- This project shows how to send & display bitrate statistics of the sender in 3 simple steps. It allows launching multiparty connections to see the actual stats of the sender.
 	
 ## Obtaining OpenTok Credentials
 
