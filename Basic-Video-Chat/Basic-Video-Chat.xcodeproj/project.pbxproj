@@ -7,20 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A05375D71EB1633400645696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375CF1EB1633400645696 /* AppDelegate.swift */; };
+		1280693463797E096A3A8CD4 /* Pods_Basic_Video_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4427AFBC549F7476171710 /* Pods_Basic_Video_Chat.framework */; };
 		A05375D81EB1633400645696 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A05375D01EB1633400645696 /* Assets.xcassets */; };
 		A05375D91EB1633400645696 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375D11EB1633400645696 /* LaunchScreen.storyboard */; };
 		A05375DA1EB1633400645696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05375D31EB1633400645696 /* Main.storyboard */; };
-		A05375DC1EB1633400645696 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05375D61EB1633400645696 /* ViewController.swift */; };
+		AD3D489F2EF1A51C00A26449 /* CallDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D48972EF1A51C00A26449 /* CallDebugView.swift */; };
+		AD3D48A02EF1A51C00A26449 /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D48982EF1A51C00A26449 /* CallView.swift */; };
+		AD3D48A12EF1A51C00A26449 /* VonageWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D489E2EF1A51C00A26449 /* VonageWrapperView.swift */; };
+		AD3D48A22EF1A51C00A26449 /* CallView+Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D48992EF1A51C00A26449 /* CallView+Footer.swift */; };
+		AD3D48A32EF1A51C00A26449 /* CallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D489D2EF1A51C00A26449 /* CallViewModel.swift */; };
+		AD3D48A42EF1A51C00A26449 /* CallView+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D489A2EF1A51C00A26449 /* CallView+Publisher.swift */; };
+		AD3D48A52EF1A51C00A26449 /* CallView+Subscribers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D489B2EF1A51C00A26449 /* CallView+Subscribers.swift */; };
+		AD3D48A62EF1A51C00A26449 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D489C2EF1A51C00A26449 /* CallViewController.swift */; };
+		AD3D48A92EF1ADFC00A26449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3D48A82EF1ADFC00A26449 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A05375CF1EB1633400645696 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		51B50D3CA50061600D044727 /* Pods-Basic-Video-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.debug.xcconfig"; sourceTree = "<group>"; };
+		587F00C9ADA0EDE78389A53D /* Pods-Basic-Video-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.release.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.release.xcconfig"; sourceTree = "<group>"; };
+		9C4427AFBC549F7476171710 /* Pods_Basic_Video_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basic_Video_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A05375D01EB1633400645696 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A05375D21EB1633400645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A05375D41EB1633400645696 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A05375D51EB1633400645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A05375D61EB1633400645696 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AD3D48972EF1A51C00A26449 /* CallDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDebugView.swift; sourceTree = "<group>"; };
+		AD3D48982EF1A51C00A26449 /* CallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallView.swift; sourceTree = "<group>"; };
+		AD3D48992EF1A51C00A26449 /* CallView+Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CallView+Footer.swift"; sourceTree = "<group>"; };
+		AD3D489A2EF1A51C00A26449 /* CallView+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CallView+Publisher.swift"; sourceTree = "<group>"; };
+		AD3D489B2EF1A51C00A26449 /* CallView+Subscribers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CallView+Subscribers.swift"; sourceTree = "<group>"; };
+		AD3D489C2EF1A51C00A26449 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		AD3D489D2EF1A51C00A26449 /* CallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewModel.swift; sourceTree = "<group>"; };
+		AD3D489E2EF1A51C00A26449 /* VonageWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VonageWrapperView.swift; sourceTree = "<group>"; };
+		AD3D48A72EF1A52700A26449 /* Basic-Video-Chat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Basic-Video-Chat-Bridging-Header.h"; sourceTree = "<group>"; };
+		AD3D48A82EF1ADFC00A26449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F86C649A1D5C7C630081846D /* Basic-Video-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -29,21 +48,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1280693463797E096A3A8CD4 /* Pods_Basic_Video_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E4FECF54EB0923F172A06D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				51B50D3CA50061600D044727 /* Pods-Basic-Video-Chat.debug.xcconfig */,
+				587F00C9ADA0EDE78389A53D /* Pods-Basic-Video-Chat.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8700C59C0DFEF4017E7107FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C4427AFBC549F7476171710 /* Pods_Basic_Video_Chat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A05375CE1EB1633400645696 /* Basic-Video-Chat */ = {
 			isa = PBXGroup;
 			children = (
-				A05375CF1EB1633400645696 /* AppDelegate.swift */,
+				AD3D48A82EF1ADFC00A26449 /* AppDelegate.swift */,
+				AD3D48972EF1A51C00A26449 /* CallDebugView.swift */,
+				AD3D48982EF1A51C00A26449 /* CallView.swift */,
+				AD3D48992EF1A51C00A26449 /* CallView+Footer.swift */,
+				AD3D489A2EF1A51C00A26449 /* CallView+Publisher.swift */,
+				AD3D489B2EF1A51C00A26449 /* CallView+Subscribers.swift */,
+				AD3D489C2EF1A51C00A26449 /* CallViewController.swift */,
+				AD3D489D2EF1A51C00A26449 /* CallViewModel.swift */,
+				AD3D489E2EF1A51C00A26449 /* VonageWrapperView.swift */,
 				A05375D01EB1633400645696 /* Assets.xcassets */,
 				A05375D11EB1633400645696 /* LaunchScreen.storyboard */,
 				A05375D31EB1633400645696 /* Main.storyboard */,
 				A05375D51EB1633400645696 /* Info.plist */,
-				A05375D61EB1633400645696 /* ViewController.swift */,
+				AD3D48A72EF1A52700A26449 /* Basic-Video-Chat-Bridging-Header.h */,
 			);
 			path = "Basic-Video-Chat";
 			sourceTree = "<group>";
@@ -53,6 +98,8 @@
 			children = (
 				A05375CE1EB1633400645696 /* Basic-Video-Chat */,
 				F86C649B1D5C7C630081846D /* Products */,
+				7E4FECF54EB0923F172A06D6 /* Pods */,
+				8700C59C0DFEF4017E7107FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F86C64AC1D5C7C630081846D /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */;
 			buildPhases = (
+				24E20206E1E61C0F0649E366 /* [CP] Check Pods Manifest.lock */,
 				F86C64961D5C7C630081846D /* Sources */,
 				F86C64971D5C7C630081846D /* Frameworks */,
 				F86C64981D5C7C630081846D /* Resources */,
+				620C0C438171967B94BD030F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,9 +145,9 @@
 				TargetAttributes = {
 					F86C64991D5C7C630081846D = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = "";
-						LastSwiftMigration = 1200;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 2A784Y2X3Q;
+						LastSwiftMigration = 2620;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -134,13 +183,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24E20206E1E61C0F0649E366 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Basic-Video-Chat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		620C0C438171967B94BD030F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTXCFramework/OTPrivacyResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTPrivacyResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F86C64961D5C7C630081846D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A05375DC1EB1633400645696 /* ViewController.swift in Sources */,
-				A05375D71EB1633400645696 /* AppDelegate.swift in Sources */,
+				AD3D489F2EF1A51C00A26449 /* CallDebugView.swift in Sources */,
+				AD3D48A02EF1A51C00A26449 /* CallView.swift in Sources */,
+				AD3D48A12EF1A51C00A26449 /* VonageWrapperView.swift in Sources */,
+				AD3D48A92EF1ADFC00A26449 /* AppDelegate.swift in Sources */,
+				AD3D48A22EF1A51C00A26449 /* CallView+Footer.swift in Sources */,
+				AD3D48A32EF1A51C00A26449 /* CallViewModel.swift in Sources */,
+				AD3D48A42EF1A51C00A26449 /* CallView+Publisher.swift in Sources */,
+				AD3D48A52EF1A51C00A26449 /* CallView+Subscribers.swift in Sources */,
+				AD3D48A62EF1A51C00A26449 /* CallViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,28 +371,42 @@
 		};
 		F86C64AD1D5C7C630081846D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51B50D3CA50061600D044727 /* Pods-Basic-Video-Chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2A784Y2X3Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Hello-World";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		F86C64AE1D5C7C630081846D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 587F00C9ADA0EDE78389A53D /* Pods-Basic-Video-Chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2A784Y2X3Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Hello-World";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
