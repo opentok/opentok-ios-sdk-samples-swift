@@ -8,6 +8,7 @@
 
 import OpenTok
 import AVFoundation
+import Vision
 
 extension UIApplication {
     func currentDeviceOrientation(cameraPosition pos: AVCaptureDevice.Position) -> OTVideoOrientation {
@@ -60,6 +61,15 @@ class ExampleVideoCapture: NSObject, OTVideoCapture {
     var videoCaptureConsumer: OTVideoCaptureConsumer?
     
     var delegate: FrameCapturerMetadataDelegate?
+    
+    // Properties for freeze detection
+    private var previousImageBuffer: CVPixelBuffer?
+    private var consecutiveFrozenFrames = 0
+    private let frozenThreshold: Float = 0.1 // Threshold for both methods
+    private let useDirectComparison = false // Flag to switch between methods
+    
+    // Property to control video publishing
+    private var isVideoEnabled = true
     
     var cameraPosition: AVCaptureDevice.Position {
         get {
@@ -318,6 +328,50 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
                 return
         }
         
+        // Freeze detection using either direct comparison or optical flow
+        if let previousBuffer = previousImageBuffer {
+            var difference: Float = 1.0
+            
+            if useDirectComparison {
+                // Method 1: Direct frame comparison
+                difference = compareFrames(current: imageBuffer, previous: previousBuffer)
+                print("Direct comparison difference: \(difference)")
+            } else {
+                // Method 2: Optical flow using Vision
+                let request = VNGenerateOpticalFlowRequest(targetedCVPixelBuffer: imageBuffer, options: [:])
+                request.computationAccuracy = .high
+                let handler = VNImageRequestHandler(cvPixelBuffer: previousBuffer, options: [:])
+                
+                do {
+                    try handler.perform([request])
+                    
+                    if let observations = request.results,
+                       let flowObservation = observations.first as? VNPixelBufferObservation {
+                        let flowPixelBuffer = flowObservation.pixelBuffer
+                        difference = calculateMotionMagnitude(from: flowPixelBuffer)
+                        print("Optical flow magnitude: \(difference)")
+                    }
+                } catch {
+                    print("Vision error: \(error)")
+                }
+            }
+            
+            // Process the difference value the same way for both methods
+            if difference < frozenThreshold {
+                consecutiveFrozenFrames += 1
+                print("Low motion: \(difference) < \(frozenThreshold), consecutive: \(consecutiveFrozenFrames)")
+                if consecutiveFrozenFrames > 5 { // About 1/6 second at 30fps
+                    print("frozen")
+                }
+            } else {
+                consecutiveFrozenFrames = 0
+                print("moving")
+            }
+        }
+        
+        // Store current frame for next comparison
+        previousImageBuffer = imageBuffer
+        
         let time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         CVPixelBufferLockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
         
@@ -325,4 +379,104 @@ extension ExampleVideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         CVPixelBufferUnlockBaseAddress(imageBuffer, CVPixelBufferLockFlags(rawValue: CVOptionFlags(0)))
     }
+    
+    private func calculateMotionMagnitude(from flowPixelBuffer: CVPixelBuffer) -> Float {
+        CVPixelBufferLockBaseAddress(flowPixelBuffer, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(flowPixelBuffer, .readOnly) }
+        
+        let width = CVPixelBufferGetWidth(flowPixelBuffer)
+        let height = CVPixelBufferGetHeight(flowPixelBuffer)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(flowPixelBuffer)
+        let baseAddress = CVPixelBufferGetBaseAddress(flowPixelBuffer)!
+        
+        var magnitudes: [Float] = []
+        
+        // Sample the flow buffer
+        for y in stride(from: 0, to: height, by: 10) {
+            for x in stride(from: 0, to: width, by: 10) {
+                let offset = y * bytesPerRow + x * 8 // 2 float32 values per pixel
+                let flowX = baseAddress.load(fromByteOffset: offset, as: Float32.self)
+                let flowY = baseAddress.load(fromByteOffset: offset + 4, as: Float32.self)
+                
+                // Calculate magnitude of the flow vector
+                let magnitude = sqrt(flowX * flowX + flowY * flowY)
+                magnitudes.append(Float(magnitude))
+            }
+        }
+        
+        // Sort magnitudes and take median to reduce impact of outliers
+        magnitudes.sort()
+        let medianIndex = magnitudes.count / 2
+        let medianMagnitude = magnitudes.isEmpty ? 0 : magnitudes[medianIndex]
+        
+        print("Motion magnitude (median): \(medianMagnitude)")
+        
+        return medianMagnitude
+    }
+}
+
+/**
+ * Compares two video frames to determine how different they are.
+ * 
+ * This function:
+ * 1. Takes samples of pixel values from both frames
+ * 2. Calculates the absolute difference between corresponding pixels
+ * 3. Returns a value between 0.0 and 1.0 representing the average difference
+ *    - 0.0 means frames are identical (completely frozen)
+ *    - 1.0 means frames are completely different (maximum movement)
+ *
+ * @param current The current video frame
+ * @param previous The previous video frame
+ * @return A float value between 0.0 and 1.0 representing the difference
+ */
+private func compareFrames(current: CVPixelBuffer, previous: CVPixelBuffer) -> Float {
+    // Lock buffers to safely access pixel data
+    CVPixelBufferLockBaseAddress(current, .readOnly)
+    CVPixelBufferLockBaseAddress(previous, .readOnly)
+    
+    defer {
+        // Ensure buffers are unlocked even if an error occurs
+        CVPixelBufferUnlockBaseAddress(current, .readOnly)
+        CVPixelBufferUnlockBaseAddress(previous, .readOnly)
+    }
+    
+    let width = CVPixelBufferGetWidth(current)
+    let height = CVPixelBufferGetHeight(current)
+    
+    // Sample a subset of pixels for performance (every 20th pixel)
+    let sampleStep = 20
+    var totalDifference: Float = 0
+    var sampleCount = 0
+    
+    // Get base addresses for Y plane (luminance data in NV12 format)
+    guard let currentBaseAddress = CVPixelBufferGetBaseAddressOfPlane(current, 0),
+          let previousBaseAddress = CVPixelBufferGetBaseAddressOfPlane(previous, 0) else {
+        return 1.0 // Return high difference if we can't access the data
+    }
+    
+    let currentBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(current, 0)
+    let previousBytesPerRow = CVPixelBufferGetBytesPerRowOfPlane(previous, 0)
+    
+    // Compare Y plane values (luminance)
+    for y in stride(from: 0, to: height, by: sampleStep) {
+        for x in stride(from: 0, to: width, by: sampleStep) {
+            let currentOffset = y * currentBytesPerRow + x
+            let previousOffset = y * previousBytesPerRow + x
+            
+            // Get pixel values from both frames
+            let currentValue = currentBaseAddress.load(fromByteOffset: currentOffset, as: UInt8.self)
+            let previousValue = previousBaseAddress.load(fromByteOffset: previousOffset, as: UInt8.self)
+            
+            // Calculate normalized difference (0.0-1.0)
+            let difference = abs(Float(currentValue) - Float(previousValue)) / 255.0
+            totalDifference += difference
+            sampleCount += 1
+        }
+    }
+    
+    // Calculate average difference across all sampled pixels
+    let averageDifference = sampleCount > 0 ? totalDifference / Float(sampleCount) : 0
+    print("Frame difference: \(averageDifference)")
+    
+    return averageDifference
 }
